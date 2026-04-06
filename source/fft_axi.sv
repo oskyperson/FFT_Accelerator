@@ -27,7 +27,35 @@ module fft_axi #(
     input logic rready
 );
 
+// awready wready
 
+// awaddr capture
+
+// wcounter
+
+// adder
+
+// error
+
+// next input buffer logic
+
+// write output logc
+
+/* ------------------------- */
+
+// read input logic
+
+// arready rvalid
+
+// araddr capture
+
+// rcounter
+
+// adder
+
+// error
+
+// rdata logic
 
 endmodule
 
