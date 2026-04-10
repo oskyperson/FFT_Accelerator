@@ -1,0 +1,15 @@
+CAPI=2:
+name: "team42:ece337:fft_axi_subordinate_syn"
+
+filesets:
+    netlist:
+        files:
+            - "fft_axi_subordinate.v"
+        file_type: systemVerilogSource
+
+targets:
+    default:
+        filesets:
+            - netlist
+        toplevel: fft_axi_subordinate
+
