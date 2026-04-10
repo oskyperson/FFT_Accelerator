@@ -35,17 +35,17 @@ always_comb begin : counter_logic
     if (ready & valid & !resp) begin
         next_i = i + 1;
         next_busy[addr] = 1;
-        if (i == len) begin
+        if (i >= len - 1) begin
             next_i = 1;
             last = 1;
-            next_busy[addr] = 0;
+            next_busy = '0;
         end
     end
 
     // clear condition
     if (!ready && WRITE_OR_READ || !valid && !WRITE_OR_READ) begin
         next_i = 0;
-        next_busy[addr] = 0;
+        next_busy = '0;
     end
 end
 

@@ -7,7 +7,7 @@ module fft_axi_manager #(
     // write address
     input logic awready,
     output logic [10:0] awaddr,
-    output logic [9:0] awlen
+    output logic [9:0] awlen,
     output logic awvalid, 
     // write data
     input logic wready,
@@ -30,13 +30,17 @@ module fft_axi_manager #(
     input logic rresp,
 
     // config_reg from subordinate
-    input logic [3:0] config_reg,
+    input logic [7:0][31:0] config_reg,
     
     // signals to/from fft
     input logic fft_done,
     output logic fft_start,
-    output logic [511:0][31:0] in_buf,
-    input logic [511:0][31:0] out_buf
+    output logic fft_valid,
+    output logic [31:0] in,
+    output logic [9:0] rcount,
+    output logic wen_to_inbuf,
+    input logic [31:0] out,
+    output logic [9:0] wcount
 );
 
 // read
@@ -52,14 +56,14 @@ always_ff @ (posedge clk, negedge n_rst) begin
 end
 
 always_comb begin : next_rstate_logic
-    next_rstate = RIDLE;
+    next_rstate = rstate;
     case (rstate)
         RIDLE:
-            next_rstate = fft_done & config_reg[0] ? RADDR : RIDLE;
+            next_rstate = (fft_done & config_reg[0][0]) ? RADDR : RIDLE;
         RADDR:
             next_rstate = arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = rresp ? RERR : rvalid & (rlast | rcounter_last) ? START_FFT : RDATA;
+            next_rstate = rresp ? RERR : (rvalid & (rlast | rcounter_last)) ? START_FFT : RDATA;
         START_FFT:
             next_rstate = RIDLE;
         RERR:
@@ -70,7 +74,6 @@ always_comb begin : next_rstate_logic
 end
 
 logic rcounter_last;
-logic [9:0] rcount;
 
 /* verilator lint_off PINMISSING */
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
@@ -88,48 +91,14 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 /* verilator lint_on PINMISSING */
 
 always_comb begin : read_output_logic
-    araddr = '0;
-    arvalid = 0;
-    arlen = '0;
-    rready = 0;
-    case (rstate)
-        RIDLE: begin
-            araddr = config_reg[1];
-            arlen = config_reg[2];
-            arvalid = 0;
-            rready = 0;
-            fft_start = 0;
-        end
-        RADDR: begin
-            araddr = config_reg[1];
-            arlen = config_reg[2];
-            arvalid = 1;
-            rready = 0;
-        end
-        RDATA: begin
-            araddr = config_reg[1];
-            arlen = config_reg[2];
-            arvalid = 0;
-            rready = 1;
-            if (rvalid)
-                in_buf[rcount] = rdata;
-        end
-        START_FFT: 
-        begin
-            araddr = config_reg[1];
-            arlen = confg[2];
-            arvalid = 0;
-            rready = 0;
-            fft_start = 1;
-        end
-        RERR: begin end
-        default: begin
-            araddr = '0;
-            arvalid = 0;
-            arlen = '0;
-            rready = 0;
-        end
-    endcase
+    araddr = config_reg[1][10:0];
+    arlen = config_reg[2][9:0];
+    arvalid = (rstate == RADDR);
+    rready = (rstate == RDATA);
+    fft_start = (rstate == START_FFT);
+    fft_valid = (rstate == START_FFT);
+    in = rdata;
+    wen_to_inbuf = rready && rvalid;
 end
 
 // write
@@ -138,11 +107,53 @@ wstate_t wstate, next_wstate;
 
 always_ff @ (posedge clk, negedge n_rst) begin 
     if (!n_rst) begin
-        rstate <= RIDLE;
+        wstate <= WIDLE;
     end else begin
-        rstate <= next_rstate;
+        wstate <= next_wstate;
     end
 end
 
-endmodule
+always_comb begin : next_wstate_logic
+    next_wstate = wstate;
+    case (wstate)
+        WIDLE:
+            next_wstate = (fft_done & config_reg[6][0]) ? WADDR : WIDLE;
+        WADDR:
+            next_wstate = awready ? WDATA : WADDR;
+        WDATA:
+            next_wstate = (wlast & wready) ? B : WDATA;
+        B: 
+            next_wstate = bresp ? BERR : bvalid ? WIDLE : B;
+        BERR:
+            next_wstate = WIDLE;
+        default:
+            next_wstate = WIDLE;
+    endcase
+end
 
+/* verilator lint_off PINMISSING */
+fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
+    .clk(clk),
+    .n_rst(n_rst),
+    .len(awlen),
+    .ready(wready),
+    .valid(wvalid),
+    .resp(bresp),
+    .addr(),
+    .last(wlast),
+    .i(wcount),
+    .busy()
+);
+/* verilator lint_on PINMISSING */
+
+always_comb begin : write_output_logic
+    awaddr  = config_reg[3][10:0];
+    awlen   = config_reg[4][9:0];
+    awvalid = (wstate == WADDR);
+    wvalid  = (wstate == WDATA);
+    wstrb   = config_reg[5][1:0];
+    wdata   = out;
+    bready  = (wstate == B);
+end
+
+endmodule
