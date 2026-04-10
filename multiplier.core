@@ -6,7 +6,6 @@ filesets:
     rtl:
         files:
             - "source/multiplier.sv"
-            - "team42:ece337:adder:1.0.0"
         file_type: systemVerilogSource
         # depend:
         #     - "fusesoc:core:name"

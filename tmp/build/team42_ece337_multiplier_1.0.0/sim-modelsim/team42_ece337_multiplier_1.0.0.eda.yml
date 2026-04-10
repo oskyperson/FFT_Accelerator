@@ -1,0 +1,51 @@
+version: 0.2.1
+name: team42_ece337_multiplier_1.0.0
+toplevel: tb_multiplier
+dependencies:
+  team42:ece337:questafiles:0: []
+  team42:ece337:multiplier:1.0.0:
+  - team42:ece337:questafiles:0
+cores:
+  team42:ece337:questafiles:0:
+    core_file: ../../../scripts/questafiles.core
+    dependencies: []
+    license: null
+  team42:ece337:multiplier:1.0.0:
+    core_file: ../../../../multiplier.core
+    dependencies:
+    - team42:ece337:questafiles:0
+    license: null
+parameters: {}
+tool_options:
+  modelsim:
+    vsim_options:
+    - -vopt
+    - -voptargs='+acc'
+    - -t ps
+    - -do "source waves.tcl ; load_wave waves/multiplier.do"
+    - -onfinish stop
+    - -do "set PrefSource(OpenOnFinish) 0 ; set PrefMain(LinePrefix) \"\" ; set PrefMain(colorizeTranscript)
+      1"
+    - -coverage
+    vlog_options:
+    - +cover
+filters: []
+flow_options: {}
+hooks: {}
+files:
+- file_type: user
+  name: src/team42_ece337_questafiles_0/waves.tcl
+  core: team42:ece337:questafiles:0
+- file_type: systemVerilogSource
+  name: src/team42_ece337_multiplier_1.0.0/source/multiplier.sv
+  core: team42:ece337:multiplier:1.0.0
+- file_type: systemVerilogSource
+  name: src/team42_ece337_multiplier_1.0.0/testbench/tb_multiplier.sv
+  core: team42:ece337:multiplier:1.0.0
+- file_type: user
+  name: src/team42_ece337_multiplier_1.0.0/waves/multiplier.do
+  core: team42:ece337:multiplier:1.0.0
+- file_type: user
+  name: src/team42_ece337_multiplier_1.0.0/waves/multiplier.gtkw
+  core: team42:ece337:multiplier:1.0.0
+vpi: []
