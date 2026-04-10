@@ -22,4 +22,4 @@ for k in range(N // 2):
     twiddle_factors.append((c_fixed, s_fixed))
 
 for i, (c, s) in enumerate(twiddle_factors):
-    print(f"{i}: twiddle = {{16'h{c:04X}, 16'h{s:04X}}};")
+    print(f"8'h{i}: twiddle = {{16'h{c:04X}, 16'h{s:04X}}};")
