@@ -1,0 +1,132 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fft_axi_manager
+Version: W-2024.09-SP4
+Date   : Fri Apr 10 12:17:27 2026
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: wstate_reg[1]
+              (rising edge-triggered flip-flop)
+  Endpoint: wlast (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  wstate_reg[1]/CLK (DFFSR)                               0.00       0.00 r
+  wstate_reg[1]/Q (DFFSR)                                 0.45       0.45 f
+  U101/Y (INVX1)                                          0.18       0.64 r
+  U97/Y (NOR2X1)                                          0.30       0.94 f
+  U64/Y (AND2X1)                                          0.35       1.29 f
+  write_counter/valid (fft_axi_counter_WRITE_OR_READ1)
+                                                          0.00       1.29 f
+  write_counter/U118/Y (NAND2X1)                          0.23       1.51 r
+  write_counter/U117/Y (INVX1)                            0.18       1.69 f
+  write_counter/U111/Y (NAND3X1)                          0.19       1.88 r
+  write_counter/U110/Y (NOR2X1)                           0.15       2.03 f
+  write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       2.03 f
+  wlast (out)                                             0.00       2.03 f
+  data arrival time                                                  2.03
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : fft_axi_manager
+Version: W-2024.09-SP4
+Date   : Fri Apr 10 12:17:27 2026
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+Number of ports:                          560
+Number of nets:                           590
+Number of cells:                          365
+Number of combinational cells:            269
+Number of sequential cells:                46
+Number of macros/black boxes:               0
+Number of buf/inv:                        103
+Number of references:                      11
+
+Combinational area:              67779.000000
+Buf/Inv area:                    14832.000000
+Noncombinational area:           72864.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                140643.000000
+Total area:                 undefined
+1
+Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : fft_axi_manager
+Version: W-2024.09-SP4
+Date   : Fri Apr 10 12:17:27 2026
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =  13.3242 mW   (69%)
+  Net Switching Power  =   5.9694 mW   (31%)
+                         ---------
+Total Dynamic Power    =  19.2936 mW  (100%)
+
+Cell Leakage Power     =  43.5551 nW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         8.3971            0.2081           24.5170            8.6053  (  44.60%)
+combinational      4.9272            5.7612           19.0381           10.6884  (  55.40%)
+--------------------------------------------------------------------------------------------------
+Total             13.3242 mW         5.9694 mW        43.5551 nW        19.2937 mW
+1

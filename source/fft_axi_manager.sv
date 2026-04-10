@@ -1,5 +1,6 @@
 `timescale 1ns / 10ps
 
+/* verilator lint_off UNUSEDSIGNAL */
 module fft_axi_manager #(
     // parameters
 ) (
@@ -36,6 +37,7 @@ module fft_axi_manager #(
     input logic fft_done,
     output logic fft_start,
     output logic fft_valid,
+    // to/from buffers
     output logic [31:0] in,
     output logic [9:0] rcount,
     output logic wen_to_inbuf,
@@ -55,6 +57,8 @@ always_ff @ (posedge clk, negedge n_rst) begin
     end
 end
 
+logic rcounter_last;
+
 always_comb begin : next_rstate_logic
     next_rstate = rstate;
     case (rstate)
@@ -73,9 +77,6 @@ always_comb begin : next_rstate_logic
     endcase
 end
 
-logic rcounter_last;
-
-/* verilator lint_off PINMISSING */
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -83,12 +84,9 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .ready(rready),
     .valid(rvalid),
     .resp(rresp),
-    .addr(),
     .last(rcounter_last),
-    .i(rcount),
-    .busy()
+    .i(rcount)
 );
-/* verilator lint_on PINMISSING */
 
 always_comb begin : read_output_logic
     araddr = config_reg[1][10:0];
@@ -131,7 +129,6 @@ always_comb begin : next_wstate_logic
     endcase
 end
 
-/* verilator lint_off PINMISSING */
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -139,12 +136,9 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .ready(wready),
     .valid(wvalid),
     .resp(bresp),
-    .addr(),
     .last(wlast),
-    .i(wcount),
-    .busy()
+    .i(wcount)
 );
-/* verilator lint_on PINMISSING */
 
 always_comb begin : write_output_logic
     awaddr  = config_reg[3][10:0];
@@ -157,3 +151,4 @@ always_comb begin : write_output_logic
 end
 
 endmodule
+/* verilator lint_on UNUSEDSIGNAL */

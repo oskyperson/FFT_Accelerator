@@ -31,20 +31,20 @@ Please use '-no_save' simv switch to avoid this.
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 Initializing...
-Initializing gui preferences from file  /home/ecegridfs/a/337mg227/.synopsys_dc_gui/preferences.tcl
-Current time:       Tue Apr 14 23:46:14 2026
-Hostname:           ececomp1.ecn.purdue.edu
+Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
+Current time:       Fri Apr 10 12:17:43 2026
+Hostname:           ececomp4.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
 CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free  99 GB)
-Swap:                63 GB (Free  60 GB)
+RAM:                502 GB (Free  33 GB)
+Swap:                63 GB (Free  63 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 460 GB)
+Work Disk:          2968 GB (Free  25 GB)
 Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
+CPU Load: 8%, Ram Free: 33 GB, Swap Free: 63 GB, Work Disk Free: 25 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,13 +53,13 @@ CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Di
 #
 ############################################
 sh date
-Tue Apr 14 23:46:14 EDT 2026
-set TOP_MODULE sram_axi
-sram_axi
+Fri Apr 10 12:17:43 EDT 2026
+set TOP_MODULE fft_axi_subordinate
+fft_axi_subordinate
 set DC_SCRIPT synth.tcl
 synth.tcl
-set READ_SOURCES team42_ece337_sram_axi_1.0.0-read-sources
-team42_ece337_sram_axi_1.0.0-read-sources
+set READ_SOURCES team42_ece337_fft_axi_subordinate_1.0.0-read-sources
+team42_ece337_fft_axi_subordinate_1.0.0-read-sources
 set SCRIPT_DIR src/team42_ece337_synfiles_0
 src/team42_ece337_synfiles_0
 set REPORT_DIR reports
@@ -76,10 +76,13 @@ set link_library   [concat "*"  /home/ecegrid/a/ece337/summer24-refactor/tech/am
 ############################################
 source ${SCRIPT_DIR}/${DC_SCRIPT}
 Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv
+Compiling source file ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv
 Presto compilation completed successfully.
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/dw_foundation.sldb'
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv
+Presto compilation completed successfully.
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/gtech.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.sldb'
   Loading link library 'osu05_stdcells'
@@ -87,36 +90,72 @@ Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.
 Running PRESTO HDLC
 
 Statistics for case statements in always block in file
-	'./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv'
+	'./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'
 ============================================================
 |    Line    |  full/ parallel  |      block location      |
 ============================================================
-|     75     |    auto/auto     | always block at line 65  |
-|     85     |    auto/auto     | always block at line 65  |
-|    113     |    auto/auto     | always block at line 102 |
+|    111     |    auto/auto     | always block at line 107 |
 ============================================================
 
-Inferred memory devices in process in routine 'sram_axi' in file
-	 ./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv'.
+Inferred memory devices in process in routine 'fft_axi_subordinate' in file
+	 ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|   read_state_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  55  |
-|   write_state_reg   | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  55  |
-|    raddr_reg_reg    | Flip-flop |  12   |  Y  | N  | None  | Async | N  | 135  |
-|    rlen_reg_reg     | Flip-flop |   8   |  Y  | N  | None  | Async | N  | 135  |
-|    waddr_reg_reg    | Flip-flop |  12   |  Y  | N  | None  | Async | N  | 135  |
-|    wlen_reg_reg     | Flip-flop |   8   |  Y  | N  | None  | Async | N  | 135  |
-|    wdata_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 135  |
-|    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 135  |
+|     wready_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  62  |
+|   awaddr_reg_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  62  |
+|     awready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  |  62  |
+|   config_reg_reg    | Flip-flop |  256  |  Y  | N  | None  | Async | N  | 100  |
+|     bvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 119  |
+|      bresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 119  |
+|     arready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  | 145  |
+|   araddr_reg_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 145  |
+|     rvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 178  |
+|      rresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 178  |
 ==================================================================================
-Presto compilation completed successfully. (sram_axi)
-Module: sram_axi, Ports: 217, Input: 118, Output: 99, Inout: 0
-Module: sram_axi, Registers: 78, Async set/reset: 78, Sync set/reset: 0
-Information: Module sram_axi report end. (ELAB-965)
+Statistics for MUX_OPs
+=============================================================
+|    block name/line      | Inputs | Outputs | # sel inputs |
+=============================================================
+| fft_axi_subordinate/203 |   8    |   32    |      3       |
+=============================================================
+Presto compilation completed successfully. (fft_axi_subordinate)
+Module: fft_axi_subordinate, Ports: 412, Input: 84, Output: 328, Inout: 0
+Module: fft_axi_subordinate, Registers: 283, Async set/reset: 283, Sync set/reset: 0
+Information: Module fft_axi_subordinate report end. (ELAB-965)
 Elaborated 1 design.
-Current design is now 'sram_axi'.
-CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
+Current design is now 'fft_axi_subordinate'.
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
+	the parameters "WRITE_OR_READ=1". (HDL-193)
+
+Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ1' in file
+	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   down_count_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
+|    up_count_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ1)
+Module: fft_axi_counter_WRITE_OR_READ1, Ports: 26, Input: 15, Output: 11, Inout: 0
+Module: fft_axi_counter_WRITE_OR_READ1, Registers: 20, Async set/reset: 20, Sync set/reset: 0
+Information: Module fft_axi_counter_WRITE_OR_READ1 report end. (ELAB-965)
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
+	the parameters "WRITE_OR_READ=0". (HDL-193)
+
+Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ0' in file
+	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   down_count_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
+|    up_count_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ0)
+Module: fft_axi_counter_WRITE_OR_READ0, Ports: 26, Input: 15, Output: 11, Inout: 0
+Module: fft_axi_counter_WRITE_OR_READ0, Registers: 20, Async set/reset: 20, Sync set/reset: 0
+Information: Module fft_axi_counter_WRITE_OR_READ0 report end. (ELAB-965)
+CPU Load: 8%, Ram Free: 33 GB, Swap Free: 63 GB, Work Disk Free: 25 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -135,29 +174,29 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-| Leaf Cell Count                                         | 210                                    |
-| Number of User Hierarchies                              | 0                                      |
-| Sequential Cell Count                                   | 78                                     |
+| Leaf Cell Count                                         | 561                                    |
+| Number of User Hierarchies                              | 2                                      |
+| Sequential Cell Count                                   | 323                                    |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-| Number of Dont Touch Cells                              | 47                                     |
+| Number of Dont Touch Cells                              | 62                                     |
 | Number of Dont Touch Nets                               | 0                                      |
 | Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 48 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 44 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
   Beginning Pass 1 Mapping
   ------------------------
-  Processing 'sram_axi'
+  Processing 'fft_axi_counter_WRITE_OR_READ0'
 Module: DW01_MUX, Ports: 4, Input: 3, Output: 1, Inout: 0
 Module: DW01_MUX, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_mmux_width2, Ports: 7, Input: 5, Output: 2, Inout: 0
@@ -168,69 +207,75 @@ Module: DW01_mmux_width4, Ports: 13, Input: 9, Output: 4, Inout: 0
 Module: DW01_mmux_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_mmux_width5, Ports: 16, Input: 11, Output: 5, Inout: 0
 Module: DW01_mmux_width5, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
-Module: DW01_sub_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_dec_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
+Module: DW01_dec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
 Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_inc_width12, Ports: 24, Input: 12, Output: 12, Inout: 0
-Module: DW01_inc_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_dec_width8, Ports: 16, Input: 8, Output: 8, Inout: 0
-Module: DW01_dec_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_inc_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
+Module: DW01_inc_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_NOT, Ports: 2, Input: 1, Output: 1, Inout: 0
 Module: DW01_NOT, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width11, Ports: 29, Input: 23, Output: 6, Inout: 0
-Module: DW01_cmp6_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width8, Ports: 26, Input: 17, Output: 9, Inout: 0
-Module: DW01_sub_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width8, Ports: 17, Input: 9, Output: 8, Inout: 0
-Module: DW01_incdec_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp2_width11, Ports: 26, Input: 24, Output: 2, Inout: 0
-Module: DW01_cmp2_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width12, Ports: 38, Input: 25, Output: 13, Inout: 0
-Module: DW01_add_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width12, Ports: 25, Input: 13, Output: 12, Inout: 0
-Module: DW01_incdec_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
+Module: DW01_add_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_incdec_width10, Ports: 21, Input: 11, Output: 10, Inout: 0
+Module: DW01_incdec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_sub_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
+Module: DW01_sub_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'fft_axi_counter_WRITE_OR_READ1'
+  Processing 'fft_axi_subordinate'
+Module: DW01_add_width3, Ports: 11, Input: 7, Output: 4, Inout: 0
+Module: DW01_add_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width4, Ports: 14, Input: 9, Output: 5, Inout: 0
+Module: DW01_add_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp6_width4, Ports: 15, Input: 9, Output: 6, Inout: 0
+Module: DW01_cmp6_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width4, Ports: 12, Input: 10, Output: 2, Inout: 0
+Module: DW01_cmp2_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
+Information: Design 'fft_axi_subordinate' has no optimization constraints set. (OPT-108)
 
   Beginning Implementation Selection
   ----------------------------------
-  Processing 'sram_axi_DW01_cmp2_0'
-  Processing 'sram_axi_DW01_cmp2_1'
-  Processing 'sram_axi_DW01_cmp2_2'
-  Processing 'sram_axi_DW01_dec_0'
-  Processing 'sram_axi_DW01_inc_0'
-  Processing 'sram_axi_DW01_sub_0'
-  Processing 'sram_axi_DW01_dec_1'
-  Processing 'sram_axi_DW01_inc_1'
-  Processing 'sram_axi_DW01_sub_1'
-  Processing 'sram_axi_DW01_cmp2_3'
+  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_inc_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_dec_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_inc_0_DW01_inc_1'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_dec_0_DW01_dec_1'
 
-  Beginning Mapping Optimizations  (Medium effort)
+  Beginning Mapping Optimizations  (High effort)
   -------------------------------
-  Structuring 'sram_axi'
-  Mapping 'sram_axi'
+  Structuring 'fft_axi_counter_WRITE_OR_READ0'
+  Mapping 'fft_axi_counter_WRITE_OR_READ0'
+  Structuring 'fft_axi_counter_WRITE_OR_READ1'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1'
+  Structuring 'fft_axi_subordinate'
+  Mapping 'fft_axi_subordinate'
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:01  228717.0      0.00       0.0       5.3                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:02  803043.0      0.00       0.0     598.4                          
+    0:00:02  803043.0      0.00       0.0     598.4                          
+    0:00:02  803043.0      0.00       0.0     598.4                          
+    0:00:02  803043.0      0.00       0.0     598.4                          
+    0:00:02  803043.0      0.00       0.0     598.4                          
+    0:00:02  801747.0      0.00       0.0     598.4                          
+    0:00:02  801747.0      0.00       0.0     598.4                          
+    0:00:02  801747.0      0.00       0.0     598.4                          
+    0:00:02  801747.0      0.00       0.0     598.4                          
+    0:00:02  801747.0      0.00       0.0     598.4                          
+    0:00:02  802539.0      0.00       0.0     446.3                          
+    0:00:02  803547.0      0.00       0.0     314.6                          
+    0:00:02  804555.0      0.00       0.0     185.5                          
+    0:00:02  805563.0      0.00       0.0      56.4                          
+    0:00:02  805995.0      0.00       0.0      44.9                          
+    0:00:02  806427.0      0.00       0.0      33.3                          
+    0:00:02  806859.0      0.00       0.0      22.4                          
+    0:00:02  807075.0      0.00       0.0      16.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
 
 
 
@@ -241,11 +286,22 @@ Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807291.0      0.00       0.0      11.6                          
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:02  807291.0      0.00       0.0      11.6                          
+    0:00:02  807867.0      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -255,17 +311,18 @@ Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
-    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:02  807867.0      0.00       0.0       0.0                          
+    0:00:02  807867.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
+    0:00:02  807723.0      0.00       0.0       0.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -274,7 +331,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
+CPU Load: 8%, Ram Free: 33 GB, Swap Free: 63 GB, Work Disk Free: 25 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -298,69 +355,56 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Tue Apr 14 23:46:16 2026
+Date:        Fri Apr 10 12:17:46 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                     46
-    Unconnected ports (LINT-28)                                     5
-    Feedthrough (LINT-29)                                          32
-    Shorted outputs (LINT-31)                                       5
-    Constant outputs (LINT-52)                                      4
+Inputs/Outputs                                                     34
+    Unconnected ports (LINT-28)                                     2
+    Shorted outputs (LINT-31)                                      32
 --------------------------------------------------------------------------------
 
-Warning: In design 'sram_axi', port 'awlen[9]' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', port 'awlen[8]' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', port 'wlast' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', port 'arlen[9]' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', port 'arlen[8]' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'rdata[31]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'rdata[30]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'rdata[29]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[28]' is connected directly to output port 'rdata[28]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[27]' is connected directly to output port 'rdata[27]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[26]' is connected directly to output port 'rdata[26]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[25]' is connected directly to output port 'rdata[25]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[24]' is connected directly to output port 'rdata[24]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[23]' is connected directly to output port 'rdata[23]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[22]' is connected directly to output port 'rdata[22]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[21]' is connected directly to output port 'rdata[21]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[20]' is connected directly to output port 'rdata[20]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[19]' is connected directly to output port 'rdata[19]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[18]' is connected directly to output port 'rdata[18]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[17]' is connected directly to output port 'rdata[17]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[16]' is connected directly to output port 'rdata[16]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[15]' is connected directly to output port 'rdata[15]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[14]' is connected directly to output port 'rdata[14]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[13]' is connected directly to output port 'rdata[13]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[12]' is connected directly to output port 'rdata[12]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[11]' is connected directly to output port 'rdata[11]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[10]' is connected directly to output port 'rdata[10]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[9]' is connected directly to output port 'rdata[9]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[8]' is connected directly to output port 'rdata[8]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[7]' is connected directly to output port 'rdata[7]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[6]' is connected directly to output port 'rdata[6]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[5]' is connected directly to output port 'rdata[5]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[4]' is connected directly to output port 'rdata[4]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[3]' is connected directly to output port 'rdata[3]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[2]' is connected directly to output port 'rdata[2]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[1]' is connected directly to output port 'rdata[1]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[0]' is connected directly to output port 'rdata[0]'. (LINT-29)
-Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'rresp[0]'. (LINT-31)
-Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'rresp[1]'. (LINT-31)
-Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'bresp[0]'. (LINT-31)
-Warning: In design 'sram_axi', output port 'wen[3]' is connected directly to output port 'wen[2]'. (LINT-31)
-Warning: In design 'sram_axi', output port 'wen[1]' is connected directly to output port 'wen[0]'. (LINT-31)
-Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'sram_axi', output port 'bresp[0]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'sram_axi', output port 'rresp[1]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'sram_axi', output port 'rresp[0]' is connected directly to 'logic 0'. (LINT-52)
-Writing verilog file '/home/ecegridfs/a/337mg227/FFT_Accelerator/tmp/build/team42_ece337_sram_axi_1.0.0/syn-design_compiler/sram_axi.v'.
+Warning: In design 'fft_axi_subordinate', port 'awaddr[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_subordinate', port 'araddr[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][31]' is connected directly to output port 'fft_config[31]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][30]' is connected directly to output port 'fft_config[30]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][29]' is connected directly to output port 'fft_config[29]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][28]' is connected directly to output port 'fft_config[28]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][27]' is connected directly to output port 'fft_config[27]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][26]' is connected directly to output port 'fft_config[26]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][25]' is connected directly to output port 'fft_config[25]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][24]' is connected directly to output port 'fft_config[24]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][23]' is connected directly to output port 'fft_config[23]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][22]' is connected directly to output port 'fft_config[22]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][21]' is connected directly to output port 'fft_config[21]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][20]' is connected directly to output port 'fft_config[20]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][19]' is connected directly to output port 'fft_config[19]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][18]' is connected directly to output port 'fft_config[18]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][17]' is connected directly to output port 'fft_config[17]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][16]' is connected directly to output port 'fft_config[16]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][15]' is connected directly to output port 'fft_config[15]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][14]' is connected directly to output port 'fft_config[14]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][13]' is connected directly to output port 'fft_config[13]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][12]' is connected directly to output port 'fft_config[12]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][11]' is connected directly to output port 'fft_config[11]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][10]' is connected directly to output port 'fft_config[10]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][9]' is connected directly to output port 'fft_config[9]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][8]' is connected directly to output port 'fft_config[8]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][7]' is connected directly to output port 'fft_config[7]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][6]' is connected directly to output port 'fft_config[6]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][5]' is connected directly to output port 'fft_config[5]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][4]' is connected directly to output port 'fft_config[4]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][3]' is connected directly to output port 'fft_config[3]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][2]' is connected directly to output port 'fft_config[2]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][1]' is connected directly to output port 'fft_config[1]'. (LINT-31)
+Warning: In design 'fft_axi_subordinate', output port 'config_reg[7][0]' is connected directly to output port 'fft_config[0]'. (LINT-31)
+Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_subordinate_1.0.0/syn-design_compiler/fft_axi_subordinate.v'.
+Warning: Verilog writer has added 7 nets to module fft_axi_subordinate using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 
-Memory usage for this session 142 Mbytes.
-Memory usage for this session including child processes 142 Mbytes.
-CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 5 seconds ( 0.00 hours ).
+Memory usage for this session 145 Mbytes.
+Memory usage for this session including child processes 145 Mbytes.
+CPU usage for this session 5 seconds ( 0.00 hours ).
+Elapsed time for this session 6 seconds ( 0.00 hours ).
 
 Thank you...
