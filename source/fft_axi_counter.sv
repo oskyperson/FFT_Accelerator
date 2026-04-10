@@ -1,53 +1,56 @@
 `timescale 1ns / 10ps
 
 module fft_axi_counter #(
-    // parameters
-    parameter WRITE_OR_READ = 1 // write = 1 read = 0
+    parameter WRITE_OR_READ = 1
 ) (
     input logic clk, n_rst,
     input logic [9:0] len, 
     input logic ready, valid, resp,
-    input logic [3:0] addr, // 0 - 15 for each config reg
     output logic last,
-    output logic [9:0] i,
-    output logic [15:0] busy // indicates which of 16 config regs is busy
+    output logic [9:0] i
 );
+    logic [9:0] down_count, next_down;
+    logic [9:0] up_count, next_up;
+    logic is_zero, is_one;
 
-logic [9:0] next_i;
-logic [15:0] next_busy;
+    assign is_zero = ~(|down_count);
+    assign is_one  = (down_count == 10'd1);
 
-always_ff @ (posedge clk, negedge n_rst) begin
-    if (!n_rst) begin
-        i <= '0;
-        busy = '0;
-    end else begin
-        i <= next_i;
-        busy <= next_busy;
-    end
-end
+    assign i = up_count;
 
-always_comb begin : counter_logic
-    next_i = i;
-    last = 0;
-    next_busy = busy;
-
-    // count up condition
-    if (ready & valid & !resp) begin
-        next_i = i + 1;
-        next_busy[addr] = 1;
-        if (i >= len - 1) begin
-            next_i = 1;
-            last = 1;
-            next_busy = '0;
+    always_ff @(posedge clk, negedge n_rst) begin : counter_registers
+        if (!n_rst) begin
+            down_count <= '0;
+            up_count <= '0;
+        end else begin
+            down_count <= next_down;
+            up_count <= next_up;
         end
     end
 
-    // clear condition
-    if (!ready && WRITE_OR_READ || !valid && !WRITE_OR_READ) begin
-        next_i = 0;
-        next_busy = '0;
+    always_comb begin : counter_logic
+        next_down = down_count;
+        next_up = up_count;
+        last = 1'b0;
+
+        if ((WRITE_OR_READ && !ready) || (!WRITE_OR_READ && !valid)) begin
+            next_down = len;
+            next_up   = 10'd0;
+        end 
+        else if (ready && valid && !resp) begin
+            if (is_zero) begin
+                next_down = len;
+                next_up   = 10'd0;
+                last      = 1'b1;
+            end else begin
+                next_down = down_count - 10'd1;
+                next_up = up_count + 10'd1;
+                
+                if (is_one) begin
+                    last = 1'b1;
+                end
+            end
+        end
     end
-end
 
 endmodule
-

@@ -6,5 +6,5 @@ proc synthesize_design {} {
     # create_clock clk -name clk -period <clock period in ns>
 
     ### compile the design into the standard cell library ###
-    compile -map_effort medium
+    compile -map_effort high
 }
