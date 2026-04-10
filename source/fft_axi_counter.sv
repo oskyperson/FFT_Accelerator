@@ -1,42 +1,53 @@
 `timescale 1ns / 10ps
 
-module fft_axi_counter #(parameter SIZE = 10) (
-    input logic clk, n_rst, clear, count_enable,
-    input logic [SIZE - 1:0] rollover_val,
-    output logic [SIZE - 1:0] count_out,
-    output logic rollover_flag
+module fft_axi_counter #(
+    // parameters
+    parameter WRITE_OR_READ = 1 // write = 1 read = 0
+) (
+    input logic clk, n_rst,
+    input logic [9:0] len, 
+    input logic ready, valid, resp,
+    input logic [3:0] addr, // 0 - 15 for each config reg
+    output logic last,
+    output logic [9:0] i,
+    output logic [15:0] busy // indicates which of 16 config regs is busy
 );
 
-logic [SIZE - 1:0] next_c;
-logic next_rflag;
+logic [9:0] next_i;
+logic [15:0] next_busy;
 
-always_ff @ (posedge clk, negedge n_rst) begin : counter 
-    if(!n_rst) begin
-        count_out <= '0;
-        rollover_flag <= 0;
+always_ff @ (posedge clk, negedge n_rst) begin
+    if (!n_rst) begin
+        i <= '0;
+        busy = '0;
     end else begin
-        count_out <= next_c;
-        rollover_flag <= next_rflag;
+        i <= next_i;
+        busy <= next_busy;
     end
 end
 
-always_comb begin : next_count
-    next_rflag = rollover_flag;
-    next_c = count_out;
+always_comb begin : counter_logic
+    next_i = i;
+    last = 0;
+    next_busy = busy;
 
-    if(clear) begin
-        next_c = '0;
-        next_rflag = 0;
-    end else if (count_enable) begin
-        next_rflag = 0;
-        next_c = count_out + 1;
-        if(next_c == rollover_val) begin
-            next_rflag = 1;
+    // count up condition
+    if (ready & valid & !resp) begin
+        next_i = i + 1;
+        next_busy[addr] = 1;
+        if (i >= len - 1) begin
+            next_i = 1;
+            last = 1;
+            next_busy = '0;
         end
-        if(count_out >= rollover_val) begin
-            next_c = 1;
-        end
+    end
+
+    // clear condition
+    if (!ready && WRITE_OR_READ || !valid && !WRITE_OR_READ) begin
+        next_i = 0;
+        next_busy = '0;
     end
 end
 
 endmodule
+
