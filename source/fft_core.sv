@@ -1,10 +1,10 @@
 module fft_core(
     input logic clk,
     input logic n_rst,
-    input logic [32:0] sample,
+    input logic [31:0] sample,
     input logic start,
     input logic valid,
-    output logic [32:0] out
+    output logic [31:0] out,
     output logic out_valid
 );  
     logic enable;
@@ -39,23 +39,22 @@ module fft_core(
         endcase
     end
 
+    logic [31:0] sample_stream [10:0];
+    logic [10:0] valid_stream;
+
+    assign sample_stream[0] = sample;
+    assign valid_stream[0] = valid;
+
+    assign out = sample_stream[10];
+    assign out_valid = valid_stream[10];
+
     genvar i;
     generate
-        for(i = 1; i < 10; i = i + 1) begin : butterfly_units
-            butterfly #(.stage(i)) stage (.clk(clk), .n_rst(n_rst), .sample(), .sample_valid(), .feedback(), 
-                .feedback_valid(), .twiddle(), .count_out(), .sum(), .next_valid(), .rotation()
+        for(i = 0; i < 9; i = i + 1) begin : butterfly_units
+            fft_stage #(i) stage (.clk(clk), .n_rst(n_rst), .sample(sample_stream[i]), .sample_valid(valid_stream[i]),
+                .out(sample_stream[i+1]), .out_valid(valid_stream[i+1])
             );
-
-            delay_line #(.stage(i)) delays (.clk(clk), .n_rst(n_rst), .sample(), .shift_en(), .out());
-
-            flex_counter count (.clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(), .rollover_val(), 
-                .count_out(), .rollover_flag()
-            );
-
-            twiddle_lookup lookup (.addr(), .twiddle());
-        end
-
-        
+        end        
     endgenerate
 
 

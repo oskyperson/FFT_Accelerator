@@ -7,8 +7,8 @@ filesets:
         files:
             - "source/multiplier.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        depend:
+            - "team42:ece337:adder:1.0.0"
 
     synth:
         depend:

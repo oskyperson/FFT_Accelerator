@@ -1,5 +1,5 @@
 module delay_line #(
-    parameter STAGE = 1;
+    parameter STAGE = 1
 )(
     input logic clk,
     input logic n_rst,
@@ -9,9 +9,9 @@ module delay_line #(
     output logic [31:0] out,
     //output logic valid_out
 );
-    localparam DEPTH = ; //TODO delay depth calculations
+    localparam DEPTH = 1 << STAGE; //TODO delay depth calculations
 
-    logic [DEPTH-1:0] shift_next, shift [31:0];
+    logic [31:0] shift_next, shift [DEPTH-1:0];
     //logic [DEPTH-1:0] pipe, pipe_next;
 
     always_ff @(posedge clk or negedge n_rst) begin
@@ -24,10 +24,12 @@ module delay_line #(
 
     always_comb begin
         if(shift_en) begin
-            shift_next = {shift_next[DEPTH-2:0], sample};
+            shift_next = {shift[DEPTH-2:0], sample};
         end else 
             shift_next = shift;
     end
+
+    assign out = shift[DEPTH-1];
 
 
 
