@@ -35,13 +35,13 @@ module fft_axi_counter #(
 
         if ((WRITE_OR_READ && !ready) || (!WRITE_OR_READ && !valid)) begin
             next_down = len;
-            next_up   = 10'd0;
+            next_up = 10'd0;
         end 
         else if (ready && valid && !resp) begin
             if (is_zero) begin
                 next_down = len;
-                next_up   = 10'd0;
-                last      = 1'b1;
+                next_up = 10'd0;
+                last = 1'b1;
             end else begin
                 next_down = down_count - 10'd1;
                 next_up = up_count + 10'd1;
