@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_axi_counter
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:16:46 2026
+Date   : Sat Apr 11 20:02:38 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -40,7 +40,7 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_counter
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:16:46 2026
+Date   : Sat Apr 11 20:02:38 2026
 ****************************************
 
 Library(s) Used:
@@ -76,7 +76,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_counter
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:16:47 2026
+Date   : Sat Apr 11 20:02:38 2026
 ****************************************
 
 
