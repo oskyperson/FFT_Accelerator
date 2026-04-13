@@ -28,10 +28,10 @@ module math #(
 
     logic [15:0] re_product, im_product, ri_product, ir_product;
 
-    multiplier multr (.a(diff[16:0]), .b(twiddle[15:0]), .total(re_product)); //TODO should i optimize using Karatsuba 
-    multiplier multi (.a(diff[33:17]), .b(twiddle[31:16]), .total(im_product));
-    multiplier multri (.a(diff[16:0]), .b(twiddle[31:16]), .total(ri_product));
-    multiplier multir (.a(diff[33:17]), .b(twiddle[15:0]), .total(ir_product));
+    multiplier multr (.diff(diff[16:0]), .twiddle(twiddle[15:0]), .total(re_product)); //TODO should i optimize using Karatsuba 
+    multiplier multi (.diff(diff[33:17]), .twiddle(twiddle[31:16]), .total(im_product));
+    multiplier multri (.diff(diff[16:0]), .twiddle(twiddle[31:16]), .total(ri_product));
+    multiplier multir (.diff(diff[33:17]), .twiddle(twiddle[15:0]), .total(ir_product));
 
     logic [16:0] temp_im, temp_re;
     assign rotation[15:0] = temp_im[16:1];

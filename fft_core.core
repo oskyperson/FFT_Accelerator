@@ -7,8 +7,8 @@ filesets:
         files:
             - "source/fft_core.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        depend:
+            - "team42:ece337:fft_stage:1.0.0"
 
     synth:
         depend:

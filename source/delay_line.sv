@@ -6,7 +6,7 @@ module delay_line #(
     input logic [31:0] sample,
     input logic shift_en,
     //input logic valid,
-    output logic [31:0] out,
+    output logic [31:0] out
     //output logic valid_out
 );
     localparam DEPTH = 1 << STAGE; //TODO delay depth calculations
@@ -16,8 +16,9 @@ module delay_line #(
     //logic [DEPTH-1:0] pipe, pipe_next;
 
     always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
-            shift <= '0; 
+        if(!n_rst) begin 
+            for(i = 0; i < DEPTH; i++)
+                shift[i] <= '0;
         end else begin
             shift <= shift_next;
         end

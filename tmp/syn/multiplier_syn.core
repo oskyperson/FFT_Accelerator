@@ -1,0 +1,15 @@
+CAPI=2:
+name: "team42:ece337:multiplier_syn"
+
+filesets:
+    netlist:
+        files:
+            - "multiplier.v"
+        file_type: systemVerilogSource
+
+targets:
+    default:
+        filesets:
+            - netlist
+        toplevel: multiplier
+

@@ -7,9 +7,11 @@ filesets:
         files:
             - "source/fft_stage.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
-
+        depend:
+            - "team42:ece337:delay_line:1.0.0"
+            - "team42:ece337:flex_counter:1.0.0"
+            - "team42:ece337:math:1.0.0"
+            - "team42:ece337:twiddle_lookup:1.0.0"
     synth:
         depend:
             - "ece337:tech:AMI_05_LIB"
