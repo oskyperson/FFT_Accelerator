@@ -5,7 +5,7 @@ module adder(
     output logic signed [16:0] total
     //output logic overflow
 );
-    assign total_pre = (sel) ? (a + b) : (a - b); //TODO addition resizing
+    assign total = (sel) ? (a + b) : (a - b); //TODO addition resizing
 
 
     

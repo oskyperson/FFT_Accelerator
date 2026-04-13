@@ -12,8 +12,8 @@ module fft_stage #(
     logic [8:0] twiddle_addr;
     logic [31:0] math_sample, delay_sample;
     logic [8:0] count_out;
-
-    logic [31:0] twiddle, feedback_sample;
+    
+    logic [31:0] twiddle, feedback_sample, rotation;
     logic shift_en;
 
     logic rollover_flag;
@@ -23,7 +23,7 @@ module fft_stage #(
     logic control; //1 for math mode; 0 for delay mode
     assign control = count_out[STAGE];
 
-    always_comb begin
+    /*always_comb begin
         math_sample = '0;
         delay_sample = '0;
         if(control) begin
@@ -33,18 +33,27 @@ module fft_stage #(
             delay_sample = sample;
             shift_en = sample_valid;
         end
+    end*/
+
+    always_comb begin
+        shift_en     = sample_valid;   
+        math_sample  = sample;
+        if(control)
+            delay_sample = rotation;   
+        else
+            delay_sample = sample;     
     end
 
-    math #(.stage(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(math_sample), .sample_valid(sample_valid),
-        .feedback(feedback_sample), .twiddle(twiddle), .sum(out), .next_valid(out_valid),
+    math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(math_sample), .sample_valid(sample_valid),
+        .feedback(feedback_sample), .twiddle(twiddle), .sum(out), .next_valid(out_valid), .rotation(rotation)
     );
 
-    delay_line #(.stage(STAGE)) delays (.clk(clk), .n_rst(n_rst), .sample(delay_sample), .shift_en(shift_en), .out(feedback_sample));
+    delay_line #(.STAGE(STAGE)) delays (.clk(clk), .n_rst(n_rst), .sample(delay_sample), .shift_en(shift_en), .out(feedback_sample));
 
     flex_counter #(.SIZE(9)) count (.clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid),
         .count_out(count_out), .rollover_flag(rollover_flag)
     );
 
-    twiddle_lookup lookup (.addr(count_out[STAGE-i:0] << (8-STAGE)), .twiddle(twiddle));
+    twiddle_lookup lookup (.addr((STAGE == 0) ? 9'b0 : count_out[STAGE-1:0] << (9-STAGE)), .twiddle(twiddle));
     
 endmodule

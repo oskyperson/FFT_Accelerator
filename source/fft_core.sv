@@ -45,8 +45,8 @@ module fft_core(
     assign sample_stream[0] = sample;
     assign valid_stream[0] = valid;
 
-    assign out = sample_stream[10];
-    assign out_valid = valid_stream[10];
+    assign out = sample_stream[9];
+    assign out_valid = valid_stream[9];
 
     genvar i;
     generate
