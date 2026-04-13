@@ -1,0 +1,170 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fft_core
+Version: W-2024.09-SP4
+Date   : Mon Apr 13 17:56:17 2026
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: butterfly_units[8].stage/stage/sample_reg_reg[16]
+              (rising edge-triggered flip-flop)
+  Endpoint: out[31] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  butterfly_units[8].stage/stage/sample_reg_reg[16]/CLK (DFFSR)
+                                                          0.00       0.00 r
+  butterfly_units[8].stage/stage/sample_reg_reg[16]/Q (DFFSR)
+                                                          1.33       1.33 f
+  butterfly_units[8].stage/stage/rl/a[0] (adder_4)        0.00       1.33 f
+  butterfly_units[8].stage/stage/rl/add_8/A[0] (adder_4_DW01_add_0_DW01_add_8)
+                                                          0.00       1.33 f
+  butterfly_units[8].stage/stage/rl/add_8/U1/Y (AND2X2)
+                                                          0.58       1.91 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_1/YC (FAX1)
+                                                          0.42       2.33 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_2/YC (FAX1)
+                                                          0.46       2.79 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_3/YC (FAX1)
+                                                          0.46       3.25 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_4/YC (FAX1)
+                                                          0.46       3.71 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_5/YC (FAX1)
+                                                          0.46       4.17 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_6/YC (FAX1)
+                                                          0.46       4.63 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_7/YC (FAX1)
+                                                          0.46       5.09 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_8/YC (FAX1)
+                                                          0.46       5.55 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_9/YC (FAX1)
+                                                          0.46       6.01 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_10/YC (FAX1)
+                                                          0.46       6.47 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_11/YC (FAX1)
+                                                          0.46       6.93 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_12/YC (FAX1)
+                                                          0.46       7.39 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_13/YC (FAX1)
+                                                          0.46       7.85 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_14/YC (FAX1)
+                                                          0.46       8.32 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_15/YC (FAX1)
+                                                          0.46       8.78 f
+  butterfly_units[8].stage/stage/rl/add_8/U1_16/YS (FAX1)
+                                                          0.43       9.20 f
+  butterfly_units[8].stage/stage/rl/add_8/SUM[16] (adder_4_DW01_add_0_DW01_add_8)
+                                                          0.00       9.20 f
+  butterfly_units[8].stage/stage/rl/U4/Y (MUX2X1)         0.12       9.32 r
+  butterfly_units[8].stage/stage/rl/U3/Y (INVX1)          0.05       9.37 f
+  butterfly_units[8].stage/stage/rl/total[16] (adder_4)
+                                                          0.00       9.37 f
+  butterfly_units[8].stage/stage/sum[31] (math_STAGE8)
+                                                          0.00       9.37 f
+  butterfly_units[8].stage/out[31] (fft_stage_STAGE8)     0.00       9.37 f
+  out[31] (out)                                           0.00       9.37 f
+  data arrival time                                                  9.37
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : fft_core
+Version: W-2024.09-SP4
+Date   : Mon Apr 13 17:56:17 2026
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+Number of ports:                        16557
+Number of nets:                        120373
+Number of cells:                        98684
+Number of combinational cells:          80559
+Number of sequential cells:             17018
+Number of macros/black boxes:               0
+Number of buf/inv:                      28621
+Number of references:                       9
+
+Combinational area:           28664631.000000
+Buf/Inv area:                  4560984.000000
+Noncombinational area:        15183072.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:              43847703.000000
+Total area:                 undefined
+1
+Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : fft_core
+Version: W-2024.09-SP4
+Date   : Mon Apr 13 17:56:21 2026
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   4.2705  W   (79%)
+  Net Switching Power  =   1.1446  W   (21%)
+                         ---------
+Total Dynamic Power    =   5.4151  W  (100%)
+
+Cell Leakage Power     =  13.0494 uW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential     4.0820e+03            1.8432        4.3328e+03        4.0838e+03  (  75.41%)
+combinational    188.6395        1.1427e+03        8.7165e+03        1.3314e+03  (  24.59%)
+--------------------------------------------------------------------------------------------------
+Total          4.2706e+03 mW     1.1446e+03 mW     1.3049e+04 nW     5.4153e+03 mW
+1
