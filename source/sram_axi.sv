@@ -74,8 +74,8 @@ always_comb begin : WRITE_LOGIC
 
     case(write_state)
         W_IDLE: begin
-            awready = 1'b1;
-            if(awvalid) next_write = W_DATA;
+            awready = (awaddr >= 11'd15) && (awaddr <= 11'd1038);
+            if(awvalid && awready) next_write = W_DATA;
         end
         W_DATA: begin
             wready = 1'b1;
@@ -112,7 +112,8 @@ always_comb begin : READ_LOGIC
     rdata = read_data;
     case (read_state)
         R_IDLE: begin
-            if (arvalid) next_read = R_REQ;
+            arready = (araddr >= 11'd15) && (araddr <= 11'd1038);
+            if (arvalid && arready) next_read = R_REQ;
         end
         R_REQ: begin
             ren = 1'b1;

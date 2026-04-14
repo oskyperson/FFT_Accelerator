@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Sun Apr 12 17:27:19 2026
+Date   : Mon Apr 13 18:03:36 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -24,14 +24,14 @@ Wire Load Model Mode: top
   -----------------------------------------------------------
   raddr_reg_reg[0]/CLK (DFFSR)             0.00       0.00 r
   raddr_reg_reg[0]/Q (DFFSR)               0.93       0.93 f
-  U354/Y (NAND3X1)                         0.53       1.46 r
-  U350/Y (OAI21X1)                         0.22       1.68 f
-  U348/Y (NOR2X1)                          0.21       1.88 r
-  U344/Y (NAND2X1)                         0.09       1.97 f
-  U342/Y (INVX1)                           0.16       2.13 r
-  U340/Y (NAND2X1)                         0.20       2.33 f
-  U337/Y (OR2X1)                           0.28       2.62 f
-  U336/Y (XNOR2X1)                         0.16       2.78 f
+  U399/Y (NAND3X1)                         0.53       1.46 r
+  U395/Y (OAI21X1)                         0.22       1.68 f
+  U393/Y (NOR2X1)                          0.21       1.88 r
+  U389/Y (NAND2X1)                         0.09       1.97 f
+  U387/Y (INVX1)                           0.16       2.13 r
+  U385/Y (NAND2X1)                         0.20       2.33 f
+  U382/Y (OR2X1)                           0.28       2.62 f
+  U381/Y (XNOR2X1)                         0.16       2.78 f
   read_addr[9] (out)                       0.00       2.78 f
   data arrival time                                   2.78
   -----------------------------------------------------------
@@ -44,29 +44,29 @@ Wire Load Model Mode: top
 Report : area
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Sun Apr 12 17:27:19 2026
+Date   : Mon Apr 13 18:03:36 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          259
-Number of nets:                           673
-Number of cells:                          496
-Number of combinational cells:            337
+Number of ports:                          261
+Number of nets:                           730
+Number of cells:                          551
+Number of combinational cells:            392
 Number of sequential cells:                78
 Number of macros/black boxes:               0
-Number of buf/inv:                        125
-Number of references:                      19
+Number of buf/inv:                        142
+Number of references:                      18
 
-Combinational area:              92763.000000
-Buf/Inv area:                    18072.000000
+Combinational area:             105309.000000
+Buf/Inv area:                    20520.000000
 Noncombinational area:          123552.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                216315.000000
+Total cell area:                228861.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -80,7 +80,7 @@ Report : power
         -analysis_effort low
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Sun Apr 12 17:27:19 2026
+Date   : Mon Apr 13 18:03:36 2026
 ****************************************
 
 
@@ -107,12 +107,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  24.0089 mW   (75%)
-  Net Switching Power  =   8.1740 mW   (25%)
+  Cell Internal Power  =  21.6155 mW   (73%)
+  Net Switching Power  =   7.9990 mW   (27%)
                          ---------
-Total Dynamic Power    =  32.1829 mW  (100%)
+Total Dynamic Power    =  29.6145 mW  (100%)
 
-Cell Leakage Power     =  68.5791 nW
+Cell Leakage Power     =  72.1287 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -124,8 +124,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        14.8069            0.5113           41.5723           15.3183  (  47.60%)
-combinational      9.2020            7.6626           27.0068           16.8647  (  52.40%)
+sequential        12.9972            0.3118           41.5723           13.3090  (  44.94%)
+combinational      8.6183            7.6872           30.5564           16.3056  (  55.06%)
 --------------------------------------------------------------------------------------------------
-Total             24.0089 mW         8.1740 mW        68.5791 nW        32.1830 mW
+Total             21.6155 mW         7.9990 mW        72.1287 nW        29.6146 mW
 1

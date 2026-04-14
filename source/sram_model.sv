@@ -22,8 +22,8 @@ module sram_model #(
     logic [DATA_WIDTH-1:0] mem [0:(1<<ADDR_WIDTH)-1];
 
     always_ff @(posedge clk) begin
-        if (wen[0]) mem[write_addr][7:0]   <= write_data[7:0];
-        if (wen[1]) mem[write_addr][15:8]  <= write_data[15:8];
+        if (wen[0]) mem[write_addr][7:0] <= write_data[7:0];
+        if (wen[1]) mem[write_addr][15:8] <= write_data[15:8];
         if (wen[2]) mem[write_addr][23:16] <= write_data[23:16];
         if (wen[3]) mem[write_addr][31:24] <= write_data[31:24];
         write_valid <= |wen; 
