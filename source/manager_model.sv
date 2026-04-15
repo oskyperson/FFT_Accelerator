@@ -37,7 +37,7 @@ module axi_manager_model (
 );
 
     
-    task write_burst(input [10:0] start_addr, input [31:0] data_queue [$]);
+    task automatic write_burst(input [10:0] start_addr, input [31:0] data_queue [$]);
         int num_beats = data_queue.size();
         if (num_beats == 0) return;
 
@@ -72,7 +72,7 @@ module axi_manager_model (
     endtask
 
     
-    task read_burst(input [10:0] start_addr, input int num_beats, output [31:0] result_queue [$]);
+    task automatic read_burst(input [10:0] start_addr, input int num_beats, output [31:0] result_queue [$]);
         result_queue.delete();
 
         @(posedge clk);

@@ -162,7 +162,7 @@ module arbiter #(
     end
 
     always_comb begin : signal_routing
-        // Default Outputs to 0 to prevent latches
+        
         {fft_sub_awvalid, sram_awvalid, fft_sub_arvalid, sram_arvalid} = '0;
         {fft_sub_wvalid,  sram_wvalid,  fft_sub_bready,  sram_bready}  = '0;
         {fft_sub_rready,  sram_rready} = '0;
@@ -211,19 +211,19 @@ module arbiter #(
             end else if (r_dest == 2'b10) begin // From SRAM
                 sram_araddr = cpu_araddr; sram_arvalid = cpu_arvalid; cpu_arready = sram_arready;
                 cpu_rdata = sram_rdata;   cpu_rresp = sram_rresp;   cpu_rlast = sram_rlast;   cpu_rvalid = sram_rvalid; sram_rready = cpu_rready;
-            end else if (r_state == BUSY) begin // Invalid Address
-                cpu_rresp = 2'b11; // DECERR
+            end else if (r_state == BUSY) begin 
+                cpu_rresp = 2'b11; 
                 cpu_arready = 1'b1; cpu_rvalid = 1'b1; cpu_rlast = 1'b1;
             end
             
-        end else if (r_perms == 2'b10) begin // FFT Manager Wins Read
-            if (r_dest == 2'b01) begin // From FFT_SUB
+        end else if (r_perms == 2'b10) begin 
+            if (r_dest == 2'b01) begin
                 fft_sub_araddr = fft_man_araddr; fft_sub_arvalid = fft_man_arvalid; fft_man_arready = fft_sub_arready;
                 fft_man_rdata = fft_sub_rdata;   fft_man_rresp = fft_sub_rresp;   fft_man_rlast = fft_sub_rlast;   fft_man_rvalid = fft_sub_rvalid; fft_sub_rready = fft_man_rready;
-            end else if (r_dest == 2'b10) begin // From SRAM
+            end else if (r_dest == 2'b10) begin 
                 sram_araddr = fft_man_araddr; sram_arvalid = fft_man_arvalid; fft_man_arready = sram_arready;
                 fft_man_rdata = sram_rdata;   fft_man_rresp = sram_rresp;   fft_man_rlast = sram_rlast;   fft_man_rvalid = sram_rvalid; sram_rready = fft_man_rready;
-            end else if (r_state == BUSY) begin // Invalid Address
+            end else if (r_state == BUSY) begin 
                 fft_man_rresp = 2'b11;
                 fft_man_arready = 1'b1; fft_man_rvalid = 1'b1; fft_man_rlast = 1'b1;
             end
