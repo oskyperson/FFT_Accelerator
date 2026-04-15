@@ -95,6 +95,7 @@ module axi_manager_model (
                 $display("[ERROR] RLAST not asserted on final beat!");
             
             @(posedge clk);
+            @(posedge clk);
         end
         rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);

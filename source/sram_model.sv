@@ -35,10 +35,5 @@ module sram_model #(
         read_valid <= ren;
     end
 
-    initial begin
-        for (int i = 0; i < (1<<ADDR_WIDTH); i++) begin
-            mem[i] = '0;
-        end
-    end
 
 endmodule

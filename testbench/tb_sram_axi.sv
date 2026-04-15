@@ -123,7 +123,7 @@ module tb_sram_axi ();
         // ---------------------------------------------------------
         // TEST 3: Edge Case (Upper Address Boundary)
         // ---------------------------------------------------------
-        /*
+        
         $display("========================================");
         $display(" TEST 3: Upper Boundary Access (Addr 1038)");
         $display("========================================");
@@ -137,7 +137,7 @@ module tb_sram_axi ();
             $display(" -> [PASS] Read matched written data: %h\n", r_queue[0]);
         else
             $display(" -> [FAIL] Expected CAFEBABE, got: %h\n", r_queue[0]);
-        */
+        
         $display("========================================");
         $display(" SIMULATION COMPLETE ");
         $display("========================================");
