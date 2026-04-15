@@ -29,16 +29,15 @@ module fft_axi_subordinate (
     output logic rresp,
 
     // config
-    output logic [7:0][31:0] config_reg,
-
-    // fft
-    output logic [31:0] fft_config
+    output logic [7:0][31:0] config_reg
 );
 
     logic [7:0][31:0] next_config_reg;
     logic [10:0] awaddr_reg, next_awaddr;
     logic [10:0] araddr_reg, next_araddr;
-    logic [9:0]  wcount, rcount;
+    /* verilator lint_off UNUSEDSIGNAL */
+    logic [9:0] wcount, rcount;
+    /* verilator lint_on UNUSEDSIGNAL */
     logic next_awready, next_wready;
     logic next_bvalid, next_bresp;
     logic next_arready, next_rvalid, next_rresp;
@@ -205,7 +204,5 @@ module fft_axi_subordinate (
             rdata = 32'h0;
         end
     end
-
-    assign fft_config = config_reg[7];
 
 endmodule

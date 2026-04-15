@@ -33,20 +33,16 @@ module fft_axi_manager #(
     // config_reg from subordinate
     input logic [7:0][31:0] config_reg,
     
-    // signals to/from fft
-    input logic fft_done,
-    output logic fft_start,
-    output logic fft_valid,
-    // to/from buffers
-    output logic [31:0] in,
-    output logic [9:0] rcount,
-    output logic wen_to_inbuf,
-    input logic [31:0] out,
-    output logic [9:0] wcount
+    // to fft
+    input logic [31:0] data_out, //re, im
+    input logic out_valid,
+    output logic [31:0] data_in, //re, im
+    output logic in_valid,
+    input logic fft_done
 );
 
 // read
-typedef enum logic [2:0] {RIDLE, RADDR, RDATA, RERR, START_FFT} rstate_t;
+typedef enum logic [1:0] {RIDLE, RADDR, RDATA, RERR} rstate_t;
 rstate_t rstate, next_rstate;
 
 always_ff @ (posedge clk, negedge n_rst) begin 
@@ -63,13 +59,11 @@ always_comb begin : next_rstate_logic
     next_rstate = rstate;
     case (rstate)
         RIDLE:
-            next_rstate = (fft_done & config_reg[0][0]) ? RADDR : RIDLE;
+            next_rstate = (fft_done && config_reg[0][0]) ? RADDR : RIDLE;
         RADDR:
             next_rstate = arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = rresp ? RERR : (rvalid & (rlast | rcounter_last)) ? START_FFT : RDATA;
-        START_FFT:
-            next_rstate = RIDLE;
+            next_rstate = rresp ? RERR : (rvalid && rready && (rlast || rcounter_last)) ? RIDLE : RDATA;
         RERR:
             next_rstate = RIDLE;
         default:
@@ -77,6 +71,7 @@ always_comb begin : next_rstate_logic
     endcase
 end
 
+logic [9:0] rcount;
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -93,14 +88,12 @@ always_comb begin : read_output_logic
     arlen = config_reg[2][9:0];
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
-    fft_start = (rstate == START_FFT);
-    fft_valid = (rstate == START_FFT);
-    in = rdata;
-    wen_to_inbuf = rready && rvalid;
+    data_in = rdata;
+    in_valid = rready && rvalid;
 end
 
 // write
-typedef enum logic [2:0] {WIDLE, WADDR, WDATA, B, BERR} wstate_t;
+typedef enum logic [1:0] {WIDLE, WADDR, WDATA, B} wstate_t;
 wstate_t wstate, next_wstate;
 
 always_ff @ (posedge clk, negedge n_rst) begin 
@@ -115,20 +108,19 @@ always_comb begin : next_wstate_logic
     next_wstate = wstate;
     case (wstate)
         WIDLE:
-            next_wstate = (fft_done & config_reg[6][0]) ? WADDR : WIDLE;
+            next_wstate = (out_valid && config_reg[6][0]) ? WADDR : WIDLE;
         WADDR:
             next_wstate = awready ? WDATA : WADDR;
         WDATA:
-            next_wstate = (wlast & wready) ? B : WDATA;
+            next_wstate = (wlast && wready) ? B : WDATA;
         B: 
-            next_wstate = bresp ? BERR : bvalid ? WIDLE : B;
-        BERR:
-            next_wstate = WIDLE;
+            next_wstate = bvalid ? WIDLE : B;
         default:
             next_wstate = WIDLE;
     endcase
 end
 
+logic [9:0] wcount;
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -141,13 +133,13 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 );
 
 always_comb begin : write_output_logic
-    awaddr  = config_reg[3][10:0];
-    awlen   = config_reg[4][9:0];
+    awaddr = config_reg[3][10:0];
+    awlen = config_reg[4][9:0];
     awvalid = (wstate == WADDR);
-    wvalid  = (wstate == WDATA);
-    wstrb   = config_reg[5][1:0];
-    wdata   = out;
-    bready  = (wstate == B);
+    wvalid = (wstate == WDATA) && out_valid;
+    wstrb = config_reg[5][1:0];
+    wdata = data_out;
+    bready = (wstate == B);
 end
 
 endmodule

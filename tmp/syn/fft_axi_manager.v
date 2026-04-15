@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : W-2024.09-SP4
-// Date      : Fri Apr 10 12:17:27 2026
+// Date      : Wed Apr 15 00:34:56 2026
 /////////////////////////////////////////////////////////////
 
 
@@ -458,8 +458,8 @@ module fft_axi_manager ( clk, n_rst, awready, awaddr, awlen, awvalid, wready,
         \config_reg[0][9] , \config_reg[0][8] , \config_reg[0][7] , 
         \config_reg[0][6] , \config_reg[0][5] , \config_reg[0][4] , 
         \config_reg[0][3] , \config_reg[0][2] , \config_reg[0][1] , 
-        \config_reg[0][0] }), fft_done, fft_start, fft_valid, in, rcount, 
-        wen_to_inbuf, out, wcount );
+        \config_reg[0][0] }), data_out, out_valid, data_in, in_valid, fft_done
+ );
   output [10:0] awaddr;
   output [9:0] awlen;
   output [31:0] wdata;
@@ -467,10 +467,8 @@ module fft_axi_manager ( clk, n_rst, awready, awaddr, awlen, awvalid, wready,
   output [10:0] araddr;
   output [9:0] arlen;
   input [31:0] rdata;
-  output [31:0] in;
-  output [9:0] rcount;
-  input [31:0] out;
-  output [9:0] wcount;
+  input [31:0] data_out;
+  output [31:0] data_in;
   input clk, n_rst, awready, wready, bresp, bvalid, arready, rlast, rvalid,
          rresp, \config_reg[7][31] , \config_reg[7][30] , \config_reg[7][29] ,
          \config_reg[7][28] , \config_reg[7][27] , \config_reg[7][26] ,
@@ -557,16 +555,14 @@ module fft_axi_manager ( clk, n_rst, awready, awaddr, awlen, awvalid, wready,
          \config_reg[0][9] , \config_reg[0][8] , \config_reg[0][7] ,
          \config_reg[0][6] , \config_reg[0][5] , \config_reg[0][4] ,
          \config_reg[0][3] , \config_reg[0][2] , \config_reg[0][1] ,
-         \config_reg[0][0] , fft_done;
-  output awvalid, wlast, wvalid, bready, arvalid, rready, fft_start, fft_valid,
-         wen_to_inbuf;
-  wire   rcounter_last, n47, n48, n49, n50, n51, n52, n53, n54, n55, n56, n57,
-         n58, n59, n60, n61, n62, n63, n64, n65, n66, n67, n68, n69, n70, n71,
-         n72, n73, n74, n75, n76, n77, n78, n79, fft_start;
-  wire   [2:0] rstate;
-  wire   [2:0] next_rstate;
-  wire   [2:0] wstate;
-  wire   [2:0] next_wstate;
+         \config_reg[0][0] , out_valid, fft_done;
+  output awvalid, wlast, wvalid, bready, arvalid, rready, in_valid;
+  wire   rcounter_last, N40, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37,
+         n38, n39, n40, n41, n42, n43, n44, n45, n46, n47;
+  wire   [1:0] rstate;
+  wire   [1:0] next_rstate;
+  wire   [1:0] wstate;
+  wire   [1:0] next_wstate;
   assign awaddr[10] = \config_reg[3][10] ;
   assign awaddr[9] = \config_reg[3][9] ;
   assign awaddr[8] = \config_reg[3][8] ;
@@ -588,38 +584,38 @@ module fft_axi_manager ( clk, n_rst, awready, awaddr, awlen, awvalid, wready,
   assign awlen[2] = \config_reg[4][2] ;
   assign awlen[1] = \config_reg[4][1] ;
   assign awlen[0] = \config_reg[4][0] ;
-  assign wdata[31] = out[31];
-  assign wdata[30] = out[30];
-  assign wdata[29] = out[29];
-  assign wdata[28] = out[28];
-  assign wdata[27] = out[27];
-  assign wdata[26] = out[26];
-  assign wdata[25] = out[25];
-  assign wdata[24] = out[24];
-  assign wdata[23] = out[23];
-  assign wdata[22] = out[22];
-  assign wdata[21] = out[21];
-  assign wdata[20] = out[20];
-  assign wdata[19] = out[19];
-  assign wdata[18] = out[18];
-  assign wdata[17] = out[17];
-  assign wdata[16] = out[16];
-  assign wdata[15] = out[15];
-  assign wdata[14] = out[14];
-  assign wdata[13] = out[13];
-  assign wdata[12] = out[12];
-  assign wdata[11] = out[11];
-  assign wdata[10] = out[10];
-  assign wdata[9] = out[9];
-  assign wdata[8] = out[8];
-  assign wdata[7] = out[7];
-  assign wdata[6] = out[6];
-  assign wdata[5] = out[5];
-  assign wdata[4] = out[4];
-  assign wdata[3] = out[3];
-  assign wdata[2] = out[2];
-  assign wdata[1] = out[1];
-  assign wdata[0] = out[0];
+  assign wdata[31] = data_out[31];
+  assign wdata[30] = data_out[30];
+  assign wdata[29] = data_out[29];
+  assign wdata[28] = data_out[28];
+  assign wdata[27] = data_out[27];
+  assign wdata[26] = data_out[26];
+  assign wdata[25] = data_out[25];
+  assign wdata[24] = data_out[24];
+  assign wdata[23] = data_out[23];
+  assign wdata[22] = data_out[22];
+  assign wdata[21] = data_out[21];
+  assign wdata[20] = data_out[20];
+  assign wdata[19] = data_out[19];
+  assign wdata[18] = data_out[18];
+  assign wdata[17] = data_out[17];
+  assign wdata[16] = data_out[16];
+  assign wdata[15] = data_out[15];
+  assign wdata[14] = data_out[14];
+  assign wdata[13] = data_out[13];
+  assign wdata[12] = data_out[12];
+  assign wdata[11] = data_out[11];
+  assign wdata[10] = data_out[10];
+  assign wdata[9] = data_out[9];
+  assign wdata[8] = data_out[8];
+  assign wdata[7] = data_out[7];
+  assign wdata[6] = data_out[6];
+  assign wdata[5] = data_out[5];
+  assign wdata[4] = data_out[4];
+  assign wdata[3] = data_out[3];
+  assign wdata[2] = data_out[2];
+  assign wdata[1] = data_out[1];
+  assign wdata[0] = data_out[0];
   assign wstrb[1] = \config_reg[5][1] ;
   assign wstrb[0] = \config_reg[5][0] ;
   assign araddr[10] = \config_reg[1][10] ;
@@ -643,102 +639,82 @@ module fft_axi_manager ( clk, n_rst, awready, awaddr, awlen, awvalid, wready,
   assign arlen[2] = \config_reg[2][2] ;
   assign arlen[1] = \config_reg[2][1] ;
   assign arlen[0] = \config_reg[2][0] ;
-  assign in[31] = rdata[31];
-  assign in[30] = rdata[30];
-  assign in[29] = rdata[29];
-  assign in[28] = rdata[28];
-  assign in[27] = rdata[27];
-  assign in[26] = rdata[26];
-  assign in[25] = rdata[25];
-  assign in[24] = rdata[24];
-  assign in[23] = rdata[23];
-  assign in[22] = rdata[22];
-  assign in[21] = rdata[21];
-  assign in[20] = rdata[20];
-  assign in[19] = rdata[19];
-  assign in[18] = rdata[18];
-  assign in[17] = rdata[17];
-  assign in[16] = rdata[16];
-  assign in[15] = rdata[15];
-  assign in[14] = rdata[14];
-  assign in[13] = rdata[13];
-  assign in[12] = rdata[12];
-  assign in[11] = rdata[11];
-  assign in[10] = rdata[10];
-  assign in[9] = rdata[9];
-  assign in[8] = rdata[8];
-  assign in[7] = rdata[7];
-  assign in[6] = rdata[6];
-  assign in[5] = rdata[5];
-  assign in[4] = rdata[4];
-  assign in[3] = rdata[3];
-  assign in[2] = rdata[2];
-  assign in[1] = rdata[1];
-  assign in[0] = rdata[0];
-  assign fft_valid = fft_start;
+  assign data_in[31] = rdata[31];
+  assign data_in[30] = rdata[30];
+  assign data_in[29] = rdata[29];
+  assign data_in[28] = rdata[28];
+  assign data_in[27] = rdata[27];
+  assign data_in[26] = rdata[26];
+  assign data_in[25] = rdata[25];
+  assign data_in[24] = rdata[24];
+  assign data_in[23] = rdata[23];
+  assign data_in[22] = rdata[22];
+  assign data_in[21] = rdata[21];
+  assign data_in[20] = rdata[20];
+  assign data_in[19] = rdata[19];
+  assign data_in[18] = rdata[18];
+  assign data_in[17] = rdata[17];
+  assign data_in[16] = rdata[16];
+  assign data_in[15] = rdata[15];
+  assign data_in[14] = rdata[14];
+  assign data_in[13] = rdata[13];
+  assign data_in[12] = rdata[12];
+  assign data_in[11] = rdata[11];
+  assign data_in[10] = rdata[10];
+  assign data_in[9] = rdata[9];
+  assign data_in[8] = rdata[8];
+  assign data_in[7] = rdata[7];
+  assign data_in[6] = rdata[6];
+  assign data_in[5] = rdata[5];
+  assign data_in[4] = rdata[4];
+  assign data_in[3] = rdata[3];
+  assign data_in[2] = rdata[2];
+  assign data_in[1] = rdata[1];
+  assign data_in[0] = rdata[0];
+  assign bready = N40;
 
   DFFSR \rstate_reg[0]  ( .D(next_rstate[0]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(rstate[0]) );
   DFFSR \rstate_reg[1]  ( .D(next_rstate[1]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(rstate[1]) );
-  DFFSR \rstate_reg[2]  ( .D(next_rstate[2]), .CLK(clk), .R(n_rst), .S(1'b1), 
-        .Q(rstate[2]) );
   DFFSR \wstate_reg[0]  ( .D(next_wstate[0]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(wstate[0]) );
   DFFSR \wstate_reg[1]  ( .D(next_wstate[1]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(wstate[1]) );
-  DFFSR \wstate_reg[2]  ( .D(next_wstate[2]), .CLK(clk), .R(n_rst), .S(1'b1), 
-        .Q(wstate[2]) );
   fft_axi_counter_WRITE_OR_READ0 read_counter ( .clk(clk), .n_rst(n_rst), 
         .len(arlen), .ready(rready), .valid(rvalid), .resp(rresp), .last(
-        rcounter_last), .i(rcount) );
+        rcounter_last) );
   fft_axi_counter_WRITE_OR_READ1 write_counter ( .clk(clk), .n_rst(n_rst), 
-        .len(awlen), .ready(wready), .valid(wvalid), .resp(bresp), .last(wlast), .i(wcount) );
-  NOR2X1 U56 ( .A(n47), .B(n48), .Y(next_wstate[2]) );
-  OAI21X1 U57 ( .A(n49), .B(n50), .C(n51), .Y(next_wstate[1]) );
-  AOI21X1 U58 ( .A(n52), .B(n53), .C(wvalid), .Y(n51) );
-  NOR2X1 U59 ( .A(bvalid), .B(bresp), .Y(n52) );
-  INVX1 U60 ( .A(awready), .Y(n50) );
-  OR2X1 U61 ( .A(n54), .B(n55), .Y(next_wstate[0]) );
-  OAI21X1 U62 ( .A(awready), .B(n49), .C(n56), .Y(n55) );
-  NAND3X1 U63 ( .A(wlast), .B(wvalid), .C(wready), .Y(n56) );
-  AND2X1 U64 ( .A(n53), .B(n57), .Y(wvalid) );
-  OAI21X1 U65 ( .A(n58), .B(n59), .C(n60), .Y(n54) );
-  NAND3X1 U66 ( .A(n48), .B(n61), .C(bready), .Y(n60) );
-  INVX1 U67 ( .A(bvalid), .Y(n61) );
-  INVX1 U68 ( .A(bresp), .Y(n48) );
-  NAND2X1 U69 ( .A(fft_done), .B(\config_reg[6][0] ), .Y(n59) );
-  NAND3X1 U70 ( .A(n62), .B(n63), .C(n57), .Y(n58) );
-  INVX1 U71 ( .A(wstate[0]), .Y(n57) );
-  NOR2X1 U72 ( .A(n64), .B(n65), .Y(next_rstate[2]) );
-  INVX1 U73 ( .A(wen_to_inbuf), .Y(n65) );
-  NOR2X1 U74 ( .A(n66), .B(n67), .Y(wen_to_inbuf) );
-  OAI21X1 U75 ( .A(n68), .B(n69), .C(n70), .Y(next_rstate[1]) );
-  OAI21X1 U76 ( .A(n66), .B(n64), .C(rready), .Y(n70) );
-  OAI21X1 U77 ( .A(rlast), .B(rcounter_last), .C(n71), .Y(n64) );
-  INVX1 U78 ( .A(rvalid), .Y(n66) );
-  OAI21X1 U79 ( .A(n67), .B(n71), .C(n72), .Y(next_rstate[0]) );
-  AOI21X1 U80 ( .A(arvalid), .B(n69), .C(n73), .Y(n72) );
-  NOR2X1 U81 ( .A(n74), .B(n75), .Y(n73) );
-  NAND2X1 U82 ( .A(\config_reg[0][0] ), .B(fft_done), .Y(n75) );
-  NAND3X1 U83 ( .A(n76), .B(n77), .C(n78), .Y(n74) );
-  INVX1 U84 ( .A(arready), .Y(n69) );
-  INVX1 U85 ( .A(rresp), .Y(n71) );
-  NOR2X1 U86 ( .A(n77), .B(n79), .Y(fft_start) );
-  NAND2X1 U87 ( .A(n78), .B(n76), .Y(n79) );
-  INVX1 U88 ( .A(n67), .Y(rready) );
-  NAND3X1 U89 ( .A(n78), .B(n77), .C(rstate[1]), .Y(n67) );
-  INVX1 U90 ( .A(rstate[0]), .Y(n78) );
-  INVX1 U91 ( .A(n68), .Y(arvalid) );
-  NAND3X1 U92 ( .A(n76), .B(n77), .C(rstate[0]), .Y(n68) );
-  INVX1 U93 ( .A(rstate[2]), .Y(n77) );
-  INVX1 U94 ( .A(rstate[1]), .Y(n76) );
-  INVX1 U95 ( .A(n47), .Y(bready) );
-  NAND2X1 U96 ( .A(wstate[0]), .B(n53), .Y(n47) );
-  NOR2X1 U97 ( .A(n62), .B(wstate[2]), .Y(n53) );
-  INVX1 U98 ( .A(n49), .Y(awvalid) );
-  NAND3X1 U99 ( .A(n62), .B(n63), .C(wstate[0]), .Y(n49) );
-  INVX1 U100 ( .A(wstate[2]), .Y(n63) );
-  INVX1 U101 ( .A(wstate[1]), .Y(n62) );
+        .len(awlen), .ready(wready), .valid(wvalid), .resp(bresp), .last(wlast) );
+  AND2X1 U37 ( .A(n28), .B(out_valid), .Y(wvalid) );
+  OAI21X1 U38 ( .A(bvalid), .B(n29), .C(n30), .Y(next_wstate[1]) );
+  AOI21X1 U39 ( .A(awready), .B(awvalid), .C(n28), .Y(n30) );
+  NAND3X1 U40 ( .A(n31), .B(n32), .C(n33), .Y(next_wstate[0]) );
+  AOI22X1 U41 ( .A(N40), .B(n34), .C(awvalid), .D(n35), .Y(n33) );
+  INVX1 U42 ( .A(awready), .Y(n35) );
+  INVX1 U43 ( .A(bvalid), .Y(n34) );
+  NAND3X1 U44 ( .A(\config_reg[6][0] ), .B(out_valid), .C(n36), .Y(n32) );
+  NOR2X1 U45 ( .A(wstate[1]), .B(wstate[0]), .Y(n36) );
+  NAND3X1 U46 ( .A(wlast), .B(n28), .C(wready), .Y(n31) );
+  NOR2X1 U47 ( .A(n29), .B(wstate[0]), .Y(n28) );
+  OAI21X1 U48 ( .A(n37), .B(n38), .C(n39), .Y(next_rstate[1]) );
+  OAI21X1 U49 ( .A(n40), .B(n41), .C(rready), .Y(n39) );
+  OAI21X1 U50 ( .A(rlast), .B(rcounter_last), .C(n42), .Y(n41) );
+  INVX1 U51 ( .A(arvalid), .Y(n37) );
+  OAI21X1 U52 ( .A(n43), .B(n42), .C(n44), .Y(next_rstate[0]) );
+  AOI22X1 U53 ( .A(n45), .B(n46), .C(arvalid), .D(n38), .Y(n44) );
+  INVX1 U54 ( .A(arready), .Y(n38) );
+  NOR2X1 U55 ( .A(rstate[1]), .B(rstate[0]), .Y(n46) );
+  AND2X1 U56 ( .A(fft_done), .B(\config_reg[0][0] ), .Y(n45) );
+  INVX1 U57 ( .A(rresp), .Y(n42) );
+  INVX1 U58 ( .A(n43), .Y(rready) );
+  NOR2X1 U59 ( .A(n40), .B(n43), .Y(in_valid) );
+  NAND2X1 U60 ( .A(rstate[1]), .B(n47), .Y(n43) );
+  INVX1 U61 ( .A(rvalid), .Y(n40) );
+  AND2X1 U62 ( .A(wstate[0]), .B(n29), .Y(awvalid) );
+  INVX1 U63 ( .A(wstate[1]), .Y(n29) );
+  NOR2X1 U64 ( .A(n47), .B(rstate[1]), .Y(arvalid) );
+  INVX1 U65 ( .A(rstate[0]), .Y(n47) );
+  AND2X1 U66 ( .A(wstate[0]), .B(wstate[1]), .Y(N40) );
 endmodule
 
