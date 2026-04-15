@@ -32,12 +32,59 @@ module tb_fft_axi_subordinate ();
     end
     endtask
 
-    fft_axi_subordinate #() DUT (.*);
+    // write address
+    logic awready;
+    logic [10:0] awaddr;
+    logic [9:0] awlen;
+    logic awvalid; 
+    // write data
+    logic wready;
+    logic [31:0] wdata;
+    logic [1:0] wstrb;
+    logic wlast; wvalid;
+    // write response
+    logic bresp, bvalid;
+    logic bready;
+    // read address
+    logic arready;
+    logic [10:0] araddr;
+    logic [9:0] arlen;
+    logic arvalid;
+    // read data
+    logic rlast, rvalid;
+    logic [31:0] rdata;
+    logic rready;
+    // read response
+    logic rresp;
+
+    // config_reg from subordinate
+    logic [7:0][31:0] config_reg;
+
+    logic [31:0] fft_config;
+
+    fft_axi_subordinate #() sub0 (.*);
+
+    string test;
 
     initial begin
         n_rst = 1;
 
         reset_dut;
+
+        test = "power on reset";
+        n_rst = 0;
+        @(negedge clk);
+        n_rst = 1;
+
+        test = "write to 1 config reg";
+
+        test = "write to all config regs";
+
+        test = "read from 1 confg reg";
+
+        test = "read from all config regs";
+
+        test = "simultaneous read and write same reg";
 
         $finish;
     end
