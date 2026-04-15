@@ -31,20 +31,20 @@ Please use '-no_save' simv switch to avoid this.
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 Initializing...
-Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
-Current time:       Sat Apr 11 20:02:37 2026
-Hostname:           ececomp4.ecn.purdue.edu
+Initializing gui preferences from file  /home/ecegridfs/a/337mg227/.synopsys_dc_gui/preferences.tcl
+Current time:       Mon Apr 13 18:03:34 2026
+Hostname:           ececomp2.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
 CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free  15 GB)
-Swap:                63 GB (Free  61 GB)
+RAM:                502 GB (Free   4 GB)
+Swap:                63 GB (Free  32 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free  12 GB)
+Work Disk:          2968 GB (Free   9 GB)
 Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 18%, Ram Free: 15 GB, Swap Free: 61 GB, Work Disk Free: 12 GB, Tmp Disk Free: 18 GB
+CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,9 +53,9 @@ CPU Load: 18%, Ram Free: 15 GB, Swap Free: 61 GB, Work Disk Free: 12 GB, Tmp Dis
 #
 ############################################
 sh date
-Sat Apr 11 20:02:37 EDT 2026
-set TOP_MODULE fft_axi_counter
-fft_axi_counter
+Mon Apr 13 18:03:34 EDT 2026
+set TOP_MODULE sram_axi
+sram_axi
 set DC_SCRIPT synth.tcl
 synth.tcl
 set READ_SOURCES team42_ece337_fft_axi_counter_1.0.0-read-sources
@@ -91,16 +91,22 @@ Inferred memory devices in process in routine 'fft_axi_counter' in file
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|   down_count_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
-|    up_count_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  21  |
+|   read_state_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  55  |
+|   write_state_reg   | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  55  |
+|    raddr_reg_reg    | Flip-flop |  12   |  Y  | N  | None  | Async | N  | 135  |
+|    rlen_reg_reg     | Flip-flop |   8   |  Y  | N  | None  | Async | N  | 135  |
+|    waddr_reg_reg    | Flip-flop |  12   |  Y  | N  | None  | Async | N  | 135  |
+|    wlen_reg_reg     | Flip-flop |   8   |  Y  | N  | None  | Async | N  | 135  |
+|    wdata_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 135  |
+|    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 135  |
 ==================================================================================
-Presto compilation completed successfully. (fft_axi_counter)
-Module: fft_axi_counter, Ports: 26, Input: 15, Output: 11, Inout: 0
-Module: fft_axi_counter, Registers: 20, Async set/reset: 20, Sync set/reset: 0
-Information: Module fft_axi_counter report end. (ELAB-965)
+Presto compilation completed successfully. (sram_axi)
+Module: sram_axi, Ports: 213, Input: 114, Output: 99, Inout: 0
+Module: sram_axi, Registers: 78, Async set/reset: 78, Sync set/reset: 0
+Information: Module sram_axi report end. (ELAB-965)
 Elaborated 1 design.
-Current design is now 'fft_axi_counter'.
-CPU Load: 18%, Ram Free: 14 GB, Swap Free: 61 GB, Work Disk Free: 12 GB, Tmp Disk Free: 18 GB
+Current design is now 'sram_axi'.
+CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -119,7 +125,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-| Leaf Cell Count                                         | 63                                     |
+| Leaf Cell Count                                         | 210                                    |
 | Number of User Hierarchies                              | 0                                      |
 | Sequential Cell Count                                   | 20                                     |
 | Macro Count                                             | 0                                      |
@@ -128,14 +134,14 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-| Number of Dont Touch Cells                              | 8                                      |
+| Number of Dont Touch Cells                              | 47                                     |
 | Number of Dont Touch Nets                               | 0                                      |
 | Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 44 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -160,12 +166,18 @@ Module: DW01_inc_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
 Module: DW01_inc_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_NOT, Ports: 2, Input: 1, Output: 1, Inout: 0
 Module: DW01_NOT, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
-Module: DW01_add_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width10, Ports: 21, Input: 11, Output: 10, Inout: 0
-Module: DW01_incdec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
-Module: DW01_sub_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp6_width11, Ports: 29, Input: 23, Output: 6, Inout: 0
+Module: DW01_cmp6_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_sub_width8, Ports: 26, Input: 17, Output: 9, Inout: 0
+Module: DW01_sub_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_incdec_width8, Ports: 17, Input: 9, Output: 8, Inout: 0
+Module: DW01_incdec_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width11, Ports: 26, Input: 24, Output: 2, Inout: 0
+Module: DW01_cmp2_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width12, Ports: 38, Input: 25, Output: 13, Inout: 0
+Module: DW01_add_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_incdec_width12, Ports: 25, Input: 13, Output: 12, Inout: 0
+Module: DW01_incdec_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -173,8 +185,16 @@ Information: Design 'fft_axi_counter' has no optimization constraints set. (OPT-
 
   Beginning Implementation Selection
   ----------------------------------
-  Processing 'fft_axi_counter_DW01_inc_0'
-  Processing 'fft_axi_counter_DW01_dec_0'
+  Processing 'sram_axi_DW01_cmp2_0'
+  Processing 'sram_axi_DW01_cmp2_1'
+  Processing 'sram_axi_DW01_cmp2_2'
+  Processing 'sram_axi_DW01_dec_0'
+  Processing 'sram_axi_DW01_inc_0'
+  Processing 'sram_axi_DW01_sub_0'
+  Processing 'sram_axi_DW01_dec_1'
+  Processing 'sram_axi_DW01_inc_1'
+  Processing 'sram_axi_DW01_sub_1'
+  Processing 'sram_axi_DW01_cmp2_3'
 
   Beginning Mapping Optimizations  (High effort)
   -------------------------------
@@ -185,19 +205,20 @@ Information: Design 'fft_axi_counter' has no optimization constraints set. (OPT-
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       6.6                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:02  228285.0      0.00       0.0      89.2                          
+    0:00:02  228285.0      0.00       0.0      89.2                          
+    0:00:02  228285.0      0.00       0.0      89.2                          
+    0:00:02  228285.0      0.00       0.0      89.2                          
+    0:00:02  228285.0      0.00       0.0      89.2                          
+    0:00:02  228717.0      0.00       0.0       5.3                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
 
 
 
@@ -208,11 +229,11 @@ Information: Design 'fft_axi_counter' has no optimization constraints set. (OPT-
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -222,17 +243,17 @@ Information: Design 'fft_axi_counter' has no optimization constraints set. (OPT-
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
-    0:00:01   60777.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:02  228861.0      0.00       0.0       0.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -241,7 +262,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 18%, Ram Free: 14 GB, Swap Free: 61 GB, Work Disk Free: 12 GB, Tmp Disk Free: 18 GB
+CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -261,11 +282,69 @@ Unmapped MV Cells
 0 Isolation Cells are unmapped 
 0 Retention Clamp Cells are unmapped 
 ----------------------------------------------------------------------------------------------------
-Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_counter_1.0.0/syn-design_compiler/fft_axi_counter.v'.
+ 
+****************************************
+check_design summary:
+Version:     W-2024.09-SP4
+Date:        Mon Apr 13 18:03:36 2026
+****************************************
 
-Memory usage for this session 138 Mbytes.
-Memory usage for this session including child processes 138 Mbytes.
-CPU usage for this session 3 seconds ( 0.00 hours ).
-Elapsed time for this session 4 seconds ( 0.00 hours ).
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     42
+    Unconnected ports (LINT-28)                                     1
+    Feedthrough (LINT-29)                                          32
+    Shorted outputs (LINT-31)                                       5
+    Constant outputs (LINT-52)                                      4
+--------------------------------------------------------------------------------
+
+Warning: In design 'sram_axi', port 'wlast' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'rdata[31]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'rdata[30]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'rdata[29]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[28]' is connected directly to output port 'rdata[28]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[27]' is connected directly to output port 'rdata[27]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[26]' is connected directly to output port 'rdata[26]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[25]' is connected directly to output port 'rdata[25]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[24]' is connected directly to output port 'rdata[24]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[23]' is connected directly to output port 'rdata[23]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[22]' is connected directly to output port 'rdata[22]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[21]' is connected directly to output port 'rdata[21]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[20]' is connected directly to output port 'rdata[20]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[19]' is connected directly to output port 'rdata[19]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[18]' is connected directly to output port 'rdata[18]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[17]' is connected directly to output port 'rdata[17]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[16]' is connected directly to output port 'rdata[16]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[15]' is connected directly to output port 'rdata[15]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[14]' is connected directly to output port 'rdata[14]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[13]' is connected directly to output port 'rdata[13]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[12]' is connected directly to output port 'rdata[12]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[11]' is connected directly to output port 'rdata[11]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[10]' is connected directly to output port 'rdata[10]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[9]' is connected directly to output port 'rdata[9]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[8]' is connected directly to output port 'rdata[8]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[7]' is connected directly to output port 'rdata[7]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[6]' is connected directly to output port 'rdata[6]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[5]' is connected directly to output port 'rdata[5]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[4]' is connected directly to output port 'rdata[4]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[3]' is connected directly to output port 'rdata[3]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[2]' is connected directly to output port 'rdata[2]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[1]' is connected directly to output port 'rdata[1]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[0]' is connected directly to output port 'rdata[0]'. (LINT-29)
+Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'rresp[0]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'rresp[1]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to output port 'bresp[0]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'wen[3]' is connected directly to output port 'wen[2]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'wen[1]' is connected directly to output port 'wen[0]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'bresp[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'sram_axi', output port 'bresp[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'sram_axi', output port 'rresp[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'sram_axi', output port 'rresp[0]' is connected directly to 'logic 0'. (LINT-52)
+Writing verilog file '/home/ecegridfs/a/337mg227/FFT_Accelerator/tmp/build/team42_ece337_sram_axi_1.0.0/syn-design_compiler/sram_axi.v'.
+
+Memory usage for this session 141 Mbytes.
+Memory usage for this session including child processes 141 Mbytes.
+CPU usage for this session 4 seconds ( 0.00 hours ).
+Elapsed time for this session 5 seconds ( 0.00 hours ).
 
 Thank you...
