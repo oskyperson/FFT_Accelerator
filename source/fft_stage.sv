@@ -18,9 +18,12 @@ module fft_stage #(
 
     logic rollover_flag;
 
-    //TODO delay line logic is broken
+    //TODO delay line logic is broken   
 
-    logic control; //1 for math mode; 0 for delay mode
+    localparam [8:0] ADDR_ADJUST = (9'd1 << STAGE) - 9'd1;
+    assign twiddle_addr = (count_out & ADDR_ADJUST) << (8 - STAGE);
+
+    logic control; //1 for math mode 0 for delay mode
     assign control = count_out[STAGE];
 
     /*always_comb begin
@@ -36,16 +39,33 @@ module fft_stage #(
     end*/
 
     always_comb begin
-        shift_en     = sample_valid;   
-        math_sample  = sample;
-        if(control)
-            delay_sample = rotation;   
-        else
-            delay_sample = sample;     
+        shift_en = sample_valid;   
+        delay_sample = control ? rotation : sample;
     end
 
-    math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(math_sample), .sample_valid(sample_valid),
-        .feedback(feedback_sample), .twiddle(twiddle), .sum(out), .next_valid(out_valid), .rotation(rotation)
+    logic [31:0] sample_d;
+    logic sample_valid_d, control_d;
+
+    logic [31:0] math_sum;
+    logic math_valid;
+
+    always_ff @(posedge clk or negedge n_rst) begin
+        if(!n_rst) begin
+            sample_d <= '0;
+            sample_valid_d <= '0;
+            control_d <= '0;
+        end else begin
+            sample_d <= sample;
+            sample_valid_d <= sample_valid;
+            control_d <= control;
+        end
+    end
+
+    assign out = control_d ? math_sum : sample_d;
+    assign out_valid = control_d ? math_valid : sample_valid_d;
+
+    math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(sample), .sample_valid(sample_valid),
+        .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .next_valid(math_valid), .rotation(rotation)
     );
 
     delay_line #(.STAGE(STAGE)) delays (.clk(clk), .n_rst(n_rst), .sample(delay_sample), .shift_en(shift_en), .out(feedback_sample));
@@ -54,6 +74,6 @@ module fft_stage #(
         .count_out(count_out), .rollover_flag(rollover_flag)
     );
 
-    twiddle_lookup lookup (.addr((STAGE == 0) ? 9'b0 : count_out[STAGE-1:0] << (9-STAGE)), .twiddle(twiddle));
+    twiddle_lookup lookup (.addr(twiddle_addr), .twiddle(twiddle));
     
 endmodule

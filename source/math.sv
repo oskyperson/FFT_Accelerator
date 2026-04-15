@@ -37,8 +37,8 @@ module math #(
     assign rotation[15:0] = temp_im[16:1];
     assign rotation[31:16] = temp_re[16:1];
 
-    adder re_math (.a(ri_product), .b(ir_product), .sel(1'b0), .total(temp_re));
-    adder im_math (.a(im_product), .b(re_product), .sel(1'b1), .total(temp_im));
+    adder re_math (.a(im_product), .b(re_product), .sel(1'b0), .total(temp_re));
+    adder im_math (.a(ri_product), .b(ir_product), .sel(1'b1), .total(temp_im));
 
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
@@ -50,8 +50,8 @@ module math #(
             feedback_reg <= feedback;
             next_valid <= 1'b1;
         end else begin
-            /*next_valid <= 1'b0;
-            sample_reg <= '0;
+            next_valid <= 1'b0;
+            /*sample_reg <= '0;
             feedback_reg <= '0;*/
         end
     end

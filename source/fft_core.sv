@@ -8,39 +8,9 @@ module fft_core(
     output logic out_valid
 );  
     logic enable;
-    typedef enum logic {
-        IDLE,
-        WORKING
-    } state_t;
 
-    state_t state, next_state;
-
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
-            state <= IDLE;
-        end else begin
-            state <= next_state;
-        end
-    end
-
-    always_comb begin
-        case(state) 
-            IDLE: begin
-                next_state = (start) ? WORKING : IDLE;
-            end
-            WORKING: begin
-                //TODO some sort of end detection
-            end
-        endcase
-
-        case(state)
-            IDLE: enable = 0;
-            WORKING: enable = 1;
-        endcase
-    end
-
-    logic [31:0] sample_stream [10:0];
-    logic [10:0] valid_stream;
+    logic [31:0] sample_stream [9:0];
+    logic [9:0] valid_stream;
 
     assign sample_stream[0] = sample;
     assign valid_stream[0] = valid;
