@@ -52,8 +52,8 @@ module axi_manager_model (
 
         
         for (int i = 0; i < num_beats; i++) begin
-            wdata  <= data_queue[i];
-            wstrb  <= 2'b11;
+            wdata <= data_queue[i];
+            wstrb <= 2'b11;
             wvalid <= 1'b1;
             wlast  <= (i == num_beats - 1); 
             do begin
@@ -61,7 +61,7 @@ module axi_manager_model (
             end while (!wready);
         end
         wvalid <= 1'b0;
-        wlast  <= 1'b0;
+        wlast <= 1'b0;
 
         
         bready <= 1'b1;
@@ -77,8 +77,8 @@ module axi_manager_model (
 
         @(posedge clk);
        
-        araddr  <= start_addr;
-        arlen   <= num_beats - 1;
+        araddr <= start_addr;
+        arlen <= num_beats - 1;
         arvalid <= 1'b1;
         wait(arready);
         @(posedge clk);

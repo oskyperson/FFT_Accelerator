@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg227/.synopsys_dc_gui/preferences.tcl
-Current time:       Mon Apr 13 18:03:34 2026
-Hostname:           ececomp2.ecn.purdue.edu
+Current time:       Tue Apr 14 23:46:14 2026
+Hostname:           ececomp1.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
 CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free   4 GB)
-Swap:                63 GB (Free  32 GB)
+RAM:                502 GB (Free  99 GB)
+Swap:                63 GB (Free  60 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free   9 GB)
+Work Disk:          2968 GB (Free 460 GB)
 Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
+CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,7 +53,7 @@ CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk F
 #
 ############################################
 sh date
-Mon Apr 13 18:03:34 EDT 2026
+Tue Apr 14 23:46:14 EDT 2026
 set TOP_MODULE sram_axi
 sram_axi
 set DC_SCRIPT synth.tcl
@@ -111,12 +111,12 @@ Inferred memory devices in process in routine 'sram_axi' in file
 |    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 135  |
 ==================================================================================
 Presto compilation completed successfully. (sram_axi)
-Module: sram_axi, Ports: 213, Input: 114, Output: 99, Inout: 0
+Module: sram_axi, Ports: 217, Input: 118, Output: 99, Inout: 0
 Module: sram_axi, Registers: 78, Async set/reset: 78, Sync set/reset: 0
 Information: Module sram_axi report end. (ELAB-965)
 Elaborated 1 design.
 Current design is now 'sram_axi'.
-CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
+CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -151,7 +151,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 44 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 48 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -221,16 +221,16 @@ Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
     0:00:01  228285.0      0.00       0.0      89.2                          
     0:00:01  228285.0      0.00       0.0      89.2                          
     0:00:01  228285.0      0.00       0.0      89.2                          
-    0:00:02  228285.0      0.00       0.0      89.2                          
-    0:00:02  228285.0      0.00       0.0      89.2                          
-    0:00:02  228285.0      0.00       0.0      89.2                          
-    0:00:02  228285.0      0.00       0.0      89.2                          
-    0:00:02  228285.0      0.00       0.0      89.2                          
-    0:00:02  228717.0      0.00       0.0       5.3                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228285.0      0.00       0.0      89.2                          
+    0:00:01  228717.0      0.00       0.0       5.3                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
 
 
 
@@ -241,11 +241,11 @@ Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -255,17 +255,17 @@ Information: Design 'sram_axi' has no optimization constraints set. (OPT-108)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
-    0:00:02  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
+    0:00:01  228861.0      0.00       0.0       0.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -274,7 +274,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 8%, Ram Free: 4 GB, Swap Free: 32 GB, Work Disk Free: 9 GB, Tmp Disk Free: 18 GB
+CPU Load: 31%, Ram Free: 99 GB, Swap Free: 60 GB, Work Disk Free: 460 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -298,19 +298,23 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Mon Apr 13 18:03:36 2026
+Date:        Tue Apr 14 23:46:16 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                     42
-    Unconnected ports (LINT-28)                                     1
+Inputs/Outputs                                                     46
+    Unconnected ports (LINT-28)                                     5
     Feedthrough (LINT-29)                                          32
     Shorted outputs (LINT-31)                                       5
     Constant outputs (LINT-52)                                      4
 --------------------------------------------------------------------------------
 
+Warning: In design 'sram_axi', port 'awlen[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi', port 'awlen[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'sram_axi', port 'wlast' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi', port 'arlen[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi', port 'arlen[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'rdata[31]'. (LINT-29)
 Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'rdata[30]'. (LINT-29)
 Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'rdata[29]'. (LINT-29)
@@ -354,8 +358,8 @@ Warning: In design 'sram_axi', output port 'rresp[1]' is connected directly to '
 Warning: In design 'sram_axi', output port 'rresp[0]' is connected directly to 'logic 0'. (LINT-52)
 Writing verilog file '/home/ecegridfs/a/337mg227/FFT_Accelerator/tmp/build/team42_ece337_sram_axi_1.0.0/syn-design_compiler/sram_axi.v'.
 
-Memory usage for this session 141 Mbytes.
-Memory usage for this session including child processes 141 Mbytes.
+Memory usage for this session 142 Mbytes.
+Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 4 seconds ( 0.00 hours ).
 Elapsed time for this session 5 seconds ( 0.00 hours ).
 

@@ -7,7 +7,7 @@ module sram_axi #(
     
     input logic [10:0] awaddr,
     input logic awvalid,
-    input logic [7:0] awlen,
+    input logic [9:0] awlen,
     output logic awready,    
  
     input logic [31:0] wdata,
@@ -22,7 +22,7 @@ module sram_axi #(
    
     input  logic [10:0] araddr,
     input  logic arvalid, 
-    input  logic [7:0] arlen,
+    input  logic [9:0] arlen,
     output logic arready,
     
     output logic [31:0] rdata,

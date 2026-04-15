@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Mon Apr 13 18:03:36 2026
+Date   : Tue Apr 14 23:46:16 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -44,14 +44,14 @@ Wire Load Model Mode: top
 Report : area
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Mon Apr 13 18:03:36 2026
+Date   : Tue Apr 14 23:46:16 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          261
+Number of ports:                          265
 Number of nets:                           730
 Number of cells:                          551
 Number of combinational cells:            392
@@ -80,7 +80,7 @@ Report : power
         -analysis_effort low
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Mon Apr 13 18:03:36 2026
+Date   : Tue Apr 14 23:46:16 2026
 ****************************************
 
 
