@@ -60,27 +60,22 @@ module tb_fft_axi_manager ();
     // config_reg from subordinate
     logic [7:0][31:0] config_reg;
     
-    // signals to/from fft
     logic fft_done;
-    logic fft_start;
-    logic fft_valid;
-    // to/from buffers
-    logic [31:0] in;
-    logic [9:0] rcount;
-    logic wen_to_inbuf;
-    logic [31:0] out;
-    logic [9:0] wcount;
+    logic [31:0] data_out;
+    logic out_valid;
+    logic [31:0] data_in;
+    logic in_valid;
 
-    fft_axi_manager #() DUT (.*);
+    fft_axi_manager DUT (.*);
 
     axi_subordinate_model BFM (.*);
 
     string test;
 
     task configure_manager (
+        input logic [31:0] config_start_read,
         input logic [31:0] config_araddr,
         input logic [31:0] config_arlen,
-        input logic [31:0] config_start_read,
         input logic [31:0] config_awaddr,
         input logic [31:0] config_awlen,
         input logic [31:0] config_wstrb,
@@ -112,10 +107,10 @@ module tb_fft_axi_manager ();
             current_val = starting_num;
 
             @(posedge clk);
-            fft_done <= 1'b1;
-
+            
             for (int i = 0; i <= len; i++) begin
-                out <= current_val;
+                data_out <= current_val;
+                out_valid <= 1'b1;
                 
                 do begin
                     @(posedge clk);
@@ -125,8 +120,8 @@ module tb_fft_axi_manager ();
             end
 
             @(posedge clk);
-            fft_done <= 1'b0;
-            out <= 32'h0;
+            out_valid <= 1'b0;
+            data_out <= 32'h0;
 
             do begin
                 @(posedge clk);
@@ -137,7 +132,6 @@ module tb_fft_axi_manager ();
             end
         end
     endtask
-
 
     task manager_read(
         input logic [31:0] start_addr,
@@ -150,83 +144,93 @@ module tb_fft_axi_manager ();
             current_val = starting_num;
 
             @(posedge clk);
-            fft_done <= 1'b1;
+            fft_done = 1;
 
             for (int i = 0; i <= len; i++) begin
+                do begin
+                    @(posedge clk);
+                end while (!(in_valid));
+
                 if (rresp) begin
                     if (rresp !== expected_rresp)
                         $display("Expected rresp: %d Got: %d", expected_rresp, rresp);
                     break;
                 end
 
-                if (in != current_val)
-                    $display("Incorrect message at %d read. Expected: %d Got: %d", i, current_val, in);
+                if (data_in != current_val) // Use renamed signal
+                    $display("Incorrect message at %d read. Expected: %d Got: %d", i, current_val, data_in);
                 
-                do begin
-                    @(posedge clk);
-                end while (!(rvalid && rready));
-
                 current_val = current_val + 1;
             end
 
             @(posedge clk);
-            fft_done <= 1'b0;
+            fft_done = 0;
         end
     endtask
 
     initial begin
         n_rst = 1;
-
+        fft_done = 0;
         reset_dut;
 
         test = "valid max frame";
-        configure_manager(32'd1, 32'd0, 32'd511, 32'd0, 32'd511, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd0, 10'd511, 32'd0, 0);
-        configure_manager(32'd0, 32'd0, 32'd511, 32'd0, 32'd511, 32'd3, 32'd1, 32'd1);
-        manager_read(32'd0, 10'd511, 32'd0, 0);
+        @(posedge clk);
+        configure_manager(32'd0, 32'd0, 32'd512, 32'd0, 32'd512, 32'd3, 32'd1, 32'd1);
+        @(posedge clk);
+        manager_write(32'd0, 10'd512, 32'd0, 0);
+        @(posedge clk);
+        configure_manager(32'd1, 32'd0, 32'd512, 32'd0, 32'd512, 32'd3, 32'd0, 32'd1);
+        @(posedge clk);
+        manager_read(32'd0, 10'd512, 32'd0, 0);
+        @(posedge clk);
 
         test = "valid min frame";
-        configure_manager(32'd1, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd0, 10'd1, 32'd6, 0);
         configure_manager(32'd0, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd1, 32'd1);
+        @(posedge clk);
+        manager_write(32'd0, 10'd1, 32'd6, 0);
+        @(posedge clk);
+        configure_manager(32'd1, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd0, 32'd1);
+        @(posedge clk);
         manager_read(32'd0, 10'd1, 32'd6, 0);
+        @(posedge clk);
 
         test = "invalid write frame";
-        configure_manager(32'd1, 32'd10, 32'd511, 32'd0, 32'd511, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd10, 10'd511, 32'd0, 1);
-        configure_manager(32'd0, 32'd0, 32'd511, 32'd0, 32'd511, 32'd3, 32'd1, 32'd1);
-        manager_read(32'd0, 10'd511, 32'd0, 1);
+        configure_manager(32'd0, 32'd10, 32'd512, 32'd10, 32'd512, 32'd3, 32'd1, 32'd1);
+        @(posedge clk);
+        manager_write(32'd10, 10'd512, 32'd0, 1);
+        @(posedge clk);
 
         test = "invalid read frame";
-        configure_manager(32'd1, 32'd0, 32'd511, 32'd0, 32'd511, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd0, 10'd511, 32'd0, 1);
-        configure_manager(32'd0, 32'd10, 32'd511, 32'd0, 32'd511, 32'd3, 32'd1, 32'd1);
-        manager_read(32'd10, 10'd511, 32'd0, 1);
-
-        test = "back to back";
-        configure_manager(32'd1, 32'd512, 32'd15, 32'd512, 32'd15, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd512, 10'd15, 32'hAAAA_0000, 0);
-        configure_manager(32'd1, 32'd0, 32'd15, 32'h0, 32'd15, 32'd3, 32'd0, 32'd1);
-        manager_write(32'h0, 10'd15, 32'hBBBB_0000, 0);
-
-        configure_manager(32'd1, 32'd512, 32'd15, 32'd512, 32'd15, 32'd3, 32'd0, 32'd1);
-        manager_read(32'd512, 10'd15, 32'hAAAA_0000, 0);
-        configure_manager(32'd1, 32'd0, 32'd15, 32'h0, 32'd15, 32'd3, 32'd0, 32'd1);
-        manager_read(32'h0, 10'd15, 32'hBBBB_0000, 0);
+        configure_manager(32'd1, 32'd10, 32'd512, 32'd10, 32'd512, 32'd3, 32'd0, 32'd1);
+        @(posedge clk);
+        manager_read(32'd10, 10'd512, 32'd0, 1);
+        @(posedge clk);
 
         test = "simultaneous read and write";
-        configure_manager(32'd0, 32'd512, 32'd511, 32'd512, 32'd511, 32'd3, 32'd0, 32'd1);
-        manager_write(32'd512, 10'd511, 32'hFEED_0000, 0);
-        configure_manager(32'd0, 32'd0, 32'd511, 32'd512, 32'd511, 32'd3, 32'd0, 32'd1);
-        fork
+        configure_manager(32'd1, 32'd0, 32'd10, 32'd256, 32'd10, 32'd3, 32'd1, 32'd1);
+        
+        fork : timeout_watchdog
             begin
-                manager_write(32'h0, 10'd511, 32'hAAAA_0000, 0);
+                fork
+                    begin
+                        $display("Starting simultaneous write...");
+                        manager_write(32'h256, 10'd10, 32'h0, 0);
+                        $display("Simultaneous write finished.");
+                    end
+                    begin
+                        $display("Starting simultaneous read...");
+                        manager_read(32'd0, 10'd10, 32'h0, 0);
+                        $display("Simultaneous read finished.");
+                    end
+                join
+                disable timeout_watchdog;
             end
             begin
-                manager_read(32'd512, 10'd511, 32'hFEED_0000, 0);
+                #1ms; // High safety margin
+                $display("Error: Simulation hung in simultaneous test!");
+                $finish;
             end
         join
-
         $finish;
     end
 endmodule

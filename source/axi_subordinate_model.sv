@@ -40,8 +40,10 @@ module axi_subordinate_model (
 
     // Queues for tracking pending transactions
     logic [10:0] wr_addr_q [$];
+    logic        wr_err_q [$]; 
     logic [10:0] rd_addr_q [$];
     logic [9:0]  rd_len_q [$];
+    logic        rd_err_q [$];
 
     initial begin
         // Reset output signals
@@ -64,6 +66,7 @@ module axi_subordinate_model (
                 awready <= 1'b1;
                 if (awvalid && awready) begin
                     wr_addr_q.push_back(awaddr);
+                    wr_err_q.push_back((awaddr + awlen) > 512);
                 end
             end
 
@@ -74,7 +77,7 @@ module axi_subordinate_model (
                 if (wvalid && wready) begin
                     if (wr_addr_q.size() > 0) begin
                         mem[wr_addr_q[0]] = wdata;
-                        wr_addr_q[0] = wr_addr_q[0] + 4;
+                        wr_addr_q[0] = wr_addr_q[0] + 1;
                     end
                     if (wlast) begin
                         void'(wr_addr_q.pop_front());
@@ -86,13 +89,16 @@ module axi_subordinate_model (
             forever begin
                 @(posedge clk);
                 if (wvalid && wready && wlast) begin
-                    // Mimic short processing delay
                     repeat (2) @(posedge clk);
                     bvalid <= 1'b1;
-                    bresp  <= 1'b0; 
-                    wait(bready);
-                    @(posedge clk);
+                    bresp  <= wr_err_q.pop_front(); 
+                    // Wait for handshake
+                    do begin
+                        @(posedge clk);
+                    end while (!bready);
+                    // Clear immediately after handshake
                     bvalid <= 1'b0;
+                    bresp  <= 1'b0;
                 end
             end
 
@@ -103,6 +109,7 @@ module axi_subordinate_model (
                 if (arvalid && arready) begin
                     rd_addr_q.push_back(araddr);
                     rd_len_q.push_back(arlen);
+                    rd_err_q.push_back((araddr + arlen) > 512);
                 end
             end
 
@@ -110,14 +117,16 @@ module axi_subordinate_model (
             forever begin
                 logic [10:0] curr_addr;
                 logic [9:0]  curr_len;
+                logic        curr_err;
                 @(posedge clk);
                 if (rd_addr_q.size() > 0) begin
                     curr_addr = rd_addr_q.pop_front();
                     curr_len  = rd_len_q.pop_front();
+                    curr_err  = rd_err_q.pop_front();
 
                     for (int i = 0; i <= curr_len; i++) begin
                         rvalid <= 1'b1;
-                        rresp  <= 1'b0;
+                        rresp  <= curr_err;
                         rlast  <= (i == curr_len);
                         
                         if (mem.exists(curr_addr)) begin
@@ -126,11 +135,15 @@ module axi_subordinate_model (
                             rdata <= 32'hDEADBEEF;
                         end
                         
-                        wait(rready);
-                        @(posedge clk);
+                        // Wait for handshake
+                        do begin
+                            @(posedge clk);
+                        end while (!rready);
+                        // Clear immediately after handshake
                         rvalid <= 1'b0;
+                        rresp  <= 1'b0;
                         rlast  <= 1'b0;
-                        curr_addr += 4;
+                        curr_addr += 1;
                     end
                 end
             end

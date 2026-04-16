@@ -84,7 +84,7 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 );
 
 always_comb begin : read_output_logic
-    araddr = config_reg[1][10:0];
+    araddr = (rstate == RIDLE) ? 0 : config_reg[1][10:0];
     arlen = config_reg[2][9:0];
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
@@ -133,7 +133,7 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 );
 
 always_comb begin : write_output_logic
-    awaddr = config_reg[3][10:0];
+    awaddr = (wstate == WIDLE) ? 0 : config_reg[3][10:0];
     awlen = config_reg[4][9:0];
     awvalid = (wstate == WADDR);
     wvalid = (wstate == WDATA) && out_valid;
