@@ -7,7 +7,7 @@ module axi_manager_model (
     // Write Address Channel
     output logic [10:0] awaddr,
     output logic awvalid,
-    output logic [7:0] awlen,
+    output logic [9:0] awlen,
     input logic awready,
 
     // Write Data Channel
@@ -88,6 +88,7 @@ module axi_manager_model (
         rready <= 1'b1;
         for (int i = 0; i < num_beats; i++) begin
             wait(rvalid);
+            @(negedge clk);
             result_queue.push_back(rdata);
             
             
@@ -96,6 +97,7 @@ module axi_manager_model (
             
             @(posedge clk);
             @(posedge clk);
+            
         end
         rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);

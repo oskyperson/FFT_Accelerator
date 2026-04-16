@@ -137,7 +137,36 @@ module tb_sram_axi ();
             $display(" -> [PASS] Read matched written data: %h\n", r_queue[0]);
         else
             $display(" -> [FAIL] Expected CAFEBABE, got: %h\n", r_queue[0]);
+
+        $display("========================================");
+        $display(" TEST 4: Simultaneous Read and Write");
+        $display("========================================");
+        w_queue.delete();
+        w_queue.push_back(32'h11111111);
+        w_queue.push_back(32'h22222222);
+
+        fork
+            // Start Write to Addr 30
+            BFM.write_burst(11'd30, w_queue);
+            // Start Read from Addr 20 (previously written in Test 2)
+            BFM.read_burst(11'd20, 2, r_queue);
+        join
+
+        for(int i = 0; i < 2; i++) begin
+            if (r_queue[i] == w_queue[i])
+                $display(" -> [PASS] Beat %0d matched: %h", i, r_queue[i]);
+            else
+                $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
+        end
         
+        BFM.read_burst(11'd30, 2, r_queue);
+
+        for(int i = 0; i < 2; i++) begin
+            if (r_queue[i] == w_queue[i])
+                $display(" -> [PASS] Beat %0d matched: %h", i, r_queue[i]);
+            else
+                $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
+        end
         $display("========================================");
         $display(" SIMULATION COMPLETE ");
         $display("========================================");

@@ -20,16 +20,16 @@ module sram_axi #(
     output logic [1:0] bresp,    
     output logic bvalid,
    
-    input  logic [10:0] araddr,
-    input  logic arvalid, 
-    input  logic [9:0] arlen,
+    input logic [10:0] araddr,
+    input logic arvalid, 
+    input logic [9:0] arlen,
     output logic arready,
     
     output logic [31:0] rdata,
     output logic [1:0] rresp,
     output logic rlast, 
     output logic rvalid,
-    input  logic rready,
+    input logic rready,
 
     output logic [3:0] wen,      
     output logic ren, 
@@ -37,8 +37,8 @@ module sram_axi #(
     output logic [31:0] write_data,
     output logic [9:0] read_addr, 
     output logic [9:0] write_addr,
-    input  logic read_valid, 
-    input  logic write_valid
+    input logic read_valid, 
+    input logic write_valid
     
 );
 
@@ -48,9 +48,9 @@ w_state_t write_state, next_write;
 r_state_t read_state, next_read;
 
 logic [11:0] waddr_reg, raddr_reg;
-logic [7:0]  wlen_reg, rlen_reg;
+logic [7:0] wlen_reg, rlen_reg;
 logic [31:0] wdata_reg;
-logic [1:0]  wstrb_reg;
+logic [1:0] wstrb_reg;
 
 always_ff @(posedge clk, negedge n_rst) begin : next_states
     if(!n_rst) begin
@@ -64,9 +64,7 @@ end
 
 always_comb begin : WRITE_LOGIC
     next_write = write_state;
-    awready = '0;
-    wready = '0;
-    bvalid = '0;
+   
     bresp = '0;
     wen = '0;
     write_addr = waddr_reg-4'hF;
@@ -74,11 +72,9 @@ always_comb begin : WRITE_LOGIC
 
     case(write_state)
         W_IDLE: begin
-            awready = (awaddr >= 11'd15) && (awaddr <= 11'd1038);
             if(awvalid && awready) next_write = W_DATA;
         end
         W_DATA: begin
-            wready = 1'b1;
             if(wvalid) next_write = W_COMMIT;
         end
         W_COMMIT: begin
@@ -93,7 +89,6 @@ always_comb begin : WRITE_LOGIC
             end
         end
         W_RESP: begin
-            bvalid = 1'b1;
             if (bready) next_write = W_IDLE;
         end
     endcase
@@ -101,18 +96,12 @@ end
 
 always_comb begin : READ_LOGIC
     next_read = read_state;
-    arready = (read_state == R_IDLE);
-    rvalid = 1'b0;
-    rlast = 1'b0;
     rresp = 2'b00;
     ren = 1'b0;
-        
-
     read_addr = raddr_reg[9:0] - 4'hF;
     rdata = read_data;
     case (read_state)
         R_IDLE: begin
-            arready = (araddr >= 11'd15) && (araddr <= 11'd1038);
             if (arvalid && arready) next_read = R_REQ;
         end
         R_REQ: begin
@@ -123,8 +112,7 @@ always_comb begin : READ_LOGIC
             if (read_valid) next_read = R_DATA;
         end
         R_DATA: begin
-            rvalid = 1'b1;
-            rlast  = (rlen_reg == 0);
+            
             if (rready) begin
                 if (rlen_reg == 0) next_read = R_IDLE;
                 else next_read = R_REQ;
@@ -132,37 +120,48 @@ always_comb begin : READ_LOGIC
         end
     endcase
 end
+
 always_ff @(posedge clk, negedge n_rst) begin: registers
     if (!n_rst) begin
-        waddr_reg <= '0; 
-        wlen_reg <= '0;
+        waddr_reg <= '0;
+        wlen_reg  <= '0;
         wdata_reg <= '0; 
         wstrb_reg <= '0;
         raddr_reg <= '0; 
         rlen_reg <= '0;
+        awready <= 1'b0;
+        wready <= 1'b0;
+        bvalid <= 1'b0;
+        arready <= 1'b0;
+        rvalid <= 1'b0;
+        rlast <= 1'b0;
     end else begin
+        awready <= (next_write == W_IDLE) && (awaddr >= 11'd15) && (awaddr <= 11'd1038);
+        wready <= (next_write == W_DATA);
+        bvalid <= (next_write == W_RESP);
         
+        arready <= (next_read == R_IDLE) && (araddr >= 11'd15) && (araddr <= 11'd1038);
+        rvalid <= (next_read == R_DATA);
+        rlast <= (next_read == R_DATA) && (rlen_reg == 0);
         if (awvalid && awready) begin
             waddr_reg <= awaddr;
-            wlen_reg <= awlen;
+            wlen_reg  <= awlen;
         end
         if (arvalid && arready) begin
             raddr_reg <= araddr;
-            rlen_reg <= arlen;
+            rlen_reg  <= arlen;
         end
-        
         if (wvalid && wready) begin
             wdata_reg <= wdata;
             wstrb_reg <= wstrb;
         end
-       
         if (write_state == W_COMMIT && write_valid) begin
             waddr_reg <= waddr_reg + 1;
-            wlen_reg <= wlen_reg - 1;
+            wlen_reg  <= wlen_reg - 1;
         end
         if (read_state == R_DATA && rready && rvalid) begin
             raddr_reg <= raddr_reg + 1;
-            rlen_reg <= rlen_reg - 1;
+            rlen_reg  <= rlen_reg - 1;
         end
     end
 end
