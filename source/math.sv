@@ -20,19 +20,19 @@ module math #(
     logic [16:0] sum_im, sum_re;
     assign sum[15:0] = sum_im[16:1];
     assign sum[31:16] = sum_re[16:1];
-    adder img (.a(sample_reg[15:0]), .b(feedback_reg[15:0]), .sel(1'b1), .total(sum_im)); //TODO fix sizing
-    adder rl (.a(sample_reg[31:16]), .b(feedback_reg[31:16]), .sel(1'b1), .total(sum_re)); //TODO fix sizing
+    adder img (.a(sample_reg[15:0]), .b(feedback_reg[15:0]), .sel(1'b1), .total(sum_im)); 
+    adder rl (.a(sample_reg[31:16]), .b(feedback_reg[31:16]), .sel(1'b1), .total(sum_re)); 
 
     adder img_sub (.a(sample_reg[15:0]), .b(feedback_reg[15:0]), .sel(1'b0), .total(diff[16:0]));
     adder real_sub (.a(sample_reg[31:16]), .b(feedback_reg[31:16]), .sel(1'b0), .total(diff[33:17]));
 
     logic [15:0] re_product, im_product, ri_product, ir_product;
 
-    multiplier multr (.diff(diff[16:0]), .twiddle(twiddle[15:0]), .total(re_product)); //TODO should i optimize using Karatsuba 
+    multiplier multr (.diff(diff[16:0]), .twiddle(twiddle[15:0]), .total(re_product)); // Karatsuba 
     multiplier multi (.diff(diff[33:17]), .twiddle(twiddle[31:16]), .total(im_product));
     multiplier multri (.diff(diff[16:0]), .twiddle(twiddle[31:16]), .total(ri_product));
     multiplier multir (.diff(diff[33:17]), .twiddle(twiddle[15:0]), .total(ir_product));
-
+    
     logic [16:0] temp_im, temp_re;
     assign rotation[15:0] = temp_im[16:1];
     assign rotation[31:16] = temp_re[16:1];

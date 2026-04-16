@@ -1,5 +1,5 @@
 module twiddle_lookup(
-    input logic [8:0] addr, //TODO address sizing
+    input logic [8:0] addr, 
     output logic [31:0] twiddle
 );  
     logic [31:0] twiddle_raw;

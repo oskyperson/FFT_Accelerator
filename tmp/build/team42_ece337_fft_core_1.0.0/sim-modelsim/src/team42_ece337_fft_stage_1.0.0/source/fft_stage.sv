@@ -24,7 +24,7 @@ module fft_stage #(
     assign twiddle_addr = (count_out & ADDR_ADJUST) << (8 - STAGE);
 
     logic control; //1 for math mode 0 for delay mode
-    assign control = count_out[STAGE];
+    assign control = count_out[8 - STAGE];
 
     /*always_comb begin
         math_sample = '0;
@@ -39,7 +39,7 @@ module fft_stage #(
     end*/
 
     always_comb begin
-        shift_en = sample_valid;   
+        shift_en = sample_valid;    //TODO fix
         delay_sample = control ? rotation : sample;
     end
 
@@ -61,8 +61,8 @@ module fft_stage #(
         end
     end
 
-    assign out = control_d ? math_sum : sample_d;
-    assign out_valid = control_d ? math_valid : sample_valid_d;
+    assign out = control_d ? math_sum : feedback_sample;
+    assign out_valid = control_d ? math_valid : feedback_sample;
 
     math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(sample), .sample_valid(sample_valid),
         .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .next_valid(math_valid), .rotation(rotation)

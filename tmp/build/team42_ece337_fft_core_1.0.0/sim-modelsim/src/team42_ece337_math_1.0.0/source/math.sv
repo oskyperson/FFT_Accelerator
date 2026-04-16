@@ -32,7 +32,7 @@ module math #(
     multiplier multi (.diff(diff[33:17]), .twiddle(twiddle[31:16]), .total(im_product));
     multiplier multri (.diff(diff[16:0]), .twiddle(twiddle[31:16]), .total(ri_product));
     multiplier multir (.diff(diff[33:17]), .twiddle(twiddle[15:0]), .total(ir_product));
-
+    
     logic [16:0] temp_im, temp_re;
     assign rotation[15:0] = temp_im[16:1];
     assign rotation[31:16] = temp_re[16:1];

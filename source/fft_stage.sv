@@ -18,13 +18,11 @@ module fft_stage #(
 
     logic rollover_flag;
 
-    //TODO delay line logic is broken   
-
-    localparam [8:0] ADDR_ADJUST = (9'd1 << STAGE) - 9'd1;
-    assign twiddle_addr = (count_out & ADDR_ADJUST) << (8 - STAGE);
+    localparam [8:0] ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
+    assign twiddle_addr = (count_out & ADDR_ADJUST) << STAGE;
 
     logic control; //1 for math mode 0 for delay mode
-    assign control = count_out[STAGE];
+    assign control = count_out[8 - STAGE];
 
     /*always_comb begin
         math_sample = '0;
@@ -39,8 +37,8 @@ module fft_stage #(
     end*/
 
     always_comb begin
-        shift_en = sample_valid;   
-        delay_sample = control ? rotation : sample;
+        shift_en = sample_valid;    
+        delay_sample = control_d ? rotation : sample;
     end
 
     logic [31:0] sample_d;
@@ -61,7 +59,7 @@ module fft_stage #(
         end
     end
 
-    assign out = control_d ? math_sum : sample_d;
+    assign out = control_d ? math_sum : feedback_sample;
     assign out_valid = control_d ? math_valid : sample_valid_d;
 
     math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(sample), .sample_valid(sample_valid),
