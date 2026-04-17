@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 d/home/ecegridfs/a/337mg041/FFT_Accelerator/tmp/build/team42_ece337_fft_core_1.0.0/sim-modelsim
 T_opt
-!s110 1776419873
-Vz841N^>Q7YZ>?VAS@kJzY2
+!s110 1776424639
+V`?^n^fhcXRk@H?:K@feW>2
 04 11 4 work tb_fft_core fast 0
-=1-d4a2cdc0022e-69e20421-99718-a28ba
+=1-d4a2cdc0022e-69e216bf-6da2b-aa9b8
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,7 +22,7 @@ n@_opt
 OL;O;2021.4;73
 vadder
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1776419870
+Z3 !s110 1776424637
 !i10b 1
 !s100 P8Hn2^87RYCZlIfaIiP@l1
 IPcYI@>zL@6^i?VYRMOS[40
@@ -38,7 +38,7 @@ Z5 OL;L;2021.4;73
 r1
 !s85 0
 31
-Z6 !s108 1776419870.000000
+Z6 !s108 1776424637.000000
 !s107 src/team42_ece337_adder_1.0.0/source/adder.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_adder_1.0.0/source/adder.sv|
 !i113 0
@@ -72,7 +72,7 @@ R8
 R1
 vfft_core
 R2
-Z9 !s110 1776419871
+R3
 !i10b 1
 !s100 IZoVok^4:H93C;Nlf?PET2
 IUPZniQM1Gl1H4LkYMAagK0
@@ -88,7 +88,7 @@ R5
 r1
 !s85 0
 31
-Z10 !s108 1776419871.000000
+R6
 !s107 src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !i113 0
@@ -97,7 +97,7 @@ R8
 R1
 vfft_stage
 R2
-R9
+R3
 !i10b 1
 !s100 ;AGdCg4DAEe?Cdlm@Q:?Z1
 I`jG`E@JzJ5;2nMcO0A=?70
@@ -197,23 +197,23 @@ R8
 R1
 vtb_fft_core
 R2
-R9
+R3
 !i10b 1
-!s100 E5^baC^Ig7f8MR[aQYG4C0
-IRceGbTKUegDbO^@i8<Z^d0
+!s100 cVh^BXai9fmzFiP701aV50
+Ik6aQ>UaI0C:QjUm^j16nI0
 S1
 R0
-w1776419718
+w1776422108
 8src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 Fsrc/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 !i122 8
-L0 4 614
+L0 30 636
 R4
 R5
 r1
 !s85 0
 31
-R10
+R6
 !s107 src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !i113 0

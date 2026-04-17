@@ -1,6 +1,32 @@
 `timescale 1ns / 10ps
 /* verilator coverage_off */
 
+// -----------------------------------------------------------------------------
+//                 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                      IF YOU USE THIS FIND REPLACE ALL FILE PATHS WITH UR ID
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// -------------------------------------------------------------------------------
+
 module tb_fft_core ();
 
     localparam CLK_PERIOD = 10ns;
@@ -72,17 +98,39 @@ module tb_fft_core ();
         end
     end
     logic [31:0] memory [0:511];
+    logic [31:0] memory2 [0:511];
+    integer j;
     initial begin
         $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem.txt", memory);
+        //$readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem2.txt", memory2);
         n_rst = 1;
         reset_dut;
         $fwrite(out_file, "Real ----- Imaginary\n");
 
-        for(integer i = 0; i < 512; i++) begin
+        for(j = 0; j < 100; j++) begin
             @(negedge clk);
             valid = 1'b1;
-            sample = memory[i];
+            sample = memory[j];
         end
+
+        repeat(50) begin
+            @(negedge clk);
+            valid = 1'b0;
+            sample = 32'h7FFF7FFF;
+        end
+
+        for(; j < 512; j++) begin
+            @(negedge clk);
+            valid = 1'b1;
+            sample = memory[j];
+        end
+
+
+        /*for(j = 0; j < 512; j++) begin
+            @(negedge clk);
+            valid = 1'b1;
+            sample = memory2[j];
+        end*/
         
         /*stream_frame(16'h4000, 16'h0000);
         stream_frame(16'h3BB6, 16'h1709);

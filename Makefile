@@ -17,6 +17,35 @@ CLR_BS_WRN = echo -ne "\033[0;34m";
 CLR_SP_ERR = echo -ne "\033[0;33m";
 CLR_SP_WRN = echo -ne "\033[0;35m";
 
+#MY ADDITIONS BEGIN
+fft_help:
+	@echo "I suck at using Makefiles"
+	@echo "Options: single tone, two tone, impulse, dc, sine, noise1, noise2, low_amp_tone"
+	@echo "	 square_wave, chirp, multi_tone_varying"
+	@echo "Commands: setup, rungui, run, snr"
+
+fft_setup_%:
+	@echo "Setting up $* files"
+	@python3 ./Python/rand.py $*
+
+fft_rungui_%:
+	$(MAKE) fft_setup_$*
+	$(MAKE) qsimgui_fft_core_src
+
+fft_run_%:
+	$(MAKE) fft_setup_$*
+	$(MAKE) qsim_fft_core_src
+
+fft_snr_%:
+	@echo "Setting up $* files"
+	@python3 ./Python/rand.py $*
+	@python3 ./Python/verify.py
+	@echo "Running sim"
+	$(MAKE) qsim_fft_core_src &> /dev/null
+	@python3 ./Python/snr.py
+
+#MY ADDITIONS END
+
 help:
 	@echo "----------------------------------------------------------------"
 	@echo "ECE *3700 Build System v$(VERSION)"

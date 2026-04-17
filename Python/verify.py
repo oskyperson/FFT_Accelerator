@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 
 def bit_reverse_order(data):
     N = len(data)
@@ -47,4 +48,4 @@ def calculate_fft(input_file):
     print("did stuff")
 
 if __name__ == "__main__":
-    calculate_fft("input.txt")
+    calculate_fft("./Python/input.txt")

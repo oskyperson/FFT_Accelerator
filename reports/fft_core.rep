@@ -7,13 +7,13 @@ Report : timing
         -max_paths 1
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 23:53:47 2026
+Date   : Fri Apr 17 06:03:17 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
 Wire Load Model Mode: top
 
-  Startpoint: butterfly_units[8].stage/sample_reg_reg[16]
+  Startpoint: butterfly_units[8].stage/out_reg[31]
               (rising edge-triggered flip-flop)
   Endpoint: out[31] (output port)
   Path Group: (none)
@@ -21,62 +21,11 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  butterfly_units[8].stage/sample_reg_reg[16]/CLK (DFFSR)
-                                                          0.00       0.00 r
-  butterfly_units[8].stage/sample_reg_reg[16]/Q (DFFSR)
-                                                          1.27       1.27 f
-  butterfly_units[8].stage/stage/sample[16] (math_STAGE8)
-                                                          0.00       1.27 f
-  butterfly_units[8].stage/stage/rl/a[0] (adder_4)        0.00       1.27 f
-  butterfly_units[8].stage/stage/rl/add_11/A[0] (adder_4_DW01_add_0_DW01_add_8)
-                                                          0.00       1.27 f
-  butterfly_units[8].stage/stage/rl/add_11/U1/Y (AND2X2)
-                                                          0.58       1.85 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_1/YC (FAX1)
-                                                          0.42       2.28 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_2/YC (FAX1)
-                                                          0.46       2.74 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_3/YC (FAX1)
-                                                          0.46       3.20 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_4/YC (FAX1)
-                                                          0.46       3.66 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_5/YC (FAX1)
-                                                          0.46       4.12 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_6/YC (FAX1)
-                                                          0.46       4.58 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_7/YC (FAX1)
-                                                          0.46       5.04 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_8/YC (FAX1)
-                                                          0.46       5.50 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_9/YC (FAX1)
-                                                          0.46       5.96 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_10/YC (FAX1)
-                                                          0.46       6.43 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_11/YC (FAX1)
-                                                          0.46       6.89 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_12/YC (FAX1)
-                                                          0.46       7.35 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_13/YC (FAX1)
-                                                          0.46       7.81 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_14/YC (FAX1)
-                                                          0.46       8.27 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_15/YC (FAX1)
-                                                          0.46       8.73 f
-  butterfly_units[8].stage/stage/rl/add_11/U1_16/YS (FAX1)
-                                                          0.43       9.16 f
-  butterfly_units[8].stage/stage/rl/add_11/SUM[16] (adder_4_DW01_add_0_DW01_add_8)
-                                                          0.00       9.16 f
-  butterfly_units[8].stage/stage/rl/U4/Y (MUX2X1)         0.12       9.28 r
-  butterfly_units[8].stage/stage/rl/U3/Y (INVX1)          0.12       9.40 f
-  butterfly_units[8].stage/stage/rl/total[16] (adder_4)
-                                                          0.00       9.40 f
-  butterfly_units[8].stage/stage/sum[31] (math_STAGE8)
-                                                          0.00       9.40 f
-  butterfly_units[8].stage/U54/Y (MUX2X1)                 0.12       9.51 r
-  butterfly_units[8].stage/U53/Y (INVX1)                  0.06       9.58 f
-  butterfly_units[8].stage/out[31] (fft_stage_STAGE8)     0.00       9.58 f
-  out[31] (out)                                           0.00       9.58 f
-  data arrival time                                                  9.58
+  butterfly_units[8].stage/out_reg[31]/CLK (DFFSR)        0.00       0.00 r
+  butterfly_units[8].stage/out_reg[31]/Q (DFFSR)          0.60       0.60 f
+  butterfly_units[8].stage/out[31] (fft_stage_STAGE8)     0.00       0.60 f
+  out[31] (out)                                           0.00       0.60 f
+  data arrival time                                                  0.60
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -87,29 +36,29 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 23:53:47 2026
+Date   : Fri Apr 17 06:03:17 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                        16566
-Number of nets:                        138814
-Number of cells:                       117152
-Number of combinational cells:          82639
-Number of sequential cells:             17036
+Number of ports:                        16889
+Number of nets:                        137529
+Number of cells:                       115885
+Number of combinational cells:          81930
+Number of sequential cells:             16748
 Number of macros/black boxes:               0
-Number of buf/inv:                      30530
+Number of buf/inv:                      30208
 Number of references:                       9
 
-Combinational area:           29187819.000000
-Buf/Inv area:                  4967712.000000
-Noncombinational area:        26985024.000000
+Combinational area:           28922607.000000
+Buf/Inv area:                  4906440.000000
+Noncombinational area:        26528832.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:              56172843.000000
+Total cell area:              55451439.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -123,7 +72,7 @@ Report : power
         -analysis_effort low
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 23:53:52 2026
+Date   : Fri Apr 17 06:03:22 2026
 ****************************************
 
 
@@ -150,12 +99,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   2.5549  W   (58%)
-  Net Switching Power  =   1.8168  W   (42%)
+  Cell Internal Power  =   2.7761  W   (59%)
+  Net Switching Power  =   1.9556  W   (41%)
                          ---------
-Total Dynamic Power    =   4.3717  W  (100%)
+Total Dynamic Power    =   4.7316  W  (100%)
 
-Cell Leakage Power     =  17.9811 uW
+Cell Leakage Power     =  17.7402 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -167,8 +116,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential     2.1525e+03            0.5796        9.0798e+03        2.1531e+03  (  49.25%)
-combinational    402.1463        1.8162e+03        8.9013e+03        2.2184e+03  (  50.75%)
+sequential     2.1043e+03            0.4163        8.9263e+03        2.1047e+03  (  44.48%)
+combinational    671.5997        1.9552e+03        8.8138e+03        2.6267e+03  (  55.52%)
 --------------------------------------------------------------------------------------------------
-Total          2.5547e+03 mW     1.8168e+03 mW     1.7981e+04 nW     4.3716e+03 mW
+Total          2.7759e+03 mW     1.9556e+03 mW     1.7740e+04 nW     4.7314e+03 mW
 1
