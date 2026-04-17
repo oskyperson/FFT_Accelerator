@@ -1,7 +1,7 @@
 `timescale 1ns / 10ps
 
 module flex_counter #(
-    parameter SIZE = 9
+    parameter SIZE = 10
 )(
     input logic clk,
     input logic n_rst,
@@ -18,6 +18,8 @@ module flex_counter #(
 
     //assign count_out = count;
 
+    logic stagger;
+
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
             count <= '0;
@@ -29,7 +31,7 @@ module flex_counter #(
     end
 
     always_comb begin
-        if(count >= 9'd511) begin
+        if(count >= 10'd512) begin
             rollover_flag = 1;
         end else begin
             rollover_flag = 0;
@@ -60,8 +62,8 @@ module flex_counter #(
         if(clear) begin
             next_count = 0;
         end else if (count_enable)begin
-            if(count >= 9'd511)begin
-                next_count = 0;
+            if(count >= 10'd512)begin
+                next_count = 1;
             end else begin 
                 next_count = count + 1;
             end

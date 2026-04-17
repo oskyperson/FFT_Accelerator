@@ -9,7 +9,7 @@ module delay_line #(
     output logic [31:0] out
     //output logic valid_out
 );
-    localparam DEPTH = 1 << (8 - STAGE); //TODO delay depth calculations
+    localparam DEPTH = 1 << (8 - STAGE); 
 
     logic [31:0] shift [DEPTH-1:0];
     logic [31:0] shift_next [DEPTH-1:0];

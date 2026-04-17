@@ -32,12 +32,26 @@ module tb_math ();
     end
     endtask
 
-    math #() DUT (.*);
+  
+    logic [31:0] sample, feedback, twiddle, sum, rotation;
+
+    math DUT (.clk(clk), .n_rst(n_rst), .sample(sample), .feedback(feedback), .twiddle(twiddle),
+        .sum(sum), .rotation(rotation)
+    
+    );
+
+    logic [16:0] sum_im, sum_re;
+
+    adder img (.a(sample[15:0]), .b(feedback[15:0]), .sel(1'b1), .total(sum_im)); 
+    adder rl (.a(sample[31:16]), .b(feedback[31:16]), .sel(1'b1), .total(sum_re)); 
 
     initial begin
         n_rst = 1;
 
-        reset_dut;
+        sample = 32'h3bb61709;
+        feedback = 32'h3bb61709;
+
+        #(10s);
 
         $finish;
     end

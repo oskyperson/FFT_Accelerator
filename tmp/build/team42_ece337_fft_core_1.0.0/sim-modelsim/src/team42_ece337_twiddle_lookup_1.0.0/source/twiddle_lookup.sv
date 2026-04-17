@@ -1,13 +1,14 @@
 module twiddle_lookup(
-    input logic [8:0] addr, //TODO address sizing
-    output logic [31:0] twiddle
+    input logic [8:0] addr, 
+    output logic signed [31:0] twiddle
 );  
-    logic [31:0] twiddle_raw;
+    logic signed [31:0] twiddle_raw;
     
     always_comb begin
+        twiddle = twiddle_raw;
         if(addr[8]) begin // > 256
-            twiddle[31:16] = ~twiddle_raw[31:16] + 1'b1;
-            twiddle[15:0] = ~twiddle_raw[15:0] + 1'b1;
+            twiddle[31:16] = ~twiddle_raw[31:16] + 16'd1;
+            twiddle[15:0] = ~twiddle_raw[15:0] + 16'd1;
         end else
             twiddle = twiddle_raw;
     end

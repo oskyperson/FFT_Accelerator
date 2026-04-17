@@ -586,8 +586,11 @@ module tb_fft_core ();
         stream_frame(16'h2F6C, 16'hD505);
         stream_frame(16'h3BB6, 16'hE8F7);
 
-        @(negedge clk);
-        valid = 1'b0;
+        repeat(512) begin
+            @(negedge clk);
+            sample = '0;
+            valid = 1'b1;
+        end
 
         repeat(700) begin
             @(posedge clk);

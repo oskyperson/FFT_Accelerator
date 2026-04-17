@@ -9,68 +9,90 @@ module fft_stage #(
     output logic out_valid
 
 );
+
     logic [8:0] twiddle_addr;
-    logic [31:0] math_sample, delay_sample;
-    logic [8:0] count_out;
+    logic [31:0] math_sum_reg, delay_sample, sample_reg, feedback_reg, rotation_reg;
+    logic [9:0] count_out;
+    logic next_valid, valid_reg, control_delay, out_valid_delay, control_reg;
     
-    logic [31:0] twiddle, feedback_sample, rotation;
-    logic shift_en;
+    logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d;
+    logic shift_en, primed;
 
     logic rollover_flag;
 
-    //TODO delay line logic is broken   
-
-    localparam [8:0] ADDR_ADJUST = (9'd1 << STAGE) - 9'd1;
-    assign twiddle_addr = (count_out & ADDR_ADJUST) << (8 - STAGE);
+    localparam [8:0] ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
+    assign twiddle_addr = (count_out & ADDR_ADJUST) << (STAGE);
 
     logic control; //1 for math mode 0 for delay mode
-    assign control = count_out[8 - STAGE];
-
-    /*always_comb begin
-        math_sample = '0;
-        delay_sample = '0;
-        if(control) begin
-            math_sample = sample;
-            shift_en = 1'b0;
-        end else begin
-            delay_sample = sample;
-            shift_en = sample_valid;
-        end
-    end*/
-
-    always_comb begin
-        shift_en = sample_valid;    //TODO fix
-        delay_sample = control ? rotation : sample;
-    end
-
-    logic [31:0] sample_d;
-    logic sample_valid_d, control_d;
 
     logic [31:0] math_sum;
-    logic math_valid;
+
+    localparam bit [10:0] MIDPOINT = (10'd1 << (8 - STAGE)) - 10'd1;
 
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
-            sample_d <= '0;
-            sample_valid_d <= '0;
-            control_d <= '0;
+            sample_reg <= '0;
+            feedback_reg <= '0;
+            next_valid <= '0;
+            control <= '0;
+            valid_reg <= '0;
+            rotation_reg <= '0;
+            math_sum_reg <= '0;
+            control_delay <= '0;
+            out_valid_delay <= '0;
+            primed <= '0;
         end else begin
-            sample_d <= sample;
-            sample_valid_d <= sample_valid;
-            control_d <= control;
+            valid_reg <= sample_valid;
+            if(sample_valid && (count_out == MIDPOINT)) begin
+                primed <= 1'b1;
+            end 
+
+            if (sample_valid) begin
+                sample_reg <= sample;
+                feedback_reg <= feedback_sample;
+                delay_sample_d <= delay_sample;
+                rotation_reg <= rotation;
+                math_sum_reg <= math_sum;
+                //out_valid_delay <= out_valid;
+                /*if(control_reg) begin
+                    delay_sample <= rotation;
+                end else begin
+                    delay_sample <= sample;
+                end*/
+                control_delay <= count_out[8 - STAGE];
+            end
+            
         end
     end
 
-    assign out = control_d ? math_sum : feedback_sample;
-    assign out_valid = control_d ? math_valid : feedback_sample;
+    assign control_reg = count_out[8 - STAGE];
 
-    math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(sample), .sample_valid(sample_valid),
-        .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .next_valid(math_valid), .rotation(rotation)
+    always_comb begin
+       
+        if(control_delay) begin
+            //out = math_sum;
+            delay_sample = rotation;
+        end else begin
+            //out = feedback_reg;
+            delay_sample = sample;
+        end
+
+        if(control_delay) begin
+            out = math_sum;
+        end else
+            out = feedback_reg;
+    end
+
+    assign shift_en = sample_valid;
+    assign out_valid = (primed) && valid_reg;
+
+    math #(.STAGE(STAGE)) stage (.clk(clk), .n_rst(n_rst), .sample(sample_reg),
+        .feedback(feedback_reg), .twiddle(twiddle), .sum(math_sum), .rotation(rotation)
     );
 
     delay_line #(.STAGE(STAGE)) delays (.clk(clk), .n_rst(n_rst), .sample(delay_sample), .shift_en(shift_en), .out(feedback_sample));
 
-    flex_counter #(.SIZE(9)) count (.clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid),
+    flex_counter count (.clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid),
         .count_out(count_out), .rollover_flag(rollover_flag)
     );
 

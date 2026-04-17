@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 d/home/ecegridfs/a/337mg041/FFT_Accelerator/tmp/build/team42_ece337_fft_core_1.0.0/sim-modelsim
 T_opt
-!s110 1776351747
-VFd>>DoVXgIc:zVTfRJ1j53
+!s110 1776406851
+VMC4U9[U6>eoehF15DkZS90
 04 11 4 work tb_fft_core fast 0
-=1-b49691d916b5-69e0fa03-3f93b-122c40
+=1-d4a2cdc0022e-69e1d143-8834a-91ad4
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,13 +22,13 @@ n@_opt
 OL;O;2021.4;73
 vadder
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1776351723
+Z3 !s110 1776406848
 !i10b 1
 !s100 P8Hn2^87RYCZlIfaIiP@l1
 IPcYI@>zL@6^i?VYRMOS[40
 S1
 R0
-w1776120365
+w1776393026
 8src/team42_ece337_adder_1.0.0/source/adder.sv
 Fsrc/team42_ece337_adder_1.0.0/source/adder.sv
 !i122 0
@@ -38,12 +38,12 @@ Z5 OL;L;2021.4;73
 r1
 !s85 0
 31
-!s108 1776351722.000000
+Z6 !s108 1776406848.000000
 !s107 src/team42_ece337_adder_1.0.0/source/adder.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_adder_1.0.0/source/adder.sv|
 !i113 0
-Z6 !s102 +cover
-Z7 o-quiet +cover -sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z7 !s102 +cover
+Z8 o-quiet +cover -sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 vdelay_line
 R2
@@ -53,7 +53,7 @@ R3
 IdniIB<NA1L2XbJ?RQz6gK0
 S1
 R0
-w1776284297
+w1776352399
 8src/team42_ece337_delay_line_1.0.0/source/delay_line.sv
 Fsrc/team42_ece337_delay_line_1.0.0/source/delay_line.sv
 !i122 1
@@ -63,12 +63,12 @@ R5
 r1
 !s85 0
 31
-Z8 !s108 1776351723.000000
+R6
 !s107 src/team42_ece337_delay_line_1.0.0/source/delay_line.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_delay_line_1.0.0/source/delay_line.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vfft_core
 R2
@@ -88,97 +88,97 @@ R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vfft_stage
 R2
 R3
 !i10b 1
-!s100 ViCzQ3Xa4iS@agiAV99DL2
-In@OAHlTU]CJ;fm25:=Fzf0
+!s100 anoE=4E3P3NQ]7?kDnjZ?2
+IoUhnLW_O9zIBUCib:8g]_2
 S1
 R0
-w1776305491
+w1776406836
 8src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv
 Fsrc/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv
 !i122 6
-L0 1 79
+L0 1 101
 R4
 R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vflex_counter
 R2
 R3
 !i10b 1
-!s100 >h<`nf?T5j4Ba`zh;]QzR3
-I?`=JgEfP]_@n@YRi@M3GY0
+!s100 7UD>NVMFH3jKRl0Kd[I3n2
+IF;c_bT[CP3[LaYZH3m2EW1
 S1
 R0
-w1776098718
+w1776405922
 8src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv
 Fsrc/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv
 !i122 2
-L0 3 71
+L0 3 73
 R4
 R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vmath
 R2
 R3
 !i10b 1
-!s100 IWKSNoW3lJXn]f;79LaY^3
-I3R?ngR=2OD9Vc1m_CeEbA3
+!s100 ^<WKoIm3JcCQSAmiQ;@?c3
+I_c@fK_B?m]f@X56TdbOSC2
 S1
 R0
-w1776351667
+w1776406093
 8src/team42_ece337_math_1.0.0/source/math.sv
 Fsrc/team42_ece337_math_1.0.0/source/math.sv
 !i122 5
-L0 1 60
+L0 1 41
 R4
 R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_math_1.0.0/source/math.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_math_1.0.0/source/math.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vmultiplier
 R2
 R3
 !i10b 1
-!s100 f9_N5mfmPNQ<EBLeRIC=]3
-ITAX<8S:LI4b]N[_c@U=P53
+!s100 K2;=aNeAiR5z@b=40:J0`2
+IhIfJX<o?]liHCVmaofI_Y2
 S1
 R0
-w1776116822
+w1776375191
 8src/team42_ece337_multiplier_1.0.0/source/multiplier.sv
 Fsrc/team42_ece337_multiplier_1.0.0/source/multiplier.sv
 !i122 4
@@ -188,60 +188,60 @@ R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_multiplier_1.0.0/source/multiplier.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_multiplier_1.0.0/source/multiplier.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vtb_fft_core
 R2
 R3
 !i10b 1
-!s100 ek@?hmQj?JeEP7WQ`_Gnj3
-IH<M@jQ@>Q^VRYLJfHSUd>0
+!s100 `me_LRl<=Z1JI9PU07g^k3
+I_o[3FjJTQPSLgAHH38;?40
 S1
 R0
-w1776222840
+w1776388389
 8src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 Fsrc/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 !i122 8
-L0 4 597
+L0 4 600
 R4
 R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !i113 0
-R6
 R7
+R8
 R1
 vtwiddle_lookup
 R2
 R3
 !i10b 1
-!s100 bzAbJ2cPUO9c69_cV?a>m0
-I_gB:@nUcVb0:K8cVeI3`o2
+!s100 A3[4PNH<^3SY=bTG6kTAX3
+IW4eM4^14>I0=Af7<m?;fg1
 S1
 R0
-w1775938629
+w1776398194
 8src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv
 Fsrc/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv
 !i122 3
-L0 1 275
+L0 1 276
 R4
 R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv|
 !i113 0
-R6
 R7
+R8
 R1
