@@ -89,7 +89,7 @@ module axi_manager_model (
         for (int i = 0; i < num_beats; i++) begin
             wait(rvalid); 
             rready <= 1'b1;  
-            @(negedge clk);
+            
             
             result_queue.push_back(rdata);
             
@@ -98,7 +98,7 @@ module axi_manager_model (
                 $display("[ERROR] RLAST not asserted on final beat!");
             @(negedge clk);
             rready = '0;
-            @(posedge clk);
+           
             
             
         end
