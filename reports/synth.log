@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg041/.synopsys_dc_gui/preferences.tcl
-Current time:       Fri Apr 17 06:00:32 2026
-Hostname:           ececomp1.ecn.purdue.edu
+Current time:       Fri Apr 17 12:56:33 2026
+Hostname:           ececomp5.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.46 GHz
-OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free  44 GB)
-Swap:                63 GB (Free  60 GB)
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.67 GHz
+OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
+RAM:                502 GB (Free  81 GB)
+Swap:                63 GB (Free  63 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 402 GB)
-Tmp Disk:            19 GB (Free  18 GB)
+Work Disk:          2968 GB (Free 352 GB)
+Tmp Disk:            17 GB (Free  16 GB)
 
-CPU Load: 13%, Ram Free: 44 GB, Swap Free: 60 GB, Work Disk Free: 402 GB, Tmp Disk Free: 18 GB
+CPU Load: 3%, Ram Free: 81 GB, Swap Free: 63 GB, Work Disk Free: 352 GB, Tmp Disk Free: 16 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,7 +53,7 @@ CPU Load: 13%, Ram Free: 44 GB, Swap Free: 60 GB, Work Disk Free: 402 GB, Tmp Di
 #
 ############################################
 sh date
-Fri Apr 17 06:00:32 EDT 2026
+Fri Apr 17 12:56:33 EDT 2026
 set TOP_MODULE fft_core
 fft_core
 set DC_SCRIPT synth.tcl
@@ -763,7 +763,7 @@ Information: Uniquified 9 instances of design 'twiddle_lookup'. (OPT-1056)
 Information: Uniquified 9 instances of design 'flex_counter'. (OPT-1056)
 Information: Uniquified 54 instances of design 'adder'. (OPT-1056)
 Information: Uniquified 36 instances of design 'multiplier'. (OPT-1056)
-CPU Load: 13%, Ram Free: 44 GB, Swap Free: 60 GB, Work Disk Free: 402 GB, Tmp Disk Free: 18 GB
+CPU Load: 3%, Ram Free: 81 GB, Swap Free: 63 GB, Work Disk Free: 352 GB, Tmp Disk Free: 16 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -1442,22 +1442,22 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:27 57231639.0      0.00       0.0    4187.2                          
-    0:01:27 57231639.0      0.00       0.0    4187.2                          
-    0:01:27 57231639.0      0.00       0.0    4187.2                          
-    0:01:27 57231639.0      0.00       0.0    4187.2                          
-    0:01:29 57231639.0      0.00       0.0    4187.2                          
-    0:01:31 55352727.0      0.00       0.0    4187.2                          
-    0:01:32 55352511.0      0.00       0.0    4187.2                          
-    0:01:33 55352511.0      0.00       0.0    4187.2                          
-    0:01:33 55352511.0      0.00       0.0    4187.2                          
-    0:01:34 55352511.0      0.00       0.0    4187.2                          
-    0:01:34 55352511.0      0.00       0.0    4187.2                          
-    0:01:35 55398519.0      0.00       0.0    2056.8                          
-    0:01:36 55400103.0      0.00       0.0    1617.7                          
-    0:01:36 55400103.0      0.00       0.0    1617.7                          
-    0:01:36 55400103.0      0.00       0.0    1617.7                          
-    0:01:36 55400103.0      0.00       0.0    1617.7                          
+    0:01:22 57231639.0      0.00       0.0    4187.2                          
+    0:01:22 57231639.0      0.00       0.0    4187.2                          
+    0:01:22 57231639.0      0.00       0.0    4187.2                          
+    0:01:22 57231639.0      0.00       0.0    4187.2                          
+    0:01:24 57231639.0      0.00       0.0    4187.2                          
+    0:01:27 55352727.0      0.00       0.0    4187.2                          
+    0:01:28 55352511.0      0.00       0.0    4187.2                          
+    0:01:28 55352511.0      0.00       0.0    4187.2                          
+    0:01:29 55352511.0      0.00       0.0    4187.2                          
+    0:01:29 55352511.0      0.00       0.0    4187.2                          
+    0:01:29 55352511.0      0.00       0.0    4187.2                          
+    0:01:31 55398519.0      0.00       0.0    2056.8                          
+    0:01:31 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
 
 
 
@@ -1468,11 +1468,11 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -1482,14 +1482,14 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:37 55400103.0      0.00       0.0    1617.7                          
-    0:01:37 55412631.0      0.00       0.0     726.9 butterfly_units[0].stage/delays/out[13]
-    0:01:37 55425879.0      0.00       0.0     585.2 butterfly_units[2].stage/delays/out[25]
-    0:01:37 55435095.0      0.00       0.0     468.2 butterfly_units[3].stage/mather/rl/b[13]
-    0:01:37 55440927.0      0.00       0.0     385.0 butterfly_units[4].stage/mather/rl/b[14]
-    0:01:37 55448271.0      0.00       0.0     280.3 butterfly_units[5].stage/mather/rl/b[8]
-    0:01:38 55455615.0      0.00       0.0     175.6 butterfly_units[6].stage/mather/rl/b[2]
-    0:01:38 55462311.0      0.00       0.0      80.1                          
+    0:01:32 55400103.0      0.00       0.0    1617.7                          
+    0:01:32 55412631.0      0.00       0.0     726.9 butterfly_units[0].stage/delays/out[13]
+    0:01:32 55425879.0      0.00       0.0     585.2 butterfly_units[2].stage/delays/out[25]
+    0:01:32 55435095.0      0.00       0.0     468.2 butterfly_units[3].stage/mather/rl/b[13]
+    0:01:33 55440927.0      0.00       0.0     385.0 butterfly_units[4].stage/mather/rl/b[14]
+    0:01:33 55448271.0      0.00       0.0     280.3 butterfly_units[5].stage/mather/rl/b[8]
+    0:01:33 55455615.0      0.00       0.0     175.6 butterfly_units[6].stage/mather/rl/b[2]
+    0:01:33 55462311.0      0.00       0.0      80.1                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -1499,19 +1499,19 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:38 55462311.0      0.00       0.0      80.1                          
-    0:01:38 55462311.0      0.00       0.0      80.1                          
-    0:02:26 55452303.0      0.00       0.0      80.1                          
-    0:02:31 55451439.0      0.00       0.0      80.1                          
-    0:02:33 55451439.0      0.00       0.0      80.1                          
-    0:02:33 55451439.0      0.00       0.0      80.1                          
-    0:02:33 55451439.0      0.00       0.0      80.1                          
-    0:02:34 55451439.0      0.00       0.0      80.1                          
-    0:02:35 55451439.0      0.00       0.0      80.1                          
-    0:02:35 55451439.0      0.00       0.0      80.1                          
-    0:02:35 55451439.0      0.00       0.0      80.1                          
-    0:02:35 55451439.0      0.00       0.0      80.1                          
-    0:02:35 55451439.0      0.00       0.0      80.1                          
+    0:01:33 55462311.0      0.00       0.0      80.1                          
+    0:01:34 55462311.0      0.00       0.0      80.1                          
+    0:02:17 55452303.0      0.00       0.0      80.1                          
+    0:02:21 55451439.0      0.00       0.0      80.1                          
+    0:02:24 55451439.0      0.00       0.0      80.1                          
+    0:02:24 55451439.0      0.00       0.0      80.1                          
+    0:02:24 55451439.0      0.00       0.0      80.1                          
+    0:02:24 55451439.0      0.00       0.0      80.1                          
+    0:02:25 55451439.0      0.00       0.0      80.1                          
+    0:02:25 55451439.0      0.00       0.0      80.1                          
+    0:02:25 55451439.0      0.00       0.0      80.1                          
+    0:02:25 55451439.0      0.00       0.0      80.1                          
+    0:02:25 55451439.0      0.00       0.0      80.1                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -1520,7 +1520,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 19%, Ram Free: 44 GB, Swap Free: 60 GB, Work Disk Free: 402 GB, Tmp Disk Free: 18 GB
+CPU Load: 6%, Ram Free: 81 GB, Swap Free: 63 GB, Work Disk Free: 352 GB, Tmp Disk Free: 16 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -1544,7 +1544,7 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Fri Apr 17 06:03:14 2026
+Date:        Fri Apr 17 12:59:05 2026
 ****************************************
 
                    Name                                            Total
@@ -3472,7 +3472,7 @@ Warning: Verilog writer has added 2 nets to module math_STAGE8 using SYNOPSYS_UN
 
 Memory usage for this session 475 Mbytes.
 Memory usage for this session including child processes 475 Mbytes.
-CPU usage for this session 172 seconds ( 0.05 hours ).
-Elapsed time for this session 176 seconds ( 0.05 hours ).
+CPU usage for this session 159 seconds ( 0.04 hours ).
+Elapsed time for this session 165 seconds ( 0.05 hours ).
 
 Thank you...

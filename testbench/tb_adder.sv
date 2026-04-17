@@ -1,7 +1,8 @@
 `timescale 1ns / 10ps
 /* verilator coverage_off */
 
-module tb_adder ();
+
+module tb_fft_axi_top ();
 
     localparam CLK_PERIOD = 10ns;
 
@@ -32,7 +33,6 @@ module tb_adder ();
     end
     endtask
 
-    adder #() DUT (.*);
 
     initial begin
         n_rst = 1;

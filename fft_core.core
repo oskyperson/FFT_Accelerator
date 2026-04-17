@@ -20,7 +20,6 @@ filesets:
             - "testbench/tb_fft_core.sv"
             - "waves/fft_core.do": { file_type: user }
             - "waves/fft_core.gtkw": { file_type: user }
-            # - "data/file.txt": { file_type: user }
         file_type: systemVerilogSource
         depend:
             - "team42:ece337:questafiles"
@@ -97,4 +96,3 @@ targets:
         filesets:
             - synth
             - tb
-
