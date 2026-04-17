@@ -13,6 +13,7 @@
 //
 //
 //                      IF YOU USE THIS FIND REPLACE ALL FILE PATHS WITH UR ID
+//                      SET THE NUM VARIABLE TO EITHER 1 OR 2 FOR NUMBER OF FRAMES
 //
 //
 //
@@ -28,6 +29,10 @@
 // -------------------------------------------------------------------------------
 
 module tb_fft_core ();
+    integer num;
+    initial begin
+        num = 1;
+    end
 
     localparam CLK_PERIOD = 10ns;
 
@@ -91,10 +96,17 @@ module tb_fft_core ();
 
     always @(posedge clk) begin
         if (out_valid) begin
-            if(p <= 511) begin
-                p = p + 1;
-                $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
-            end
+            if(num == 1) begin
+                if(p <= 511) begin
+                    p = p + 1;
+                    $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
+                end
+            end else begin
+                 if(p <= 511 + 511) begin
+                    p = p + 1;
+                    $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
+                end
+            end         
         end
     end
     logic [31:0] memory [0:511];
@@ -102,7 +114,9 @@ module tb_fft_core ();
     integer j;
     initial begin
         $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem.txt", memory);
-        //$readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem2.txt", memory2);
+        if(num == 2) begin
+            $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem2.txt", memory2);
+        end
         n_rst = 1;
         reset_dut;
         $fwrite(out_file, "Real ----- Imaginary\n");
@@ -126,11 +140,13 @@ module tb_fft_core ();
         end
 
 
-        /*for(j = 0; j < 512; j++) begin
-            @(negedge clk);
-            valid = 1'b1;
-            sample = memory2[j];
-        end*/
+        if(num == 2) begin
+            for(j = 0; j < 512; j++) begin
+                @(negedge clk);
+                valid = 1'b1;
+                sample = memory2[j];
+            end
+        end
         
         /*stream_frame(16'h4000, 16'h0000);
         stream_frame(16'h3BB6, 16'h1709);

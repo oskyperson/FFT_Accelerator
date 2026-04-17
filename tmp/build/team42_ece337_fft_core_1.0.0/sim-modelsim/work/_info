@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 d/home/ecegridfs/a/337mg041/FFT_Accelerator/tmp/build/team42_ece337_fft_core_1.0.0/sim-modelsim
 T_opt
-!s110 1776424639
-V`?^n^fhcXRk@H?:K@feW>2
+!s110 1776444271
+VHcWf5G4X@:hkCH5oNNN<90
 04 11 4 work tb_fft_core fast 0
-=1-d4a2cdc0022e-69e216bf-6da2b-aa9b8
+=1-84160c706d91-69e2636f-3a0c3-66309
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,7 +22,7 @@ n@_opt
 OL;O;2021.4;73
 vadder
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1776424637
+Z3 !s110 1776444255
 !i10b 1
 !s100 P8Hn2^87RYCZlIfaIiP@l1
 IPcYI@>zL@6^i?VYRMOS[40
@@ -38,7 +38,7 @@ Z5 OL;L;2021.4;73
 r1
 !s85 0
 31
-Z6 !s108 1776424637.000000
+Z6 !s108 1776444255.000000
 !s107 src/team42_ece337_adder_1.0.0/source/adder.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_adder_1.0.0/source/adder.sv|
 !i113 0
@@ -72,7 +72,7 @@ R8
 R1
 vfft_core
 R2
-R3
+Z9 !s110 1776444256
 !i10b 1
 !s100 IZoVok^4:H93C;Nlf?PET2
 IUPZniQM1Gl1H4LkYMAagK0
@@ -88,7 +88,7 @@ R5
 r1
 !s85 0
 31
-R6
+Z10 !s108 1776444256.000000
 !s107 src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/source/fft_core.sv|
 !i113 0
@@ -97,7 +97,7 @@ R8
 R1
 vfft_stage
 R2
-R3
+R9
 !i10b 1
 !s100 ;AGdCg4DAEe?Cdlm@Q:?Z1
 I`jG`E@JzJ5;2nMcO0A=?70
@@ -113,7 +113,7 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv|
 !i113 0
@@ -122,7 +122,7 @@ R8
 R1
 vflex_counter
 R2
-R3
+R9
 !i10b 1
 !s100 ;C8z4KE4Mm<gEC?fNn>zb3
 I6N]=aj=ZeA]GTAAaM[Nj[0
@@ -138,7 +138,7 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv|
 !i113 0
@@ -147,7 +147,7 @@ R8
 R1
 vmath
 R2
-R3
+R9
 !i10b 1
 !s100 BD<^W1:=KffdPk5bHdB]a2
 IUokI61^ShZ3z`7f<]ZJK@1
@@ -163,7 +163,7 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_math_1.0.0/source/math.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_math_1.0.0/source/math.sv|
 !i113 0
@@ -172,7 +172,7 @@ R8
 R1
 vmultiplier
 R2
-R3
+R9
 !i10b 1
 !s100 S6]TN:jAFazj[QQKULHni0
 I7_^a^=eo6Ie2Wd^lE@S560
@@ -188,7 +188,7 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_multiplier_1.0.0/source/multiplier.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_multiplier_1.0.0/source/multiplier.sv|
 !i113 0
@@ -197,23 +197,23 @@ R8
 R1
 vtb_fft_core
 R2
-R3
+R9
 !i10b 1
-!s100 cVh^BXai9fmzFiP701aV50
-Ik6aQ>UaI0C:QjUm^j16nI0
+!s100 foVo?f^DmRhbB_:H2P08W2
+I?[NT:<_Fl^KlMP1fCDD_T1
 S1
 R0
-w1776422108
+w1776444241
 8src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 Fsrc/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv
 !i122 8
-L0 30 636
+L0 31 651
 R4
 R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_fft_core_1.0.0/testbench/tb_fft_core.sv|
 !i113 0
@@ -222,7 +222,7 @@ R8
 R1
 vtwiddle_lookup
 R2
-R3
+R9
 !i10b 1
 !s100 ?UQTeI[YPz;YLVe4EVGF43
 IhQcXR6BgcI<Kl?OCI<IM=0
@@ -238,7 +238,7 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv|
 !s90 +cover|-sv|-quiet|-work|work|src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv|
 !i113 0
