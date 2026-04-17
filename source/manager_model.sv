@@ -83,21 +83,18 @@ module axi_manager_model (
         wait(arready);
         @(posedge clk);
         arvalid <= 1'b0;
-
         
         
-        rready <= 1'b1; // Assert ready before the loop to accept data continuously
         for (int i = 0; i < num_beats; i++) begin
-            do begin
-                @(posedge clk);
-            end while (!rvalid); // Wait for a valid handshake on a clock edge
-            
+            wait(rvalid); 
+            rready <= 1'b1;    // Sets rready high
+            @(negedge clk);    // Wait #1
             result_queue.push_back(rdata);
-            
             if (i == num_beats - 1 && !rlast) 
                 $display("[ERROR] RLAST not asserted on final beat!");
+            @(negedge clk);    // Wait #2 (rready is STILL high during the intervening posedge!)
+            rready = '0; 
         end
-        rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);
     endtask
 
