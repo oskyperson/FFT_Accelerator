@@ -25,7 +25,7 @@ module axi_manager_model (
     // Read Address Channel
     output logic [10:0] araddr,
     output logic arvalid,
-    output logic [7:0] arlen,
+    output logic [9:0] arlen,
     input logic arready,
 
     // Read Data Channel
@@ -85,18 +85,21 @@ module axi_manager_model (
         arvalid <= 1'b0;
 
         
-        rready <= 1'b1;
+        
         for (int i = 0; i < num_beats; i++) begin
-            wait(rvalid);
+            wait(rvalid); 
+            rready <= 1'b1;  
             @(negedge clk);
+            
             result_queue.push_back(rdata);
             
             
             if (i == num_beats - 1 && !rlast) 
                 $display("[ERROR] RLAST not asserted on final beat!");
+            @(negedge clk);
+            rready = '0;
+            @(posedge clk);
             
-            @(posedge clk);
-            @(posedge clk);
             
         end
         rready <= 1'b0;

@@ -47,10 +47,18 @@ typedef enum logic [1:0] {R_IDLE, R_REQ, R_WAIT, R_DATA} r_state_t;
 w_state_t write_state, next_write;
 r_state_t read_state, next_read;
 
-logic [11:0] waddr_reg, raddr_reg;
-logic [7:0] wlen_reg, rlen_reg;
+logic [10:0] waddr_reg, raddr_reg;
+logic [9:0] wlen_reg, rlen_reg;
 logic [31:0] wdata_reg;
 logic [1:0] wstrb_reg;
+
+logic [10:0] next_waddr_reg;
+logic [9:0] next_wlen_reg;
+logic [31:0] next_wdata_reg;
+logic [1:0] next_wstrb_reg;
+logic [10:0] next_raddr_reg;
+logic [9:0] next_rlen_reg;
+logic next_awready, next_wready, next_bvalid, next_arready, next_rvalid, next_rlast;
 
 always_ff @(posedge clk, negedge n_rst) begin : next_states
     if(!n_rst) begin
@@ -136,35 +144,62 @@ always_ff @(posedge clk, negedge n_rst) begin: registers
         rvalid <= 1'b0;
         rlast <= 1'b0;
     end else begin
-        awready <= (next_write == W_IDLE) && (awaddr >= 11'd15) && (awaddr <= 11'd1038);
-        wready <= (next_write == W_DATA);
-        bvalid <= (next_write == W_RESP);
-        
-        arready <= (next_read == R_IDLE) && (araddr >= 11'd15) && (araddr <= 11'd1038);
-        rvalid <= (next_read == R_DATA);
-        rlast <= (next_read == R_DATA) && (rlen_reg == 0);
-        if (awvalid && awready) begin
-            waddr_reg <= awaddr;
-            wlen_reg  <= awlen;
-        end
-        if (arvalid && arready) begin
-            raddr_reg <= araddr;
-            rlen_reg  <= arlen;
-        end
-        if (wvalid && wready) begin
-            wdata_reg <= wdata;
-            wstrb_reg <= wstrb;
-        end
-        if (write_state == W_COMMIT && write_valid) begin
-            waddr_reg <= waddr_reg + 1;
-            wlen_reg  <= wlen_reg - 1;
-        end
-        if (read_state == R_DATA && rready && rvalid) begin
-            raddr_reg <= raddr_reg + 1;
-            rlen_reg  <= rlen_reg - 1;
-        end
+        waddr_reg <= next_waddr_reg;
+        wlen_reg  <= next_wlen_reg;
+        wdata_reg <= next_wdata_reg; 
+        wstrb_reg <= next_wstrb_reg;
+        raddr_reg <= next_raddr_reg; 
+        rlen_reg <= next_rlen_reg;
+        awready <= next_awready;
+        wready <= next_wready;
+        bvalid <= next_bvalid;
+        arready <= next_arready;
+        rvalid <= next_rvalid;
+        rlast <= next_rlast;
     end
 end
 
+
+
+always_comb begin : next_reg
+
+        next_waddr_reg = waddr_reg;
+        next_wlen_reg  = wlen_reg;
+        next_raddr_reg = raddr_reg;
+        next_rlen_reg  = rlen_reg;
+        next_wdata_reg = wdata_reg;
+        next_wstrb_reg = wstrb_reg;
+        
+        next_awready = (next_write == W_IDLE) && (awaddr >= 11'd15) && (awaddr <= 11'd1038);
+        next_wready = (next_write == W_DATA);
+        next_bvalid = (next_write == W_RESP);
+        
+        next_arready = (next_read == R_IDLE) && (araddr >= 11'd15) && (araddr <= 11'd1038);
+        next_rvalid = (next_read == R_DATA);
+        next_rlast = (next_read == R_DATA) && (rlen_reg == 0);
+        if (awvalid && awready) begin
+            next_waddr_reg = awaddr;
+            next_wlen_reg = awlen;
+        end
+        if (arvalid && arready) begin
+            next_raddr_reg = araddr;
+            next_rlen_reg = arlen;
+        end
+        if (wvalid && wready) begin
+            next_wdata_reg = wdata;
+            next_wstrb_reg = wstrb;
+        end
+        if (write_state == W_COMMIT && write_valid) begin
+            next_waddr_reg = waddr_reg + 1'b1;
+            next_wlen_reg = wlen_reg - 1'b1;
+        end
+        if (read_state == R_DATA && rready && rvalid) begin
+            next_raddr_reg = raddr_reg + 1'b1;
+            next_rlen_reg = rlen_reg - 1'b1;
+        end
+end
+
+
 endmodule
+
 

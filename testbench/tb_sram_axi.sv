@@ -15,7 +15,7 @@ module tb_sram_axi ();
     // --- AXI Bus Wires (Manager to DUT) ---
     logic [10:0] awaddr, araddr;
     logic        awvalid, arvalid, awready, arready;
-    logic [7:0]  awlen, arlen;
+    logic [9:0]  awlen, arlen;
     logic [31:0] wdata, rdata;
     logic [1:0]  wstrb, rresp, bresp;
     logic        wlast, rlast, wvalid, rvalid, wready, rready, bvalid, bready;
@@ -70,12 +70,17 @@ module tb_sram_axi ();
         force BFM.bready  = 0;
         force BFM.arvalid = 0;
         force BFM.rready  = 0;
+        force BFM.araddr = '0;
+        force BFM.awaddr = '0;
+
         #1;
         release BFM.awvalid;
         release BFM.wvalid;
         release BFM.bready;
         release BFM.arvalid;
         release BFM.rready;
+        release BFM.araddr;
+        release BFM.awaddr;
 
         n_rst = 1;
         reset_dut;
