@@ -23,11 +23,21 @@ module fft_axi_counter #(
         next_i = i;
         last = 0;
 
-        if ((WRITE_OR_READ && !ready) || (!WRITE_OR_READ && !valid)) begin
+        // reset if busy
+        if ((WRITE_OR_READ && !valid) || (!WRITE_OR_READ && !ready)) begin
             last = 0;
             next_i = 0;
         end 
-        else if (ready && valid && !resp) begin
+        // increment with handshakes
+        else if (ready && valid) begin
+            next_i = i + 1;
+            if (i >= len) begin
+                next_i = 0;
+                last = 1;
+            end
+        end
+        // increment to flush out fft data
+        else if (resp) begin
             next_i = i + 1;
             if (i >= len) begin
                 next_i = 0;

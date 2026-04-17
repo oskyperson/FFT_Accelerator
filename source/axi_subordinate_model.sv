@@ -44,6 +44,7 @@ module axi_subordinate_model (
     logic [10:0] rd_addr_q [$];
     logic [9:0]  rd_len_q [$];
     logic        rd_err_q [$];
+    integer wcount;
 
     initial begin
         // Reset output signals
@@ -56,6 +57,7 @@ module axi_subordinate_model (
         rlast   = 0;
         rdata   = 0;
         rresp   = 0;
+        wcount = 0;
 
         wait(n_rst);
 
@@ -67,6 +69,9 @@ module axi_subordinate_model (
                 if (awvalid && awready) begin
                     wr_addr_q.push_back(awaddr);
                     wr_err_q.push_back((awaddr + awlen) > 512);
+                    awready <= 1'b0;
+                    repeat (2) @(posedge clk);
+                    // wcount = awaddr;
                 end
             end
 
@@ -79,9 +84,12 @@ module axi_subordinate_model (
                         mem[wr_addr_q[0]] = wdata;
                         wr_addr_q[0] = wr_addr_q[0] + 1;
                     end
+                    wready <= 1'b0;
                     if (wlast) begin
                         void'(wr_addr_q.pop_front());
                     end
+                    repeat (2) @(posedge clk);
+                    // wcount = wcount + 1;
                 end
             end
 
@@ -92,13 +100,18 @@ module axi_subordinate_model (
                     repeat (2) @(posedge clk);
                     bvalid <= 1'b1;
                     bresp  <= wr_err_q.pop_front(); 
-                    // Wait for handshake
-                    do begin
+                    
+                    // Wait for manager to be ready
+                    while (!bready) begin
                         @(posedge clk);
-                    end while (!bready);
-                    // Clear immediately after handshake
+                    end
+                    
+                    // Handshake occurs on this edge
+                    @(posedge clk);
                     bvalid <= 1'b0;
                     bresp  <= 1'b0;
+                    // Processing delay after response handshake
+                    repeat (2) @(posedge clk);
                 end
             end
 
@@ -110,6 +123,8 @@ module axi_subordinate_model (
                     rd_addr_q.push_back(araddr);
                     rd_len_q.push_back(arlen);
                     rd_err_q.push_back((araddr + arlen) > 512);
+                    arready <= 1'b0;
+                    repeat (2) @(posedge clk);
                 end
             end
 
@@ -118,15 +133,20 @@ module axi_subordinate_model (
                 logic [10:0] curr_addr;
                 logic [9:0]  curr_len;
                 logic        curr_err;
+                
                 @(posedge clk);
                 if (rd_addr_q.size() > 0) begin
+                    // Pop the request
                     curr_addr = rd_addr_q.pop_front();
                     curr_len  = rd_len_q.pop_front();
                     curr_err  = rd_err_q.pop_front();
 
+                    // Delay BEFORE asserting rvalid to allow manager state transition
+                    repeat (2) @(posedge clk);
+
                     for (int i = 0; i <= curr_len; i++) begin
                         rvalid <= 1'b1;
-                        rresp  <= curr_err;
+                        rresp  <= ((i + araddr) > 512);
                         rlast  <= (i == curr_len);
                         
                         if (mem.exists(curr_addr)) begin
@@ -135,15 +155,18 @@ module axi_subordinate_model (
                             rdata <= 32'hDEADBEEF;
                         end
                         
-                        // Wait for handshake
-                        do begin
+                        while (!rready) begin
                             @(posedge clk);
-                        end while (!rready);
-                        // Clear immediately after handshake
+                        end
+                        
+                        @(posedge clk);
                         rvalid <= 1'b0;
                         rresp  <= 1'b0;
                         rlast  <= 1'b0;
                         curr_addr += 1;
+                        
+                        // Delay between beats of a burst
+                        repeat (2) @(posedge clk);
                     end
                 end
             end

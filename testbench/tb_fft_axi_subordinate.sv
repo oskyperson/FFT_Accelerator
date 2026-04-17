@@ -60,8 +60,6 @@ module tb_fft_axi_subordinate ();
     // config_reg from subordinate
     logic [7:0][31:0] config_reg;
 
-    logic [31:0] fft_config;
-
     fft_axi_subordinate #() sub0 (.*);
 
     CPU_axi_manager #() BFM (.*);
@@ -102,11 +100,11 @@ module tb_fft_axi_subordinate ();
 
         test = "all config regs";
         w_queue.delete();
-        for(int i = 0; i < 16; i++) begin
-            w_queue.push_back(32'h00000002);
+        for(int i = 0; i < 8; i++) begin
+            w_queue.push_back(i);
         end
         BFM.write_burst(11'd0, w_queue);
-        BFM.read_burst(11'd0, 16, r_queue);
+        BFM.read_burst(11'd0, 8, r_queue);
 
         test = "simultaneous read and write same reg";
         w_queue.delete();
@@ -115,6 +113,16 @@ module tb_fft_axi_subordinate ();
             BFM.write_burst(11'd0, w_queue);
             BFM.read_burst(11'd0, 1, r_queue);
         join
+
+        test = "invalid write address";
+        w_queue.delete();
+        for(int i = 0; i < 8; i++) begin
+            w_queue.push_back(i);
+        end
+        BFM.write_burst(11'd4, w_queue);
+
+        test = "invalid read address";
+        BFM.read_burst(11'd4, 8, r_queue);
 
         $finish;
     end

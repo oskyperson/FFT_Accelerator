@@ -88,13 +88,13 @@ module CPU_axi_manager (
         rready <= 1'b1;
         for (int i = 0; i < num_beats; i++) begin
             wait(rvalid);
+            @(negedge clk);
             result_queue.push_back(rdata);
             
             
             if (i == num_beats - 1 && !rlast) 
                 $display("[ERROR] RLAST not asserted on final beat!");
             
-            @(posedge clk);
             @(posedge clk);
         end
         rready <= 1'b0;

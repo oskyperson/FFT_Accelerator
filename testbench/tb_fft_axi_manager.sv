@@ -182,7 +182,6 @@ module tb_fft_axi_manager ();
         configure_manager(32'd1, 32'd0, 32'd512, 32'd0, 32'd512, 32'd3, 32'd0, 32'd1);
         @(posedge clk);
         manager_read(32'd0, 10'd512, 32'd0, 0);
-        @(posedge clk);
 
         test = "valid min frame";
         configure_manager(32'd0, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd1, 32'd1);
@@ -206,7 +205,16 @@ module tb_fft_axi_manager ();
         manager_read(32'd10, 10'd512, 32'd0, 1);
         @(posedge clk);
 
+        n_rst = 0;
+        @(negedge clk);
+        n_rst = 1;
+
         test = "simultaneous read and write";
+        configure_manager(32'd0, 32'd0, 32'd10, 32'd256, 32'd10, 32'd3, 32'd1, 32'd1);
+        @(posedge clk);
+        manager_write(32'd0, 10'd10, 32'd0, 0);
+        @(posedge clk);
+
         configure_manager(32'd1, 32'd0, 32'd10, 32'd256, 32'd10, 32'd3, 32'd1, 32'd1);
         
         fork : timeout_watchdog

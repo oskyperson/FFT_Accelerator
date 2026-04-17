@@ -28,12 +28,15 @@ add wave -noupdate /tb_fft_axi_manager/rvalid
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/rdata
 add wave -noupdate /tb_fft_axi_manager/rready
 add wave -noupdate /tb_fft_axi_manager/rresp
+add wave -noupdate -divider states
+add wave -noupdate /tb_fft_axi_manager/DUT/rstate
+add wave -noupdate /tb_fft_axi_manager/DUT/wstate
 add wave -noupdate -divider {signals to/from fft}
-add wave -noupdate -expand /tb_fft_axi_manager/config_reg
+add wave -noupdate -radix unsigned -childformat {{{/tb_fft_axi_manager/config_reg[7]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[6]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[5]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[4]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[3]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[2]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[1]} -radix unsigned} {{/tb_fft_axi_manager/config_reg[0]} -radix unsigned}} -expand -subitemconfig {{/tb_fft_axi_manager/config_reg[7]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[6]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[5]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[4]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[3]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[2]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[1]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/config_reg[0]} {-height 16 -radix unsigned}} /tb_fft_axi_manager/config_reg
 add wave -noupdate /tb_fft_axi_manager/fft_done
 add wave -noupdate -radix decimal /tb_fft_axi_manager/data_out
 add wave -noupdate /tb_fft_axi_manager/out_valid
-add wave -noupdate /tb_fft_axi_manager/data_in
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/data_in
 add wave -noupdate /tb_fft_axi_manager/in_valid
 add wave -noupdate -divider {test name}
 add wave -noupdate /tb_fft_axi_manager/test
@@ -43,11 +46,8 @@ add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/read_counter/i
 add wave -noupdate -divider {write counter}
 add wave -noupdate /tb_fft_axi_manager/DUT/write_counter/last
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/write_counter/i
-add wave -noupdate -divider states
-add wave -noupdate /tb_fft_axi_manager/DUT/rstate
-add wave -noupdate /tb_fft_axi_manager/DUT/wstate
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {16164236 ps} 0}
+WaveRestoreCursors {{Cursor 1} {72395276 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -63,4 +63,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {15698174 ps} {16606333 ps}
+WaveRestoreZoom {70589145 ps} {73184782 ps}

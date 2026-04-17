@@ -7,38 +7,47 @@ Report : timing
         -max_paths 1
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Wed Apr 15 00:35:42 2026
+Date   : Thu Apr 16 17:42:58 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
 Wire Load Model Mode: top
 
-  Startpoint: read_counter/up_count_reg[0]
+  Startpoint: read_counter/i_reg[1]
               (rising edge-triggered flip-flop)
-  Endpoint: rdata[31] (output port)
+  Endpoint: rlast (output port)
   Path Group: (none)
   Path Type: max
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  read_counter/up_count_reg[0]/CLK (DFFSR)                0.00       0.00 r
-  read_counter/up_count_reg[0]/Q (DFFSR)                  0.81       0.81 f
-  read_counter/i[0] (fft_axi_counter_WRITE_OR_READ0)      0.00       0.81 f
-  U2008/Y (NAND2X1)                                       0.41       1.22 r
-  U2004/Y (INVX1)                                         0.16       1.38 f
-  U2003/Y (OAI21X1)                                       0.13       1.51 r
-  U2002/Y (OAI21X1)                                       0.14       1.65 f
-  U2000/Y (XOR2X1)                                        0.28       1.93 f
-  U1283/Y (INVX2)                                         0.13       2.06 r
-  U1086/Y (NOR2X1)                                        0.21       2.27 f
-  U1083/Y (NAND2X1)                                       0.22       2.49 r
-  U1084/Y (INVX4)                                         0.59       3.08 f
-  U1277/Y (AOI22X1)                                       0.20       3.28 r
-  U1279/Y (AND2X1)                                        0.15       3.42 r
-  U1280/Y (NAND3X1)                                       0.06       3.49 f
-  U1291/Y (AND2X1)                                        0.13       3.62 f
-  rdata[31] (out)                                         0.00       3.62 f
-  data arrival time                                                  3.62
+  read_counter/i_reg[1]/CLK (DFFSR)                       0.00       0.00 r
+  read_counter/i_reg[1]/Q (DFFSR)                         0.73       0.73 f
+  read_counter/U67/Y (INVX1)                              0.32       1.04 r
+  read_counter/U65/Y (OAI21X1)                            0.11       1.15 f
+  read_counter/U64/Y (INVX1)                              0.12       1.27 r
+  read_counter/U63/Y (AOI22X1)                            0.13       1.40 f
+  read_counter/U62/Y (OAI21X1)                            0.12       1.52 r
+  read_counter/U61/Y (OAI21X1)                            0.14       1.66 f
+  read_counter/U60/Y (INVX1)                              0.12       1.78 r
+  read_counter/U58/Y (OAI21X1)                            0.11       1.89 f
+  read_counter/U57/Y (OAI21X1)                            0.13       2.02 r
+  read_counter/U56/Y (OAI22X1)                            0.13       2.15 f
+  read_counter/U55/Y (NAND2X1)                            0.14       2.29 r
+  read_counter/U52/Y (AOI22X1)                            0.15       2.43 f
+  read_counter/U51/Y (OAI21X1)                            0.12       2.56 r
+  read_counter/U50/Y (OAI21X1)                            0.12       2.67 f
+  read_counter/U49/Y (NAND2X1)                            0.13       2.80 r
+  read_counter/U46/Y (AOI22X1)                            0.15       2.95 f
+  read_counter/U45/Y (OAI21X1)                            0.12       3.07 r
+  read_counter/U44/Y (OAI21X1)                            0.09       3.16 f
+  read_counter/U43/Y (OAI21X1)                            0.11       3.27 r
+  read_counter/U42/Y (OAI21X1)                            0.13       3.39 f
+  read_counter/U41/Y (INVX1)                              0.11       3.50 r
+  read_counter/U38/Y (NOR2X1)                             0.21       3.71 f
+  read_counter/last (fft_axi_counter_WRITE_OR_READ0)      0.00       3.71 f
+  rlast (out)                                             0.00       3.71 f
+  data arrival time                                                  3.71
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -49,29 +58,29 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Wed Apr 15 00:35:42 2026
+Date   : Thu Apr 16 17:42:58 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          504
-Number of nets:                          2026
-Number of cells:                         1847
-Number of combinational cells:           1197
-Number of sequential cells:               323
+Number of ports:                          472
+Number of nets:                          1907
+Number of cells:                         1728
+Number of combinational cells:           1118
+Number of sequential cells:               303
 Number of macros/black boxes:               0
-Number of buf/inv:                        210
+Number of buf/inv:                        166
 Number of references:                      18
 
-Combinational area:             296091.000000
-Buf/Inv area:                    31896.000000
-Noncombinational area:          511632.000000
+Combinational area:             275841.000000
+Buf/Inv area:                    25560.000000
+Noncombinational area:          479952.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                807723.000000
+Total cell area:                755793.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -85,7 +94,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Wed Apr 15 00:35:43 2026
+Date   : Thu Apr 16 17:42:58 2026
 ****************************************
 
 
@@ -112,12 +121,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  48.6439 mW   (71%)
-  Net Switching Power  =  20.1587 mW   (29%)
+  Cell Internal Power  =  40.9238 mW   (71%)
+  Net Switching Power  =  16.9143 mW   (29%)
                          ---------
-Total Dynamic Power    =  68.8026 mW  (100%)
+Total Dynamic Power    =  57.8381 mW  (100%)
 
-Cell Leakage Power     = 258.2019 nW
+Cell Leakage Power     = 242.7579 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -129,8 +138,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        40.7590            0.6309          172.1519           41.3900  (  60.16%)
-combinational      7.8849           19.5278           86.0500           27.4128  (  39.84%)
+sequential        34.9301            0.2812          161.4923           35.2115  (  60.88%)
+combinational      5.9936           16.6331           81.2656           22.6268  (  39.12%)
 --------------------------------------------------------------------------------------------------
-Total             48.6439 mW        20.1587 mW       258.2019 nW        68.8028 mW
+Total             40.9238 mW        16.9143 mW       242.7580 nW        57.8383 mW
 1
