@@ -26,14 +26,16 @@ module math #(
 
     logic [15:0] re_product, im_product, ri_product, ir_product;
 
-    multiplier multi (.diff({diff[16], diff[16:1]}), .twiddle(twiddle[15:0]), .total(im_product)); // Karatsuba 
-    multiplier multr (.diff({diff[33], diff[33:18]}), .twiddle(twiddle[31:16]), .total(re_product));
-    multiplier multri (.diff({diff[16], diff[16:1]}), .twiddle(twiddle[31:16]), .total(ri_product));
-    multiplier multir (.diff({diff[33], diff[33:18]}), .twiddle(twiddle[15:0]), .total(ir_product));
+    multiplier multi (.diff(diff[16:0]), .twiddle(twiddle[15:0]), .total(im_product)); // Karatsuba 
+    multiplier multr (.diff(diff[33:17]), .twiddle(twiddle[31:16]), .total(re_product));
+    multiplier multri (.diff(diff[16:0]), .twiddle(twiddle[31:16]), .total(ri_product));
+    multiplier multir (.diff(diff[33:17]), .twiddle(twiddle[15:0]), .total(ir_product));
     
     logic [16:0] temp_im, temp_re;
-    assign rotation[15:0] = temp_im[16:1];
-    assign rotation[31:16] = temp_re[16:1];
+    //assign rotation[15:0] = temp_im[15:0];
+    //assign rotation[31:16] = temp_re[15:0];
+    assign rotation[31:16] = $signed(re_product) - $signed(im_product);
+    assign rotation[15:0] = $signed(ri_product) + $signed(ir_product);
 
     adder re_math (.a(re_product), .b(im_product), .sel(1'b0), .total(temp_re));
     adder im_math (.a(ri_product), .b(ir_product), .sel(1'b1), .total(temp_im));

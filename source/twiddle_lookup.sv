@@ -6,11 +6,11 @@ module twiddle_lookup(
     
     always_comb begin
         twiddle = twiddle_raw;
-        if(addr[8]) begin // > 256
+        /*if(addr[8]) begin // > 256
             twiddle[31:16] = ~twiddle_raw[31:16] + 16'd1;
             twiddle[15:0] = ~twiddle_raw[15:0] + 16'd1;
         end else
-            twiddle = twiddle_raw;
+            twiddle = twiddle_raw;*/
     end
 
     always_comb begin

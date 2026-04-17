@@ -31,7 +31,7 @@ module flex_counter #(
     end
 
     always_comb begin
-        if(count >= 10'd512) begin
+        if(count >= 10'd511) begin
             rollover_flag = 1;
         end else begin
             rollover_flag = 0;
@@ -62,8 +62,8 @@ module flex_counter #(
         if(clear) begin
             next_count = 0;
         end else if (count_enable)begin
-            if(count >= 10'd512)begin
-                next_count = 1;
+            if(count >= 10'd511)begin
+                next_count = 0;
             end else begin 
                 next_count = count + 1;
             end

@@ -2,7 +2,7 @@ module fft_core(
     input logic clk,
     input logic n_rst,
     input logic [31:0] sample,
-    input logic start,
+    //input logic start,
     input logic valid,
     output logic [31:0] out,
     output logic out_valid

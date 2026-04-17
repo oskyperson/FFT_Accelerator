@@ -13,8 +13,9 @@ module multiplier(
 
     always_comb begin
         product = diff * twiddle;
-        rounded = product + (33'sd16384);
-        shifted = rounded >>> 15;
+        rounded = product + (33'sd32768);
+        shifted = rounded >>> 16;
+        //shifted = product >>> 15;
 
         if (shifted > MAX)
             total = MAX;
