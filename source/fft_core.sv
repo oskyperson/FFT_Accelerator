@@ -1,3 +1,5 @@
+`timescale 1ns / 10ps
+
 module fft_core(
     input logic clk,
     input logic n_rst,

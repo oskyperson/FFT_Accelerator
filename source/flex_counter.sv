@@ -67,6 +67,8 @@ module flex_counter #(
             end else begin 
                 next_count = count + 1;
             end
+        end else begin
+            next_count = count;
         end
         
     end

@@ -1,3 +1,5 @@
+`timescale 1ns / 10ps
+
 module multiplier(
     input logic signed [16:0] diff,
     input logic signed [15:0] twiddle,

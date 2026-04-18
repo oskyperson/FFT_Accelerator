@@ -1,3 +1,5 @@
+`timescale 1ns / 10ps
+
 module fft_stage #(
     parameter STAGE = 1
 )(
@@ -71,7 +73,7 @@ module fft_stage #(
             primed <= 1'b1;
     end
 
-    math #(.STAGE(STAGE)) mather(.clk(clk), .n_rst(n_rst), .sample(sample),
+    math #(.STAGE(STAGE)) mather (.sample(sample),
         .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .rotation(rotation)
     );
 

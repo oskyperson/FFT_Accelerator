@@ -1,8 +1,10 @@
+`timescale 1ns / 10ps
+
 module math #(
     parameter STAGE = 1
 )(
-    input logic clk,
-    input logic n_rst,
+    //input logic clk,
+    //input logic n_rst,
     input logic [31:0] sample,
     //input logic sample_valid,
     input logic [31:0] feedback,
@@ -31,13 +33,13 @@ module math #(
     multiplier multri (.diff(diff[16:0]), .twiddle(twiddle[31:16]), .total(ri_product));
     multiplier multir (.diff(diff[33:17]), .twiddle(twiddle[15:0]), .total(ir_product));
     
-    logic [16:0] temp_im, temp_re;
+    //logic [16:0] temp_im, temp_re;
     //assign rotation[15:0] = temp_im[15:0];
     //assign rotation[31:16] = temp_re[15:0];
     assign rotation[31:16] = $signed(re_product) - $signed(im_product);
     assign rotation[15:0] = $signed(ri_product) + $signed(ir_product);
 
-    adder re_math (.a(re_product), .b(im_product), .sel(1'b0), .total(temp_re));
-    adder im_math (.a(ri_product), .b(ir_product), .sel(1'b1), .total(temp_im));
+    //adder re_math (.a(re_product), .b(im_product), .sel(1'b0), .total(temp_re));
+    //adder im_math (.a(ri_product), .b(ir_product), .sel(1'b1), .total(temp_im));
 
 endmodule

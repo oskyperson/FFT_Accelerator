@@ -34,7 +34,7 @@ module tb_fft_core ();
         num = 1;
     end
 
-    localparam CLK_PERIOD = 10ns;
+    localparam CLK_PERIOD = 20ns;
 
     initial begin
         $dumpfile("waveform.vcd");

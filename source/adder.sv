@@ -1,3 +1,5 @@
+`timescale 1ns / 10ps
+
 module adder(
     input logic signed [15:0] a,
     input logic signed [15:0] b,

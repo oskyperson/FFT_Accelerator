@@ -14,6 +14,7 @@ module twiddle_lookup(
     end
 
     always_comb begin
+        twiddle_raw = {16'h8002, 16'hFE6E};
         case(addr[7:0]) //stored as real, imaginary
             8'h00: twiddle_raw = {16'h7FFF, 16'h0000};
             8'h01: twiddle_raw = {16'h7FFE, 16'hFE6E};
@@ -271,6 +272,7 @@ module twiddle_lookup(
             8'hFD: twiddle_raw = {16'h8016, 16'hFB4A};
             8'hFE: twiddle_raw = {16'h800A, 16'hFCDC};
             8'hFF: twiddle_raw = {16'h8002, 16'hFE6E};
+            default: twiddle_raw = {16'h8002, 16'hFE6E};
         endcase
     end
 endmodule
