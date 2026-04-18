@@ -46,6 +46,7 @@ targets:
         tools:
             modelsim:
                 vsim_options:
+                    - -suppress 3053 #ADDITION
                     - -vopt
                     - -voptargs='+acc'
                     - -t ps
