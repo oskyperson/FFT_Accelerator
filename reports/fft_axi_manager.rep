@@ -7,13 +7,13 @@ Report : timing
         -max_paths 1
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 17:42:36 2026
+Date   : Sat Apr 18 17:25:08 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
 Wire Load Model Mode: top
 
-  Startpoint: write_counter/i_reg[1]
+  Startpoint: write_counter/i_reg[3]
               (rising edge-triggered flip-flop)
   Endpoint: wlast (output port)
   Path Group: (none)
@@ -21,33 +21,21 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  write_counter/i_reg[1]/CLK (DFFSR)                      0.00       0.00 r
-  write_counter/i_reg[1]/Q (DFFSR)                        0.56       0.56 f
-  write_counter/U65/Y (INVX1)                             0.25       0.81 r
-  write_counter/U63/Y (OAI21X1)                           0.11       0.92 f
-  write_counter/U62/Y (INVX1)                             0.12       1.03 r
-  write_counter/U61/Y (AOI22X1)                           0.13       1.16 f
-  write_counter/U60/Y (OAI21X1)                           0.12       1.28 r
-  write_counter/U59/Y (OAI21X1)                           0.13       1.42 f
-  write_counter/U58/Y (INVX1)                             0.12       1.54 r
-  write_counter/U56/Y (OAI21X1)                           0.11       1.64 f
-  write_counter/U55/Y (OAI21X1)                           0.13       1.78 r
-  write_counter/U54/Y (OAI22X1)                           0.13       1.91 f
-  write_counter/U53/Y (NAND2X1)                           0.14       2.05 r
-  write_counter/U50/Y (AOI22X1)                           0.15       2.19 f
-  write_counter/U49/Y (OAI21X1)                           0.12       2.31 r
-  write_counter/U48/Y (OAI21X1)                           0.12       2.43 f
-  write_counter/U47/Y (NAND2X1)                           0.13       2.56 r
-  write_counter/U44/Y (AOI22X1)                           0.15       2.71 f
-  write_counter/U43/Y (OAI21X1)                           0.12       2.83 r
-  write_counter/U42/Y (OAI21X1)                           0.09       2.92 f
-  write_counter/U41/Y (OAI21X1)                           0.11       3.02 r
-  write_counter/U40/Y (OAI21X1)                           0.13       3.15 f
-  write_counter/U39/Y (INVX1)                             0.11       3.26 r
-  write_counter/U36/Y (NOR2X1)                            0.16       3.42 f
-  write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       3.42 f
-  wlast (out)                                             0.00       3.42 f
-  data arrival time                                                  3.42
+  write_counter/i_reg[3]/CLK (DFFSR)                      0.00       0.00 r
+  write_counter/i_reg[3]/Q (DFFSR)                        0.56       0.56 f
+  write_counter/U64/Y (INVX1)                             0.24       0.80 r
+  write_counter/U63/Y (NOR2X1)                            0.24       1.04 f
+  write_counter/U56/Y (NOR2X1)                            0.12       1.17 r
+  write_counter/U55/Y (AOI22X1)                           0.13       1.30 f
+  write_counter/U54/Y (OAI21X1)                           0.13       1.43 r
+  write_counter/U53/Y (OAI21X1)                           0.10       1.54 f
+  write_counter/U50/Y (OAI22X1)                           0.14       1.67 r
+  write_counter/U46/Y (OAI21X1)                           0.11       1.78 f
+  write_counter/U43/Y (OAI21X1)                           0.18       1.96 r
+  write_counter/U39/Y (NOR2X1)                            0.19       2.15 f
+  write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       2.15 f
+  wlast (out)                                             0.00       2.15 f
+  data arrival time                                                  2.15
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -58,29 +46,29 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 17:42:36 2026
+Date   : Sat Apr 18 17:25:08 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          539
-Number of nets:                           459
-Number of cells:                          253
-Number of combinational cells:            201
-Number of sequential cells:                24
+Number of ports:                          731
+Number of nets:                          1729
+Number of cells:                         1276
+Number of combinational cells:            939
+Number of sequential cells:               165
 Number of macros/black boxes:               0
-Number of buf/inv:                         56
-Number of references:                      11
+Number of buf/inv:                        318
+Number of references:                      20
 
-Combinational area:              51507.000000
-Buf/Inv area:                     8064.000000
-Noncombinational area:           38016.000000
+Combinational area:             247293.000000
+Buf/Inv area:                    46512.000000
+Noncombinational area:          261360.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                 89523.000000
+Total cell area:                508653.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -94,7 +82,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Thu Apr 16 17:42:36 2026
+Date   : Sat Apr 18 17:25:08 2026
 ****************************************
 
 
@@ -121,12 +109,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   4.5002 mW   (66%)
-  Net Switching Power  =   2.3700 mW   (34%)
+  Cell Internal Power  =  56.5841 mW   (75%)
+  Net Switching Power  =  19.0778 mW   (25%)
                          ---------
-Total Dynamic Power    =   6.8702 mW  (100%)
+Total Dynamic Power    =  75.6619 mW  (100%)
 
-Cell Leakage Power     =  29.0351 nW
+Cell Leakage Power     = 158.8383 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -138,8 +126,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential         2.8233        1.5234e-02           12.7915            2.8385  (  41.32%)
-combinational      1.6769            2.3548           16.2436            4.0317  (  58.68%)
+sequential        36.6735            2.5436           87.9414           39.2173  (  51.83%)
+combinational     19.9106           16.5342           70.8969           36.4448  (  48.17%)
 --------------------------------------------------------------------------------------------------
-Total              4.5002 mW         2.3700 mW        29.0351 nW         6.8702 mW
+Total             56.5841 mW        19.0778 mW       158.8383 nW        75.6621 mW
 1

@@ -30,7 +30,7 @@ module fft_axi_manager #(
     // read response
     input logic rresp,
 
-    // config_reg from subordinate
+    // configs from subordinate
     input logic [7:0][31:0] config_reg,
     
     // to fft
@@ -41,29 +41,87 @@ module fft_axi_manager #(
     input logic fft_done
 );
 
-// read
 typedef enum logic [1:0] {RIDLE, RADDR, RDATA, RERR} rstate_t;
-rstate_t rstate, next_rstate;
+typedef enum logic [1:0] {WIDLE, WADDR, WDATA, B} wstate_t;
 
-always_ff @ (posedge clk, negedge n_rst) begin 
+rstate_t rstate, next_rstate;
+wstate_t wstate, next_wstate;
+logic [7:0][31:0] configs;
+logic new_config, next_new_config;
+logic [31:0] num_read_frames, num_write_frames;
+logic [31:0] j, next_j;
+logic [31:0] k, next_k;
+logic rcounter_last;
+logic [9:0] rcount;
+logic [9:0] wcount;
+
+always_ff @ (posedge clk, negedge n_rst) begin : config_capture
     if (!n_rst) begin
-        rstate <= RIDLE;
-    end else begin
-        rstate <= next_rstate;
+        configs <= '0;
+        new_config <= 0;
+    end else if (wstate == WIDLE && rstate == RIDLE && j == 0 && k == 0) begin
+        configs <= config_reg;
+        new_config <= next_new_config;
     end
 end
 
-logic rcounter_last;
+always_comb begin : new_config_logic
+    next_new_config = 0;
+    if (wstate == WIDLE && rstate == RIDLE && j == 0 && k == 0 && !new_config)
+        next_new_config = 1;
+end
+
+always_comb begin : frame_numbers
+    num_read_frames = configs[0] + 1'b1;
+    num_write_frames = configs[0];
+end
+
+always_ff @ (posedge clk, negedge n_rst) begin : write_frame_num_reg
+    if (!n_rst)
+        j <= '0;
+    else
+        j <= next_j;
+end
+
+always_comb begin : next_j_logic
+    next_j = j;
+    if (new_config)
+        next_j = num_write_frames;
+    else if (k == j && fft_done)
+        next_j = j - 1;
+end
+
+always_ff @ (posedge clk, negedge n_rst) begin : read_frame_num_reg
+    if (!n_rst)
+        k <= '0;
+    else
+        k <= next_k;
+end
+
+always_comb begin : next_k_logic
+    next_k = k;
+    if (new_config)
+        next_k = num_read_frames;
+    else if (k > 0 && fft_done)
+        next_k = k - 1;    
+end
+
+always_ff @ (posedge clk, negedge n_rst) begin : rstate_reg
+    if (!n_rst)
+        rstate <= RIDLE;
+    else
+        rstate <= next_rstate;
+end
 
 always_comb begin : next_rstate_logic
     next_rstate = rstate;
     case (rstate)
         RIDLE:
-            next_rstate = (fft_done && config_reg[0][0]) ? RADDR : RIDLE;
+            next_rstate = k != 0 ? RADDR : RIDLE;
         RADDR:
             next_rstate = arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = rresp ? RERR : (rvalid && rready && (rlast || rcounter_last)) ? RIDLE : RDATA;
+            next_rstate = rresp ? RERR : (rvalid && rready && (rcounter_last)) ? RIDLE : RDATA;
         RERR:
             next_rstate = RIDLE;
         default:
@@ -71,7 +129,6 @@ always_comb begin : next_rstate_logic
     endcase
 end
 
-logic [9:0] rcount;
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -84,31 +141,26 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 );
 
 always_comb begin : read_output_logic
-    araddr = (rstate == RIDLE) ? 0 : config_reg[1][10:0];
-    arlen = config_reg[2][9:0];
+    araddr = (rstate == RIDLE) ? 0 : configs[1][10:0];
+    arlen = configs[2][9:0];
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
     data_in = rdata;
     in_valid = rready && rvalid;
 end
 
-// write
-typedef enum logic [1:0] {WIDLE, WADDR, WDATA, B} wstate_t;
-wstate_t wstate, next_wstate;
-
-always_ff @ (posedge clk, negedge n_rst) begin 
-    if (!n_rst) begin
+always_ff @ (posedge clk, negedge n_rst) begin : wstate_reg
+    if (!n_rst)
         wstate <= WIDLE;
-    end else begin
+    else
         wstate <= next_wstate;
-    end
 end
 
 always_comb begin : next_wstate_logic
     next_wstate = wstate;
     case (wstate)
         WIDLE:
-            next_wstate = (out_valid && config_reg[6][0]) ? WADDR : WIDLE;
+            next_wstate = (out_valid && j != 0) ? WADDR : WIDLE;
         WADDR:
             next_wstate = awready ? WDATA : WADDR;
         WDATA:
@@ -120,7 +172,6 @@ always_comb begin : next_wstate_logic
     endcase
 end
 
-logic [9:0] wcount;
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -133,11 +184,11 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 );
 
 always_comb begin : write_output_logic
-    awaddr = (wstate == WIDLE) ? 0 : config_reg[3][10:0];
-    awlen = config_reg[4][9:0];
+    awaddr = (wstate == WIDLE) ? 0 : configs[3][10:0];
+    awlen = configs[4][9:0];
     awvalid = (wstate == WADDR);
     wvalid = (wstate == WDATA) && out_valid;
-    wstrb = config_reg[5][1:0];
+    wstrb = configs[5][1:0];
     wdata = data_out;
     bready = (wstate == B);
 end
