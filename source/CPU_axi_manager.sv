@@ -1,6 +1,6 @@
 `timescale 1ns / 10ps
 
-module CPU_axi_manager (
+module axi_manager_model (
     input logic clk,
     input logic n_rst,
 
@@ -18,7 +18,7 @@ module CPU_axi_manager (
     input logic wready,
 
     // Write Response Channel
-    input logic bresp,
+    input logic [1:0] bresp,
     input logic bvalid,
     output logic bready,
 
@@ -30,7 +30,7 @@ module CPU_axi_manager (
 
     // Read Data Channel
     input logic [31:0] rdata,
-    input logic rresp,
+    input logic [1:0] rresp,
     input logic rlast,
     input logic rvalid,
     output logic rready
@@ -52,8 +52,8 @@ module CPU_axi_manager (
 
         
         for (int i = 0; i < num_beats; i++) begin
-            wdata  <= data_queue[i];
-            wstrb  <= 2'b11;
+            wdata <= data_queue[i];
+            wstrb <= 2'b11;
             wvalid <= 1'b1;
             wlast  <= (i == num_beats - 1); 
             do begin
@@ -61,7 +61,7 @@ module CPU_axi_manager (
             end while (!wready);
         end
         wvalid <= 1'b0;
-        wlast  <= 1'b0;
+        wlast <= 1'b0;
 
         
         bready <= 1'b1;
@@ -88,7 +88,7 @@ module CPU_axi_manager (
         rready <= 1'b1;
         for (int i = 0; i < num_beats; i++) begin
             wait(rvalid);
-            @(negedge clk);
+            
             result_queue.push_back(rdata);
             
             
@@ -96,6 +96,7 @@ module CPU_axi_manager (
                 $display("[ERROR] RLAST not asserted on final beat!");
             
             @(posedge clk);
+            @(negedge clk);
         end
         rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);
