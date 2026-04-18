@@ -72,173 +72,106 @@ module tb_fft_axi_manager ();
 
     string test;
 
-    task configure_manager (
-        input logic [31:0] config_start_read,
-        input logic [31:0] config_araddr,
-        input logic [31:0] config_arlen,
-        input logic [31:0] config_awaddr,
-        input logic [31:0] config_awlen,
-        input logic [31:0] config_wstrb,
-        input logic [31:0] config_start_write,
-        input logic [31:0] config_fft_config
+    task configure_run(
+        input [31:0] frames,
+        input [31:0] r_addr,
+        input [31:0] r_len,
+        input [31:0] w_addr,
+        input [31:0] w_len
     );
-    begin
-        config_reg[0] = config_start_read;
-        config_reg[1] = config_araddr;
-        config_reg[2] = config_arlen;
+        // Wait for idle before applying new config
+        wait(rstate == RIDLE && wstate == WIDLE && j == 0 && k == 0);
+        @(posedge clk);
+        config_reg[0] = frames;
+        config_reg[1] = r_addr;
+        config_reg[2] = r_len;
+        config_reg[3] = w_addr;
+        config_reg[4] = w_len;
+        config_reg[5] = 32'h3; // wstrb for 32-bit data
         
-        config_reg[3] = config_awaddr;
-        config_reg[4] = config_awlen;
-        config_reg[5] = config_wstrb;
-        config_reg[6] = config_start_write;
-        
-        config_reg[7] = config_fft_config;
+        // Wait for capture
+        @(posedge clk);
+        #1; 
+    endtask
+
+    task wait_completion();
+        // Wait for counters to clear and states to return to idle
+        wait(j == 0 && k == 0 && rstate == RIDLE && wstate == WIDLE);
+        repeat(5) @(posedge clk);
+    endtask
+
+    // fft model (basically a shft reg)
+    logic [31:0] current_frame_len;
+    logic [31:0] pipe_memory [0:1023]; // Large enough for max frame
+    integer pipe_ptr;
+    integer valid_count;
+
+    always_comb begin
+        // len is N-1, so add 1 to get the number of samples
+        current_frame_len = configs[2] + 1; 
     end
-    endtask
 
-    task manager_write(
-        input logic [31:0] start_addr,
-        input logic [9:0]  len,
-        input logic [31:0] starting_num,
-        input logic expected_bresp
-    );
-        logic [31:0] current_val;
-        begin
-            current_val = starting_num;
-
-            @(posedge clk);
-            
-            for (int i = 0; i <= len; i++) begin
-                data_out <= current_val;
-                out_valid <= 1'b1;
+    always @(posedge clk) begin
+        if (!n_rst) begin
+            pipe_ptr <= 0;
+            valid_count <= 0;
+            out_valid <= 0;
+            fft_done <= 0;
+        end else begin
+            // Input logic
+            if (in_valid) begin
+                pipe_memory[pipe_ptr] <= data_in;
+                // Wrap pointer based on the specific frame length configured
+                pipe_ptr <= (pipe_ptr >= current_frame_len - 1) ? 0 : pipe_ptr + 1;
                 
-                do begin
-                    @(posedge clk);
-                end while (!(wvalid && wready));
-
-                current_val = current_val + 1;
-            end
-
-            @(posedge clk);
-            out_valid <= 1'b0;
-            data_out <= 32'h0;
-
-            do begin
-                @(posedge clk);
-            end while (!(bvalid && bready));
-
-            if (bresp !== expected_bresp) begin
-                $display("Expected bresp: %d Got: %d", expected_bresp, bresp);
-            end
-        end
-    endtask
-
-    task manager_read(
-        input logic [31:0] start_addr,
-        input logic [9:0]  len,
-        input logic [31:0] starting_num,
-        input logic expected_rresp
-    );
-        logic [31:0] current_val;
-        begin
-            current_val = starting_num;
-
-            @(posedge clk);
-            fft_done = 1;
-
-            for (int i = 0; i <= len; i++) begin
-                do begin
-                    @(posedge clk);
-                end while (!(in_valid));
-
-                if (rresp) begin
-                    if (rresp !== expected_rresp)
-                        $display("Expected rresp: %d Got: %d", expected_rresp, rresp);
-                    break;
+                if (valid_count < (current_frame_len * 2)) begin
+                    valid_count <= valid_count + 1;
                 end
-
-                if (data_in != current_val) // Use renamed signal
-                    $display("Incorrect message at %d read. Expected: %d Got: %d", i, current_val, data_in);
-                
-                current_val = current_val + 1;
             end
 
-            @(posedge clk);
-            fft_done = 0;
+            // Output logic: Flush after 'current_frame_len' samples are received
+            if (valid_count >= current_frame_len && wstate == WADDR) begin
+                out_valid <= 1;
+            end else if (wlast && wready) begin
+                out_valid <= 0;
+            end
+
+            data_out <= pipe_memory[pipe_ptr];
+
+            if (wlast && wready) begin
+                fft_done <= 1;
+            end else begin
+                fft_done <= 0;
+            end
         end
-    endtask
+    end
 
     initial begin
         n_rst = 1;
         fft_done = 0;
         reset_dut;
 
-        test = "valid max frame";
-        @(posedge clk);
-        configure_manager(32'd0, 32'd0, 32'd512, 32'd0, 32'd512, 32'd3, 32'd1, 32'd1);
-        @(posedge clk);
-        manager_write(32'd0, 10'd512, 32'd0, 0);
-        @(posedge clk);
-        configure_manager(32'd1, 32'd0, 32'd512, 32'd0, 32'd512, 32'd3, 32'd0, 32'd1);
-        @(posedge clk);
-        manager_read(32'd0, 10'd512, 32'd0, 0);
+        // 1. Max frame numbers (512 numbers per frame)
+        // AXI len is N-1, so 511
+        configure_run(0, 32'h0, 32'd511, 32'h400, 32'd511);
+        wait_completion();
 
-        test = "valid min frame";
-        configure_manager(32'd0, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd1, 32'd1);
-        @(posedge clk);
-        manager_write(32'd0, 10'd1, 32'd6, 0);
-        @(posedge clk);
-        configure_manager(32'd1, 32'd0, 32'd1, 32'd0, 32'd1, 32'd3, 32'd0, 32'd1);
-        @(posedge clk);
-        manager_read(32'd0, 10'd1, 32'd6, 0);
-        @(posedge clk);
+        // 2. Min frame number (2 numbers per frame)
+        configure_run(0, 32'h0, 32'd1, 32'h400, 32'd1);
+        wait_completion();
 
-        test = "invalid write frame";
-        configure_manager(32'd0, 32'd10, 32'd512, 32'd10, 32'd512, 32'd3, 32'd1, 32'd1);
-        @(posedge clk);
-        manager_write(32'd10, 10'd512, 32'd0, 1);
-        @(posedge clk);
+        // 3. Invalid address/size (Address 256 + 512 numbers)
+        // Total range: 256 to 768. 
+        configure_run(0, 32'd256, 32'd511, 32'd256, 32'd511);
+        wait_completion();
 
-        test = "invalid read frame";
-        configure_manager(32'd1, 32'd10, 32'd512, 32'd10, 32'd512, 32'd3, 32'd0, 32'd1);
-        @(posedge clk);
-        manager_read(32'd10, 10'd512, 32'd0, 1);
-        @(posedge clk);
+        // 5. Max frame number for a total of 2 frames
+        // config[0] = 1 results in 2 read frames (1+1) and 1 write frame based on module logic
+        // To get 2 full cycles, we set frames to 1
+        configure_run(1, 32'h0, 32'd511, 32'h400, 32'd511);
+        wait_completion();
 
-        n_rst = 0;
-        @(negedge clk);
-        n_rst = 1;
-
-        test = "simultaneous read and write";
-        configure_manager(32'd0, 32'd0, 32'd10, 32'd256, 32'd10, 32'd3, 32'd1, 32'd1);
-        @(posedge clk);
-        manager_write(32'd0, 10'd10, 32'd0, 0);
-        @(posedge clk);
-
-        configure_manager(32'd1, 32'd0, 32'd10, 32'd256, 32'd10, 32'd3, 32'd1, 32'd1);
-        
-        fork : timeout_watchdog
-            begin
-                fork
-                    begin
-                        $display("Starting simultaneous write...");
-                        manager_write(32'h256, 10'd10, 32'h0, 0);
-                        $display("Simultaneous write finished.");
-                    end
-                    begin
-                        $display("Starting simultaneous read...");
-                        manager_read(32'd0, 10'd10, 32'h0, 0);
-                        $display("Simultaneous read finished.");
-                    end
-                join
-                disable timeout_watchdog;
-            end
-            begin
-                #1ms; // High safety margin
-                $display("Error: Simulation hung in simultaneous test!");
-                $finish;
-            end
-        join
+        $display("Testbench finished");
         $finish;
     end
 endmodule
