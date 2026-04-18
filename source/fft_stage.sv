@@ -7,7 +7,7 @@ module fft_stage #(
     input logic sample_valid,
     output logic [31:0] out,
     output logic out_valid
-
+          
 );
 
     logic [8:0] twiddle_addr;
