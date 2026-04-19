@@ -46,8 +46,11 @@ module tb_fft_core ();
     logic [31:0] sample, out;
     logic start, valid, out_valid;
 
+    logic [8:0] frame_size;
+    logic load_size;
+
     fft_core dut (.clk(clk), .n_rst(n_rst), .sample(sample), .valid(valid), 
-        .out(out), .out_valid(out_valid)
+        .out(out), .out_valid(out_valid), .frame_size(frame_size), .load_size(load_size)
     );
     integer p;
     // clockgen
@@ -119,6 +122,16 @@ module tb_fft_core ();
         end
         n_rst = 1;
         reset_dut;
+        @(negedge clk);
+        frame_size = 8'd128;
+        load_size = 1'b1;
+        @(posedge clk);
+        @(posedge clk);
+        @(negedge clk);
+        load_size = 1'b0;
+        @(posedge clk);
+        @(posedge clk);
+        
         $fwrite(out_file, "Real ----- Imaginary\n");
 
         for(j = 0; j < 100; j++) begin

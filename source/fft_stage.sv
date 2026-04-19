@@ -8,7 +8,10 @@ module fft_stage #(
     input logic [31:0] sample,
     input logic sample_valid,
     output logic [31:0] out,
-    output logic out_valid
+    output logic out_valid,
+
+    input logic sel,
+    input logic [8:0] frame_size
           
 );
 
@@ -32,7 +35,10 @@ module fft_stage #(
     localparam bit [10:0] MIDPOINT = (10'd1 << (8 - STAGE)) - 10'd1;
 
     always_comb begin
-        if(control) begin
+        if(!sel) begin
+            next_delay_sample = '0;
+            next_out = sample;
+        end else if(control) begin
             next_delay_sample = rotation;
             next_out = math_sum;
         end else begin
@@ -51,7 +57,7 @@ module fft_stage #(
             out_valid <= '0;
         end else if(sample_valid) begin
             out <= next_out;
-            out_valid <= primed;
+            out_valid <= sel ? primed : 1'b1;
         end else begin
             out_valid <= 1'b0;
         end
@@ -63,7 +69,7 @@ module fft_stage #(
 
     flex_counter count(
         .clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid), //NOTE: future AXI integration
-        .count_out(count_out), .rollover_flag(rollover_flag)
+        .count_out(count_out), .rollover_flag(rollover_flag), .rollover_val(frame_size - 1'd1)
     );
 
     always_ff @(posedge clk or negedge n_rst) begin

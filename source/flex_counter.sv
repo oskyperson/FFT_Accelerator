@@ -7,6 +7,7 @@ module flex_counter #(
     input logic n_rst,
     input logic clear,
     input logic count_enable,
+    input logic [SIZE-1:0] rollover_val,
     output logic [SIZE-1:0] count_out,
     output logic rollover_flag
 );
@@ -31,7 +32,7 @@ module flex_counter #(
     end
 
     always_comb begin
-        if(count >= 10'd511) begin
+        if(count >= rollover_val) begin
             rollover_flag = 1;
         end else begin
             rollover_flag = 0;
@@ -62,7 +63,7 @@ module flex_counter #(
         if(clear) begin
             next_count = 0;
         end else if (count_enable)begin
-            if(count >= 10'd511)begin
+            if(count >= rollover_val)begin
                 next_count = 0;
             end else begin 
                 next_count = count + 1;

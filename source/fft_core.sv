@@ -7,12 +7,17 @@ module fft_core(
     //input logic start,
     input logic valid,
     output logic [31:0] out,
-    output logic out_valid
+    output logic out_valid,
+
+    input logic load_size,
+    input logic [8:0] frame_size
 );  
     logic enable;
 
     logic [31:0] sample_stream [9:0];
     logic [9:0] valid_stream;
+
+    logic [8:0] size_reg;
 
     assign sample_stream[0] = sample;
     assign valid_stream[0] = valid;
@@ -20,11 +25,20 @@ module fft_core(
     assign out = sample_stream[9];
     assign out_valid = valid_stream[9];
 
+    always_ff @(posedge clk or negedge n_rst) begin
+        if(!n_rst) begin
+            size_reg <= '0;
+        end else if (load_size)
+            size_reg <= frame_size;
+    end
+
+
     genvar i;
     generate
         for(i = 0; i < 9; i = i + 1) begin : butterfly_units
             fft_stage #(i) stage (.clk(clk), .n_rst(n_rst), .sample(sample_stream[i]), .sample_valid(valid_stream[i]),
-                .out(sample_stream[i+1]), .out_valid(valid_stream[i+1])
+                .out(sample_stream[i+1]), .out_valid(valid_stream[i+1]), .sel(size_reg > (9'd1 << (8-i))),
+                .frame_size(size_reg)
             );
         end        
     endgenerate

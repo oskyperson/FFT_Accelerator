@@ -34,7 +34,7 @@ def generate(signal_type='single_tone'):
         signal = np.full(N, 0.5 + 0.0j, dtype=complex)
         
     elif signal_type == 'sine':
-        frequency = 50
+        frequency = 48
         signal = 0.5 * np.cos(2 * np.pi * frequency * t / fs) + 0j
 
     elif signal_type == 'noise1':
@@ -79,7 +79,7 @@ def generate(signal_type='single_tone'):
             im_hex = float_to_hex(val.imag)
             f_hex.write(f"stream_frame({re_hex}, {im_hex});\n")
 
-    with open('./Python/input_mem.txt', 'w') as f_hex:
+    with open('./Python/input_mem2.txt', 'w') as f_hex:
         for val in signal:
             re_hex = float_to_hex(val.real).replace("16'h", "")
             im_hex = float_to_hex(val.imag).replace("16'h", "")
