@@ -41,7 +41,7 @@ module tb_fft_axi_subordinate ();
     logic wready;
     logic [31:0] wdata;
     logic [1:0] wstrb;
-    logic wlast; wvalid;
+    logic wlast, wvalid;
     // write response
     logic bresp, bvalid;
     logic bready;
@@ -60,14 +60,29 @@ module tb_fft_axi_subordinate ();
     // config_reg from subordinate
     logic [7:0][31:0] config_reg;
 
-    logic [31:0] fft_config;
-
     fft_axi_subordinate #() sub0 (.*);
+
+    CPU_axi_manager #() BFM (.*);
+
+    logic [31:0] w_queue [$];
+    logic [31:0] r_queue [$];
 
     string test;
 
     initial begin
         n_rst = 1;
+
+        force BFM.awvalid = 0;
+        force BFM.wvalid  = 0;
+        force BFM.bready  = 0;
+        force BFM.arvalid = 0;
+        force BFM.rready  = 0;
+        #1;
+        release BFM.awvalid;
+        release BFM.wvalid;
+        release BFM.bready;
+        release BFM.arvalid;
+        release BFM.rready;
 
         reset_dut;
 
@@ -76,15 +91,38 @@ module tb_fft_axi_subordinate ();
         @(negedge clk);
         n_rst = 1;
 
-        test = "write to 1 config reg";
+        w_queue.delete();
 
-        test = "write to all config regs";
+        test = "1 config reg";
+        w_queue.push_back(32'h00000001);
+        BFM.write_burst(11'd0, w_queue);
+        BFM.read_burst(11'd0, 1, r_queue);
 
-        test = "read from 1 confg reg";
-
-        test = "read from all config regs";
+        test = "all config regs";
+        w_queue.delete();
+        for(int i = 0; i < 8; i++) begin
+            w_queue.push_back(i);
+        end
+        BFM.write_burst(11'd0, w_queue);
+        BFM.read_burst(11'd0, 8, r_queue);
 
         test = "simultaneous read and write same reg";
+        w_queue.delete();
+        w_queue.push_back(32'h00000001);
+        fork
+            BFM.write_burst(11'd0, w_queue);
+            BFM.read_burst(11'd0, 1, r_queue);
+        join
+
+        test = "invalid write address";
+        w_queue.delete();
+        for(int i = 0; i < 8; i++) begin
+            w_queue.push_back(i);
+        end
+        BFM.write_burst(11'd4, w_queue);
+
+        test = "invalid read address";
+        BFM.read_burst(11'd4, 8, r_queue);
 
         $finish;
     end

@@ -24,6 +24,7 @@ filesets:
         file_type: systemVerilogSource
         depend:
             - "team42:ece337:questafiles"
+            - "team42:ece337:CPU_axi_manager:1.0.0"
 
     synfiles:
         files:

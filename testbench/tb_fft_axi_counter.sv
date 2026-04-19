@@ -69,6 +69,29 @@ module tb_fft_axi_counter ();
         for(int i = 0; i < len + 1; i++)
             @(negedge clk);
         ready = 0;
+        @(negedge clk);
+
+        test = "random numbers";
+        ready = 1;
+        len = 10'd2;
+        for(int i = 0; i < len + 1; i++)
+            @(negedge clk);
+        ready = 0;
+        @(negedge clk);
+
+        ready = 1;
+        len = 10'd53;
+        for(int i = 0; i < len + 1; i++)
+            @(negedge clk);
+        ready = 0;
+        @(negedge clk);
+
+        ready = 1;
+        len = 10'd256;
+        for(int i = 0; i < len + 1; i++)
+            @(negedge clk);
+        ready = 0;
+        @(negedge clk);
 
         $finish;
     end
