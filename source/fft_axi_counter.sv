@@ -24,12 +24,12 @@ module fft_axi_counter #(
         last = 0;
 
         // reset if busy
-        if ((WRITE_OR_READ && !valid) || (!WRITE_OR_READ && !ready)) begin
-            last = 0;
-            next_i = 0;
-        end 
+        // if ((WRITE_OR_READ && !valid) || (!WRITE_OR_READ && !ready)) begin
+        //     last = 0;
+        //     next_i = 0;
+        // end 
         // increment with handshakes
-        else if (ready && valid) begin
+        if (ready && valid) begin
             next_i = i + 1;
             if (i >= len) begin
                 next_i = 0;

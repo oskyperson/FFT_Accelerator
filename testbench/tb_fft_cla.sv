@@ -1,7 +1,7 @@
 `timescale 1ns / 10ps
 /* verilator coverage_off */
 
-module tb_fft_axi_top ();
+module tb_fft_cla ();
 
     localparam CLK_PERIOD = 10ns;
 
@@ -32,7 +32,7 @@ module tb_fft_axi_top ();
     end
     endtask
 
-    fft_axi_top #() DUT (.*);
+    fft_cla #() DUT (.*);
 
     initial begin
         n_rst = 1;

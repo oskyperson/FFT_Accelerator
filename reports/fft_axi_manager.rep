@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:17:27 2026
+Date   : Mon Apr 20 14:24:49 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -21,20 +21,21 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  wstate_reg[1]/CLK (DFFSR)                               0.00       0.00 r
-  wstate_reg[1]/Q (DFFSR)                                 0.45       0.45 f
-  U101/Y (INVX1)                                          0.18       0.64 r
-  U97/Y (NOR2X1)                                          0.30       0.94 f
-  U64/Y (AND2X1)                                          0.35       1.29 f
-  write_counter/valid (fft_axi_counter_WRITE_OR_READ1)
-                                                          0.00       1.29 f
-  write_counter/U118/Y (NAND2X1)                          0.23       1.51 r
-  write_counter/U117/Y (INVX1)                            0.18       1.69 f
-  write_counter/U111/Y (NAND3X1)                          0.19       1.88 r
-  write_counter/U110/Y (NOR2X1)                           0.15       2.03 f
-  write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       2.03 f
-  wlast (out)                                             0.00       2.03 f
-  data arrival time                                                  2.03
+  write_counter/i_reg[3]/CLK (DFFSR)                      0.00       0.00 r
+  write_counter/i_reg[3]/Q (DFFSR)                        0.56       0.56 f
+  write_counter/U60/Y (INVX1)                             0.24       0.80 r
+  write_counter/U59/Y (NOR2X1)                            0.24       1.04 f
+  write_counter/U52/Y (NOR2X1)                            0.12       1.17 r
+  write_counter/U51/Y (AOI22X1)                           0.13       1.30 f
+  write_counter/U50/Y (OAI21X1)                           0.13       1.43 r
+  write_counter/U49/Y (OAI21X1)                           0.10       1.54 f
+  write_counter/U46/Y (OAI22X1)                           0.14       1.68 r
+  write_counter/U42/Y (OAI21X1)                           0.11       1.78 f
+  write_counter/U39/Y (OAI21X1)                           0.17       1.95 r
+  write_counter/U38/Y (NOR2X1)                            0.15       2.10 f
+  write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       2.10 f
+  wlast (out)                                             0.00       2.10 f
+  data arrival time                                                  2.10
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -45,29 +46,29 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:17:27 2026
+Date   : Mon Apr 20 14:24:49 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          560
-Number of nets:                           590
-Number of cells:                          365
-Number of combinational cells:            269
-Number of sequential cells:                46
+Number of ports:                         1047
+Number of nets:                          3100
+Number of cells:                         2318
+Number of combinational cells:           1644
+Number of sequential cells:               308
 Number of macros/black boxes:               0
-Number of buf/inv:                        103
-Number of references:                      11
+Number of buf/inv:                        518
+Number of references:                      29
 
-Combinational area:              67779.000000
-Buf/Inv area:                    14832.000000
-Noncombinational area:           72864.000000
+Combinational area:             504702.000000
+Buf/Inv area:                    75240.000000
+Noncombinational area:          487872.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                140643.000000
+Total cell area:                992574.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -81,7 +82,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Fri Apr 10 12:17:27 2026
+Date   : Mon Apr 20 14:24:49 2026
 ****************************************
 
 
@@ -108,12 +109,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  13.3242 mW   (69%)
-  Net Switching Power  =   5.9694 mW   (31%)
+  Cell Internal Power  =  79.8087 mW   (75%)
+  Net Switching Power  =  25.9844 mW   (25%)
                          ---------
-Total Dynamic Power    =  19.2936 mW  (100%)
+Total Dynamic Power    = 105.7931 mW  (100%)
 
-Cell Leakage Power     =  43.5551 nW
+Cell Leakage Power     = 314.4569 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -125,8 +126,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential         8.3971            0.2081           24.5170            8.6053  (  44.60%)
-combinational      4.9272            5.7612           19.0381           10.6884  (  55.40%)
+sequential        53.3860            2.4059          164.1572           55.7921  (  52.74%)
+combinational     26.4225           23.5785          150.2997           50.0011  (  47.26%)
 --------------------------------------------------------------------------------------------------
-Total             13.3242 mW         5.9694 mW        43.5551 nW        19.2937 mW
+Total             79.8084 mW        25.9844 mW       314.4569 nW       105.7932 mW
 1

@@ -1,6 +1,6 @@
 `timescale 1ns / 10ps
 
-module axi_manager_model (
+module CPU_axi_manager (
     input logic clk,
     input logic n_rst,
 
