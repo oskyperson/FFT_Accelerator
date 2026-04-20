@@ -4,29 +4,29 @@
 module fft_axi_manager (
     input logic clk, n_rst,
     // write address
-    input logic awready,
-    output logic [31:0] awaddr,
-    output logic [9:0] awlen,
-    output logic awvalid, 
+    input logic fft_man_awready,
+    output logic [31:0] fft_man_awaddr,
+    output logic [9:0] fft_man_awlen,
+    output logic fft_man_awvalid, 
     // write data
-    input logic wready,
-    output logic [31:0] wdata,
-    output logic [1:0] wstrb,
-    output logic wlast, wvalid,
+    input logic fft_man_wready,
+    output logic [31:0] fft_man_wdata,
+    output logic [1:0] fft_man_wstrb,
+    output logic fft_man_wlast, fft_man_wvalid,
     // write response
-    input logic bresp, bvalid,
-    output logic bready,
+    input logic fft_man_bresp, fft_man_bvalid,
+    output logic fft_man_bready,
     // read address
-    input logic arready,
-    output logic [31:0] araddr,
-    output logic [9:0] arlen,
-    output logic arvalid,
+    input logic fft_man_arready,
+    output logic [31:0] fft_man_araddr,
+    output logic [9:0] fft_man_arlen,
+    output logic fft_man_arvalid,
     // read data
-    input logic rlast, rvalid,
-    input logic [31:0] rdata,
-    output logic rready,
+    input logic fft_man_rlast, fft_man_rvalid,
+    input logic [31:0] fft_man_rdata,
+    output logic fft_man_rready,
     // read response
-    input logic rresp,
+    input logic fft_man_rresp,
 
     // configs from subordinate
     input logic [7:0][31:0] config_reg,
@@ -80,7 +80,7 @@ always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
         frame_size <= 10'd512;
     end else if (wstate == WIDLE && rstate == RIDLE) begin
         load_size <= 1;
-        frame_size <= arlen + 1;
+        frame_size <= fft_man_arlen + 1;
     end
 end
 
@@ -160,9 +160,9 @@ always_comb begin : next_rstate_logic
         RIDLE:
             next_rstate = (processing && k != 0 && wstate == WIDLE) ? RADDR : RIDLE;
         RADDR:
-            next_rstate = arready ? RDATA : RADDR;
+            next_rstate = fft_man_arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = rresp ? RERR : (rvalid && rready && rcounter_last) ? RIDLE : RDATA;
+            next_rstate = fft_man_rresp ? RERR : (fft_man_rvalid && fft_man_rready && rcounter_last) ? RIDLE : RDATA;
         RERR:
             next_rstate = RIDLE;
         default:
@@ -172,29 +172,29 @@ end
 
 always_ff @(posedge clk, negedge n_rst) begin : reg_araddr
     if (!n_rst) begin
-        araddr <= '0;
+        fft_man_araddr <= '0;
     end else if (rstate == RIDLE && next_rstate == RADDR) begin
-        araddr <= configs[1] + r_offset;
+        fft_man_araddr <= configs[1] + r_offset;
     end
 end
 
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .clk(clk),
     .n_rst(n_rst),
-    .len(arlen),
-    .ready(rready),
-    .valid(rvalid),
-    .resp(rresp),
+    .len(fft_man_arlen),
+    .ready(fft_man_rready),
+    .valid(fft_man_rvalid),
+    .resp(fft_man_rresp),
     .last(rcounter_last),
     .i(rcount)
 );
 
 always_comb begin : read_output_logic
-    arlen = configs[2][9:0];
-    arvalid = (rstate == RADDR);
-    rready = (rstate == RDATA);
-    data_in = rdata;
-    in_valid = rready && rvalid;
+    fft_man_arlen = configs[2][9:0];
+    fft_man_arvalid = (rstate == RADDR);
+    fft_man_rready = (rstate == RDATA);
+    data_in = fft_man_rdata;
+    in_valid = fft_man_rready && fft_man_rvalid;
 end
 
 always_ff @ (posedge clk, negedge n_rst) begin : wstate_reg
@@ -210,11 +210,11 @@ always_comb begin : next_wstate_logic
         WIDLE:
             next_wstate = (processing && j_gt_0 && j_eq_k && rstate == RIDLE) ? WADDR : WIDLE;
         WADDR:
-            next_wstate = awready ? WDATA : WADDR;
+            next_wstate = fft_man_awready ? WDATA : WADDR;
         WDATA:
-            next_wstate = (wlast && wready) ? B : WDATA;
+            next_wstate = (fft_man_wlast && fft_man_wready) ? B : WDATA;
         B: 
-            next_wstate = bvalid ? WIDLE : B;
+            next_wstate = fft_man_bvalid ? WIDLE : B;
         default:
             next_wstate = WIDLE;
     endcase
@@ -222,9 +222,9 @@ end
 
 always_ff @(posedge clk, negedge n_rst) begin : reg_awaddr
     if (!n_rst) begin
-        awaddr <= '0;
+        fft_man_awaddr <= '0;
     end else if (wstate == WIDLE && next_wstate == WADDR) begin
-        awaddr <= configs[3] + w_offset;
+        fft_man_awaddr <= configs[3] + w_offset;
     end
 end
 
@@ -232,22 +232,22 @@ end
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .clk(clk),
     .n_rst(n_rst),
-    .len(awlen),
-    .ready(wready),
-    .valid(wvalid),
+    .len(fft_man_awlen),
+    .ready(fft_man_wready),
+    .valid(fft_man_wvalid),
     .resp(1'd0),
-    .last(wlast),
+    .last(fft_man_wlast),
     .i(wcount)
 );
 /* verilator lint_on PINCONNECTEMPTY */
 
 always_comb begin : write_output_logic
-    awlen = configs[4][9:0];
-    awvalid = (wstate == WADDR);
-    wvalid = (wstate == WDATA) && out_valid;
-    wstrb = configs[5][1:0];
-    wdata = data_out;
-    bready = (wstate == B);
+    fft_man_awlen = configs[4][9:0];
+    fft_man_awvalid = (wstate == WADDR);
+    fft_man_wvalid = (wstate == WDATA) && out_valid;
+    fft_man_wstrb = configs[5][1:0];
+    fft_man_wdata = data_out;
+    fft_man_bready = (wstate == B);
 end
 
 endmodule

@@ -34,7 +34,7 @@ module tb_fft_axi_manager ();
 
     // write address
     logic awready;
-    logic [31:0] awaddr; // Updated to 32 bits
+    logic [31:0] awaddr;
     logic [9:0] awlen;
     logic awvalid; 
     // write data
@@ -69,7 +69,38 @@ module tb_fft_axi_manager ();
     logic load_size;
     logic [9:0] frame_size;
 
-    fft_axi_manager DUT (.*);
+    fft_axi_manager DUT (
+        .clk(clk),
+        .n_rst(n_rst),
+        .fft_man_awready(awready),
+        .fft_man_awaddr(awaddr),
+        .fft_man_awlen(awlen),
+        .fft_man_awvalid(awvalid),
+        .fft_man_wready(wready),
+        .fft_man_wdata(wdata),
+        .fft_man_wstrb(wstrb),
+        .fft_man_wlast(wlast),
+        .fft_man_wvalid(wvalid),
+        .fft_man_bresp(bresp),
+        .fft_man_bvalid(bvalid),
+        .fft_man_bready(bready),
+        .fft_man_arready(arready),
+        .fft_man_araddr(araddr),
+        .fft_man_arlen(arlen),
+        .fft_man_arvalid(arvalid),
+        .fft_man_rlast(rlast),
+        .fft_man_rvalid(rvalid),
+        .fft_man_rdata(rdata),
+        .fft_man_rready(rready),
+        .fft_man_rresp(rresp),
+        .config_reg(config_reg),
+        .data_out(data_out),
+        .out_valid(out_valid),
+        .data_in(data_in),
+        .in_valid(in_valid),
+        .load_size(load_size),
+        .frame_size(frame_size)
+    );
 
     axi_subordinate_model BFM (.*);
 
@@ -107,7 +138,7 @@ module tb_fft_axi_manager ();
     // fft model logic
     logic [31:0] current_frame_len;
     logic [31:0] pipe_memory [0:1023];
-    integer wr_ptr; // Separate pointers for clarity
+    integer wr_ptr; 
     integer rd_ptr;
 
     always_comb begin
@@ -120,20 +151,13 @@ module tb_fft_axi_manager ();
             fft_done <= 0;
             data_out <= 0;
         end else begin
-            // Whenever a new number comes in
             if (in_valid) begin
-                // 1. Output the "old" data at the current pointer
                 data_out <= pipe_memory[wr_ptr];
-                
-                // 2. Write the "new" data into that same slot
                 pipe_memory[wr_ptr] <= data_in;
-                
-                // 3. Increment pointer
                 if (wr_ptr >= current_frame_len - 1)
                     wr_ptr <= 0;
                 else
                     wr_ptr <= wr_ptr + 1;
-
             end if (DUT.rstate == 0 && DUT.wstate == 0) begin
                 fft_done <= 1;
             end else begin
@@ -150,7 +174,6 @@ module tb_fft_axi_manager ();
         fft_done = 0;
         test = "IDLE";
 
-        // Memory initialization loop updated for 32-bit index
         for (integer i = 0; i < 2048; i++) begin
             BFM.mem[32'(i)] = i; 
         end

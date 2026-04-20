@@ -60,7 +60,32 @@ module tb_fft_axi_subordinate ();
     // config_reg from subordinate
     logic [7:0][31:0] config_reg;
 
-    fft_axi_subordinate #() sub0 (.*);
+    fft_axi_subordinate #() sub0 (
+        .clk(clk),
+        .n_rst(n_rst),
+        .fft_sub_awready(awready),
+        .fft_sub_awaddr(awaddr),
+        .fft_sub_awlen(awlen),
+        .fft_sub_awvalid(awvalid),
+        .fft_sub_wready(wready),
+        .fft_sub_wdata(wdata),
+        .fft_sub_wstrb(wstrb),
+        .fft_sub_wlast(wlast),
+        .fft_sub_wvalid(wvalid),
+        .fft_sub_bresp(bresp),
+        .fft_sub_bvalid(bvalid),
+        .fft_sub_bready(bready),
+        .fft_sub_arready(arready),
+        .fft_sub_araddr(araddr),
+        .fft_sub_arlen(arlen),
+        .fft_sub_arvalid(arvalid),
+        .fft_sub_rlast(rlast),
+        .fft_sub_rvalid(rvalid),
+        .fft_sub_rdata(rdata),
+        .fft_sub_rready(rready),
+        .fft_sub_rresp(rresp),
+        .config_reg(config_reg)
+    );
 
     CPU_axi_manager #() BFM (.*);
 
