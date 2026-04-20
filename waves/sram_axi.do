@@ -38,8 +38,9 @@ add wave -noupdate /tb_sram_axi/DUT/waddr_reg
 add wave -noupdate /tb_sram_axi/DUT/wlen_reg
 add wave -noupdate /tb_sram_axi/DUT/rlen_reg
 add wave -noupdate /tb_sram_axi/DUT/raddr_reg
+add wave -noupdate -expand /tb_sram_axi/SRAM/mem
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {127698 ps} 0}
+WaveRestoreCursors {{Cursor 1} {134164 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -55,4 +56,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {713295 ps}
+WaveRestoreZoom {0 ps} {777 ns}

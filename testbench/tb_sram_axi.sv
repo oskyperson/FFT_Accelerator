@@ -12,22 +12,22 @@ module tb_sram_axi ();
 
     logic clk, n_rst;
 
-    // --- AXI Bus Wires (Manager to DUT) ---
-    logic [10:0] awaddr, araddr;
+    //AXI
+    logic [31:0] awaddr, araddr;
     logic        awvalid, arvalid, awready, arready;
     logic [9:0]  awlen, arlen;
     logic [31:0] wdata, rdata;
     logic [1:0]  wstrb, rresp, bresp;
     logic        wlast, rlast, wvalid, rvalid, wready, rready, bvalid, bready;
 
-    // --- SRAM Interface Wires (DUT to Memory) ---
+    //SRAM
     logic [3:0]  wen;
     logic        ren;
     logic [31:0] read_data, write_data;
-    logic [9:0]  read_addr, write_addr;
+    logic [31:0]  read_addr, write_addr;
     logic        read_valid, write_valid;
 
-    // clockgen
+    
     always begin
         clk = 0;
         #(CLK_PERIOD / 2.0);
@@ -47,24 +47,23 @@ module tb_sram_axi ();
         end
     endtask
 
-    // --- Instantiate Components ---
     
-    // 1. AXI Manager BFM
+    
+    
     axi_manager_model BFM (.*);
 
-    // 2. The DUT (SRAM AXI Subordinate)
+    
     sram_axi #() DUT (.*);
 
-    // 3. The SRAM Memory Model
+    
     sram_model #() SRAM (.*);
 
-    // Queues for Test Data Handling
+    
     logic [31:0] w_queue [$];
     logic [31:0] r_queue [$];
 
     initial begin
-        // Force BFM outputs to 0 temporarily to prevent X-state propagation 
-        // through the DUT logic before the first tasks are called.
+        
         force BFM.awvalid = 0;
         force BFM.wvalid  = 0;
         force BFM.bready  = 0;
@@ -85,37 +84,36 @@ module tb_sram_axi ();
         n_rst = 1;
         reset_dut;
 
-        // ---------------------------------------------------------
-        // TEST 1: Single Word Write and Read (Base Address)
-        // ---------------------------------------------------------
-        $display("========================================");
+         
+ 
+         
+
         $display(" TEST 1: Single Word Access (Addr 15)");
-        $display("========================================");
+
         w_queue.delete();
         w_queue.push_back(32'hDEADBEEF);
         
-        BFM.write_burst(11'd15, w_queue);
-        BFM.read_burst(11'd15, 1, r_queue);
+        BFM.write_burst(32'd15, w_queue);
+        BFM.read_burst(32'd15, 1, r_queue);
         
         if (r_queue[0] == 32'hDEADBEEF)
             $display(" -> [PASS] Read matched written data: %h\n", r_queue[0]);
         else
             $display(" -> [FAIL] Expected DEADBEEF, got: %h\n", r_queue[0]);
 
-        // ---------------------------------------------------------
-        // TEST 2: Multi-Beat Burst Write and Read
-        // ---------------------------------------------------------
-        $display("========================================");
+
+         
+
         $display(" TEST 2: 4-Beat Burst Access (Addr 20)");
-        $display("========================================");
+
         w_queue.delete();
         w_queue.push_back(32'h11111111);
         w_queue.push_back(32'h22222222);
         w_queue.push_back(32'h33333333);
         w_queue.push_back(32'h44444444);
         
-        BFM.write_burst(11'd20, w_queue);
-        BFM.read_burst(11'd20, 4, r_queue);
+        BFM.write_burst(31'd20, w_queue);
+        BFM.read_burst(31'd20, 4, r_queue);
         
         for(int i = 0; i < 4; i++) begin
             if (r_queue[i] == w_queue[i])
@@ -125,36 +123,36 @@ module tb_sram_axi ();
         end
         $display("");
 
-        // ---------------------------------------------------------
-        // TEST 3: Edge Case (Upper Address Boundary)
-        // ---------------------------------------------------------
+         
+
+         
         
-        $display("========================================");
+
         $display(" TEST 3: Upper Boundary Access (Addr 1038)");
-        $display("========================================");
+
         w_queue.delete();
         w_queue.push_back(32'hCAFEBABE);
         
-        BFM.write_burst(11'd1038, w_queue);
-        BFM.read_burst(11'd1038, 1, r_queue);
+        BFM.write_burst(32'd1038, w_queue);
+        BFM.read_burst(32'd1038, 1, r_queue);
         
         if (r_queue[0] == 32'hCAFEBABE)
             $display(" -> [PASS] Read matched written data: %h\n", r_queue[0]);
         else
             $display(" -> [FAIL] Expected CAFEBABE, got: %h\n", r_queue[0]);
 
-        $display("========================================");
+
         $display(" TEST 4: Simultaneous Read and Write");
-        $display("========================================");
+
         w_queue.delete();
         w_queue.push_back(32'h11111111);
         w_queue.push_back(32'h22222222);
 
         fork
-            // Start Write to Addr 30
-            BFM.write_burst(11'd30, w_queue);
-            // Start Read from Addr 20 (previously written in Test 2)
-            BFM.read_burst(11'd20, 2, r_queue);
+
+            BFM.write_burst(32'd30, w_queue);
+
+            BFM.read_burst(32'd20, 2, r_queue);
         join
 
         for(int i = 0; i < 2; i++) begin
@@ -164,7 +162,7 @@ module tb_sram_axi ();
                 $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
         end
         
-        BFM.read_burst(11'd30, 2, r_queue);
+        BFM.read_burst(32'd30, 2, r_queue);
 
         for(int i = 0; i < 2; i++) begin
             if (r_queue[i] == w_queue[i])
@@ -172,10 +170,6 @@ module tb_sram_axi ();
             else
                 $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
         end
-        $display("========================================");
-        $display(" SIMULATION COMPLETE ");
-        $display("========================================");
-
         $finish;
     end
 endmodule

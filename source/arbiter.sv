@@ -5,7 +5,7 @@ module arbiter #(
 ) (
     input logic clk, n_rst,
     
-    input logic [10:0] cpu_awaddr, cpu_araddr,
+    input logic [31:0] cpu_awaddr, cpu_araddr,
     input logic cpu_awvalid, cpu_arvalid,
     output logic cpu_awready, cpu_arready,
     input logic [31:0] cpu_wdata,
@@ -20,7 +20,7 @@ module arbiter #(
     output logic cpu_bresp,
 
     
-    input logic [10:0] fft_man_awaddr,  fft_man_araddr,
+    input logic [31:0] fft_man_awaddr,  fft_man_araddr,
     input logic fft_man_awvalid, fft_man_arvalid,
     output logic fft_man_awready, fft_man_arready,
     input logic [31:0] fft_man_wdata, 
@@ -35,7 +35,7 @@ module arbiter #(
     output logic fft_man_bresp,
 
     
-    output logic [10:0] sram_awaddr, sram_araddr,
+    output logic [31:0] sram_awaddr, sram_araddr,
     output logic sram_awvalid, sram_arvalid,
     input logic sram_awready, sram_arready,
     output logic [31:0] sram_wdata, 
@@ -50,7 +50,7 @@ module arbiter #(
     input logic sram_bresp,
 
     
-    output logic [10:0] fft_sub_awaddr, fft_sub_araddr,
+    output logic [31:0] fft_sub_awaddr, fft_sub_araddr,
     output logic fft_sub_awvalid, fft_sub_arvalid,
     input logic fft_sub_awready, fft_sub_arready,
     output logic [31:0] fft_sub_wdata, 
@@ -160,14 +160,14 @@ module arbiter #(
         w_next_dest = w_dest;
         if (w_state == IDLE) begin
             if (w_addr < 15) w_next_dest = 2'b01; // FFT_SUB
-            else if (w_addr <= 1038) w_next_dest = 2'b10; // SRAM
+            else if (w_addr >= 15) w_next_dest = 2'b10; // SRAM
             else w_next_dest = 2'b00;
         end else if (w_done) w_next_dest = 2'b00;
 
         
         if (r_state == IDLE) begin
             if (r_addr < 15) r_next_dest = 2'b01; // FFT_SUB
-            else if (r_addr <= 1038) r_next_dest = 2'b10; // SRAM
+            else if (r_addr >= 15) r_next_dest = 2'b10; // SRAM
             else r_next_dest = 2'b00;
         end else if (r_done) r_next_dest = 2'b00;
     end
