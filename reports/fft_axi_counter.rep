@@ -1,0 +1,143 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fft_axi_counter
+Version: W-2024.09-SP4
+Date   : Thu Apr 16 01:19:33 2026
+****************************************
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: i_reg[1] (rising edge-triggered flip-flop)
+  Endpoint: last (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  i_reg[1]/CLK (DFFSR)                     0.00       0.00 r
+  i_reg[1]/Q (DFFSR)                       0.49       0.49 r
+  U94/Y (INVX1)                            0.28       0.78 f
+  U92/Y (OAI21X1)                          0.14       0.91 r
+  U91/Y (INVX1)                            0.13       1.04 f
+  U90/Y (AOI22X1)                          0.14       1.18 r
+  U89/Y (OAI21X1)                          0.09       1.26 f
+  U88/Y (OAI21X1)                          0.17       1.44 r
+  U87/Y (INVX1)                            0.14       1.57 f
+  U85/Y (OAI21X1)                          0.12       1.70 r
+  U84/Y (OAI21X1)                          0.11       1.80 f
+  U83/Y (OAI22X1)                          0.17       1.98 r
+  U81/Y (INVX1)                            0.14       2.11 f
+  U79/Y (AOI22X1)                          0.12       2.24 r
+  U78/Y (OAI21X1)                          0.09       2.32 f
+  U77/Y (OAI21X1)                          0.15       2.47 r
+  U75/Y (INVX1)                            0.13       2.61 f
+  U73/Y (AOI22X1)                          0.12       2.73 r
+  U72/Y (OAI21X1)                          0.09       2.81 f
+  U71/Y (OAI21X1)                          0.12       2.94 r
+  U70/Y (OAI21X1)                          0.09       3.02 f
+  U69/Y (OAI21X1)                          0.17       3.19 r
+  U68/Y (INVX1)                            0.12       3.32 f
+  U65/Y (NOR2X1)                           0.06       3.37 r
+  last (out)                               0.00       3.37 r
+  data arrival time                                   3.37
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : fft_axi_counter
+Version: W-2024.09-SP4
+Date   : Thu Apr 16 01:19:33 2026
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+Number of ports:                           46
+Number of nets:                           136
+Number of cells:                           94
+Number of combinational cells:             73
+Number of sequential cells:                10
+Number of macros/black boxes:               0
+Number of buf/inv:                         22
+Number of references:                      10
+
+Combinational area:              19062.000000
+Buf/Inv area:                     3168.000000
+Noncombinational area:           15840.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 34902.000000
+Total area:                 undefined
+1
+Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : fft_axi_counter
+Version: W-2024.09-SP4
+Date   : Thu Apr 16 01:19:34 2026
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   1.8620 mW   (59%)
+  Net Switching Power  =   1.2698 mW   (41%)
+                         ---------
+Total Dynamic Power    =   3.1318 mW  (100%)
+
+Cell Leakage Power     =  11.2256 nW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         1.1537        5.9098e-03            5.3298            1.1596  (  37.03%)
+combinational      0.7083            1.2639            5.8958            1.9722  (  62.97%)
+--------------------------------------------------------------------------------------------------
+Total              1.8620 mW         1.2698 mW        11.2256 nW         3.1318 mW
+1

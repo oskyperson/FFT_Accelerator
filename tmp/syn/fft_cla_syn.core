@@ -1,0 +1,15 @@
+CAPI=2:
+name: "team42:ece337:fft_cla_syn"
+
+filesets:
+    netlist:
+        files:
+            - "fft_cla.v"
+        file_type: systemVerilogSource
+
+targets:
+    default:
+        filesets:
+            - netlist
+        toplevel: fft_cla
+

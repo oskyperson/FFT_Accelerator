@@ -7,8 +7,9 @@ filesets:
         files:
             - "source/fft_axi_manager.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        depend:
+            - "team42:ece337:fft_axi_counter:1.0.0"
+            - "team42:ece337:fft_cla:1.0.0"
 
     synth:
         depend:
@@ -24,6 +25,7 @@ filesets:
         file_type: systemVerilogSource
         depend:
             - "team42:ece337:questafiles"
+            - "team42:ece337:axi_subordinate_model:1.0.0"
 
     synfiles:
         files:
