@@ -34,7 +34,7 @@ module tb_fft_axi_subordinate ();
 
     // write address
     logic awready;
-    logic [10:0] awaddr;
+    logic [31:0] awaddr;
     logic [9:0] awlen;
     logic awvalid; 
     // write data
@@ -47,7 +47,7 @@ module tb_fft_axi_subordinate ();
     logic bready;
     // read address
     logic arready;
-    logic [10:0] araddr;
+    logic [31:0] araddr;
     logic [9:0] arlen;
     logic arvalid;
     // read data
@@ -95,23 +95,23 @@ module tb_fft_axi_subordinate ();
 
         test = "1 config reg";
         w_queue.push_back(32'h00000001);
-        BFM.write_burst(11'd0, w_queue);
-        BFM.read_burst(11'd0, 1, r_queue);
+        BFM.write_burst(32'd0, w_queue);
+        BFM.read_burst(32'd0, 1, r_queue);
 
         test = "all config regs";
         w_queue.delete();
         for(int i = 0; i < 8; i++) begin
             w_queue.push_back(i);
         end
-        BFM.write_burst(11'd0, w_queue);
-        BFM.read_burst(11'd0, 8, r_queue);
+        BFM.write_burst(32'd0, w_queue);
+        BFM.read_burst(32'd0, 8, r_queue);
 
         test = "simultaneous read and write same reg";
         w_queue.delete();
         w_queue.push_back(32'h00000001);
         fork
-            BFM.write_burst(11'd0, w_queue);
-            BFM.read_burst(11'd0, 1, r_queue);
+            BFM.write_burst(32'd0, w_queue);
+            BFM.read_burst(32'd0, 1, r_queue);
         join
 
         test = "invalid write address";
@@ -119,14 +119,13 @@ module tb_fft_axi_subordinate ();
         for(int i = 0; i < 8; i++) begin
             w_queue.push_back(i);
         end
-        BFM.write_burst(11'd4, w_queue);
+        BFM.write_burst(32'd4, w_queue);
 
         test = "invalid read address";
-        BFM.read_burst(11'd4, 8, r_queue);
+        BFM.read_burst(32'd4, 8, r_queue);
 
         $finish;
     end
 endmodule
 
 /* verilator coverage_on */
-

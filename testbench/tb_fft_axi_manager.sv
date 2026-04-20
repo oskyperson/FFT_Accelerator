@@ -47,7 +47,7 @@ module tb_fft_axi_manager ();
     logic bready;
     // read address
     logic arready;
-    logic [31:0] araddr; // Updated to 32 bits
+    logic [31:0] araddr;
     logic [9:0] arlen;
     logic arvalid;
     // read data

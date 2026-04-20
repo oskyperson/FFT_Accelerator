@@ -1,9 +1,7 @@
 `timescale 1ns / 10ps
 
 /* verilator lint_off UNUSEDSIGNAL */
-module fft_axi_manager #(
-    // parameters
-) (
+module fft_axi_manager (
     input logic clk, n_rst,
     // write address
     input logic awready,
@@ -58,6 +56,23 @@ logic [9:0] wcount;
 
 logic [31:0] r_offset, w_offset;
 logic [31:0] r_frame_size, w_frame_size;
+logic [31:0] next_r_offset_val, next_w_offset_val;
+
+logic j_eq_k;
+logic k_gt_0;
+logic j_gt_0;
+
+always_ff @(posedge clk, negedge n_rst) begin
+    if (!n_rst) begin
+        j_eq_k <= 1'b0;
+        k_gt_0 <= 1'b0;
+        j_gt_0 <= 1'b0;
+    end else begin
+        j_eq_k <= (j == k);
+        k_gt_0 <= (k > 0);
+        j_gt_0 <= (j > 0);
+    end
+end
 
 always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
     if (!n_rst) begin
@@ -78,10 +93,26 @@ always_ff @ (posedge clk, negedge n_rst) begin : control_logic
             configs <= config_reg;
             processing <= 1;
         end
-    end else if (j == 0 && k == 0 && !(wstate == WIDLE && wstate == RIDLE)) begin
+    end else if (j == 0 && k == 0 && rstate == RIDLE && wstate == WIDLE) begin
         processing <= 0;
     end
 end
+
+fft_cla r_adder (
+    .a(r_offset),
+    .b(r_frame_size),
+    .cin(1'b0),
+    .sum(next_r_offset_val),
+    .cout()
+);
+
+fft_cla w_adder (
+    .a(w_offset),
+    .b(w_frame_size),
+    .cin(1'b0),
+    .sum(next_w_offset_val),
+    .cout()
+);
 
 always_ff @ (posedge clk, negedge n_rst) begin : counter_management
     if (!n_rst) begin
@@ -93,7 +124,7 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
         w_frame_size <= '0;
     end else if (!processing && config_reg[6][0]) begin 
         j <= config_reg[0][10:0];
-        k <= config_reg[0][10:0] + 11'd1;
+        k <= config_reg[0][10:0];
         r_frame_size <= 32'(config_reg[2][9:0]) + 32'd1;
         w_frame_size <= 32'(config_reg[4][9:0]) + 32'd1;
         
@@ -101,16 +132,16 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
         w_offset <= 32'd0;
 
     end else if (processing && rstate == RIDLE && wstate == WIDLE) begin
-        if (k > 0) begin
+        if (k_gt_0) begin
             k <= k - 11'd1;
-            if (k <= config_reg[0][10:0]) begin
-                r_offset <= r_offset + r_frame_size;
+            if (k <= configs[0][10:0]) begin
+                r_offset <= next_r_offset_val;
             end
         end
-        if (j > 0 && k == j) begin
+        if (j_gt_0 && j_eq_k) begin
             j <= j - 11'd1;
-            if (j < config_reg[0][10:0]) begin
-                w_offset <= w_offset + w_frame_size;
+            if (j < configs[0][10:0]) begin
+                w_offset <= next_w_offset_val;
             end
         end
     end
@@ -139,6 +170,14 @@ always_comb begin : next_rstate_logic
     endcase
 end
 
+always_ff @(posedge clk, negedge n_rst) begin : reg_araddr
+    if (!n_rst) begin
+        araddr <= '0;
+    end else if (rstate == RIDLE && next_rstate == RADDR) begin
+        araddr <= configs[1] + r_offset;
+    end
+end
+
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
     .clk(clk),
     .n_rst(n_rst),
@@ -152,7 +191,6 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 
 always_comb begin : read_output_logic
     arlen = configs[2][9:0];
-    araddr = (rstate == RIDLE) ? 32'h0 : (configs[1] + r_offset);
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
     data_in = rdata;
@@ -170,7 +208,7 @@ always_comb begin : next_wstate_logic
     next_wstate = wstate;
     case (wstate)
         WIDLE:
-            next_wstate = (processing && j != 0 && j == k && rstate == RIDLE) ? WADDR : WIDLE;
+            next_wstate = (processing && j_gt_0 && j_eq_k && rstate == RIDLE) ? WADDR : WIDLE;
         WADDR:
             next_wstate = awready ? WDATA : WADDR;
         WDATA:
@@ -180,6 +218,14 @@ always_comb begin : next_wstate_logic
         default:
             next_wstate = WIDLE;
     endcase
+end
+
+always_ff @(posedge clk, negedge n_rst) begin : reg_awaddr
+    if (!n_rst) begin
+        awaddr <= '0;
+    end else if (wstate == WIDLE && next_wstate == WADDR) begin
+        awaddr <= configs[3] + w_offset;
+    end
 end
 
 /* verilator lint_off PINCONNECTEMPTY */
@@ -197,7 +243,6 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 
 always_comb begin : write_output_logic
     awlen = configs[4][9:0];
-    awaddr = (wstate == WIDLE) ? 32'h0 : (configs[3] + w_offset);
     awvalid = (wstate == WADDR);
     wvalid = (wstate == WDATA) && out_valid;
     wstrb = configs[5][1:0];

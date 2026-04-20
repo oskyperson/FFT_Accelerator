@@ -4,7 +4,7 @@ module fft_axi_subordinate (
     input  logic clk, n_rst,
     // write address
     output logic awready,
-    input  logic [10:0] awaddr,
+    input  logic [31:0] awaddr,
     input  logic [9:0]  awlen,
     input  logic awvalid,
     // write data
@@ -18,7 +18,7 @@ module fft_axi_subordinate (
     input  logic bready,
     // read address
     output logic arready,
-    input  logic [10:0] araddr,
+    input  logic [31:0] araddr,
     input  logic [9:0]  arlen,
     input  logic arvalid,
     // read data
@@ -33,8 +33,8 @@ module fft_axi_subordinate (
 );
 
     logic [7:0][31:0] next_config_reg;
-    logic [10:0] awaddr_reg, next_awaddr;
-    logic [10:0] araddr_reg, next_araddr;
+    logic [31:0] awaddr_reg, next_awaddr;
+    logic [31:0] araddr_reg, next_araddr;
     /* verilator lint_off UNUSEDSIGNAL */
     logic [9:0] wcount, rcount;
     /* verilator lint_on UNUSEDSIGNAL */
@@ -49,12 +49,10 @@ module fft_axi_subordinate (
     logic write_addr_ok;
     logic read_addr_ok;
 
-    // calculates new index
     assign waddr_idx = awaddr_reg[2:0] + wcount[2:0];
     assign raddr_idx = araddr_reg[2:0] + rcount[2:0];
-    // determines of addr in bounds
-    assign write_addr_ok = (awaddr_reg[9:3] == 7'b0);
-    assign read_addr_ok  = (araddr_reg[9:3] == 7'b0);
+    assign write_addr_ok = (awaddr_reg[31:3] == 29'b0);
+    assign read_addr_ok  = (araddr_reg[31:3] == 29'b0);
 
     // --- Write Channel ---
 
@@ -106,7 +104,7 @@ module fft_axi_subordinate (
     always_comb begin : write_data_logic
         next_config_reg = config_reg;
 
-        if (wvalid && wready && write_addr_ok) begin
+        if (wvalid && wready && (next_awaddr[31:3] == 29'b0)) begin
             case (wstrb)
                 2'b00: next_config_reg[waddr_idx] = {16'h0000, wdata[15:0]};
                 2'b01: next_config_reg[waddr_idx] = {wdata[31:16], 16'h0000};
@@ -131,8 +129,7 @@ module fft_axi_subordinate (
 
         if (wvalid && wready && (wlast || write_last)) begin
             next_bvalid = 1'b1;
-
-            next_bresp = (awaddr_reg[9:3] != 7'b0) || (wcount[9:3]!= 7'b0) || (({1'b0, awaddr_reg[2:0]} + {1'b0, wcount[2:0]}) > 4'd7);
+            next_bresp = ({1'b0, awaddr_reg[2:0]} + {1'b0, wcount[2:0]}) > 4'd7;
         end else if (bready && bvalid) begin
             next_bvalid = 1'b0;
         end
@@ -193,7 +190,7 @@ module fft_axi_subordinate (
             next_rvalid = 1'b0;
         end
         if (rready && rvalid) begin
-            next_rresp = (araddr_reg[9:3] != 7'b0) || (rcount[9:3]!= 7'b0) || (({1'b0, araddr_reg[2:0]} + {1'b0, rcount[2:0]}) > 4'd7);
+            next_rresp = ({1'b0, araddr_reg[2:0]} + {1'b0, rcount[2:0]}) > 4'd7;
         end
     end
 
