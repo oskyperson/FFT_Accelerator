@@ -5,7 +5,7 @@ module axi_subordinate_model (
 
     // write address
     output logic awready,
-    input logic [10:0] awaddr,
+    input logic [31:0] awaddr, 
     input logic [9:0] awlen,
     input logic awvalid, 
 
@@ -22,7 +22,7 @@ module axi_subordinate_model (
 
     // read address
     output logic arready,
-    input logic [10:0] araddr,
+    input logic [31:0] araddr, 
     input logic [9:0] arlen,
     input logic arvalid,
 
@@ -35,13 +35,16 @@ module axi_subordinate_model (
     output logic rresp
 );
 
+    // Define the valid addressable range for this model
+    localparam [31:0] ADDR_MAX = 32'h0000_07FF; // Example: 2KB range
+
     // Associative array for sparse memory simulation
-    logic [31:0] mem [logic [10:0]];
+    logic [31:0] mem [logic [31:0]];
 
     // Queues for tracking pending transactions
-    logic [10:0] wr_addr_q [$];
+    logic [31:0] wr_addr_q [$];
     logic        wr_err_q [$]; 
-    logic [10:0] rd_addr_q [$];
+    logic [31:0] rd_addr_q [$];
     logic [9:0]  rd_len_q [$];
     logic        rd_err_q [$];
     integer wcount;
@@ -68,10 +71,10 @@ module axi_subordinate_model (
                 awready <= 1'b1;
                 if (awvalid && awready) begin
                     wr_addr_q.push_back(awaddr);
-                    wr_err_q.push_back((awaddr + awlen) > 512);
+                    // Check if the start or end of burst is out of range
+                    wr_err_q.push_back((awaddr > ADDR_MAX) || ((awaddr + awlen) > ADDR_MAX)); 
                     awready <= 1'b0;
                     repeat (2) @(posedge clk);
-                    // wcount = awaddr;
                 end
             end
 
@@ -82,14 +85,13 @@ module axi_subordinate_model (
                 if (wvalid && wready) begin
                     if (wr_addr_q.size() > 0) begin
                         mem[wr_addr_q[0]] = wdata;
-                        wr_addr_q[0] = wr_addr_q[0] + 1;
+                        wr_addr_q[0] = wr_addr_q[0] + 1'b1;
                     end
                     wready <= 1'b0;
                     if (wlast) begin
                         void'(wr_addr_q.pop_front());
                     end
-                    repeat (2) @(posedge clk);
-                    // wcount = wcount + 1;
+                    repeat (1) @(posedge clk);
                 end
             end
 
@@ -101,16 +103,13 @@ module axi_subordinate_model (
                     bvalid <= 1'b1;
                     bresp  <= wr_err_q.pop_front(); 
                     
-                    // Wait for manager to be ready
                     while (!bready) begin
                         @(posedge clk);
                     end
                     
-                    // Handshake occurs on this edge
                     @(posedge clk);
                     bvalid <= 1'b0;
                     bresp  <= 1'b0;
-                    // Processing delay after response handshake
                     repeat (2) @(posedge clk);
                 end
             end
@@ -122,7 +121,8 @@ module axi_subordinate_model (
                 if (arvalid && arready) begin
                     rd_addr_q.push_back(araddr);
                     rd_len_q.push_back(arlen);
-                    rd_err_q.push_back((araddr + arlen) > 512);
+                    // Check if the read request is out of range
+                    rd_err_q.push_back((araddr > ADDR_MAX) || ((araddr + arlen) > ADDR_MAX));
                     arready <= 1'b0;
                     repeat (2) @(posedge clk);
                 end
@@ -130,23 +130,22 @@ module axi_subordinate_model (
 
             // Read Data Channel
             forever begin
-                logic [10:0] curr_addr;
+                logic [31:0] curr_addr;
                 logic [9:0]  curr_len;
                 logic        curr_err;
                 
                 @(posedge clk);
                 if (rd_addr_q.size() > 0) begin
-                    // Pop the request
                     curr_addr = rd_addr_q.pop_front();
                     curr_len  = rd_len_q.pop_front();
                     curr_err  = rd_err_q.pop_front();
 
-                    // Delay BEFORE asserting rvalid to allow manager state transition
                     repeat (2) @(posedge clk);
 
                     for (int i = 0; i <= curr_len; i++) begin
                         rvalid <= 1'b1;
-                        rresp  <= ((i + araddr) > 512);
+                        // Trigger rresp if the specific beat address is out of range
+                        rresp  <= (curr_addr > ADDR_MAX);
                         rlast  <= (i == curr_len);
                         
                         if (mem.exists(curr_addr)) begin
@@ -163,9 +162,8 @@ module axi_subordinate_model (
                         rvalid <= 1'b0;
                         rresp  <= 1'b0;
                         rlast  <= 1'b0;
-                        curr_addr += 1;
+                        curr_addr += 1'b1;
                         
-                        // Delay between beats of a burst
                         repeat (2) @(posedge clk);
                     end
                 end

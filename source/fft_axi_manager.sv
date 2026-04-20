@@ -7,7 +7,7 @@ module fft_axi_manager #(
     input logic clk, n_rst,
     // write address
     input logic awready,
-    output logic [10:0] awaddr,
+    output logic [31:0] awaddr,
     output logic [9:0] awlen,
     output logic awvalid, 
     // write data
@@ -20,7 +20,7 @@ module fft_axi_manager #(
     output logic bready,
     // read address
     input logic arready,
-    output logic [10:0] araddr,
+    output logic [31:0] araddr,
     output logic [9:0] arlen,
     output logic arvalid,
     // read data
@@ -46,64 +46,39 @@ typedef enum logic [1:0] {WIDLE, WADDR, WDATA, B} wstate_t;
 
 rstate_t rstate, next_rstate;
 wstate_t wstate, next_wstate;
+
 logic [7:0][31:0] configs;
-logic new_config, next_new_config;
-logic [31:0] num_read_frames, num_write_frames;
-logic [31:0] j, next_j;
-logic [31:0] k, next_k;
+logic processing;
+logic [10:0] j, k;
 logic rcounter_last;
 logic [9:0] rcount;
 logic [9:0] wcount;
 
-always_ff @ (posedge clk, negedge n_rst) begin : config_capture
+always_ff @ (posedge clk, negedge n_rst) begin : control_logic
     if (!n_rst) begin
         configs <= '0;
-        new_config <= 0;
-    end else if (wstate == WIDLE && rstate == RIDLE && j == 0 && k == 0) begin
-        configs <= config_reg;
-        new_config <= next_new_config;
+        processing <= 0;
+    end else if (!processing) begin
+        if (config_reg[6][0]) begin
+            configs <= config_reg;
+            processing <= 1;
+        end
+    end else if (j == 0 && k == 0 && !fft_done) begin
+        processing <= 0;
     end
 end
 
-always_comb begin : new_config_logic
-    next_new_config = 0;
-    if (wstate == WIDLE && rstate == RIDLE && j == 0 && k == 0 && !new_config)
-        next_new_config = 1;
-end
-
-always_comb begin : frame_numbers
-    num_read_frames = configs[0] + 1'b1;
-    num_write_frames = configs[0];
-end
-
-always_ff @ (posedge clk, negedge n_rst) begin : write_frame_num_reg
-    if (!n_rst)
+always_ff @ (posedge clk, negedge n_rst) begin : counter_management
+    if (!n_rst) begin
         j <= '0;
-    else
-        j <= next_j;
-end
-
-always_comb begin : next_j_logic
-    next_j = j;
-    if (new_config)
-        next_j = num_write_frames;
-    else if (k == j && fft_done)
-        next_j = j - 1;
-end
-
-always_ff @ (posedge clk, negedge n_rst) begin : read_frame_num_reg
-    if (!n_rst)
         k <= '0;
-    else
-        k <= next_k;
-end
-
-always_comb begin : next_k_logic
-    next_k = k;
-    if (new_config)
-        next_k = num_read_frames;
-    else if (k > 0 && fft_done)
-        next_k = k - 1;    
+    end else if (!processing && config_reg[6][0]) begin 
+        j <= config_reg[0][10:0];
+        k <= config_reg[0][10:0] + 1;
+    end else if (processing && rstate == RIDLE && wstate == WIDLE) begin
+        if (k > 0) k <= k - 1;
+        if (j > 0 && k == j) j <= j - 1;
+    end
 end
 
 always_ff @ (posedge clk, negedge n_rst) begin : rstate_reg
@@ -117,11 +92,11 @@ always_comb begin : next_rstate_logic
     next_rstate = rstate;
     case (rstate)
         RIDLE:
-            next_rstate = k != 0 ? RADDR : RIDLE;
+            next_rstate = (processing && k != 0 && wstate == WIDLE) ? RADDR : RIDLE;
         RADDR:
             next_rstate = arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = rresp ? RERR : (rvalid && rready && (rcounter_last)) ? RIDLE : RDATA;
+            next_rstate = rresp ? RERR : (rvalid && rready && rcounter_last) ? RIDLE : RDATA;
         RERR:
             next_rstate = RIDLE;
         default:
@@ -141,8 +116,8 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 );
 
 always_comb begin : read_output_logic
-    araddr = (rstate == RIDLE) ? 0 : configs[1][10:0];
     arlen = configs[2][9:0];
+    araddr = (rstate == RIDLE) ? 32'h0 : (configs[1] + (32'(configs[0][10:0]) - 32'(k)) * (32'(arlen) + 1));
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
     data_in = rdata;
@@ -160,7 +135,7 @@ always_comb begin : next_wstate_logic
     next_wstate = wstate;
     case (wstate)
         WIDLE:
-            next_wstate = (out_valid && j != 0) ? WADDR : WIDLE;
+            next_wstate = (processing && j != 0 && j == k && rstate == RIDLE) ? WADDR : WIDLE;
         WADDR:
             next_wstate = awready ? WDATA : WADDR;
         WDATA:
@@ -172,20 +147,22 @@ always_comb begin : next_wstate_logic
     endcase
 end
 
+/* verilator lint_off PINCONNECTEMPTY */
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
     .clk(clk),
     .n_rst(n_rst),
     .len(awlen),
     .ready(wready),
     .valid(wvalid),
-    .resp(bresp),
+    .resp(1'd0),
     .last(wlast),
     .i(wcount)
 );
+/* verilator lint_on PINCONNECTEMPTY */
 
 always_comb begin : write_output_logic
-    awaddr = (wstate == WIDLE) ? 0 : configs[3][10:0];
     awlen = configs[4][9:0];
+    awaddr = (wstate == WIDLE) ? 32'h0 : (configs[3] + (32'(configs[0][10:0]) - 32'(j) - 1) * (32'(awlen) + 1));
     awvalid = (wstate == WADDR);
     wvalid = (wstate == WDATA) && out_valid;
     wstrb = configs[5][1:0];

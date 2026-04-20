@@ -3,7 +3,7 @@
 
 module tb_fft_axi_manager ();
 
-    localparam CLK_PERIOD = 10ns;
+    localparam CLK_PERIOD = 20ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -34,7 +34,7 @@ module tb_fft_axi_manager ();
 
     // write address
     logic awready;
-    logic [10:0] awaddr;
+    logic [31:0] awaddr; // Updated to 32 bits
     logic [9:0] awlen;
     logic awvalid; 
     // write data
@@ -47,7 +47,7 @@ module tb_fft_axi_manager ();
     logic bready;
     // read address
     logic arready;
-    logic [10:0] araddr;
+    logic [31:0] araddr; // Updated to 32 bits
     logic [9:0] arlen;
     logic arvalid;
     // read data
@@ -79,66 +79,59 @@ module tb_fft_axi_manager ();
         input [31:0] w_addr,
         input [31:0] w_len
     );
-        // Wait for idle before applying new config
-        wait(rstate == RIDLE && wstate == WIDLE && j == 0 && k == 0);
+        wait(DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE && DUT.j == 0 && DUT.k == 0);
         @(posedge clk);
         config_reg[0] = frames;
         config_reg[1] = r_addr;
         config_reg[2] = r_len;
         config_reg[3] = w_addr;
         config_reg[4] = w_len;
-        config_reg[5] = 32'h3; // wstrb for 32-bit data
-        
-        // Wait for capture
+        config_reg[5] = 32'h3;
+
+        config_reg[6][0] = 1; 
+        config_reg[7] = 1;
+
         @(posedge clk);
+        config_reg[6][0] = 0;
         #1; 
     endtask
 
     task wait_completion();
-        // Wait for counters to clear and states to return to idle
-        wait(j == 0 && k == 0 && rstate == RIDLE && wstate == WIDLE);
+        wait(DUT.j == 0 && DUT.k == 0 && DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE);
         repeat(5) @(posedge clk);
     endtask
 
-    // fft model (basically a shft reg)
+    // fft model logic
     logic [31:0] current_frame_len;
-    logic [31:0] pipe_memory [0:1023]; // Large enough for max frame
-    integer pipe_ptr;
-    integer valid_count;
+    logic [31:0] pipe_memory [0:1023];
+    integer wr_ptr; // Separate pointers for clarity
+    integer rd_ptr;
 
     always_comb begin
-        // len is N-1, so add 1 to get the number of samples
-        current_frame_len = configs[2] + 1; 
+        current_frame_len = DUT.configs[2] + 1; 
     end
 
     always @(posedge clk) begin
         if (!n_rst) begin
-            pipe_ptr <= 0;
-            valid_count <= 0;
-            out_valid <= 0;
+            wr_ptr <= 0;
             fft_done <= 0;
+            data_out <= 0;
         end else begin
-            // Input logic
+            // Whenever a new number comes in
             if (in_valid) begin
-                pipe_memory[pipe_ptr] <= data_in;
-                // Wrap pointer based on the specific frame length configured
-                pipe_ptr <= (pipe_ptr >= current_frame_len - 1) ? 0 : pipe_ptr + 1;
+                // 1. Output the "old" data at the current pointer
+                data_out <= pipe_memory[wr_ptr];
                 
-                if (valid_count < (current_frame_len * 2)) begin
-                    valid_count <= valid_count + 1;
-                end
-            end
+                // 2. Write the "new" data into that same slot
+                pipe_memory[wr_ptr] <= data_in;
+                
+                // 3. Increment pointer
+                if (wr_ptr >= current_frame_len - 1)
+                    wr_ptr <= 0;
+                else
+                    wr_ptr <= wr_ptr + 1;
 
-            // Output logic: Flush after 'current_frame_len' samples are received
-            if (valid_count >= current_frame_len && wstate == WADDR) begin
-                out_valid <= 1;
-            end else if (wlast && wready) begin
-                out_valid <= 0;
-            end
-
-            data_out <= pipe_memory[pipe_ptr];
-
-            if (wlast && wready) begin
+            end if (DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE) begin
                 fft_done <= 1;
             end else begin
                 fft_done <= 0;
@@ -146,35 +139,43 @@ module tb_fft_axi_manager ();
         end
     end
 
+    assign out_valid = in_valid;
+
     initial begin
         n_rst = 1;
+        config_reg = '0; 
         fft_done = 0;
+        test = "IDLE";
+
+        // Memory initialization loop updated for 32-bit index
+        for (integer i = 0; i < 2048; i++) begin
+            BFM.mem[32'(i)] = i; 
+        end
+        
         reset_dut;
 
-        // 1. Max frame numbers (512 numbers per frame)
-        // AXI len is N-1, so 511
-        configure_run(0, 32'h0, 32'd511, 32'h400, 32'd511);
+        test = "1 frame max samples";
+        configure_run(32'd1, 32'h0, 32'd511, 32'h800, 32'd511);
         wait_completion();
 
-        // 2. Min frame number (2 numbers per frame)
-        configure_run(0, 32'h0, 32'd1, 32'h400, 32'd1);
+        test = "1 frame min samples";
+        configure_run(32'd1, 32'h0, 32'd1, 32'h800, 32'd1);
         wait_completion();
 
-        // 3. Invalid address/size (Address 256 + 512 numbers)
-        // Total range: 256 to 768. 
-        configure_run(0, 32'd256, 32'd511, 32'd256, 32'd511);
+        test = "2 frames max samples";
+        configure_run(32'd2, 32'h0, 32'd511, 32'h800, 32'd511);
         wait_completion();
 
-        // 5. Max frame number for a total of 2 frames
-        // config[0] = 1 results in 2 read frames (1+1) and 1 write frame based on module logic
-        // To get 2 full cycles, we set frames to 1
-        configure_run(1, 32'h0, 32'd511, 32'h400, 32'd511);
+        test = "2 frames min samples";
+        configure_run(32'd2, 32'h0, 32'd1, 32'h800, 32'd1);
+        wait_completion();
+
+        test = "1 frame offset address";
+        configure_run(32'd1, 32'd128, 32'd255, 32'd128, 32'd255);
         wait_completion();
 
         $display("Testbench finished");
         $finish;
     end
 endmodule
-
 /* verilator coverage_on */
-

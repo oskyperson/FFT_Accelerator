@@ -46,8 +46,13 @@ add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/read_counter/i
 add wave -noupdate -divider {write counter}
 add wave -noupdate /tb_fft_axi_manager/DUT/write_counter/last
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/write_counter/i
+add wave -noupdate -divider {interal signals}
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/j
+add wave -noupdate -radix unsigned -childformat {{{/tb_fft_axi_manager/DUT/k[10]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[9]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[8]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[7]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[6]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[5]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[4]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[3]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[2]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[1]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[0]} -radix unsigned}} -subitemconfig {{/tb_fft_axi_manager/DUT/k[10]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[9]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[8]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[7]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[6]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[5]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[4]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[3]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[2]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[1]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[0]} {-height 16 -radix unsigned}} /tb_fft_axi_manager/DUT/k
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/processing
+add wave -noupdate -radix unsigned -childformat {{{/tb_fft_axi_manager/DUT/configs[7]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[6]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[5]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[4]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[3]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[2]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[1]} -radix unsigned} {{/tb_fft_axi_manager/DUT/configs[0]} -radix unsigned}} -subitemconfig {{/tb_fft_axi_manager/DUT/configs[7]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[6]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[5]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[4]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[3]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[2]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[1]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/configs[0]} {-height 16 -radix unsigned}} /tb_fft_axi_manager/DUT/configs
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {72395276 ps} 0}
+WaveRestoreCursors {{Cursor 1} {32575261 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -63,4 +68,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {70589145 ps} {73184782 ps}
+WaveRestoreZoom {20638506 ps} {50122087 ps}
