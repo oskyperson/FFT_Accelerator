@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
-Current time:       Mon Apr 20 02:39:20 2026
+Current time:       Mon Apr 20 03:43:12 2026
 Hostname:           ececomp5.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.67 GHz
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.58 GHz
 OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
-RAM:                502 GB (Free  60 GB)
+RAM:                502 GB (Free  59 GB)
 Swap:                63 GB (Free  63 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
 Work Disk:          2968 GB (Free 338 GB)
 Tmp Disk:            17 GB (Free  16 GB)
 
-CPU Load: 20%, Ram Free: 60 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
+CPU Load: 2%, Ram Free: 59 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,13 +53,13 @@ CPU Load: 20%, Ram Free: 60 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Di
 #
 ############################################
 sh date
-Mon Apr 20 02:39:20 EDT 2026
-set TOP_MODULE fft_axi_manager
-fft_axi_manager
+Mon Apr 20 03:43:12 EDT 2026
+set TOP_MODULE fft_axi_subordinate
+fft_axi_subordinate
 set DC_SCRIPT synth.tcl
 synth.tcl
-set READ_SOURCES team42_ece337_fft_axi_manager_1.0.0-read-sources
-team42_ece337_fft_axi_manager_1.0.0-read-sources
+set READ_SOURCES team42_ece337_fft_axi_subordinate_1.0.0-read-sources
+team42_ece337_fft_axi_subordinate_1.0.0-read-sources
 set SCRIPT_DIR src/team42_ece337_synfiles_0
 src/team42_ece337_synfiles_0
 set REPORT_DIR reports
@@ -81,58 +81,51 @@ Presto compilation completed successfully.
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/dw_foundation.sldb'
 Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv
+Compiling source file ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv
 Presto compilation completed successfully.
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/gtech.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.sldb'
   Loading link library 'osu05_stdcells'
   Loading link library 'gtech'
 Running PRESTO HDLC
-Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:103: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:146: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
 Statistics for case statements in always block in file
-	'./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'
+	'./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'
 ============================================================
 |    Line    |  full/ parallel  |      block location      |
 ============================================================
-|     93     |    auto/auto     | always block at line 91  |
-|    136     |    auto/auto     | always block at line 134 |
+|    110     |    auto/auto     | always block at line 106 |
 ============================================================
 
-Inferred memory devices in process in routine 'fft_axi_manager' in file
-	 ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'.
+Inferred memory devices in process in routine 'fft_axi_subordinate' in file
+	 ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|     configs_reg     | Flip-flop |  97   |  Y  | N  | None  | Async | N  |  57  |
-|   processing_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
-|        j_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  |  71  |
-|        k_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  |  71  |
-|     rstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  84  |
-|     wstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 127  |
+|     wready_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  61  |
+|   awaddr_reg_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  61  |
+|     awready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  |  61  |
+|   config_reg_reg    | Flip-flop |  256  |  Y  | N  | None  | Async | N  |  99  |
+|     bvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 118  |
+|      bresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 118  |
+|     arready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  | 143  |
+|   araddr_reg_reg    | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 143  |
+|     rvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 176  |
+|      rresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 176  |
 ==================================================================================
-Presto compilation completed successfully. (fft_axi_manager)
-Module: fft_axi_manager, Ports: 489, Input: 332, Output: 157, Inout: 0
-Module: fft_axi_manager, Registers: 124, Async set/reset: 124, Sync set/reset: 0
-Information: Module fft_axi_manager report end. (ELAB-965)
+Statistics for MUX_OPs
+=============================================================
+|    block name/line      | Inputs | Outputs | # sel inputs |
+=============================================================
+| fft_axi_subordinate/202 |   8    |   32    |      3       |
+=============================================================
+Presto compilation completed successfully. (fft_axi_subordinate)
+Module: fft_axi_subordinate, Ports: 380, Input: 84, Output: 296, Inout: 0
+Module: fft_axi_subordinate, Registers: 283, Async set/reset: 283, Sync set/reset: 0
+Information: Module fft_axi_subordinate report end. (ELAB-965)
 Elaborated 1 design.
-Current design is now 'fft_axi_manager'.
-Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_manager' with
-	the parameters "WRITE_OR_READ=0". (HDL-193)
-
-Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ0' in file
-	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
-==================================================================================
-|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
-==================================================================================
-|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
-==================================================================================
-Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ0)
-Module: fft_axi_counter_WRITE_OR_READ0, Ports: 26, Input: 15, Output: 11, Inout: 0
-Module: fft_axi_counter_WRITE_OR_READ0, Registers: 10, Async set/reset: 10, Sync set/reset: 0
-Information: Module fft_axi_counter_WRITE_OR_READ0 report end. (ELAB-965)
-Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_manager' with
+Current design is now 'fft_axi_subordinate'.
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
 	the parameters "WRITE_OR_READ=1". (HDL-193)
 
 Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ1' in file
@@ -146,7 +139,21 @@ Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ1)
 Module: fft_axi_counter_WRITE_OR_READ1, Ports: 26, Input: 15, Output: 11, Inout: 0
 Module: fft_axi_counter_WRITE_OR_READ1, Registers: 10, Async set/reset: 10, Sync set/reset: 0
 Information: Module fft_axi_counter_WRITE_OR_READ1 report end. (ELAB-965)
-CPU Load: 20%, Ram Free: 60 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
+	the parameters "WRITE_OR_READ=0". (HDL-193)
+
+Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ0' in file
+	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ0)
+Module: fft_axi_counter_WRITE_OR_READ0, Ports: 26, Input: 15, Output: 11, Inout: 0
+Module: fft_axi_counter_WRITE_OR_READ0, Registers: 10, Async set/reset: 10, Sync set/reset: 0
+Information: Module fft_axi_counter_WRITE_OR_READ0 report end. (ELAB-965)
+CPU Load: 2%, Ram Free: 59 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -165,29 +172,29 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-| Leaf Cell Count                                         | 354                                    |
+| Leaf Cell Count                                         | 515                                    |
 | Number of User Hierarchies                              | 2                                      |
-| Sequential Cell Count                                   | 144                                    |
+| Sequential Cell Count                                   | 303                                    |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-| Number of Dont Touch Cells                              | 65                                     |
+| Number of Dont Touch Cells                              | 74                                     |
 | Number of Dont Touch Nets                               | 0                                      |
 | Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 255 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 8 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
   Beginning Pass 1 Mapping
   ------------------------
-  Processing 'fft_axi_counter_WRITE_OR_READ1'
+  Processing 'fft_axi_counter_WRITE_OR_READ0'
 Module: DW01_MUX, Ports: 4, Input: 3, Output: 1, Inout: 0
 Module: DW01_MUX, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_mmux_width2, Ports: 7, Input: 5, Output: 2, Inout: 0
@@ -206,94 +213,63 @@ Module: DW01_NOT, Ports: 2, Input: 1, Output: 1, Inout: 0
 Module: DW01_NOT, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_cmp6_width10, Ports: 27, Input: 21, Output: 6, Inout: 0
 Module: DW01_cmp6_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-  Processing 'fft_axi_counter_WRITE_OR_READ0'
-  Processing 'fft_axi_manager'
-Module: DW01_inc_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
-Module: DW01_inc_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_dec_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
-Module: DW01_dec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width12, Ports: 38, Input: 25, Output: 13, Inout: 0
-Module: DW01_sub_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width32, Ports: 98, Input: 65, Output: 33, Inout: 0
-Module: DW01_add_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_dec_width13, Ports: 26, Input: 13, Output: 13, Inout: 0
-Module: DW01_dec_width13, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width11, Ports: 29, Input: 23, Output: 6, Inout: 0
-Module: DW01_cmp6_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
-Module: DW01_add_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width11, Ports: 23, Input: 12, Output: 11, Inout: 0
-Module: DW01_incdec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp2_width11, Ports: 26, Input: 24, Output: 2, Inout: 0
-Module: DW01_cmp2_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
-Module: DW01_sub_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW02_mult_A_width32_B_width11, Ports: 87, Input: 44, Output: 43, Inout: 0
-Module: DW02_mult_A_width32_B_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width41, Ports: 125, Input: 83, Output: 42, Inout: 0
-Module: DW01_add_width41, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW02_mult_A_width11_B_width32, Ports: 87, Input: 44, Output: 43, Inout: 0
-Module: DW02_mult_A_width11_B_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width13, Ports: 27, Input: 14, Output: 13, Inout: 0
-Module: DW01_incdec_width13, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width13, Ports: 41, Input: 27, Output: 14, Inout: 0
-Module: DW01_sub_width13, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'fft_axi_counter_WRITE_OR_READ1'
+  Processing 'fft_axi_subordinate'
+Module: DW01_add_width3, Ports: 11, Input: 7, Output: 4, Inout: 0
+Module: DW01_add_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width4, Ports: 14, Input: 9, Output: 5, Inout: 0
+Module: DW01_add_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp6_width4, Ports: 15, Input: 9, Output: 6, Inout: 0
+Module: DW01_cmp6_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width4, Ports: 12, Input: 10, Output: 2, Inout: 0
+Module: DW01_cmp2_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: Design 'fft_axi_manager' has no optimization constraints set. (OPT-108)
+Information: Design 'fft_axi_subordinate' has no optimization constraints set. (OPT-108)
 
   Beginning Implementation Selection
   ----------------------------------
-  Processing 'fft_axi_manager_DW01_add_0'
-  Processing 'fft_axi_manager_DW01_dec_0'
-  Processing 'fft_axi_manager_DW01_cmp2_0'
-  Processing 'fft_axi_manager_DW01_cmp6_0'
-  Mapping 'fft_axi_manager_DW_mult_uns_0'
-  Processing 'fft_axi_manager_DW01_inc_0'
-  Processing 'fft_axi_manager_DW01_dec_1'
-  Processing 'fft_axi_manager_DW01_inc_1'
-  Processing 'fft_axi_manager_DW01_sub_0'
-  Processing 'fft_axi_manager_DW01_add_1'
-  Mapping 'fft_axi_manager_DW_mult_uns_1'
-  Processing 'fft_axi_manager_DW01_inc_2'
-  Processing 'fft_axi_manager_DW01_dec_2'
-  Processing 'fft_axi_manager_DW01_sub_1'
-  Processing 'fft_axi_manager_DW01_cmp2_1'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_inc_0_DW01_inc_3'
   Mapping 'fft_axi_counter_WRITE_OR_READ0_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_inc_0_DW01_inc_4'
+  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_inc_0'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1_DW_cmp_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_inc_0_DW01_inc_1'
 
   Beginning Mapping Optimizations  (High effort)
   -------------------------------
-Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ0'. (DDB-72)
-  Structuring 'fft_axi_counter_WRITE_OR_READ1'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1'
+Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1'. (DDB-72)
   Structuring 'fft_axi_counter_WRITE_OR_READ0'
   Mapping 'fft_axi_counter_WRITE_OR_READ0'
-  Structuring 'fft_axi_manager'
-  Mapping 'fft_axi_manager'
+  Structuring 'fft_axi_counter_WRITE_OR_READ1'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1'
+  Structuring 'fft_axi_subordinate'
+  Mapping 'fft_axi_subordinate'
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04  867348.0      0.00       0.0     255.9                          
-    0:00:04  867348.0      0.00       0.0     255.9                          
-    0:00:04  867348.0      0.00       0.0     255.9                          
-    0:00:04  867348.0      0.00       0.0     255.9                          
-    0:00:04  867348.0      0.00       0.0     255.9                          
-    0:00:04  834516.0      0.00       0.0     255.9                          
-    0:00:04  834516.0      0.00       0.0     255.9                          
-    0:00:04  834516.0      0.00       0.0     255.9                          
-    0:00:04  834516.0      0.00       0.0     255.9                          
-    0:00:04  834516.0      0.00       0.0     255.9                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
+    0:00:02  752193.0      0.00       0.0     584.0                          
+    0:00:02  752193.0      0.00       0.0     584.0                          
+    0:00:02  752193.0      0.00       0.0     584.0                          
+    0:00:02  752193.0      0.00       0.0     584.0                          
+    0:00:02  752193.0      0.00       0.0     584.0                          
+    0:00:02  751329.0      0.00       0.0     584.0                          
+    0:00:02  751329.0      0.00       0.0     584.0                          
+    0:00:02  751329.0      0.00       0.0     584.0                          
+    0:00:02  751329.0      0.00       0.0     584.0                          
+    0:00:02  751329.0      0.00       0.0     584.0                          
+    0:00:02  751905.0      0.00       0.0     446.3                          
+    0:00:02  752913.0      0.00       0.0     314.6                          
+    0:00:02  753921.0      0.00       0.0     185.5                          
+    0:00:02  754929.0      0.00       0.0      56.4                          
+    0:00:02  755361.0      0.00       0.0      44.9                          
+    0:00:02  755793.0      0.00       0.0      33.3                          
+    0:00:02  756225.0      0.00       0.0      22.4                          
+    0:00:02  756441.0      0.00       0.0      16.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
 
 
 
@@ -304,11 +280,22 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  756657.0      0.00       0.0      11.6                          
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:02  756657.0      0.00       0.0      11.6                          
+    0:00:02  757233.0      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -318,20 +305,18 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  835020.0      0.00       0.0       0.0                          
-    0:00:04  831564.0      0.00       0.0       0.0                          
-    0:00:04  830844.0      0.00       0.0       0.0                          
-    0:00:04  830124.0      0.00       0.0       0.0                          
-    0:00:04  829764.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
-    0:00:04  829476.0      0.00       0.0       0.0                          
+    0:00:02  757233.0      0.00       0.0       0.0                          
+    0:00:02  757233.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
+    0:00:02  757089.0      0.00       0.0       0.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -340,7 +325,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 18%, Ram Free: 59 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
+CPU Load: 2%, Ram Free: 58 GB, Swap Free: 63 GB, Work Disk Free: 338 GB, Tmp Disk Free: 16 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -364,368 +349,22 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Mon Apr 20 02:39:25 2026
+Date:        Mon Apr 20 03:43:14 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                    304
-    Unloaded inputs (LINT-8)                                        1
-    Unconnected ports (LINT-28)                                   235
-    Feedthrough (LINT-29)                                          64
-    Shorted outputs (LINT-31)                                       4
-
-Cells                                                              16
-    Connected to power or ground (LINT-32)                         11
-    Nets connected to multiple pins on same cell (LINT-33)          5
-
-Nets                                                                1
-    Unloaded nets (LINT-2)                                          1
+Inputs/Outputs                                                      2
+    Unconnected ports (LINT-28)                                     2
 --------------------------------------------------------------------------------
 
-Warning: In design 'fft_axi_manager', net 'sub_165_2/A[11]' driven by pin 'sub_165_2/A[11]' has no loads. (LINT-2)
-Warning: In design 'fft_axi_manager_DW01_dec_2', input port 'A[11]' is unloaded. (LINT-8)
-Warning: In design 'fft_axi_manager', port 'bresp' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'rlast' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][9]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][8]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][7]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][6]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][5]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][4]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][3]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][2]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][1]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[7][0]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][9]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][8]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][7]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][6]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][5]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][4]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][3]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][2]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[6][1]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][9]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][8]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][7]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][6]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][5]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][4]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][3]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[5][2]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[4][10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[2][10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_0', port 'A[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_0', port 'A[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_0', port 'B[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_0', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_0', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_2', port 'A[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_1', port 'A[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_1', port 'B[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_1', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_sub_1', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'a[13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[42]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[41]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[40]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[39]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[38]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[37]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[36]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[35]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[34]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[33]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', port 'product[32]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'a[12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[42]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[41]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[40]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[39]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[38]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[37]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[36]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[35]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[34]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[33]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', port 'product[32]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', input port 'rdata[31]' is connected directly to output port 'data_in[31]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[30]' is connected directly to output port 'data_in[30]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[29]' is connected directly to output port 'data_in[29]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[28]' is connected directly to output port 'data_in[28]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[27]' is connected directly to output port 'data_in[27]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[26]' is connected directly to output port 'data_in[26]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[25]' is connected directly to output port 'data_in[25]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[24]' is connected directly to output port 'data_in[24]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[23]' is connected directly to output port 'data_in[23]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[22]' is connected directly to output port 'data_in[22]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[21]' is connected directly to output port 'data_in[21]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[20]' is connected directly to output port 'data_in[20]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[19]' is connected directly to output port 'data_in[19]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[18]' is connected directly to output port 'data_in[18]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[17]' is connected directly to output port 'data_in[17]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[16]' is connected directly to output port 'data_in[16]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[15]' is connected directly to output port 'data_in[15]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[14]' is connected directly to output port 'data_in[14]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[13]' is connected directly to output port 'data_in[13]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[12]' is connected directly to output port 'data_in[12]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[11]' is connected directly to output port 'data_in[11]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[10]' is connected directly to output port 'data_in[10]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[9]' is connected directly to output port 'data_in[9]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[8]' is connected directly to output port 'data_in[8]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[7]' is connected directly to output port 'data_in[7]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[6]' is connected directly to output port 'data_in[6]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[5]' is connected directly to output port 'data_in[5]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[4]' is connected directly to output port 'data_in[4]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[3]' is connected directly to output port 'data_in[3]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[2]' is connected directly to output port 'data_in[2]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[1]' is connected directly to output port 'data_in[1]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'rdata[0]' is connected directly to output port 'data_in[0]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[31]' is connected directly to output port 'wdata[31]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[30]' is connected directly to output port 'wdata[30]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[29]' is connected directly to output port 'wdata[29]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[28]' is connected directly to output port 'wdata[28]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[27]' is connected directly to output port 'wdata[27]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[26]' is connected directly to output port 'wdata[26]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[25]' is connected directly to output port 'wdata[25]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[24]' is connected directly to output port 'wdata[24]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[23]' is connected directly to output port 'wdata[23]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[22]' is connected directly to output port 'wdata[22]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[21]' is connected directly to output port 'wdata[21]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[20]' is connected directly to output port 'wdata[20]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[19]' is connected directly to output port 'wdata[19]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[18]' is connected directly to output port 'wdata[18]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[17]' is connected directly to output port 'wdata[17]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[16]' is connected directly to output port 'wdata[16]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[15]' is connected directly to output port 'wdata[15]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[14]' is connected directly to output port 'wdata[14]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[13]' is connected directly to output port 'wdata[13]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[12]' is connected directly to output port 'wdata[12]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[11]' is connected directly to output port 'wdata[11]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[10]' is connected directly to output port 'wdata[10]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[9]' is connected directly to output port 'wdata[9]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[8]' is connected directly to output port 'wdata[8]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[7]' is connected directly to output port 'wdata[7]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[6]' is connected directly to output port 'wdata[6]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[5]' is connected directly to output port 'wdata[5]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[4]' is connected directly to output port 'wdata[4]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[3]' is connected directly to output port 'wdata[3]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[2]' is connected directly to output port 'wdata[2]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[1]' is connected directly to output port 'wdata[1]'. (LINT-29)
-Warning: In design 'fft_axi_manager', input port 'data_out[0]' is connected directly to output port 'wdata[0]'. (LINT-29)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', output port 'product[30]' is connected directly to output port 'product[25]'. (LINT-31)
-Warning: In design 'fft_axi_manager_DW_mult_uns_2', output port 'product[29]' is connected directly to output port 'product[27]'. (LINT-31)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', output port 'product[29]' is connected directly to output port 'product[25]'. (LINT-31)
-Warning: In design 'fft_axi_manager_DW_mult_uns_3', output port 'product[27]' is connected directly to output port 'product[24]'. (LINT-31)
-Warning: In design 'fft_axi_manager', a pin on submodule 'write_counter' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'resp' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_120_2' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_120' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[10]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_120' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[11]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_120' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'B[11]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_120' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_165_2' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_165' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[10]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_165' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[11]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_165' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'B[11]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'sub_165' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', the same net is connected to more than one pin on submodule 'sub_120'. (LINT-33)
-   Net 'n5' is connected to pins 'A[11]', 'B[11]'', 'CI'.
-Warning: In design 'fft_axi_manager', the same net is connected to more than one pin on submodule 'sub_165_2'. (LINT-33)
-   Net 'N220' is connected to pins 'A[12]', 'A[11]''.
-Warning: In design 'fft_axi_manager', the same net is connected to more than one pin on submodule 'sub_165'. (LINT-33)
-   Net 'n8' is connected to pins 'A[11]', 'B[11]'', 'CI'.
-Warning: In design 'fft_axi_manager', the same net is connected to more than one pin on submodule 'mult_165'. (LINT-33)
-   Net 'N233' is connected to pins 'a[31]', 'a[30]'', 'a[29]', 'a[28]', 'a[27]', 'a[26]', 'a[25]', 'a[24]', 'a[23]', 'a[22]', 'a[21]', 'a[20]', 'a[19]', 'a[18]', 'a[17]', 'a[16]', 'a[15]', 'a[14]', 'a[13]', 'a[12]'.
-Warning: In design 'fft_axi_manager', the same net is connected to more than one pin on submodule 'mult_120'. (LINT-33)
-   Net 'N121' is connected to pins 'a[31]', 'a[30]'', 'a[29]', 'a[28]', 'a[27]', 'a[26]', 'a[25]', 'a[24]', 'a[23]', 'a[22]', 'a[21]', 'a[20]', 'a[19]', 'a[18]', 'a[17]', 'a[16]', 'a[15]', 'a[14]', 'a[13]', 'a[12]', 'a[11]'.
-Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_manager_1.0.0/syn-design_compiler/fft_axi_manager.v'.
-Warning: Verilog writer has added 22 nets to module fft_axi_manager using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: In design 'fft_axi_subordinate', port 'awaddr[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_subordinate', port 'araddr[10]' is not connected to any nets. (LINT-28)
+Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_subordinate_1.0.0/syn-design_compiler/fft_axi_subordinate.v'.
 
-Memory usage for this session 175 Mbytes.
-Memory usage for this session including child processes 175 Mbytes.
-CPU usage for this session 7 seconds ( 0.00 hours ).
-Elapsed time for this session 8 seconds ( 0.00 hours ).
+Memory usage for this session 145 Mbytes.
+Memory usage for this session including child processes 145 Mbytes.
+CPU usage for this session 4 seconds ( 0.00 hours ).
+Elapsed time for this session 6 seconds ( 0.00 hours ).
 
 Thank you...

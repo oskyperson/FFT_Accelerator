@@ -66,6 +66,9 @@ module tb_fft_axi_manager ();
     logic [31:0] data_in;
     logic in_valid;
 
+    logic load_size;
+    logic [9:0] frame_size;
+
     fft_axi_manager DUT (.*);
 
     axi_subordinate_model BFM (.*);
@@ -79,7 +82,7 @@ module tb_fft_axi_manager ();
         input [31:0] w_addr,
         input [31:0] w_len
     );
-        wait(DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE && DUT.j == 0 && DUT.k == 0);
+        wait(DUT.rstate == 0 && DUT.wstate == 0 && DUT.j == 0 && DUT.k == 0);
         @(posedge clk);
         config_reg[0] = frames;
         config_reg[1] = r_addr;
@@ -97,7 +100,7 @@ module tb_fft_axi_manager ();
     endtask
 
     task wait_completion();
-        wait(DUT.j == 0 && DUT.k == 0 && DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE);
+        wait(DUT.j == 0 && DUT.k == 0 && DUT.rstate == 0 && DUT.wstate == 0);
         repeat(5) @(posedge clk);
     endtask
 
@@ -108,7 +111,7 @@ module tb_fft_axi_manager ();
     integer rd_ptr;
 
     always_comb begin
-        current_frame_len = DUT.configs[2] + 1; 
+        current_frame_len = config_reg[2] + 1; 
     end
 
     always @(posedge clk) begin
@@ -131,7 +134,7 @@ module tb_fft_axi_manager ();
                 else
                     wr_ptr <= wr_ptr + 1;
 
-            end if (DUT.rstate == DUT.RIDLE && DUT.wstate == DUT.WIDLE) begin
+            end if (DUT.rstate == 0 && DUT.wstate == 0) begin
                 fft_done <= 1;
             end else begin
                 fft_done <= 0;

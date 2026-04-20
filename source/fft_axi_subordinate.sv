@@ -127,12 +127,11 @@ module fft_axi_subordinate (
 
     always_comb begin : write_resp_logic
         next_bvalid = bvalid;
-        next_bresp = bresp;
+        next_bresp = 0;
 
         if (wvalid && wready && (wlast || write_last)) begin
             next_bvalid = 1'b1;
 
-            // check if index in range
             next_bresp = (awaddr_reg[9:3] != 7'b0) || (wcount[9:3]!= 7'b0) || (({1'b0, awaddr_reg[2:0]} + {1'b0, wcount[2:0]}) > 4'd7);
         end else if (bready && bvalid) begin
             next_bvalid = 1'b0;
@@ -186,14 +185,15 @@ module fft_axi_subordinate (
 
     always_comb begin : read_resp_logic
         next_rvalid = rvalid;
-        next_rresp = rresp;
+        next_rresp = 0;
 
         if (arvalid && arready) begin
             next_rvalid = 1'b1;
-            // check if in range
-            next_rresp = (araddr[9:3] != 7'b0);
         end else if (rlast && rready && rvalid) begin
             next_rvalid = 1'b0;
+        end
+        if (rready && rvalid) begin
+            next_rresp = (araddr_reg[9:3] != 7'b0) || (rcount[9:3]!= 7'b0) || (({1'b0, araddr_reg[2:0]} + {1'b0, rcount[2:0]}) > 4'd7);
         end
     end
 

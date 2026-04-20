@@ -38,7 +38,9 @@ module fft_axi_manager #(
     input logic out_valid,
     output logic [31:0] data_in, //re, im
     output logic in_valid,
-    input logic fft_done
+
+    output logic load_size,
+    output logic [9:0] frame_size
 );
 
 typedef enum logic [1:0] {RIDLE, RADDR, RDATA, RERR} rstate_t;
@@ -54,6 +56,19 @@ logic rcounter_last;
 logic [9:0] rcount;
 logic [9:0] wcount;
 
+logic [31:0] r_offset, w_offset;
+logic [31:0] r_frame_size, w_frame_size;
+
+always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
+    if (!n_rst) begin
+        load_size <= 0;
+        frame_size <= 10'd512;
+    end else if (wstate == WIDLE && rstate == RIDLE) begin
+        load_size <= 1;
+        frame_size <= arlen + 1;
+    end
+end
+
 always_ff @ (posedge clk, negedge n_rst) begin : control_logic
     if (!n_rst) begin
         configs <= '0;
@@ -63,7 +78,7 @@ always_ff @ (posedge clk, negedge n_rst) begin : control_logic
             configs <= config_reg;
             processing <= 1;
         end
-    end else if (j == 0 && k == 0 && !fft_done) begin
+    end else if (j == 0 && k == 0 && !(wstate == WIDLE && wstate == RIDLE)) begin
         processing <= 0;
     end
 end
@@ -72,12 +87,32 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
     if (!n_rst) begin
         j <= '0;
         k <= '0;
+        r_offset <= '0;
+        w_offset <= '0;
+        r_frame_size <= '0;
+        w_frame_size <= '0;
     end else if (!processing && config_reg[6][0]) begin 
         j <= config_reg[0][10:0];
-        k <= config_reg[0][10:0] + 1;
+        k <= config_reg[0][10:0] + 11'd1;
+        r_frame_size <= 32'(config_reg[2][9:0]) + 32'd1;
+        w_frame_size <= 32'(config_reg[4][9:0]) + 32'd1;
+        
+        r_offset <= 32'd0;
+        w_offset <= 32'd0;
+
     end else if (processing && rstate == RIDLE && wstate == WIDLE) begin
-        if (k > 0) k <= k - 1;
-        if (j > 0 && k == j) j <= j - 1;
+        if (k > 0) begin
+            k <= k - 11'd1;
+            if (k <= config_reg[0][10:0]) begin
+                r_offset <= r_offset + r_frame_size;
+            end
+        end
+        if (j > 0 && k == j) begin
+            j <= j - 11'd1;
+            if (j < config_reg[0][10:0]) begin
+                w_offset <= w_offset + w_frame_size;
+            end
+        end
     end
 end
 
@@ -117,7 +152,7 @@ fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
 
 always_comb begin : read_output_logic
     arlen = configs[2][9:0];
-    araddr = (rstate == RIDLE) ? 32'h0 : (configs[1] + (32'(configs[0][10:0]) - 32'(k)) * (32'(arlen) + 1));
+    araddr = (rstate == RIDLE) ? 32'h0 : (configs[1] + r_offset);
     arvalid = (rstate == RADDR);
     rready = (rstate == RDATA);
     data_in = rdata;
@@ -162,7 +197,7 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 
 always_comb begin : write_output_logic
     awlen = configs[4][9:0];
-    awaddr = (wstate == WIDLE) ? 32'h0 : (configs[3] + (32'(configs[0][10:0]) - 32'(j) - 1) * (32'(awlen) + 1));
+    awaddr = (wstate == WIDLE) ? 32'h0 : (configs[3] + w_offset);
     awvalid = (wstate == WADDR);
     wvalid = (wstate == WDATA) && out_valid;
     wstrb = configs[5][1:0];
