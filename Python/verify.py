@@ -3,19 +3,20 @@ import sys
 
 def bit_reverse_order(data):
     N = len(data)
+    num_bits = int(np.log2(N))
     idx = np.arange(N)
-    br_idx = np.array([int(format(i, '09b')[::-1], 2) for i in idx])
+    br_idx = np.array([int(format(i, f'0{num_bits}b')[::-1], 2) for i in idx])
     return data[br_idx]
 
 
-def calculate_fft(input_file):
+def calculate_fft(input_file, N = 512):
     output_file = input_file[:-4] + "_output_norm.txt"
     output_file2 = input_file[:-4] + "_output.txt"
     
     raw_data = np.loadtxt(input_file, dtype=float)
-    data = raw_data[:, 0] + 1j * raw_data[:, 1]
+    data = raw_data[:N, 0] + 1j * raw_data[:N, 1]
     
-    fft_result = np.fft.fft(data) / 512
+    fft_result = np.fft.fft(data) / N
 
     with open(output_file, 'w') as f:
         f.write("Real ----- Imaginary\n")
@@ -48,4 +49,5 @@ def calculate_fft(input_file):
     print("did stuff")
 
 if __name__ == "__main__":
-    calculate_fft("./Python/input.txt")
+    n = int(sys.argv[1])
+    calculate_fft("./Python/input.txt", n)

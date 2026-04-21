@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Sat Apr 18 16:48:22 2026
+Date   : Tue Apr 21 17:33:49 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -22,10 +22,10 @@ Wire Load Model Mode: top
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   butterfly_units[8].stage/out_reg[31]/CLK (DFFSR)        0.00       0.00 r
-  butterfly_units[8].stage/out_reg[31]/Q (DFFSR)          0.60       0.60 f
-  butterfly_units[8].stage/out[31] (fft_stage_STAGE8)     0.00       0.60 f
-  out[31] (out)                                           0.00       0.60 f
-  data arrival time                                                  0.60
+  butterfly_units[8].stage/out_reg[31]/Q (DFFSR)          0.64       0.64 f
+  butterfly_units[8].stage/out[31] (fft_stage_STAGE8)     0.00       0.64 f
+  out[31] (out)                                           0.00       0.64 f
+  data arrival time                                                  0.64
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -36,29 +36,29 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Sat Apr 18 16:48:22 2026
+Date   : Tue Apr 21 17:33:49 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                        14063
-Number of nets:                        133091
-Number of cells:                       114345
-Number of combinational cells:          80480
-Number of sequential cells:             16748
+Number of ports:                        14263
+Number of nets:                        134157
+Number of cells:                       115211
+Number of combinational cells:          81326
+Number of sequential cells:             16758
 Number of macros/black boxes:               0
-Number of buf/inv:                      29712
-Number of references:                       9
+Number of buf/inv:                      29598
+Number of references:                      19
 
-Combinational area:           28068111.000000
-Buf/Inv area:                  4834728.000000
-Noncombinational area:        26528832.000000
+Combinational area:           28281537.000000
+Buf/Inv area:                  4835160.000000
+Noncombinational area:        26544672.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:              54596943.000000
+Total cell area:              54826209.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -72,7 +72,7 @@ Report : power
         -analysis_effort low
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Sat Apr 18 16:48:27 2026
+Date   : Tue Apr 21 17:33:54 2026
 ****************************************
 
 
@@ -99,12 +99,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   2.7472  W   (59%)
-  Net Switching Power  =   1.9320  W   (41%)
+  Cell Internal Power  =   2.8027  W   (58%)
+  Net Switching Power  =   2.0181  W   (42%)
                          ---------
-Total Dynamic Power    =   4.6792  W  (100%)
+Total Dynamic Power    =   4.8208  W  (100%)
 
-Cell Leakage Power     =  17.4646 uW
+Cell Leakage Power     =  17.5331 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -116,8 +116,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential     2.1043e+03            0.4163        8.9263e+03        2.1047e+03  (  44.98%)
-combinational    642.6993        1.9316e+03        8.5383e+03        2.5743e+03  (  55.02%)
+sequential     2.1080e+03            1.0001        8.9316e+03        2.1090e+03  (  43.75%)
+combinational    694.4738        2.0171e+03        8.6015e+03        2.7116e+03  (  56.25%)
 --------------------------------------------------------------------------------------------------
-Total          2.7470e+03 mW     1.9321e+03 mW     1.7465e+04 nW     4.6790e+03 mW
+Total          2.8025e+03 mW     2.0181e+03 mW     1.7533e+04 nW     4.8206e+03 mW
 1

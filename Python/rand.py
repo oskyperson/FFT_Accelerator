@@ -12,9 +12,10 @@ def float_to_hex(val):
     hex_val = int_val & 0xFFFF
     return f"16'h{hex_val:04X}"
 
-def generate(signal_type='single_tone'):
-    N = 512
-    fs = 512
+def generate(signal_type='single_tone', N=512):
+    fs = N
+    #N = 512
+    #fs = 512
     t = np.arange(N)
 
     if signal_type == 'single_tone':
@@ -23,8 +24,7 @@ def generate(signal_type='single_tone'):
         
     elif signal_type == 'two_tone':
         f1, f2 = 30, 100
-        signal = 0.25 * np.exp(1j * 2 * np.pi * f1 * t / fs) + \
-                 0.25 * np.exp(1j * 2 * np.pi * f2 * t / fs)
+        signal = 0.25 * np.exp(1j * 2 * np.pi * f1 * t / fs) + 0.25 * np.exp(1j * 2 * np.pi * f2 * t / fs)
                  
     elif signal_type == 'impulse':
         signal = np.zeros(N, dtype=complex)
@@ -34,8 +34,9 @@ def generate(signal_type='single_tone'):
         signal = np.full(N, 0.5 + 0.0j, dtype=complex)
         
     elif signal_type == 'sine':
-        frequency = 48
-        signal = 0.5 * np.cos(2 * np.pi * frequency * t / fs) + 0j
+        k = max(1, N // 16)
+        #signal = 0.5 * np.cos(2 * np.pi * frequency * t / fs) + 0j
+        signal = 0.5 * np.exp(1j * 2 * np.pi * k * t / N)
 
     elif signal_type == 'noise1':
         signal = np.random.uniform(-0.99, 0.99, N) + 1j * np.random.uniform(-0.99, 0.99, N)
@@ -56,7 +57,7 @@ def generate(signal_type='single_tone'):
 
     elif signal_type == 'chirp':
         f_start = 10
-        f_end = 200
+        f_end = N // 4
         phase = 2 * np.pi * (f_start * t + (f_end - f_start) * (t**2) / (2 * N)) / fs
         signal = 0.8 * np.exp(1j * phase)
         
@@ -88,4 +89,4 @@ def generate(signal_type='single_tone'):
     print(f"Generated '{signal_type}' test vectors.")
 
 if __name__ == "__main__":
-    generate(sys.argv[1])
+   generate(sys.argv[1], int(sys.argv[2]))

@@ -11,7 +11,7 @@ module fft_stage #(
     output logic out_valid,
 
     input logic sel,
-    input logic [8:0] frame_size
+    input logic [9:0] frame_size
           
 );
 
@@ -65,7 +65,7 @@ module fft_stage #(
 
     twiddle_lookup lut(.addr(twiddle_addr), .twiddle(twiddle));
 
-    assign control = count_out[8 - STAGE];
+    assign control = count_out[8 - STAGE]; 
 
     flex_counter count(
         .clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid), //NOTE: future AXI integration
