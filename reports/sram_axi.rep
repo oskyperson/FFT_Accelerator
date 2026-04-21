@@ -7,33 +7,34 @@ Report : timing
         -max_paths 1
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Tue Apr 14 23:46:16 2026
+Date   : Tue Apr 21 18:08:32 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
 Wire Load Model Mode: top
 
-  Startpoint: raddr_reg_reg[0]
+  Startpoint: waddr_reg_reg[2]
               (rising edge-triggered flip-flop)
-  Endpoint: read_addr[9]
+  Endpoint: write_addr[10]
             (output port)
   Path Group: (none)
   Path Type: max
 
   Point                                    Incr       Path
   -----------------------------------------------------------
-  raddr_reg_reg[0]/CLK (DFFSR)             0.00       0.00 r
-  raddr_reg_reg[0]/Q (DFFSR)               0.93       0.93 f
-  U399/Y (NAND3X1)                         0.53       1.46 r
-  U395/Y (OAI21X1)                         0.22       1.68 f
-  U393/Y (NOR2X1)                          0.21       1.88 r
-  U389/Y (NAND2X1)                         0.09       1.97 f
-  U387/Y (INVX1)                           0.16       2.13 r
-  U385/Y (NAND2X1)                         0.20       2.33 f
-  U382/Y (OR2X1)                           0.28       2.62 f
-  U381/Y (XNOR2X1)                         0.16       2.78 f
-  read_addr[9] (out)                       0.00       2.78 f
-  data arrival time                                   2.78
+  waddr_reg_reg[2]/CLK (DFFSR)             0.00       0.00 r
+  waddr_reg_reg[2]/Q (DFFSR)               0.67       0.67 r
+  U391/Y (NAND3X1)                         0.24       0.91 f
+  U388/Y (OAI21X1)                         0.25       1.16 r
+  U387/Y (NOR2X1)                          0.33       1.49 f
+  U385/Y (NAND2X1)                         0.29       1.78 r
+  U384/Y (NOR2X1)                          0.33       2.11 f
+  U382/Y (NAND2X1)                         0.42       2.53 r
+  U381/Y (NOR3X1)                          0.20       2.73 f
+  U380/Y (INVX1)                           0.12       2.85 r
+  U378/Y (NAND2X1)                         0.03       2.88 f
+  write_addr[10] (out)                     0.00       2.88 f
+  data arrival time                                   2.88
   -----------------------------------------------------------
   (Path is unconstrained)
 
@@ -44,29 +45,29 @@ Wire Load Model Mode: top
 Report : area
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Tue Apr 14 23:46:16 2026
+Date   : Tue Apr 21 18:08:32 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                          265
-Number of nets:                           730
-Number of cells:                          551
-Number of combinational cells:            392
-Number of sequential cells:                78
+Number of ports:                          345
+Number of nets:                           841
+Number of cells:                          624
+Number of combinational cells:            449
+Number of sequential cells:                86
 Number of macros/black boxes:               0
-Number of buf/inv:                        142
-Number of references:                      18
+Number of buf/inv:                        152
+Number of references:                      17
 
-Combinational area:             105309.000000
-Buf/Inv area:                    20520.000000
-Noncombinational area:          123552.000000
+Combinational area:             117792.000000
+Buf/Inv area:                    21960.000000
+Noncombinational area:          136224.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                228861.000000
+Total cell area:                254016.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -80,7 +81,7 @@ Report : power
         -analysis_effort low
 Design : sram_axi
 Version: W-2024.09-SP4
-Date   : Tue Apr 14 23:46:16 2026
+Date   : Tue Apr 21 18:08:32 2026
 ****************************************
 
 
@@ -107,12 +108,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  21.6155 mW   (73%)
-  Net Switching Power  =   7.9990 mW   (27%)
+  Cell Internal Power  =  16.7485 mW   (77%)
+  Net Switching Power  =   4.9827 mW   (23%)
                          ---------
-Total Dynamic Power    =  29.6145 mW  (100%)
+Total Dynamic Power    =  21.7313 mW  (100%)
 
-Cell Leakage Power     =  72.1287 nW
+Cell Leakage Power     =  79.4257 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -124,8 +125,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        12.9972            0.3118           41.5723           13.3090  (  44.94%)
-combinational      8.6183            7.6872           30.5564           16.3056  (  55.06%)
+sequential        11.1400            0.1676           45.8361           11.3077  (  52.03%)
+combinational      5.6085            4.8151           33.5896           10.4237  (  47.97%)
 --------------------------------------------------------------------------------------------------
-Total             21.6155 mW         7.9990 mW        72.1287 nW        29.6146 mW
+Total             16.7485 mW         4.9827 mW        79.4257 nW        21.7313 mW
 1

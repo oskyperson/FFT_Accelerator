@@ -31,19 +31,52 @@ module sram_model #(
             if (wen[1]) mem[write_addr][15:8] = write_data[15:8];
             if (wen[2]) mem[write_addr][23:16] = write_data[23:16];
             if (wen[3]) mem[write_addr][31:24] = write_data[31:24];
-            write_valid <= |wen; 
+            
+            write_valid <= |wen;
+            read_valid <= ren;
 
             if (ren) begin
-                if (mem.exists(read_addr)) begin
-                    read_data <= mem[read_addr];
+                if (|wen && (read_addr == write_addr)) begin
+                    read_data[7:0]   <= wen[0] ? write_data[7:0]   : (mem.exists(read_addr) ? mem[read_addr][7:0]   : 8'h0);
+                    read_data[15:8]  <= wen[1] ? write_data[15:8]  : (mem.exists(read_addr) ? mem[read_addr][15:8]  : 8'h0);
+                    read_data[23:16] <= wen[2] ? write_data[23:16] : (mem.exists(read_addr) ? mem[read_addr][23:16] : 8'h0);
+                    read_data[31:24] <= wen[3] ? write_data[31:24] : (mem.exists(read_addr) ? mem[read_addr][31:24] : 8'h0);
                 end else begin
-                    read_data <= 'x;
+                    if (mem.exists(read_addr)) begin
+                        read_data <= mem[read_addr];
+                    end else begin
+                        read_data <= 'x;
+                    end
                 end
             end
-            read_valid <= ren;
         end
     end
 
+    task load_mem(input string filename);
+        int file;
+        int addr;
+        logic [DATA_WIDTH-1:0] data;
+        file = $fopen(filename, "r");
+        addr = 0;
+        if (file) begin
+            while (!$feof(file)) begin
+                if ($fscanf(file, "%h\n", data) == 1) begin
+                    mem[addr] = data;
+                    addr++;
+                end
+            end
+            $fclose(file);
+        end
+    endtask
 
-
+    task dump_mem(input string filename);
+        int file;
+        file = $fopen(filename, "w");
+        if (file) begin
+            foreach (mem[i]) begin
+                $fdisplay(file, "%h", mem[i]);
+            end
+            $fclose(file);
+        end
+    endtask
 endmodule

@@ -1,6 +1,6 @@
 `timescale 1ns / 10ps
 
-module axi_manager_model (
+module manager_model (
     input logic clk,
     input logic n_rst,
 
@@ -18,7 +18,7 @@ module axi_manager_model (
     input logic cpu_wready,
 
     // Write Response Channel
-    input logic [1:0] cpu_bresp,
+    input logic cpu_bresp,
     input logic cpu_bvalid,
     output logic cpu_bready,
 
@@ -30,7 +30,7 @@ module axi_manager_model (
 
     // Read Data Channel
     input logic [31:0] cpu_rdata,
-    input logic [1:0] cpu_rresp,
+    input logic cpu_rresp,
     input logic cpu_rlast,
     input logic cpu_rvalid,
     output logic cpu_rready
