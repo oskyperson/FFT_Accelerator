@@ -30,10 +30,7 @@
 // -------------------------------------------------------------------------------
 
 module tb_fft_core ();
-    localparam FRAME_SIZE;
-    initial begin
-        FRAME_SIZE = 128; 
-    end
+    localparam FRAME_SIZE = 128;
 
     integer num;
     initial begin
@@ -52,7 +49,7 @@ module tb_fft_core ();
     logic [31:0] sample, out;
     logic start, valid, out_valid;
 
-    logic [8:0] frame_size;
+    logic [9:0] frame_size;
     logic load_size;
 
     fft_core dut (.clk(clk), .n_rst(n_rst), .sample(sample), .valid(valid), 
@@ -105,7 +102,7 @@ module tb_fft_core ();
 
     always @(posedge clk) begin
         if (out_valid) begin
-            if(p <= FRAME_SIZE - 1) begin
+            if(p <= FRAME_SIZE + 5) begin
                 p = p + 1;
                 $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
             end

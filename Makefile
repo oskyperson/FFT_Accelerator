@@ -18,6 +18,8 @@ CLR_SP_ERR = echo -ne "\033[0;33m";
 CLR_SP_WRN = echo -ne "\033[0;35m";
 
 #MY ADDITIONS BEGIN
+GET_SIG = $(word 1,$(subst _, ,$(1)))
+GET_N = $(word 2,$(subst _, ,$(1)))
 
 fft_help:
 	@echo "I suck at using Makefiles"
@@ -29,10 +31,10 @@ fft_help:
 
 fft_setup_%:
 	@echo "Setting up $* files"
-	@python3 ./Python/rand.py $(word 1,$(subst _, ,$*)) $(word 2,$(subst _, ,$*))
+	@python3 ./Python/rand.py $(call GET_SIG,$*) $(call GET_N,$*)
 
 fft_rungui_%:
-	$(MAKE) fft_setup_$*_$*
+	$(MAKE) fft_setup_$*
 	$(MAKE) qsimgui_fft_core_src
 
 fft_run_%:
@@ -43,8 +45,8 @@ fft_snr_%:
 	$(eval SIG_TYPE := $(word 1,$(subst _, ,$*)))
 	$(eval N_SIZE := $(word 2,$(subst _, ,$*)))
 	@echo "Setting up $* files"
-	@python3 ./Python/rand.py $(SIG_TYPE) $(N_SIZE)
-	@python3 ./Python/verify.py $(N_SIZE)
+	@python3 ./Python/rand.py $(call GET_SIG,$*) $(call GET_N,$*)
+	@python3 ./Python/verify.py $(call GET_N,$*)
 	@echo "Running sim"
 	$(MAKE) qsim_fft_core_src &> /dev/null
 	@python3 ./Python/snr.py

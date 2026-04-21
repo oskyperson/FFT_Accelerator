@@ -19,7 +19,7 @@ def generate(signal_type='single_tone', N=512):
     t = np.arange(N)
 
     if signal_type == 'single_tone':
-        frequency = 30  
+        k = max(1, N // 16)
         signal = 0.5 * np.exp(1j * 2 * np.pi * frequency * t / fs)
         
     elif signal_type == 'two_tone':
