@@ -51,18 +51,24 @@ module fft_stage #(
         .shift_en(sample_valid), .out(feedback_sample)
     );
 
+    //logic next_primed;
+    //assign next_primed = primed || (sample_valid && (count_out == (1 << (8 - STAGE)) - 1));
+
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
             out <= '0;
             out_valid <= '0;
+            primed <= '0;
         end else if(sample_valid) begin
             out <= next_out;
             out_valid <= sel ? primed : 1'b1;
+            //primed <= next_primed;
         end else begin
             out_valid <= 1'b0;
         end
     end
 
+    
     twiddle_lookup lut(.addr(twiddle_addr), .twiddle(twiddle));
 
     assign control = count_out[8 - STAGE]; 
