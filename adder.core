@@ -1,0 +1,138 @@
+CAPI=2:
+<<<<<<<< HEAD:fft_cla.core
+name: "team42:ece337:fft_cla:1.0.0"
+========
+name: "team42:ece337:adder:1.0.0"
+>>>>>>>> new_core:adder.core
+description: ""
+
+filesets:
+    rtl:
+        files:
+<<<<<<<< HEAD:fft_cla.core
+            - "source/fft_cla.sv"
+========
+            - "source/adder.sv"
+>>>>>>>> new_core:adder.core
+        file_type: systemVerilogSource
+        # depend:
+        #     - "fusesoc:core:name"
+
+    synth:
+        depend:
+            - "ece337:tech:AMI_05_LIB"
+<<<<<<<< HEAD:fft_cla.core
+            - "team42:ece337:fft_cla_syn"
+
+    tb:
+        files:
+            - "testbench/tb_fft_cla.sv"
+            - "waves/fft_cla.do": { file_type: user }
+            - "waves/fft_cla.gtkw": { file_type: user }
+========
+            - "team42:ece337:adder_syn"
+
+    tb:
+        files:
+            - "testbench/tb_adder.sv"
+            - "waves/adder.do": { file_type: user }
+            - "waves/adder.gtkw": { file_type: user }
+>>>>>>>> new_core:adder.core
+            # - "data/file.txt": { file_type: user }
+        file_type: systemVerilogSource
+        depend:
+            - "team42:ece337:questafiles"
+
+    synfiles:
+        files:
+<<<<<<<< HEAD:fft_cla.core
+            - "scripts/syn_fft_cla.tcl"
+========
+            - "scripts/syn_adder.tcl"
+>>>>>>>> new_core:adder.core
+        file_type: tclSource
+        depend:
+            - "team42:ece337:synfiles"
+
+targets:
+    default: &default
+        filesets:
+            - rtl
+<<<<<<<< HEAD:fft_cla.core
+        toplevel: fft_cla
+========
+        toplevel: adder
+>>>>>>>> new_core:adder.core
+
+    sim: &sim
+        <<: *default
+        default_tool: verilator
+        filesets_append:
+            - tb
+<<<<<<<< HEAD:fft_cla.core
+        toplevel: tb_fft_cla
+========
+        toplevel: tb_adder
+>>>>>>>> new_core:adder.core
+        tools:
+            modelsim:
+                vsim_options:
+                    - -vopt
+                    - -voptargs='+acc'
+                    - -t ps
+<<<<<<<< HEAD:fft_cla.core
+                    - -do "source waves.tcl ; load_wave waves/fft_cla.do"
+========
+                    - -do "source waves.tcl ; load_wave waves/adder.do"
+>>>>>>>> new_core:adder.core
+                    - -onfinish stop
+                    - -do "set PrefSource(OpenOnFinish) 0 ; set PrefMain(LinePrefix) \"\" ; set PrefMain(colorizeTranscript) 1"
+                    - -coverage
+                vlog_options:
+                    - +cover
+            verilator:
+                verilator_options:
+                    - --cc
+                    - --trace
+                    - --main
+                    - --timing
+                    - --coverage
+                make_options:
+                    - -j
+
+    lint:
+        <<: *default
+        default_tool: verilator
+        filesets_append:
+            - tb
+        tools:
+            verilator:
+                mode: lint-only
+                verilator_options:
+                    - --timing
+                    - -Wall
+
+    syn:
+        <<: *default
+        filesets_append:
+            - synfiles
+        default_tool: design_compiler
+<<<<<<<< HEAD:fft_cla.core
+        toplevel: fft_cla
+========
+        toplevel: adder
+>>>>>>>> new_core:adder.core
+        tools:
+            design_compiler:
+                script_dir: "src/team42_ece337_synfiles_0"
+                dc_script: "synth.tcl"
+                report_dir: "reports"
+                target_library: "/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db"
+                libs: "/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db dw_foundation.sldb"
+
+    syn_sim:
+        <<: *sim
+        filesets:
+            - synth
+            - tb
+

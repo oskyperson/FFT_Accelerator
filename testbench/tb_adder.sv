@@ -1,7 +1,8 @@
 `timescale 1ns / 10ps
 /* verilator coverage_off */
 
-module tb_fft_axi_counter ();
+
+module tb_fft_axi_top ();
 
     localparam CLK_PERIOD = 10ns;
 
