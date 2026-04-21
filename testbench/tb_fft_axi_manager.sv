@@ -166,6 +166,9 @@ module tb_fft_axi_manager ();
         end
     end
 
+    // always_ff @ (posedge clk)
+    //     out_valid <= in_valid;
+
     assign out_valid = in_valid;
 
     initial begin

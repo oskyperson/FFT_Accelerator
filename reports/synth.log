@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
-Current time:       Mon Apr 20 14:25:47 2026
+Current time:       Tue Apr 21 03:18:40 2026
 Hostname:           ececomp5.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.66 GHz
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.56 GHz
 OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
-RAM:                502 GB (Free  45 GB)
-Swap:                63 GB (Free  62 GB)
+RAM:                502 GB (Free  65 GB)
+Swap:                63 GB (Free  63 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 355 GB)
+Work Disk:          2968 GB (Free 334 GB)
 Tmp Disk:            17 GB (Free  16 GB)
 
-CPU Load: 3%, Ram Free: 45 GB, Swap Free: 62 GB, Work Disk Free: 355 GB, Tmp Disk Free: 16 GB
+CPU Load: 15%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,13 +53,13 @@ CPU Load: 3%, Ram Free: 45 GB, Swap Free: 62 GB, Work Disk Free: 355 GB, Tmp Dis
 #
 ############################################
 sh date
-Mon Apr 20 14:25:48 EDT 2026
-set TOP_MODULE fft_axi_subordinate
-fft_axi_subordinate
+Tue Apr 21 03:18:40 EDT 2026
+set TOP_MODULE fft_cla
+fft_cla
 set DC_SCRIPT synth.tcl
 synth.tcl
-set READ_SOURCES team42_ece337_fft_axi_subordinate_1.0.0-read-sources
-team42_ece337_fft_axi_subordinate_1.0.0-read-sources
+set READ_SOURCES team42_ece337_fft_cla_1.0.0-read-sources
+team42_ece337_fft_cla_1.0.0-read-sources
 set SCRIPT_DIR src/team42_ece337_synfiles_0
 src/team42_ece337_synfiles_0
 set REPORT_DIR reports
@@ -76,84 +76,22 @@ set link_library   [concat "*"  /home/ecegrid/a/ece337/summer24-refactor/tech/am
 ############################################
 source ${SCRIPT_DIR}/${DC_SCRIPT}
 Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv
+Compiling source file ./src/team42_ece337_fft_cla_1.0.0/source/fft_cla.sv
 Presto compilation completed successfully.
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/dw_foundation.sldb'
-Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv
-Presto compilation completed successfully.
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/gtech.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.sldb'
   Loading link library 'osu05_stdcells'
   Loading link library 'gtech'
 Running PRESTO HDLC
-
-Statistics for case statements in always block in file
-	'./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'
-============================================================
-|    Line    |  full/ parallel  |      block location      |
-============================================================
-|    108     |    auto/auto     | always block at line 104 |
-============================================================
-
-Inferred memory devices in process in routine 'fft_axi_subordinate' in file
-	 ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'.
-==================================================================================
-|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
-==================================================================================
-|     wready_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  59  |
-|   awaddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  59  |
-|     awready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  |  59  |
-|   config_reg_reg    | Flip-flop |  256  |  Y  | N  | None  | Async | N  |  97  |
-|     bvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 116  |
-|      bresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 116  |
-|     arready_reg     | Flip-flop |   1   |  N  | N  | Async | None  | N  | 140  |
-|   araddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 140  |
-|     rvalid_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 173  |
-|      rresp_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  | 173  |
-==================================================================================
-Statistics for MUX_OPs
-=============================================================
-|    block name/line      | Inputs | Outputs | # sel inputs |
-=============================================================
-| fft_axi_subordinate/199 |   8    |   32    |      3       |
-=============================================================
-Presto compilation completed successfully. (fft_axi_subordinate)
-Module: fft_axi_subordinate, Ports: 422, Input: 126, Output: 296, Inout: 0
-Module: fft_axi_subordinate, Registers: 327, Async set/reset: 327, Sync set/reset: 0
-Information: Module fft_axi_subordinate report end. (ELAB-965)
+Presto compilation completed successfully. (fft_cla)
+Module: fft_cla, Ports: 98, Input: 65, Output: 33, Inout: 0
+Module: fft_cla, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module fft_cla report end. (ELAB-965)
 Elaborated 1 design.
-Current design is now 'fft_axi_subordinate'.
-Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
-	the parameters "WRITE_OR_READ=1". (HDL-193)
-
-Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ1' in file
-	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
-==================================================================================
-|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
-==================================================================================
-|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
-==================================================================================
-Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ1)
-Module: fft_axi_counter_WRITE_OR_READ1, Ports: 26, Input: 15, Output: 11, Inout: 0
-Module: fft_axi_counter_WRITE_OR_READ1, Registers: 10, Async set/reset: 10, Sync set/reset: 0
-Information: Module fft_axi_counter_WRITE_OR_READ1 report end. (ELAB-965)
-Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_subordinate' with
-	the parameters "WRITE_OR_READ=0". (HDL-193)
-
-Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ0' in file
-	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
-==================================================================================
-|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
-==================================================================================
-|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
-==================================================================================
-Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ0)
-Module: fft_axi_counter_WRITE_OR_READ0, Ports: 26, Input: 15, Output: 11, Inout: 0
-Module: fft_axi_counter_WRITE_OR_READ0, Registers: 10, Async set/reset: 10, Sync set/reset: 0
-Information: Module fft_axi_counter_WRITE_OR_READ0 report end. (ELAB-965)
-CPU Load: 3%, Ram Free: 45 GB, Swap Free: 62 GB, Work Disk Free: 355 GB, Tmp Disk Free: 16 GB
+Current design is now 'fft_cla'.
+CPU Load: 15%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -173,100 +111,51 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
 | Leaf Cell Count                                         | 579                                    |
-| Number of User Hierarchies                              | 2                                      |
-| Sequential Cell Count                                   | 347                                    |
+| Number of User Hierarchies                              | 0                                      |
+| Sequential Cell Count                                   | 0                                      |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-| Number of Dont Touch Cells                              | 76                                     |
+| Number of Dont Touch Cells                              | 0                                      |
 | Number of Dont Touch Nets                               | 0                                      |
 | Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 20 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
 
   Beginning Pass 1 Mapping
   ------------------------
-  Processing 'fft_axi_counter_WRITE_OR_READ0'
-Module: DW01_MUX, Ports: 4, Input: 3, Output: 1, Inout: 0
-Module: DW01_MUX, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_mmux_width2, Ports: 7, Input: 5, Output: 2, Inout: 0
-Module: DW01_mmux_width2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_mmux_width3, Ports: 10, Input: 7, Output: 3, Inout: 0
-Module: DW01_mmux_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_mmux_width4, Ports: 13, Input: 9, Output: 4, Inout: 0
-Module: DW01_mmux_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_mmux_width5, Ports: 16, Input: 11, Output: 5, Inout: 0
-Module: DW01_mmux_width5, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_inc_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
-Module: DW01_inc_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_NAND2, Ports: 3, Input: 2, Output: 1, Inout: 0
-Module: DW01_NAND2, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_NOT, Ports: 2, Input: 1, Output: 1, Inout: 0
-Module: DW01_NOT, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width10, Ports: 27, Input: 21, Output: 6, Inout: 0
-Module: DW01_cmp6_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-  Processing 'fft_axi_counter_WRITE_OR_READ1'
-  Processing 'fft_axi_subordinate'
-Module: DW01_add_width3, Ports: 11, Input: 7, Output: 4, Inout: 0
-Module: DW01_add_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width4, Ports: 14, Input: 9, Output: 5, Inout: 0
-Module: DW01_add_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width4, Ports: 15, Input: 9, Output: 6, Inout: 0
-Module: DW01_cmp6_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp2_width4, Ports: 12, Input: 10, Output: 2, Inout: 0
-Module: DW01_cmp2_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'fft_cla'
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: Design 'fft_axi_subordinate' has no optimization constraints set. (OPT-108)
-
-  Beginning Implementation Selection
-  ----------------------------------
-  Mapping 'fft_axi_counter_WRITE_OR_READ0_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_inc_0'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_inc_0_DW01_inc_1'
+Information: Design 'fft_cla' has no optimization constraints set. (OPT-108)
 
   Beginning Mapping Optimizations  (High effort)
   -------------------------------
-Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ0'. (DDB-72)
-Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1'. (DDB-72)
-  Structuring 'fft_axi_counter_WRITE_OR_READ0'
-  Mapping 'fft_axi_counter_WRITE_OR_READ0'
-  Structuring 'fft_axi_counter_WRITE_OR_READ1'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1'
-  Structuring 'fft_axi_subordinate'
-  Mapping 'fft_axi_subordinate'
+  Structuring 'fft_cla'
+  Mapping 'fft_cla'
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:01  899523.0      0.00       0.0     827.8                          
-    0:00:01  899523.0      0.00       0.0     827.8                          
-    0:00:01  899523.0      0.00       0.0     827.8                          
-    0:00:01  899523.0      0.00       0.0     827.8                          
-    0:00:02  899523.0      0.00       0.0     827.8                          
-    0:00:02  898659.0      0.00       0.0     827.8                          
-    0:00:02  898659.0      0.00       0.0     827.8                          
-    0:00:02  898659.0      0.00       0.0     827.8                          
-    0:00:02  898659.0      0.00       0.0     827.8                          
-    0:00:02  898659.0      0.00       0.0     827.8                          
-    0:00:02  899811.0      0.00       0.0     530.2                          
-    0:00:02  900531.0      0.00       0.0     351.7                          
-    0:00:02  901251.0      0.00       0.0     175.9                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
 
 
 
@@ -277,11 +166,11 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -291,17 +180,17 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
-    0:00:02  901971.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
+    0:00:00   85788.0      0.00       0.0       0.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -310,7 +199,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 3%, Ram Free: 44 GB, Swap Free: 62 GB, Work Disk Free: 355 GB, Tmp Disk Free: 16 GB
+CPU Load: 14%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -330,12 +219,11 @@ Unmapped MV Cells
 0 Isolation Cells are unmapped 
 0 Retention Clamp Cells are unmapped 
 ----------------------------------------------------------------------------------------------------
-Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_subordinate_1.0.0/syn-design_compiler/fft_axi_subordinate.v'.
-Warning: Verilog writer has added 14 nets to module fft_axi_subordinate using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_cla_1.0.0/syn-design_compiler/fft_cla.v'.
 
-Memory usage for this session 147 Mbytes.
-Memory usage for this session including child processes 147 Mbytes.
-CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 6 seconds ( 0.00 hours ).
+Memory usage for this session 124 Mbytes.
+Memory usage for this session including child processes 124 Mbytes.
+CPU usage for this session 3 seconds ( 0.00 hours ).
+Elapsed time for this session 4 seconds ( 0.00 hours ).
 
 Thank you...

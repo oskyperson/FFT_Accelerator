@@ -1,3 +1,4 @@
 .vscode
 *.gtkw
 tmp/build
+reports/synth.log
