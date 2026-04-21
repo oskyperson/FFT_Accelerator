@@ -18,7 +18,8 @@ module arbiter #(
     input logic cpu_bready,
     output logic cpu_rresp,
     output logic cpu_bresp,
-
+    input logic [9:0] cpu_awlen, cpu_arlen,
+    input logic [1:0] cpu_wstrb,
     
     input logic [31:0] fft_man_awaddr,  fft_man_araddr,
     input logic fft_man_awvalid, fft_man_arvalid,
@@ -33,6 +34,10 @@ module arbiter #(
     input logic fft_man_bready,
     output logic fft_man_rresp,
     output logic fft_man_bresp,
+    input logic [9:0] fft_man_awlen,
+    input logic [1:0] fft_man_wstrb,
+    input logic [9:0] fft_man_arlen,
+    
 
     
     output logic [31:0] sram_awaddr, sram_araddr,
@@ -48,6 +53,10 @@ module arbiter #(
     output logic sram_bready,
     input logic sram_rresp,
     input logic sram_bresp,
+    output logic [9:0] sram_awlen,
+    output logic [1:0] sram_wstrb,
+    output logic [9:0] sram_arlen,
+    
 
     
     output logic [31:0] fft_sub_awaddr, fft_sub_araddr,
@@ -62,7 +71,9 @@ module arbiter #(
     input logic fft_sub_bvalid,
     output logic fft_sub_bready,
     input logic fft_sub_rresp,
-    input logic fft_sub_bresp
+    input logic fft_sub_bresp,
+    output logic [9:0] fft_sub_arlen, fft_sub_awlen,
+    output logic [1:0] fft_sub_wstrb
 
 );
 
@@ -185,6 +196,8 @@ module arbiter #(
         {fft_sub_wdata, sram_wdata, cpu_rdata, fft_man_rdata} = '0;
         {fft_sub_wlast, sram_wlast, cpu_rlast, fft_man_rlast} = '0;
         {cpu_bresp, fft_man_bresp, cpu_rresp, fft_man_rresp} = '0;
+        {fft_sub_arlen, fft_sub_wstrb, fft_sub_awlen} = '0;
+        {sram_arlen, sram_wstrb, sram_awlen} = '0;
 
         //write routing
         if (w_perms == 2'b01) begin
@@ -192,10 +205,14 @@ module arbiter #(
                 fft_sub_awaddr = cpu_awaddr; fft_sub_awvalid = cpu_awvalid; cpu_awready = fft_sub_awready;
                 fft_sub_wdata = cpu_wdata; fft_sub_wvalid  = cpu_wvalid; fft_sub_wlast = cpu_wlast; cpu_wready = fft_sub_wready;
                 cpu_bresp = fft_sub_bresp; cpu_bvalid = fft_sub_bvalid; fft_sub_bready = cpu_bready;
+                fft_sub_awlen = cpu_awlen;
+                fft_sub_wstrb = cpu_wstrb;
             end else if (w_dest == 2'b10) begin
                 sram_awaddr = cpu_awaddr; sram_awvalid = cpu_awvalid; cpu_awready = sram_awready;
                 sram_wdata = cpu_wdata; sram_wvalid = cpu_wvalid; sram_wlast = cpu_wlast; cpu_wready = sram_wready;
                 cpu_bresp = sram_bresp; cpu_bvalid = sram_bvalid; sram_bready = cpu_bready;
+                sram_awlen = cpu_awlen;
+                sram_wstrb = cpu_wstrb;
             end else if (w_state == BUSY) begin 
                 cpu_bresp = 1'b1; 
                 cpu_awready = 1'b1; cpu_wready = 1'b1; cpu_bvalid = 1'b1;
@@ -205,10 +222,14 @@ module arbiter #(
                 fft_sub_awaddr = fft_man_awaddr; fft_sub_awvalid = fft_man_awvalid; fft_man_awready = fft_sub_awready;
                 fft_sub_wdata = fft_man_wdata; fft_sub_wvalid = fft_man_wvalid; fft_sub_wlast = fft_man_wlast; fft_man_wready = fft_sub_wready;
                 fft_man_bresp = fft_sub_bresp; fft_man_bvalid = fft_sub_bvalid; fft_sub_bready = fft_man_bready;
+                fft_sub_awlen = fft_man_awlen;
+                fft_sub_wstrb = fft_man_wstrb;
             end else if (w_dest == 2'b10) begin
                 sram_awaddr = fft_man_awaddr; sram_awvalid = fft_man_awvalid; fft_man_awready = sram_awready;
                 sram_wdata = fft_man_wdata; sram_wvalid  = fft_man_wvalid; sram_wlast = fft_man_wlast; fft_man_wready = sram_wready;
                 fft_man_bresp = sram_bresp; fft_man_bvalid = sram_bvalid; sram_bready = fft_man_bready;
+                sram_awlen = fft_man_awlen;
+                sram_wstrb = fft_man_wstrb;
             end else if (w_state == BUSY) begin
                 fft_man_bresp = 1'b1; 
                 fft_man_awready = 1'b1; fft_man_wready = 1'b1; fft_man_bvalid = 1'b1;
@@ -219,9 +240,11 @@ module arbiter #(
             if (r_dest == 2'b01) begin 
                 fft_sub_araddr = cpu_araddr; fft_sub_arvalid = cpu_arvalid; cpu_arready = fft_sub_arready;
                 cpu_rdata = fft_sub_rdata; cpu_rresp = fft_sub_rresp; cpu_rlast = fft_sub_rlast; cpu_rvalid = fft_sub_rvalid; fft_sub_rready = cpu_rready;
+                fft_sub_arlen = cpu_arlen;
             end else if (r_dest == 2'b10) begin // From SRAM
                 sram_araddr = cpu_araddr; sram_arvalid = cpu_arvalid; cpu_arready = sram_arready;
                 cpu_rdata = sram_rdata; cpu_rresp = sram_rresp; cpu_rlast = sram_rlast; cpu_rvalid = sram_rvalid; sram_rready = cpu_rready;
+                sram_arlen = cpu_arlen;
             end else if (r_state == BUSY) begin 
                 cpu_rresp = 1'b1; 
                 cpu_arready = 1'b1; cpu_rvalid = 1'b1; cpu_rlast = 1'b1;
@@ -231,9 +254,11 @@ module arbiter #(
             if (r_dest == 2'b01) begin
                 fft_sub_araddr = fft_man_araddr; fft_sub_arvalid = fft_man_arvalid; fft_man_arready = fft_sub_arready;
                 fft_man_rdata = fft_sub_rdata; fft_man_rresp = fft_sub_rresp; fft_man_rlast = fft_sub_rlast; fft_man_rvalid = fft_sub_rvalid; fft_sub_rready = fft_man_rready;
+                fft_sub_arlen = fft_man_arlen;
             end else if (r_dest == 2'b10) begin 
                 sram_araddr = fft_man_araddr; sram_arvalid = fft_man_arvalid; fft_man_arready = sram_arready;
                 fft_man_rdata = sram_rdata; fft_man_rresp = sram_rresp; fft_man_rlast = sram_rlast; fft_man_rvalid = sram_rvalid; sram_rready = fft_man_rready;
+                sram_arlen = fft_man_arlen;
             end else if (r_state == BUSY) begin 
                 fft_man_rresp = 1'b1;
                 fft_man_arready = 1'b1; fft_man_rvalid = 1'b1; fft_man_rlast = 1'b1;

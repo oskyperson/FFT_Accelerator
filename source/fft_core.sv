@@ -10,7 +10,7 @@ module fft_core(
     output logic out_valid,
 
     input logic load_size,
-    input logic [8:0] frame_size
+    input logic [9:0] frame_size
 );  
     logic enable;
 

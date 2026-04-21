@@ -17,7 +17,7 @@ module sram_axi #(
     output logic sram_wready,
     
     input logic sram_bready,
-    output logic [1:0] sram_bresp,    
+    output logic sram_bresp,    
     output logic sram_bvalid,
    
     input logic [31:0] sram_araddr,
@@ -26,7 +26,7 @@ module sram_axi #(
     output logic sram_arready,
     
     output logic [31:0] sram_rdata,
-    output logic [1:0] sram_rresp,
+    output logic sram_rresp,
     output logic sram_rlast, 
     output logic sram_rvalid,
     input logic sram_rready,

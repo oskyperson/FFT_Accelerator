@@ -7,8 +7,8 @@ filesets:
         files:
             - "source/arbiter.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        #depend:
+        #   - "fusesoc:core:name"
 
     synth:
         depend:

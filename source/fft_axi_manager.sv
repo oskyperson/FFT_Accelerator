@@ -1,6 +1,7 @@
 `timescale 1ns / 10ps
 
 /* verilator lint_off UNUSEDSIGNAL */
+/* verilator lint_off PINCONNECTEMPTY */
 module fft_axi_manager (
     input logic clk, n_rst,
     // write address

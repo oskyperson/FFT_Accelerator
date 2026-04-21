@@ -1,0 +1,15 @@
+CAPI=2:
+name: "team42:ece337:axi_top_syn"
+
+filesets:
+    netlist:
+        files:
+            - "axi_top.v"
+        file_type: systemVerilogSource
+
+targets:
+    default:
+        filesets:
+            - netlist
+        toplevel: axi_top
+

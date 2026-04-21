@@ -7,8 +7,12 @@ filesets:
         files:
             - "source/axi_top.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        depend:
+            - "team42:ece337:arbiter:1.0.0"
+            - "team42:ece337:fft_axi_manager:1.0.0"
+            - "team42:ece337:fft_axi_subordinate:1.0.0"
+            - "team42:ece337:fft_core:1.0.0"
+            - "team42:ece337:sram_axi:1.0.0"
 
     synth:
         depend:

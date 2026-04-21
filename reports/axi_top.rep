@@ -1,0 +1,153 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'axi_top' contains 5 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : axi_top
+Version: W-2024.09-SP4
+Date   : Tue Apr 21 17:44:55 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+  Startpoint: arbit/r_perms_reg[1]
+              (rising edge-triggered flip-flop)
+  Endpoint: cpu_rlast (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  arbit/r_perms_reg[1]/CLK (DFFSR)                        0.00 #     0.00 r
+  arbit/r_perms_reg[1]/Q (DFFSR)                          0.71       0.71 f
+  arbit/U792/Y (INVX1)                                    0.34       1.04 r
+  arbit/U789/Y (NAND3X1)                                  0.04       1.08 f
+  arbit/U17/Y (INVX1)                                     0.30       1.38 r
+  arbit/U18/Y (INVX8)                                     0.73       2.11 f
+  arbit/U485/Y (OAI22X1)                                  0.40       2.51 r
+  arbit/fft_sub_arlen[3] (arbiter)                        0.00       2.51 r
+  fft_sub/fft_sub_arlen[3] (fft_axi_subordinate)          0.00       2.51 r
+  fft_sub/read_counter/len[3] (fft_axi_counter_WRITE_OR_READ0_0)
+                                                          0.00       2.51 r
+  fft_sub/read_counter/U57/Y (NOR2X1)                     0.23       2.75 f
+  fft_sub/read_counter/U50/Y (NOR2X1)                     0.12       2.87 r
+  fft_sub/read_counter/U49/Y (AOI22X1)                    0.14       3.01 f
+  fft_sub/read_counter/U48/Y (OAI21X1)                    0.14       3.15 r
+  fft_sub/read_counter/U47/Y (OAI21X1)                    0.10       3.25 f
+  fft_sub/read_counter/U44/Y (OAI22X1)                    0.14       3.40 r
+  fft_sub/read_counter/U40/Y (OAI21X1)                    0.10       3.50 f
+  fft_sub/read_counter/U37/Y (OAI21X1)                    0.17       3.67 r
+  fft_sub/read_counter/U36/Y (NOR2X1)                     0.24       3.91 f
+  fft_sub/read_counter/last (fft_axi_counter_WRITE_OR_READ0_0)
+                                                          0.00       3.91 f
+  fft_sub/fft_sub_rlast (fft_axi_subordinate)             0.00       3.91 f
+  arbit/fft_sub_rlast (arbiter)                           0.00       3.91 f
+  arbit/U662/Y (INVX1)                                    0.21       4.12 r
+  arbit/U660/Y (OAI21X1)                                  0.09       4.21 f
+  arbit/cpu_rlast (arbiter)                               0.00       4.21 f
+  cpu_rlast (out)                                         0.00       4.21 f
+  data arrival time                                                  4.21
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+ 
+****************************************
+Report : area
+Design : axi_top
+Version: W-2024.09-SP4
+Date   : Tue Apr 21 17:44:55 2026
+****************************************
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+Number of ports:                        16714
+Number of nets:                        135823
+Number of cells:                       114592
+Number of combinational cells:          79306
+Number of sequential cells:             17427
+Number of macros/black boxes:               0
+Number of buf/inv:                      25430
+Number of references:                       5
+
+Combinational area:           28102194.000000
+Buf/Inv area:                  3846888.000000
+Noncombinational area:        27590112.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:              55692306.000000
+Total area:                 undefined
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1
+Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : axi_top
+Version: W-2024.09-SP4
+Date   : Tue Apr 21 17:45:00 2026
+****************************************
+
+
+Library(s) Used:
+
+    osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
+
+
+Operating Conditions: typical   Library: osu05_stdcells
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 5    
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   7.0141  W   (39%)
+  Net Switching Power  =  10.9427  W   (61%)
+                         ---------
+Total Dynamic Power    =  17.9568  W  (100%)
+
+Cell Leakage Power     =  17.7254 uW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential     1.7899e+03        1.2508e+03        9.2834e+03        3.0401e+03  (  16.93%)
+combinational  5.2245e+03        9.6922e+03        8.4420e+03        1.4916e+04  (  83.07%)
+--------------------------------------------------------------------------------------------------
+Total          7.0145e+03 mW     1.0943e+04 mW     1.7725e+04 nW     1.7956e+04 mW
+1
