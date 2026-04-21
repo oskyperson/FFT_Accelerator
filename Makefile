@@ -18,18 +18,21 @@ CLR_SP_ERR = echo -ne "\033[0;33m";
 CLR_SP_WRN = echo -ne "\033[0;35m";
 
 #MY ADDITIONS BEGIN
+
 fft_help:
 	@echo "I suck at using Makefiles"
 	@echo "Options: single tone, two tone, impulse, dc, sine, noise1, noise2, low_amp_tone"
 	@echo "	 square_wave, chirp, multi_tone_varying"
 	@echo "Commands: setup, rungui, run, snr"
+	@echo "syntax is: make fft_command_framesize"
+	@echo "SETUP THE FRAME SIZE"
 
 fft_setup_%:
 	@echo "Setting up $* files"
-	@python3 ./Python/rand.py $*
+	@python3 ./Python/rand.py $(word 1,$(subst _, ,$*)) $(word 2,$(subst _, ,$*))
 
 fft_rungui_%:
-	$(MAKE) fft_setup_$*
+	$(MAKE) fft_setup_$*_$*
 	$(MAKE) qsimgui_fft_core_src
 
 fft_run_%:
@@ -37,9 +40,11 @@ fft_run_%:
 	$(MAKE) qsim_fft_core_src
 
 fft_snr_%:
+	$(eval SIG_TYPE := $(word 1,$(subst _, ,$*)))
+	$(eval N_SIZE := $(word 2,$(subst _, ,$*)))
 	@echo "Setting up $* files"
-	@python3 ./Python/rand.py $*
-	@python3 ./Python/verify.py
+	@python3 ./Python/rand.py $(SIG_TYPE) $(N_SIZE)
+	@python3 ./Python/verify.py $(N_SIZE)
 	@echo "Running sim"
 	$(MAKE) qsim_fft_core_src &> /dev/null
 	@python3 ./Python/snr.py

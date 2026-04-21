@@ -10,14 +10,14 @@ module fft_core(
     output logic out_valid,
 
     input logic load_size,
-    input logic [8:0] frame_size
+    input logic [9:0] frame_size
 );  
     logic enable;
 
     logic [31:0] sample_stream [9:0];
     logic [9:0] valid_stream;
 
-    logic [8:0] size_reg;
+    logic [9:0] size_reg;
 
     assign sample_stream[0] = sample;
     assign valid_stream[0] = valid;
