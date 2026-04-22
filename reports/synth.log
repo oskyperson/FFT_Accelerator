@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
-Current time:       Tue Apr 21 03:18:40 2026
+Current time:       Tue Apr 21 17:42:22 2026
 Hostname:           ececomp5.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.56 GHz
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.67 GHz
 OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
-RAM:                502 GB (Free  65 GB)
+RAM:                502 GB (Free  40 GB)
 Swap:                63 GB (Free  63 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 334 GB)
+Work Disk:          2968 GB (Free 304 GB)
 Tmp Disk:            17 GB (Free  16 GB)
 
-CPU Load: 15%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
+CPU Load: 8%, Ram Free: 40 GB, Swap Free: 63 GB, Work Disk Free: 304 GB, Tmp Disk Free: 16 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,7 +53,7 @@ CPU Load: 15%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Di
 #
 ############################################
 sh date
-Tue Apr 21 03:18:40 EDT 2026
+Tue Apr 21 17:42:22 EDT 2026
 set TOP_MODULE fft_cla
 fft_cla
 set DC_SCRIPT synth.tcl
@@ -91,7 +91,7 @@ Module: fft_cla, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Information: Module fft_cla report end. (ELAB-965)
 Elaborated 1 design.
 Current design is now 'fft_cla'.
-CPU Load: 15%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
+CPU Load: 8%, Ram Free: 39 GB, Swap Free: 63 GB, Work Disk Free: 304 GB, Tmp Disk Free: 16 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -199,7 +199,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 14%, Ram Free: 65 GB, Swap Free: 63 GB, Work Disk Free: 334 GB, Tmp Disk Free: 16 GB
+CPU Load: 8%, Ram Free: 39 GB, Swap Free: 63 GB, Work Disk Free: 304 GB, Tmp Disk Free: 16 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   

@@ -2,3 +2,4 @@
 *.gtkw
 tmp/build
 reports/synth.log
+reports

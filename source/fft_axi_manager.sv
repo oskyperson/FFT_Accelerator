@@ -38,7 +38,8 @@ module fft_axi_manager (
     output logic in_valid,
 
     output logic load_size,
-    output logic [9:0] frame_size
+    output logic [9:0] frame_size,
+    output logic [31:0] windowing
 );
 
 typedef enum logic [1:0] {RIDLE, RADDR, RDATA, RERR} rstate_t;
@@ -78,9 +79,11 @@ always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
     if (!n_rst) begin
         load_size <= 0;
         frame_size <= 10'd512;
+        windowing <= '0;
     end else if (wstate == WIDLE && rstate == RIDLE) begin
         load_size <= 1;
         frame_size <= fft_man_arlen + 1;
+        windowing <= configs[6];
     end
 end
 
@@ -89,7 +92,7 @@ always_ff @ (posedge clk, negedge n_rst) begin : control_logic
         configs <= '0;
         processing <= 0;
     end else if (!processing) begin
-        if (config_reg[6][0]) begin
+        if (config_reg[7][0]) begin
             configs <= config_reg;
             processing <= 1;
         end
@@ -122,7 +125,7 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
         w_offset <= '0;
         r_frame_size <= '0;
         w_frame_size <= '0;
-    end else if (!processing && config_reg[6][0]) begin 
+    end else if (!processing && config_reg[7][0]) begin 
         j <= config_reg[0][10:0];
         k <= config_reg[0][10:0];
         r_frame_size <= 32'(config_reg[2][9:0]) + 32'd1;
