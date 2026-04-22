@@ -15,22 +15,19 @@ module fft_stage #(
           
 );
 
-    logic [8:0] twiddle_addr, twiddle_addr_next;
+    logic [8:0] twiddle_addr;
     logic [31:0] math_sum_reg, delay_sample, sample_reg, feedback_reg, rotation_reg, next_delay_sample, next_out;
     logic [9:0] count_out, next_count_out;
     logic next_valid, valid_reg, control_delay, out_valid_delay, control_reg;
     
-    logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d, twiddle_reg;
+    logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d;
     logic shift_en, primed;
 
     logic rollover_flag;
 
     localparam [8:0] ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
     //assign twiddle_addr = (count_out & ADDR_ADJUST) << (STAGE);
-
-    
-
-
+    assign twiddle_addr = (next_count_out & ADDR_ADJUST) << (STAGE);
     logic control; //1 for math mode 0 for delay mode
 
     logic [31:0] math_sum;
@@ -72,19 +69,7 @@ module fft_stage #(
     end
 
     
-    twiddle_lookup lut(.addr(twiddle_addr_next), .twiddle(twiddle)); //NEW
-    //NEW
-    assign twiddle_addr_next = (next_count_out[8:0] & ADDR_ADJUST) << (STAGE);
-
-    //NEW
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
-            twiddle_reg <= '0;
-        end else if (sample_valid) begin
-            twiddle_reg <= twiddle;
-        end
-    end
-
+    twiddle_lookup lut(.addr(twiddle_addr), .twiddle(twiddle));
 
     assign control = count_out[8 - STAGE]; 
 
@@ -101,7 +86,7 @@ module fft_stage #(
     end
 
     math #(.STAGE(STAGE)) mather (.sample(sample),
-        .feedback(feedback_sample), .twiddle(twiddle_reg), .sum(math_sum), .rotation(rotation)
+        .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .rotation(rotation)
     );
 
 
