@@ -126,7 +126,12 @@ module tb_fft_axi_subordinate ();
         test = "all config regs";
         w_queue.delete();
         for(int i = 0; i < 8; i++) begin
-            w_queue.push_back(i);
+            if (i == 2 || i == 4)
+                w_queue.push_back(32'd512);
+            else if (i == 6)
+                w_queue.push_back(32'd3);
+            else
+                w_queue.push_back(i);
         end
         BFM.write_burst(32'd0, w_queue);
         BFM.read_burst(32'd0, 8, r_queue);
@@ -142,7 +147,12 @@ module tb_fft_axi_subordinate ();
         test = "invalid write address";
         w_queue.delete();
         for(int i = 0; i < 8; i++) begin
-            w_queue.push_back(i);
+            if (i == 2 || i == 4)
+                w_queue.push_back(32'd512);
+            else if (i == 6)
+                w_queue.push_back(32'd3);
+            else
+                w_queue.push_back(i);
         end
         BFM.write_burst(32'd4, w_queue);
 
