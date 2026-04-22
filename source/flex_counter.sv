@@ -9,7 +9,7 @@ module flex_counter #(
     input logic count_enable,
     input logic [SIZE-1:0] rollover_val,
     output logic [SIZE-1:0] count_out,
-    output logic rollover_flag
+    output logic rollover_flag,
     output logic [SIZE-1:0] next_count_out
 );
 
