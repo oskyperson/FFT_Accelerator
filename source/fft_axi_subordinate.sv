@@ -99,9 +99,9 @@ module fft_axi_subordinate (
             config_reg <= '0;
         else if (waddr_idx == 3'd2 || waddr_idx == 3'd4) begin
             if ((next_config_reg[waddr_idx] == 0) || 
-                ((next_config_reg[waddr_idx] & (next_config_reg[waddr_idx] - 1)) != 0) ||
-                (next_config_reg[waddr_idx] < 32'd2) || 
-                (next_config_reg[waddr_idx] > 32'd512))
+                (((next_config_reg[waddr_idx] + 1) & next_config_reg[waddr_idx]) != 0) ||
+                (next_config_reg[waddr_idx] < 32'd1) || 
+                (next_config_reg[waddr_idx] > 32'd511))
                 config_reg <= '0;
             else
                 config_reg <= next_config_reg;
