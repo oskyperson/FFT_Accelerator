@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Mon Apr 20 14:24:49 2026
+Date   : Tue Apr 21 17:30:49 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -15,7 +15,8 @@ Wire Load Model Mode: top
 
   Startpoint: wstate_reg[1]
               (rising edge-triggered flip-flop)
-  Endpoint: wlast (output port)
+  Endpoint: fft_man_wlast
+            (output port)
   Path Group: (none)
   Path Type: max
 
@@ -34,7 +35,7 @@ Wire Load Model Mode: top
   write_counter/U39/Y (OAI21X1)                           0.17       1.95 r
   write_counter/U38/Y (NOR2X1)                            0.15       2.10 f
   write_counter/last (fft_axi_counter_WRITE_OR_READ1)     0.00       2.10 f
-  wlast (out)                                             0.00       2.10 f
+  fft_man_wlast (out)                                     0.00       2.10 f
   data arrival time                                                  2.10
   --------------------------------------------------------------------------
   (Path is unconstrained)
@@ -46,7 +47,7 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Mon Apr 20 14:24:49 2026
+Date   : Tue Apr 21 17:30:49 2026
 ****************************************
 
 Library(s) Used:
@@ -54,21 +55,21 @@ Library(s) Used:
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
 Number of ports:                         1047
-Number of nets:                          3100
-Number of cells:                         2318
-Number of combinational cells:           1644
+Number of nets:                          3099
+Number of cells:                         2317
+Number of combinational cells:           1643
 Number of sequential cells:               308
 Number of macros/black boxes:               0
-Number of buf/inv:                        518
+Number of buf/inv:                        517
 Number of references:                      29
 
-Combinational area:             504702.000000
-Buf/Inv area:                    75240.000000
+Combinational area:             504747.000000
+Buf/Inv area:                    75096.000000
 Noncombinational area:          487872.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                992574.000000
+Total cell area:                992619.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -82,7 +83,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_manager
 Version: W-2024.09-SP4
-Date   : Mon Apr 20 14:24:49 2026
+Date   : Tue Apr 21 17:30:49 2026
 ****************************************
 
 
@@ -109,12 +110,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  79.8087 mW   (75%)
-  Net Switching Power  =  25.9844 mW   (25%)
+  Cell Internal Power  =  79.8459 mW   (75%)
+  Net Switching Power  =  25.9565 mW   (25%)
                          ---------
-Total Dynamic Power    = 105.7931 mW  (100%)
+Total Dynamic Power    = 105.8024 mW  (100%)
 
-Cell Leakage Power     = 314.4569 nW
+Cell Leakage Power     = 314.5004 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -126,8 +127,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        53.3860            2.4059          164.1572           55.7921  (  52.74%)
-combinational     26.4225           23.5785          150.2997           50.0011  (  47.26%)
+sequential        53.4013            2.4056          164.1572           55.8071  (  52.75%)
+combinational     26.4443           23.5509          150.3432           49.9954  (  47.25%)
 --------------------------------------------------------------------------------------------------
-Total             79.8084 mW        25.9844 mW       314.4569 nW       105.7932 mW
+Total             79.8457 mW        25.9565 mW       314.5004 nW       105.8025 mW
 1

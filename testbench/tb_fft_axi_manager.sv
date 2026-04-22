@@ -107,6 +107,7 @@ module tb_fft_axi_manager ();
 
     logic load_size;
     logic [9:0] frame_size;
+    logic [31:0] windowing;
 
     fft_axi_manager DUT (
         .clk(clk),
@@ -150,7 +151,8 @@ module tb_fft_axi_manager ();
         input [31:0] r_addr,
         input [31:0] r_len,
         input [31:0] w_addr,
-        input [31:0] w_len
+        input [31:0] w_len,
+        input [31:0] windowing
     );
         wait(DUT.rstate == 0 && DUT.wstate == 0 && DUT.j == 0 && DUT.k == 0);
         @(posedge clk);
@@ -161,11 +163,11 @@ module tb_fft_axi_manager ();
         config_reg[4] = w_len;
         config_reg[5] = 32'h3;
 
-        config_reg[6][0] = 1; 
-        config_reg[7] = 1;
+        config_reg[7][0] = 1; 
+        config_reg[6] = windowing;
 
         @(posedge clk);
-        config_reg[6][0] = 0;
+        config_reg[7][0] = 0;
         #1; 
     endtask
 
@@ -223,23 +225,23 @@ module tb_fft_axi_manager ();
         reset_dut;
 
         test = "1 frame max samples";
-        configure_run(32'd1, 32'h0, 32'd511, 32'h800, 32'd511);
+        configure_run(32'd1, 32'h0, 32'd511, 32'h800, 32'd511, 32'd1);
         wait_completion();
 
         test = "1 frame min samples";
-        configure_run(32'd1, 32'h0, 32'd1, 32'h800, 32'd1);
+        configure_run(32'd1, 32'h0, 32'd1, 32'h800, 32'd1, 32'd2);
         wait_completion();
 
         test = "2 frames max samples";
-        configure_run(32'd2, 32'h0, 32'd511, 32'h800, 32'd511);
+        configure_run(32'd2, 32'h0, 32'd511, 32'h800, 32'd511, 32'd3);
         wait_completion();
 
         test = "2 frames min samples";
-        configure_run(32'd2, 32'h0, 32'd1, 32'h800, 32'd1);
+        configure_run(32'd2, 32'h0, 32'd1, 32'h800, 32'd1, 32'd4);
         wait_completion();
 
         test = "1 frame offset address";
-        configure_run(32'd1, 32'd128, 32'd255, 32'd128, 32'd255);
+        configure_run(32'd1, 32'd128, 32'd255, 32'd128, 32'd255, 32'd5);
         wait_completion();
 
         $display("Testbench finished");

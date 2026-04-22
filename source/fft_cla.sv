@@ -1,11 +1,11 @@
 `timescale 1ns / 10ps
 
 module fft_cla (
-    input [31:0] a,
-    input [31:0] b,
-    input cin,
-    output [31:0] sum,
-    output cout
+    input logic [31:0] a,
+    input logic [31:0] b,
+    input logic cin,
+    output logic [31:0] sum,
+    output logic cout
 );
     logic [31:0] g [0:5];
     logic [31:0] p [0:5];

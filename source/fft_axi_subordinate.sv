@@ -97,6 +97,17 @@ module fft_axi_subordinate (
     always_ff @(posedge clk, negedge n_rst) begin : config_data_regs
         if (!n_rst)
             config_reg <= '0;
+        else if (waddr_idx == 3'd2 || waddr_idx == 3'd4) begin
+            if ((next_config_reg[waddr_idx] == 0) || 
+                ((next_config_reg[waddr_idx] & (next_config_reg[waddr_idx] - 1)) != 0) ||
+                (next_config_reg[waddr_idx] < 32'd2) || 
+                (next_config_reg[waddr_idx] > 32'd512))
+                config_reg <= '0;
+            else
+                config_reg <= next_config_reg;
+        end
+        else if (waddr_idx == 3'd6 && next_config_reg[waddr_idx] > 32'd5)
+            config_reg <= '0;
         else
             config_reg <= next_config_reg;
     end
@@ -106,9 +117,15 @@ module fft_axi_subordinate (
 
         if (fft_sub_wvalid && fft_sub_wready && (next_awaddr[31:3] == 29'b0)) begin
             case (fft_sub_wstrb)
-                2'b00: next_config_reg[waddr_idx] = {16'h0000, fft_sub_wdata[15:0]};
-                2'b01: next_config_reg[waddr_idx] = {fft_sub_wdata[31:16], 16'h0000};
-                default: next_config_reg[waddr_idx] = fft_sub_wdata;
+                2'b00: begin 
+                    next_config_reg[waddr_idx] = {16'h0000, fft_sub_wdata[15:0]};
+                end
+                2'b01: begin 
+                    next_config_reg[waddr_idx] = {fft_sub_wdata[31:16], 16'h0000};
+                end
+                default: begin 
+                    next_config_reg[waddr_idx] = fft_sub_wdata;
+                end
             endcase
         end
     end
