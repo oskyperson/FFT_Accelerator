@@ -63,12 +63,53 @@ module tb_axi_top ();
 
     sram_model SRAM (.*);
 
+    logic [31:0] w_queue [$];
+    logic [31:0] r_queue [$];
 
     initial begin
         n_rst = 1;
 
         reset_dut;
+        
+        force BFM.cpu_awvalid = 0;
+        force BFM.cpu_wvalid  = 0;
+        force BFM.cpu_bready  = 0;
+        force BFM.cpu_arvalid = 0;
+        force BFM.cpu_rready  = 0;
+        force BFM.cpu_araddr = '0;
+        force BFM.cpu_awaddr = '0;
 
+        #1;
+        release BFM.cpu_awvalid;
+        release BFM.cpu_wvalid;
+        release BFM.cpu_bready;
+        release BFM.cpu_arvalid;
+        release BFM.cpu_rready;
+        release BFM.cpu_araddr;
+        release BFM.cpu_awaddr;
+
+        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem.txt");
+        
+        w_queue.delete();
+        w_queue.push_back(32'h1);
+        w_queue.push_back(32'd15);
+        w_queue.push_back(32'd511);
+        w_queue.push_back(32'd600);
+        w_queue.push_back(32'd511);
+        w_queue.push_back(32'h3);
+        w_queue.push_back(32'h1);
+        BFM.write_burst(32'd0, w_queue);
+        w_queue.delete();
+        w_queue.push_back(32'h1);
+        BFM.write_burst(32'd6, w_queue);
+        for(int i = 0; i<1024; i++)begin
+            @(posedge clk);
+            @(posedge clk);
+            @(posedge clk);
+            @(posedge clk);
+        end
+        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram.txt");
+        
         $finish;
     end
 endmodule

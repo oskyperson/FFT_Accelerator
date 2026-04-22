@@ -122,7 +122,7 @@ module tb_sram_axi ();
 
          
  
-        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem2.txt");
+        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem.txt");
 
         $display(" TEST 1: Single Word Access (Addr 15)");
 
