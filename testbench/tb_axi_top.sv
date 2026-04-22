@@ -95,13 +95,17 @@ module tb_axi_top ();
         for(int i = 0; i < 1024; i++) begin
             w_queue.push_back(32'd0);
         end
+        $display("PLUH");
         BFM.write_burst(32'd15, w_queue);
         BFM.write_burst(32'd1039, w_queue);
+        //BFM.write_burst(32'd2063, w_queue);
+        //BFM.write_burst(32'd3087, w_queue);
+        $display("pluh2");
 
         SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem1.txt");
         
         w_queue.delete();
-        w_queue.push_back(32'h1);
+        w_queue.push_back(32'h3);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'd3000);
@@ -131,6 +135,7 @@ module tb_axi_top ();
         
 
         // next frame
+        /*
         SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem2.txt");
         w_queue.delete();
         w_queue.push_back(32'h1);
@@ -159,6 +164,9 @@ module tb_axi_top ();
         end
         $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram2.txt", 2048, 1);
+        */
+
+
 
         $finish;
     end
