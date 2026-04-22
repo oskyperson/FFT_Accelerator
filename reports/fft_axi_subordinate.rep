@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 23:39:04 2026
+Date   : Wed Apr 22 00:18:11 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -25,19 +25,19 @@ Wire Load Model Mode: top
   read_counter/i_reg[0]/CLK (DFFSR)                       0.00       0.00 r
   read_counter/i_reg[0]/Q (DFFSR)                         0.78       0.78 f
   read_counter/i[0] (fft_axi_counter_WRITE_OR_READ0)      0.00       0.78 f
-  U3192/Y (NAND2X1)                                       0.29       1.07 r
-  U3191/Y (INVX1)                                         0.26       1.33 f
-  U3186/Y (OAI21X1)                                       0.14       1.47 r
-  U3185/Y (OAI21X1)                                       0.23       1.70 f
-  U3184/Y (XNOR2X1)                                       0.31       2.01 f
-  U2016/Y (INVX2)                                         0.13       2.14 r
-  U1819/Y (NOR2X1)                                        0.21       2.35 f
-  U1579/Y (NAND2X1)                                       0.22       2.57 r
-  U1580/Y (INVX4)                                         0.59       3.16 f
-  U2010/Y (AOI22X1)                                       0.20       3.36 r
-  U2012/Y (AND2X1)                                        0.15       3.51 r
-  U2013/Y (NAND3X1)                                       0.06       3.57 f
-  U2412/Y (AND2X1)                                        0.13       3.70 f
+  U3186/Y (NAND2X1)                                       0.29       1.07 r
+  U3185/Y (INVX1)                                         0.26       1.33 f
+  U3180/Y (OAI21X1)                                       0.14       1.47 r
+  U3179/Y (OAI21X1)                                       0.23       1.70 f
+  U3178/Y (XNOR2X1)                                       0.31       2.01 f
+  U2018/Y (INVX2)                                         0.13       2.14 r
+  U1821/Y (NOR2X1)                                        0.21       2.35 f
+  U1581/Y (NAND2X1)                                       0.22       2.57 r
+  U1582/Y (INVX4)                                         0.59       3.16 f
+  U2012/Y (AOI22X1)                                       0.20       3.36 r
+  U2014/Y (AND2X1)                                        0.15       3.51 r
+  U2015/Y (NAND3X1)                                       0.06       3.57 f
+  U2414/Y (AND2X1)                                        0.13       3.70 f
   fft_sub_rdata[31] (out)                                 0.00       3.70 f
   data arrival time                                                  3.70
   --------------------------------------------------------------------------
@@ -50,7 +50,7 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 23:39:04 2026
+Date   : Wed Apr 22 00:18:11 2026
 ****************************************
 
 Library(s) Used:
@@ -58,21 +58,21 @@ Library(s) Used:
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
 Number of ports:                          578
-Number of nets:                          2763
-Number of cells:                         2528
-Number of combinational cells:           1829
+Number of nets:                          2741
+Number of cells:                         2501
+Number of combinational cells:           1802
 Number of sequential cells:               347
 Number of macros/black boxes:               0
-Number of buf/inv:                        500
+Number of buf/inv:                        487
 Number of references:                      20
 
-Combinational area:             505935.000000
-Buf/Inv area:                    76032.000000
+Combinational area:             504810.000000
+Buf/Inv area:                    74160.000000
 Noncombinational area:          549648.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:               1055583.000000
+Total cell area:               1054458.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -86,7 +86,7 @@ Report : power
         -analysis_effort low
 Design : fft_axi_subordinate
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 23:39:04 2026
+Date   : Wed Apr 22 00:18:12 2026
 ****************************************
 
 
@@ -118,7 +118,7 @@ i - Including register clock pin internal power
                          ---------
 Total Dynamic Power    =  88.8587 mW  (100%)
 
-Cell Leakage Power     = 326.1389 nW
+Cell Leakage Power     = 326.5604 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -131,7 +131,7 @@ black_box          0.0000            0.0000            0.0000            0.0000 
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
 sequential        45.4911            0.5292          184.9434           46.0205  (  51.79%)
-combinational     16.7348           26.1035          141.1956           42.8384  (  48.21%)
+combinational     16.7348           26.1035          141.6170           42.8384  (  48.21%)
 --------------------------------------------------------------------------------------------------
-Total             62.2259 mW        26.6327 mW       326.1389 nW        88.8589 mW
+Total             62.2259 mW        26.6327 mW       326.5604 nW        88.8589 mW
 1

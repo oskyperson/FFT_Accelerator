@@ -127,7 +127,7 @@ module tb_fft_axi_subordinate ();
         w_queue.delete();
         for(int i = 0; i < 8; i++) begin
             if (i == 2 || i == 4)
-                w_queue.push_back(32'd512);
+                w_queue.push_back(32'd511);
             else if (i == 6)
                 w_queue.push_back(32'd3);
             else
@@ -148,7 +148,7 @@ module tb_fft_axi_subordinate ();
         w_queue.delete();
         for(int i = 0; i < 8; i++) begin
             if (i == 2 || i == 4)
-                w_queue.push_back(32'd512);
+                w_queue.push_back(32'd511);
             else if (i == 6)
                 w_queue.push_back(32'd3);
             else
