@@ -47,7 +47,7 @@ module axi_top #(
     logic fft_man_bresp;
     logic [9:0] fft_man_arlen, fft_man_awlen;
     logic [1:0] fft_man_wstrb;
-
+    logic [31:0] windowing;
     
     logic [31:0] sram_awaddr, sram_araddr;
     logic sram_awvalid, sram_arvalid;

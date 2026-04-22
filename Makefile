@@ -32,6 +32,7 @@ fft_help:
 fft_setup_%:
 	@echo "Setting up $* files"
 	@python3 ./Python/rand.py $(call GET_SIG,$*) $(call GET_N,$*)
+	@python3 ./Python/verify.py $(call GET_N,$*)
 
 fft_rungui_%:
 	$(MAKE) fft_setup_$*

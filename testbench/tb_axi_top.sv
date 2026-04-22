@@ -96,18 +96,19 @@ module tb_axi_top ();
         w_queue.push_back(32'h1);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
-        w_queue.push_back(32'd1000);
+        w_queue.push_back(32'd512);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'h3);
+        w_queue.push_back(32'h0);
         w_queue.push_back(32'h1);
         BFM.write_burst(32'd0, w_queue);
         w_queue.delete();
         w_queue.push_back(32'h1);
-        BFM.write_burst(32'd6, w_queue);
+        BFM.write_burst(32'd7, w_queue);
         w_queue.delete();
         r_queue.delete();
         $display("ugh");
-        
+       
         $display("ugh2");
         for(int i = 0; i<1024; i++)begin
             @(posedge clk);
