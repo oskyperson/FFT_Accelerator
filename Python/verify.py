@@ -1,6 +1,9 @@
 import numpy as np
 import sys
 
+def bit_reverse(i, n_bits):
+    return int('{:0{width}b}'.format(i, width=n_bits)[::-1], 2)
+
 def to_hex(val):
     def to_fixed(x):
         return int(np.clip(round(x * 32768), -32768, 32767)) & 0xFFFF
@@ -22,9 +25,14 @@ def calculate_fft(input_file, N = 512):
     
     fft_result = np.fft.fft(data) / N
 
+    n_bits = int(np.log2(N))
+    br_fft = np.zeros(N, dtype=complex)
+    for i in range(N):
+        br_fft[bit_reverse(i, n_bits)] = fft_result[i]
+
     with open(output_file, 'w') as f:
         f.write("Real ----- Imaginary\n")
-        for val in fft_result:
+        for val in br_fft:
             re = val.real
             im = val.imag
 
@@ -35,7 +43,7 @@ def calculate_fft(input_file, N = 512):
 
 
     with open(hex_output_file, 'w') as f:
-        for val in fft_result:
+        for val in br_fft:
             f.write(f"{to_hex(val)}\n")
 
 

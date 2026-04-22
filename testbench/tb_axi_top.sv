@@ -96,7 +96,7 @@ module tb_axi_top ();
         w_queue.push_back(32'h1);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
-        w_queue.push_back(32'd512);
+        w_queue.push_back(32'd1000);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'h3);
         w_queue.push_back(32'h0);
