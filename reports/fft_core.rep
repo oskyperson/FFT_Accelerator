@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 17:33:49 2026
+Date   : Tue Apr 21 21:25:20 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -36,7 +36,7 @@ Wire Load Model Mode: top
 Report : area
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 17:33:49 2026
+Date   : Tue Apr 21 21:25:20 2026
 ****************************************
 
 Library(s) Used:
@@ -72,7 +72,7 @@ Report : power
         -analysis_effort low
 Design : fft_core
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 17:33:54 2026
+Date   : Tue Apr 21 21:25:25 2026
 ****************************************
 
 

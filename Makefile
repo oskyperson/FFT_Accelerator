@@ -23,7 +23,7 @@ GET_N = $(word 2,$(subst _, ,$(1)))
 
 fft_help:
 	@echo "I suck at using Makefiles"
-	@echo "Options: single tone, two tone, impulse, dc, sine, noise1, noise2, low_amp_tone"
+	@echo "Options: singleTone twoTone impulse dc sine noise1 noise2 lowTone squareWave chirp multiTone"
 	@echo "	 square_wave, chirp, multi_tone_varying"
 	@echo "Commands: setup, rungui, run, snr"
 	@echo "syntax is: make fft_command_framesize"

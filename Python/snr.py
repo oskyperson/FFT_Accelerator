@@ -17,8 +17,8 @@ def calculate_snr(ref_signal, test_signal):
     return snr_db
 
 if __name__ == "__main__":
-    ref_file = "./connor.txt"
-    hw_file = "./Python/input_output.txt"
+    ref_file = "./sram.txt" #MODIFY AS NEEDED
+    hw_file = "./Python/input_output_hex.txt"
 
     ref = load_fft_file(ref_file)
     hw = load_fft_file(hw_file)

@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg041/.synopsys_dc_gui/preferences.tcl
-Current time:       Tue Apr 21 17:31:03 2026
-Hostname:           ececomp4.ecn.purdue.edu
+Current time:       Tue Apr 21 21:22:31 2026
+Hostname:           ececomp2.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
 CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free   8 GB)
-Swap:                63 GB (Free  54 GB)
+RAM:                502 GB (Free  69 GB)
+Swap:                63 GB (Free  30 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 286 GB)
+Work Disk:          2968 GB (Free 294 GB)
 Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 9%, Ram Free: 8 GB, Swap Free: 54 GB, Work Disk Free: 286 GB, Tmp Disk Free: 18 GB
+CPU Load: 16%, Ram Free: 69 GB, Swap Free: 30 GB, Work Disk Free: 294 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,7 +53,7 @@ CPU Load: 9%, Ram Free: 8 GB, Swap Free: 54 GB, Work Disk Free: 286 GB, Tmp Disk
 #
 ############################################
 sh date
-Tue Apr 21 17:31:03 EDT 2026
+Tue Apr 21 21:22:31 EDT 2026
 set TOP_MODULE fft_core
 fft_core
 set DC_SCRIPT synth.tcl
@@ -122,16 +122,16 @@ Elaborated 1 design.
 Current design is now 'fft_core'.
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "0". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE0' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE0)
 Module: fft_stage_STAGE0, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -139,16 +139,16 @@ Module: fft_stage_STAGE0, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE0 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "1". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE1' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE1)
 Module: fft_stage_STAGE1, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -156,16 +156,16 @@ Module: fft_stage_STAGE1, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE1 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "2". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE2' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE2)
 Module: fft_stage_STAGE2, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -173,16 +173,16 @@ Module: fft_stage_STAGE2, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE2 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "3". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE3' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE3)
 Module: fft_stage_STAGE3, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -190,16 +190,16 @@ Module: fft_stage_STAGE3, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE3 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "4". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE4' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE4)
 Module: fft_stage_STAGE4, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -207,16 +207,16 @@ Module: fft_stage_STAGE4, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE4 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "5". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE5' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE5)
 Module: fft_stage_STAGE5, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -224,16 +224,16 @@ Module: fft_stage_STAGE5, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE5 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "6". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE6' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE6)
 Module: fft_stage_STAGE6, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -241,16 +241,16 @@ Module: fft_stage_STAGE6, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE6 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "7". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE7' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE7)
 Module: fft_stage_STAGE7, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -258,16 +258,16 @@ Module: fft_stage_STAGE7, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE7 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "8". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:84: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE8' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  57  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  57  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  81  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE8)
 Module: fft_stage_STAGE8, Ports: 79, Input: 46, Output: 33, Inout: 0
@@ -774,7 +774,7 @@ Information: Uniquified 9 instances of design 'twiddle_lookup'. (OPT-1056)
 Information: Uniquified 9 instances of design 'flex_counter'. (OPT-1056)
 Information: Uniquified 36 instances of design 'adder'. (OPT-1056)
 Information: Uniquified 36 instances of design 'multiplier'. (OPT-1056)
-CPU Load: 10%, Ram Free: 7 GB, Swap Free: 54 GB, Work Disk Free: 286 GB, Tmp Disk Free: 18 GB
+CPU Load: 16%, Ram Free: 69 GB, Swap Free: 30 GB, Work Disk Free: 294 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -1407,10 +1407,10 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:30 56596833.0      0.00       0.0    4986.4                          
-    0:01:30 56596833.0      0.00       0.0    4986.4                          
-    0:01:30 56596833.0      0.00       0.0    4986.4                          
-    0:01:30 56596833.0      0.00       0.0    4986.4                          
+    0:01:31 56596833.0      0.00       0.0    4986.4                          
+    0:01:31 56596833.0      0.00       0.0    4986.4                          
+    0:01:31 56596833.0      0.00       0.0    4986.4                          
+    0:01:31 56596833.0      0.00       0.0    4986.4                          
     0:01:33 56596833.0      0.00       0.0    4986.4                          
     0:01:36 54712305.0      0.00       0.0    4986.4                          
     0:01:37 54712089.0      0.00       0.0    4986.4                          
@@ -1450,13 +1450,13 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:01:42 54777033.0      0.00       0.0    1974.9                          
-    0:01:42 54789273.0      0.00       0.0     758.9 butterfly_units[0].stage/delays/out[29]
+    0:01:43 54789273.0      0.00       0.0     758.9 butterfly_units[0].stage/delays/out[29]
     0:01:43 54802521.0      0.00       0.0     619.2 butterfly_units[1].stage/delays/out[9]
     0:01:43 54811881.0      0.00       0.0     503.9 butterfly_units[3].stage/mather/img/b[13]
     0:01:43 54818145.0      0.00       0.0     415.9 butterfly_units[4].stage/mather/img/b[12]
     0:01:43 54825489.0      0.00       0.0     312.7 butterfly_units[5].stage/mather/img/b[6]
-    0:01:43 54832833.0      0.00       0.0     209.4 butterfly_units[6].stage/mather/rl/b[14]
-    0:01:43 54839529.0      0.00       0.0     115.3                          
+    0:01:44 54832833.0      0.00       0.0     209.4 butterfly_units[6].stage/mather/rl/b[14]
+    0:01:44 54839529.0      0.00       0.0     115.3                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -1466,20 +1466,20 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:43 54839529.0      0.00       0.0     115.3                          
     0:01:44 54839529.0      0.00       0.0     115.3                          
-    0:02:22 54830241.0      0.00       0.0     115.3                          
-    0:02:26 54828225.0      0.00       0.0     115.3                          
-    0:02:31 54826929.0      0.00       0.0     115.3                          
-    0:02:34 54826209.0      0.00       0.0     115.3                          
-    0:02:34 54826209.0      0.00       0.0     115.3                          
-    0:02:34 54826209.0      0.00       0.0     115.3                          
+    0:01:44 54839529.0      0.00       0.0     115.3                          
+    0:02:24 54830241.0      0.00       0.0     115.3                          
+    0:02:28 54828225.0      0.00       0.0     115.3                          
+    0:02:33 54826929.0      0.00       0.0     115.3                          
     0:02:35 54826209.0      0.00       0.0     115.3                          
-    0:02:35 54826209.0      0.00       0.0     115.3                          
-    0:02:35 54826209.0      0.00       0.0     115.3                          
-    0:02:35 54826209.0      0.00       0.0     115.3                          
-    0:02:35 54826209.0      0.00       0.0     115.3                          
-    0:02:35 54826209.0      0.00       0.0     115.3                          
+    0:02:36 54826209.0      0.00       0.0     115.3                          
+    0:02:36 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
+    0:02:37 54826209.0      0.00       0.0     115.3                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -1488,7 +1488,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 10%, Ram Free: 8 GB, Swap Free: 54 GB, Work Disk Free: 287 GB, Tmp Disk Free: 18 GB
+CPU Load: 14%, Ram Free: 69 GB, Swap Free: 30 GB, Work Disk Free: 293 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -1512,7 +1512,7 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Tue Apr 21 17:33:46 2026
+Date:        Tue Apr 21 21:25:17 2026
 ****************************************
 
                    Name                                            Total
@@ -3043,7 +3043,7 @@ Warning: Verilog writer has added 2 nets to module math_STAGE8 using SYNOPSYS_UN
 
 Memory usage for this session 466 Mbytes.
 Memory usage for this session including child processes 466 Mbytes.
-CPU usage for this session 167 seconds ( 0.05 hours ).
-Elapsed time for this session 177 seconds ( 0.05 hours ).
+CPU usage for this session 175 seconds ( 0.05 hours ).
+Elapsed time for this session 180 seconds ( 0.05 hours ).
 
 Thank you...
