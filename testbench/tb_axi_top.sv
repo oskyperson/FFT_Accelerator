@@ -3,7 +3,7 @@
 
 module tb_axi_top ();
 
-    localparam CLK_PERIOD = 10ns;
+    localparam CLK_PERIOD = 100ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -88,6 +88,26 @@ module tb_axi_top ();
         release BFM.cpu_araddr;
         release BFM.cpu_awaddr;
 
+
+        $display(" TEST 2: 4-Beat Burst Access (Addr 20)");
+
+        w_queue.delete();
+        w_queue.push_back(32'h11111111);
+        w_queue.push_back(32'h22222222);
+        w_queue.push_back(32'h33333333);
+        w_queue.push_back(32'h44444444);
+        
+        BFM.write_burst(31'd20, w_queue);
+        BFM.read_burst(31'd20, 4, r_queue);
+        
+        for(int i = 0; i < 4; i++) begin
+            if (r_queue[i] == w_queue[i])
+                $display(" -> [PASS] Beat %0d matched: %h", i, r_queue[i]);
+            else
+                $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
+        end
+        $display("");
+
         SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem.txt");
         
         w_queue.delete();
@@ -102,6 +122,9 @@ module tb_axi_top ();
         w_queue.delete();
         w_queue.push_back(32'h1);
         BFM.write_burst(32'd6, w_queue);
+        w_queue.delete();
+        r_queue.delete();
+        BFM.read_burst(32'd15,511,r_queue);
         for(int i = 0; i<1024; i++)begin
             @(posedge clk);
             @(posedge clk);

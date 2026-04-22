@@ -31,20 +31,20 @@ Please use '-no_save' simv switch to avoid this.
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 Initializing...
-Initializing gui preferences from file  /home/ecegridfs/a/337mg041/.synopsys_dc_gui/preferences.tcl
-Current time:       Sat Apr 18 16:45:53 2026
-Hostname:           ececomp5.ecn.purdue.edu
+Initializing gui preferences from file  /home/ecegridfs/a/337mg227/.synopsys_dc_gui/preferences.tcl
+Current time:       Tue Apr 21 21:11:58 2026
+Hostname:           ececomp2.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.67 GHz
-OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
-RAM:                502 GB (Free  20 GB)
-Swap:                63 GB (Free  59 GB)
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
+OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
+RAM:                502 GB (Free  75 GB)
+Swap:                63 GB (Free  30 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 346 GB)
-Tmp Disk:            17 GB (Free  16 GB)
+Work Disk:          2968 GB (Free 292 GB)
+Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 17%, Ram Free: 20 GB, Swap Free: 59 GB, Work Disk Free: 346 GB, Tmp Disk Free: 16 GB
+CPU Load: 18%, Ram Free: 75 GB, Swap Free: 30 GB, Work Disk Free: 292 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,13 +53,13 @@ CPU Load: 17%, Ram Free: 20 GB, Swap Free: 59 GB, Work Disk Free: 346 GB, Tmp Di
 #
 ############################################
 sh date
-Sat Apr 18 16:45:53 EDT 2026
-set TOP_MODULE fft_core
-fft_core
+Tue Apr 21 21:11:58 EDT 2026
+set TOP_MODULE axi_top
+axi_top
 set DC_SCRIPT synth.tcl
 synth.tcl
-set READ_SOURCES team42_ece337_fft_core_1.0.0-read-sources
-team42_ece337_fft_core_1.0.0-read-sources
+set READ_SOURCES team42_ece337_axi_top_1.0.0-read-sources
+team42_ece337_axi_top_1.0.0-read-sources
 set SCRIPT_DIR src/team42_ece337_synfiles_0
 src/team42_ece337_synfiles_0
 set REPORT_DIR reports
@@ -76,18 +76,36 @@ set link_library   [concat "*"  /home/ecegrid/a/ece337/summer24-refactor/tech/am
 ############################################
 source ${SCRIPT_DIR}/${DC_SCRIPT}
 Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_fft_cla_1.0.0/source/fft_cla.sv
+Compiling source file ./src/team42_ece337_adder_1.0.0/source/adder.sv
 Presto compilation completed successfully.
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/dw_foundation.sldb'
 Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_arbiter_1.0.0/source/arbiter.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_delay_line_1.0.0/source/delay_line.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_fft_cla_1.0.0/source/fft_cla.sv
 Presto compilation completed successfully.
 Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_flex_counter_1.0.0/source/flex_counter.sv
 Presto compilation completed successfully.
 Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_twiddle_lookup_1.0.0/source/twiddle_lookup.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv
 Presto compilation completed successfully.
 Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_multiplier_1.0.0/source/multiplier.sv
@@ -101,168 +119,358 @@ Presto compilation completed successfully.
 Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_fft_core_1.0.0/source/fft_core.sv
 Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/team42_ece337_axi_top_1.0.0/source/axi_top.sv
+Presto compilation completed successfully.
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/gtech.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.sldb'
   Loading link library 'osu05_stdcells'
   Loading link library 'gtech'
 Running PRESTO HDLC
-Presto compilation completed successfully. (fft_core)
-Module: fft_core, Ports: 68, Input: 35, Output: 33, Inout: 0
-Module: fft_core, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Information: Module fft_core report end. (ELAB-965)
+Presto compilation completed successfully. (axi_top)
+Module: axi_top, Ports: 301, Input: 160, Output: 141, Inout: 0
+Module: axi_top, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module axi_top report end. (ELAB-965)
 Elaborated 1 design.
-Current design is now 'fft_core'.
+Current design is now 'axi_top'.
+Information: Building the design 'fft_axi_manager'. (HDL-193)
+Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:170: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:220: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block in file
+	'./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'
+============================================================
+|    Line    |  full/ parallel  |      block location      |
+============================================================
+|    160     |    auto/auto     | always block at line 158 |
+|    210     |    auto/auto     | always block at line 208 |
+============================================================
+
+Inferred memory devices in process in routine 'fft_axi_manager' in file
+	 ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|     j_gt_0_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
+|     j_eq_k_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
+|     k_gt_0_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
+|    load_size_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  78  |
+|   frame_size_reg    | Flip-flop |   8   |  Y  | N  | Async | Async | N  |  78  |
+|     configs_reg     | Flip-flop |  97   |  Y  | N  | None  | Async | N  |  88  |
+|   processing_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  88  |
+|  r_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 118  |
+|  w_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 118  |
+|        j_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 118  |
+|        k_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 118  |
+|    r_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 118  |
+|    w_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 118  |
+|     rstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 151  |
+| fft_man_araddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 174  |
+|     wstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 201  |
+| fft_man_awaddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 224  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_manager)
+Module: fft_axi_manager, Ports: 499, Input: 331, Output: 168, Inout: 0
+Module: fft_axi_manager, Registers: 330, Async set/reset: 330, Sync set/reset: 0
+Information: Module fft_axi_manager report end. (ELAB-965)
+Information: Building the design 'fft_axi_subordinate'. (HDL-193)
+
+Statistics for case statements in always block in file
+	'./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'
+============================================================
+|    Line    |  full/ parallel  |      block location      |
+============================================================
+|    108     |    auto/auto     | always block at line 104 |
+============================================================
+
+Inferred memory devices in process in routine 'fft_axi_subordinate' in file
+	 ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+| fft_sub_wready_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  |  59  |
+|   awaddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  59  |
+| fft_sub_awready_reg | Flip-flop |   1   |  N  | N  | Async | None  | N  |  59  |
+|   config_reg_reg    | Flip-flop |  256  |  Y  | N  | None  | Async | N  |  97  |
+| fft_sub_bvalid_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 116  |
+|  fft_sub_bresp_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 116  |
+| fft_sub_arready_reg | Flip-flop |   1   |  N  | N  | Async | None  | N  | 140  |
+|   araddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 140  |
+| fft_sub_rvalid_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 173  |
+|  fft_sub_rresp_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 173  |
+==================================================================================
+Statistics for MUX_OPs
+=============================================================
+|    block name/line      | Inputs | Outputs | # sel inputs |
+=============================================================
+| fft_axi_subordinate/199 |   8    |   32    |      3       |
+=============================================================
+Presto compilation completed successfully. (fft_axi_subordinate)
+Module: fft_axi_subordinate, Ports: 422, Input: 126, Output: 296, Inout: 0
+Module: fft_axi_subordinate, Registers: 327, Async set/reset: 327, Sync set/reset: 0
+Information: Module fft_axi_subordinate report end. (ELAB-965)
+Information: Building the design 'sram_axi'. (HDL-193)
+
+Statistics for case statements in always block in file
+	'./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv'
+============================================================
+|    Line    |  full/ parallel  |      block location      |
+============================================================
+|     81     |    auto/auto     | always block at line 73  |
+|     89     |    auto/auto     | always block at line 73  |
+|    111     |    auto/auto     | always block at line 105 |
+============================================================
+
+Inferred memory devices in process in routine 'sram_axi' in file
+	 ./src/team42_ece337_sram_axi_1.0.0/source/sram_axi.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|   read_state_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  63  |
+|   write_state_reg   | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  63  |
+|   sram_rvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|   sram_rlast_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|    waddr_reg_reg    | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 132  |
+|    wlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 132  |
+|    wdata_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 132  |
+|    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 132  |
+|    raddr_reg_reg    | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 132  |
+|    rlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 132  |
+|  sram_awready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|   sram_wready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|   sram_bvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|  sram_arready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+==================================================================================
+Presto compilation completed successfully. (sram_axi)
+Module: sram_axi, Ports: 301, Input: 160, Output: 141, Inout: 0
+Module: sram_axi, Registers: 86, Async set/reset: 86, Sync set/reset: 0
+Information: Module sram_axi report end. (ELAB-965)
+Information: Building the design 'arbiter'. (HDL-193)
+
+Statistics for case statements in always block in file
+	'./src/team42_ece337_arbiter_1.0.0/source/arbiter.sv'
+============================================================
+|    Line    |  full/ parallel  |      block location      |
+============================================================
+|    123     |    auto/auto     | always block at line 120 |
+|    133     |    auto/auto     | always block at line 120 |
+|    146     |    auto/auto     | always block at line 143 |
+|    156     |    auto/auto     | always block at line 143 |
+============================================================
+
+Inferred memory devices in process in routine 'arbiter' in file
+	 ./src/team42_ece337_arbiter_1.0.0/source/arbiter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|     w_state_reg     | Flip-flop |   1   |  N  | N  | None  | Async | N  |  96  |
+|     r_state_reg     | Flip-flop |   1   |  N  | N  | None  | Async | N  |  96  |
+|     r_dest_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 106  |
+|     r_perms_reg     | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 106  |
+|     w_perms_reg     | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 106  |
+|     w_dest_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 106  |
+==================================================================================
+Presto compilation completed successfully. (arbiter)
+Module: arbiter, Ports: 658, Input: 330, Output: 328, Inout: 0
+Module: arbiter, Registers: 10, Async set/reset: 10, Sync set/reset: 0
+Information: Module arbiter report end. (ELAB-965)
+Information: Building the design 'fft_core'. (HDL-193)
+
+Inferred memory devices in process in routine 'fft_core' in file
+	 ./src/team42_ece337_fft_core_1.0.0/source/fft_core.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|    size_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  28  |
+==================================================================================
+Presto compilation completed successfully. (fft_core)
+Module: fft_core, Ports: 79, Input: 46, Output: 33, Inout: 0
+Module: fft_core, Registers: 10, Async set/reset: 10, Sync set/reset: 0
+Information: Module fft_core report end. (ELAB-965)
+Information: Building the design 'fft_cla'. (HDL-193)
+Presto compilation completed successfully. (fft_cla)
+Module: fft_cla, Ports: 98, Input: 65, Output: 33, Inout: 0
+Module: fft_cla, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Module fft_cla report end. (ELAB-965)
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_manager' with
+	the parameters "WRITE_OR_READ=0". (HDL-193)
+
+Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ0' in file
+	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ0)
+Module: fft_axi_counter_WRITE_OR_READ0, Ports: 26, Input: 15, Output: 11, Inout: 0
+Module: fft_axi_counter_WRITE_OR_READ0, Registers: 10, Async set/reset: 10, Sync set/reset: 0
+Information: Module fft_axi_counter_WRITE_OR_READ0 report end. (ELAB-965)
+Information: Building the design 'fft_axi_counter' instantiated from design 'fft_axi_manager' with
+	the parameters "WRITE_OR_READ=1". (HDL-193)
+
+Inferred memory devices in process in routine 'fft_axi_counter_WRITE_OR_READ1' in file
+	 ./src/team42_ece337_fft_axi_counter_1.0.0/source/fft_axi_counter.sv'.
+==================================================================================
+|    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
+==================================================================================
+|        i_reg        | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  14  |
+==================================================================================
+Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ1)
+Module: fft_axi_counter_WRITE_OR_READ1, Ports: 26, Input: 15, Output: 11, Inout: 0
+Module: fft_axi_counter_WRITE_OR_READ1, Registers: 10, Async set/reset: 10, Sync set/reset: 0
+Information: Module fft_axi_counter_WRITE_OR_READ1 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "0". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE0' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE0)
-Module: fft_stage_STAGE0, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE0, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE0, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE0 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "1". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE1' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE1)
-Module: fft_stage_STAGE1, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE1, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE1, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE1 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "2". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE2' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE2)
-Module: fft_stage_STAGE2, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE2, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE2, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE2 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "3". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE3' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE3)
-Module: fft_stage_STAGE3, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE3, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE3, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE3 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "4". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE4' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE4)
-Module: fft_stage_STAGE4, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE4, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE4, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE4 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "5". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE5' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE5)
-Module: fft_stage_STAGE5, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE5, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE5, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE5 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "6". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE6' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE6)
-Module: fft_stage_STAGE6, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE6, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE6, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE6 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "7". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE7' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE7)
-Module: fft_stage_STAGE7, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE7, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE7, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE7 report end. (ELAB-965)
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "8". (HDL-193)
-Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:72: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:78: signed to unsigned conversion occurs. (VER-318)
 
 Inferred memory devices in process in routine 'fft_stage_STAGE8' in file
 	 ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  48  |
-|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  48  |
-|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  69  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  54  |
+|       out_reg       | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  54  |
+|     primed_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  75  |
 ==================================================================================
 Presto compilation completed successfully. (fft_stage_STAGE8)
-Module: fft_stage_STAGE8, Ports: 68, Input: 35, Output: 33, Inout: 0
+Module: fft_stage_STAGE8, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_stage_STAGE8, Registers: 34, Async set/reset: 34, Sync set/reset: 0
 Information: Module fft_stage_STAGE8 report end. (ELAB-965)
 Information: Building the design 'delay_line' instantiated from design 'fft_stage_STAGE0' with
@@ -558,10 +766,10 @@ Inferred memory devices in process in routine 'flex_counter' in file
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|      count_reg      | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  23  |
+|      count_reg      | Flip-flop |  10   |  Y  | N  | None  | Async | N  |  24  |
 ==================================================================================
 Presto compilation completed successfully. (flex_counter)
-Module: flex_counter, Ports: 15, Input: 4, Output: 11, Inout: 0
+Module: flex_counter, Ports: 25, Input: 14, Output: 11, Inout: 0
 Module: flex_counter, Registers: 10, Async set/reset: 10, Sync set/reset: 0
 Information: Module flex_counter report end. (ELAB-965)
 Information: Building the design 'math' instantiated from design 'fft_stage_STAGE0' with
@@ -762,11 +970,14 @@ Presto compilation completed successfully. (multiplier)
 Module: multiplier, Ports: 49, Input: 33, Output: 16, Inout: 0
 Module: multiplier, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Information: Module multiplier report end. (ELAB-965)
+Information: Uniquified 2 instances of design 'fft_cla'. (OPT-1056)
+Information: Uniquified 2 instances of design 'fft_axi_counter_WRITE_OR_READ0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'fft_axi_counter_WRITE_OR_READ1'. (OPT-1056)
 Information: Uniquified 9 instances of design 'twiddle_lookup'. (OPT-1056)
 Information: Uniquified 9 instances of design 'flex_counter'. (OPT-1056)
 Information: Uniquified 36 instances of design 'adder'. (OPT-1056)
 Information: Uniquified 36 instances of design 'multiplier'. (OPT-1056)
-CPU Load: 17%, Ram Free: 20 GB, Swap Free: 59 GB, Work Disk Free: 346 GB, Tmp Disk Free: 16 GB
+CPU Load: 18%, Ram Free: 75 GB, Swap Free: 30 GB, Work Disk Free: 292 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -785,23 +996,23 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-| Leaf Cell Count                                         | 25892                                  |
-| Number of User Hierarchies                              | 117                                    |
-| Sequential Cell Count                                   | 16748                                  |
+| Leaf Cell Count                                         | 28788                                  |
+| Number of User Hierarchies                              | 128                                    |
+| Sequential Cell Count                                   | 17551                                  |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-| Number of Dont Touch Cells                              | 5049                                   |
+| Number of Dont Touch Cells                              | 5358                                   |
 | Number of Dont Touch Nets                               | 0                                      |
-| Number of Size Only Cells                               | 18                                     |
+| Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 224 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 583 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -856,6 +1067,10 @@ Module: DW01_incdec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
   Processing 'twiddle_lookup_0'
   Processing 'delay_line_STAGE8'
   Processing 'fft_stage_STAGE8'
+Module: DW01_dec_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
+Module: DW01_dec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_sub_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
+Module: DW01_sub_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
   Processing 'math_STAGE7'
   Processing 'delay_line_STAGE7'
   Processing 'fft_stage_STAGE7'
@@ -881,265 +1096,395 @@ Module: DW01_incdec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
   Processing 'delay_line_STAGE0'
   Processing 'fft_stage_STAGE0'
   Processing 'fft_core'
+Module: DW01_cmp2_width10, Ports: 24, Input: 22, Output: 2, Inout: 0
+Module: DW01_cmp2_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'arbiter'
+Module: DW01_cmp6_width11, Ports: 29, Input: 23, Output: 6, Inout: 0
+Module: DW01_cmp6_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width11, Ports: 26, Input: 24, Output: 2, Inout: 0
+Module: DW01_cmp2_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'sram_axi'
+Module: DW01_sub_width12, Ports: 38, Input: 25, Output: 13, Inout: 0
+Module: DW01_sub_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_sub_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
+Module: DW01_sub_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_inc_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
+Module: DW01_inc_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp6_width32, Ports: 71, Input: 65, Output: 6, Inout: 0
+Module: DW01_cmp6_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width32, Ports: 68, Input: 66, Output: 2, Inout: 0
+Module: DW01_cmp2_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
+Module: DW01_add_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_incdec_width11, Ports: 23, Input: 12, Output: 11, Inout: 0
+Module: DW01_incdec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'fft_axi_counter_WRITE_OR_READ0_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_0'
+  Processing 'fft_axi_subordinate'
+Module: DW01_add_width3, Ports: 11, Input: 7, Output: 4, Inout: 0
+Module: DW01_add_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width4, Ports: 14, Input: 9, Output: 5, Inout: 0
+Module: DW01_add_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp6_width4, Ports: 15, Input: 9, Output: 6, Inout: 0
+Module: DW01_cmp6_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_cmp2_width4, Ports: 12, Input: 10, Output: 2, Inout: 0
+Module: DW01_cmp2_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+  Processing 'fft_cla_0'
+  Processing 'fft_axi_manager'
+Module: DW01_dec_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
+Module: DW01_dec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_add_width32, Ports: 98, Input: 65, Output: 33, Inout: 0
+Module: DW01_add_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: The register 'r_frame_size_reg[11]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[12]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[16]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[17]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[18]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[19]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[20]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[21]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[22]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[23]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'r_frame_size_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[11]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[12]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[16]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[17]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[18]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[19]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[20]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[21]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[22]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[23]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[24]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[27]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[28]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[29]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'w_frame_size_reg[31]' is a constant and will be removed. (OPT-1206)
+  Processing 'axi_top'
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: Design 'fft_core' has no optimization constraints set. (OPT-108)
+Information: Design 'axi_top' has no optimization constraints set. (OPT-108)
 
   Beginning Implementation Selection
   ----------------------------------
-  Processing 'math_STAGE8_DW01_add_0'
+  Processing 'fft_core_DW01_cmp2_0_DW01_cmp2_2'
+  Processing 'fft_core_DW01_cmp2_1_DW01_cmp2_3'
+  Processing 'fft_core_DW01_cmp2_2_DW01_cmp2_4'
+  Processing 'fft_core_DW01_cmp2_3_DW01_cmp2_5'
+  Processing 'fft_core_DW01_cmp2_4_DW01_cmp2_6'
+  Processing 'fft_core_DW01_cmp2_5_DW01_cmp2_7'
+  Processing 'fft_core_DW01_cmp2_6_DW01_cmp2_8'
+  Processing 'fft_core_DW01_cmp2_7_DW01_cmp2_9'
+  Processing 'fft_core_DW01_cmp2_8_DW01_cmp2_10'
+  Processing 'fft_stage_STAGE8_DW01_dec_0'
+  Processing 'math_STAGE8_DW01_add_0_DW01_add_2'
   Processing 'math_STAGE8_DW01_sub_0'
-  Processing 'multiplier_0_DW01_cmp2_0'
-  Processing 'multiplier_0_DW01_cmp2_1'
-  Processing 'multiplier_0_DW01_add_0_DW01_add_1'
+  Processing 'multiplier_0_DW01_cmp2_0_DW01_cmp2_11'
+  Processing 'multiplier_0_DW01_cmp2_1_DW01_cmp2_12'
+  Processing 'multiplier_0_DW01_add_0_DW01_add_3'
   Mapping 'multiplier_0_DW_mult_tc_0'
-  Processing 'multiplier_1_DW01_cmp2_0_DW01_cmp2_2'
-  Processing 'multiplier_1_DW01_cmp2_1_DW01_cmp2_3'
-  Processing 'multiplier_1_DW01_add_0_DW01_add_2'
+  Processing 'multiplier_1_DW01_cmp2_0_DW01_cmp2_13'
+  Processing 'multiplier_1_DW01_cmp2_1_DW01_cmp2_14'
+  Processing 'multiplier_1_DW01_add_0_DW01_add_4'
   Mapping 'multiplier_1_DW_mult_tc_0'
-  Processing 'multiplier_2_DW01_cmp2_0_DW01_cmp2_4'
-  Processing 'multiplier_2_DW01_cmp2_1_DW01_cmp2_5'
-  Processing 'multiplier_2_DW01_add_0_DW01_add_3'
+  Processing 'multiplier_2_DW01_cmp2_0_DW01_cmp2_15'
+  Processing 'multiplier_2_DW01_cmp2_1_DW01_cmp2_16'
+  Processing 'multiplier_2_DW01_add_0_DW01_add_5'
   Mapping 'multiplier_2_DW_mult_tc_0'
-  Processing 'multiplier_3_DW01_cmp2_0_DW01_cmp2_6'
-  Processing 'multiplier_3_DW01_cmp2_1_DW01_cmp2_7'
-  Processing 'multiplier_3_DW01_add_0_DW01_add_4'
+  Processing 'multiplier_3_DW01_cmp2_0_DW01_cmp2_17'
+  Processing 'multiplier_3_DW01_cmp2_1_DW01_cmp2_18'
+  Processing 'multiplier_3_DW01_add_0_DW01_add_6'
   Mapping 'multiplier_3_DW_mult_tc_0'
   Processing 'adder_0_DW01_sub_0_DW01_sub_1'
-  Processing 'adder_0_DW01_add_0_DW01_add_5'
+  Processing 'adder_0_DW01_add_0_DW01_add_7'
   Processing 'adder_1_DW01_sub_0_DW01_sub_2'
-  Processing 'adder_1_DW01_add_0_DW01_add_6'
+  Processing 'adder_1_DW01_add_0_DW01_add_8'
   Processing 'adder_2_DW01_sub_0_DW01_sub_3'
-  Processing 'adder_2_DW01_add_0_DW01_add_7'
+  Processing 'adder_2_DW01_add_0_DW01_add_9'
   Processing 'adder_3_DW01_sub_0_DW01_sub_4'
-  Processing 'adder_3_DW01_add_0_DW01_add_8'
+  Processing 'adder_3_DW01_add_0_DW01_add_10'
   Processing 'flex_counter_0_DW01_inc_0'
   Mapping 'flex_counter_0_DW_cmp_0'
-  Processing 'math_STAGE7_DW01_add_0_DW01_add_9'
+  Processing 'fft_stage_STAGE7_DW01_dec_0_DW01_dec_1'
+  Processing 'math_STAGE7_DW01_add_0_DW01_add_11'
   Processing 'math_STAGE7_DW01_sub_0_DW01_sub_5'
-  Processing 'multiplier_4_DW01_cmp2_0_DW01_cmp2_8'
-  Processing 'multiplier_4_DW01_cmp2_1_DW01_cmp2_9'
-  Processing 'multiplier_4_DW01_add_0_DW01_add_10'
+  Processing 'multiplier_4_DW01_cmp2_0_DW01_cmp2_19'
+  Processing 'multiplier_4_DW01_cmp2_1_DW01_cmp2_20'
+  Processing 'multiplier_4_DW01_add_0_DW01_add_12'
   Mapping 'multiplier_4_DW_mult_tc_0'
-  Processing 'multiplier_5_DW01_cmp2_0_DW01_cmp2_10'
-  Processing 'multiplier_5_DW01_cmp2_1_DW01_cmp2_11'
-  Processing 'multiplier_5_DW01_add_0_DW01_add_11'
+  Processing 'multiplier_5_DW01_cmp2_0_DW01_cmp2_21'
+  Processing 'multiplier_5_DW01_cmp2_1_DW01_cmp2_22'
+  Processing 'multiplier_5_DW01_add_0_DW01_add_13'
   Mapping 'multiplier_5_DW_mult_tc_0'
-  Processing 'multiplier_6_DW01_cmp2_0_DW01_cmp2_12'
-  Processing 'multiplier_6_DW01_cmp2_1_DW01_cmp2_13'
-  Processing 'multiplier_6_DW01_add_0_DW01_add_12'
+  Processing 'multiplier_6_DW01_cmp2_0_DW01_cmp2_23'
+  Processing 'multiplier_6_DW01_cmp2_1_DW01_cmp2_24'
+  Processing 'multiplier_6_DW01_add_0_DW01_add_14'
   Mapping 'multiplier_6_DW_mult_tc_0'
-  Processing 'multiplier_7_DW01_cmp2_0_DW01_cmp2_14'
-  Processing 'multiplier_7_DW01_cmp2_1_DW01_cmp2_15'
-  Processing 'multiplier_7_DW01_add_0_DW01_add_13'
+  Processing 'multiplier_7_DW01_cmp2_0_DW01_cmp2_25'
+  Processing 'multiplier_7_DW01_cmp2_1_DW01_cmp2_26'
+  Processing 'multiplier_7_DW01_add_0_DW01_add_15'
   Mapping 'multiplier_7_DW_mult_tc_0'
   Processing 'adder_4_DW01_sub_0_DW01_sub_6'
-  Processing 'adder_4_DW01_add_0_DW01_add_14'
+  Processing 'adder_4_DW01_add_0_DW01_add_16'
   Processing 'adder_5_DW01_sub_0_DW01_sub_7'
-  Processing 'adder_5_DW01_add_0_DW01_add_15'
+  Processing 'adder_5_DW01_add_0_DW01_add_17'
   Processing 'adder_6_DW01_sub_0_DW01_sub_8'
-  Processing 'adder_6_DW01_add_0_DW01_add_16'
+  Processing 'adder_6_DW01_add_0_DW01_add_18'
   Processing 'adder_7_DW01_sub_0_DW01_sub_9'
-  Processing 'adder_7_DW01_add_0_DW01_add_17'
+  Processing 'adder_7_DW01_add_0_DW01_add_19'
   Processing 'flex_counter_1_DW01_inc_0_DW01_inc_1'
   Mapping 'flex_counter_1_DW_cmp_0'
-  Processing 'math_STAGE6_DW01_add_0_DW01_add_18'
+  Processing 'fft_stage_STAGE6_DW01_dec_0_DW01_dec_2'
+  Processing 'math_STAGE6_DW01_add_0_DW01_add_20'
   Processing 'math_STAGE6_DW01_sub_0_DW01_sub_10'
-  Processing 'multiplier_8_DW01_cmp2_0_DW01_cmp2_16'
-  Processing 'multiplier_8_DW01_cmp2_1_DW01_cmp2_17'
-  Processing 'multiplier_8_DW01_add_0_DW01_add_19'
+  Processing 'multiplier_8_DW01_cmp2_0_DW01_cmp2_27'
+  Processing 'multiplier_8_DW01_cmp2_1_DW01_cmp2_28'
+  Processing 'multiplier_8_DW01_add_0_DW01_add_21'
   Mapping 'multiplier_8_DW_mult_tc_0'
-  Processing 'multiplier_9_DW01_cmp2_0_DW01_cmp2_18'
-  Processing 'multiplier_9_DW01_cmp2_1_DW01_cmp2_19'
-  Processing 'multiplier_9_DW01_add_0_DW01_add_20'
+  Processing 'multiplier_9_DW01_cmp2_0_DW01_cmp2_29'
+  Processing 'multiplier_9_DW01_cmp2_1_DW01_cmp2_30'
+  Processing 'multiplier_9_DW01_add_0_DW01_add_22'
   Mapping 'multiplier_9_DW_mult_tc_0'
-  Processing 'multiplier_10_DW01_cmp2_0_DW01_cmp2_20'
-  Processing 'multiplier_10_DW01_cmp2_1_DW01_cmp2_21'
-  Processing 'multiplier_10_DW01_add_0_DW01_add_21'
+  Processing 'multiplier_10_DW01_cmp2_0_DW01_cmp2_31'
+  Processing 'multiplier_10_DW01_cmp2_1_DW01_cmp2_32'
+  Processing 'multiplier_10_DW01_add_0_DW01_add_23'
   Mapping 'multiplier_10_DW_mult_tc_0'
-  Processing 'multiplier_11_DW01_cmp2_0_DW01_cmp2_22'
-  Processing 'multiplier_11_DW01_cmp2_1_DW01_cmp2_23'
-  Processing 'multiplier_11_DW01_add_0_DW01_add_22'
+  Processing 'multiplier_11_DW01_cmp2_0_DW01_cmp2_33'
+  Processing 'multiplier_11_DW01_cmp2_1_DW01_cmp2_34'
+  Processing 'multiplier_11_DW01_add_0_DW01_add_24'
   Mapping 'multiplier_11_DW_mult_tc_0'
   Processing 'adder_8_DW01_sub_0_DW01_sub_11'
-  Processing 'adder_8_DW01_add_0_DW01_add_23'
+  Processing 'adder_8_DW01_add_0_DW01_add_25'
   Processing 'adder_9_DW01_sub_0_DW01_sub_12'
-  Processing 'adder_9_DW01_add_0_DW01_add_24'
+  Processing 'adder_9_DW01_add_0_DW01_add_26'
   Processing 'adder_10_DW01_sub_0_DW01_sub_13'
-  Processing 'adder_10_DW01_add_0_DW01_add_25'
+  Processing 'adder_10_DW01_add_0_DW01_add_27'
   Processing 'adder_11_DW01_sub_0_DW01_sub_14'
-  Processing 'adder_11_DW01_add_0_DW01_add_26'
+  Processing 'adder_11_DW01_add_0_DW01_add_28'
   Processing 'flex_counter_2_DW01_inc_0_DW01_inc_2'
   Mapping 'flex_counter_2_DW_cmp_0'
-  Processing 'math_STAGE5_DW01_add_0_DW01_add_27'
+  Processing 'fft_stage_STAGE5_DW01_dec_0_DW01_dec_3'
+  Processing 'math_STAGE5_DW01_add_0_DW01_add_29'
   Processing 'math_STAGE5_DW01_sub_0_DW01_sub_15'
-  Processing 'multiplier_12_DW01_cmp2_0_DW01_cmp2_24'
-  Processing 'multiplier_12_DW01_cmp2_1_DW01_cmp2_25'
-  Processing 'multiplier_12_DW01_add_0_DW01_add_28'
+  Processing 'multiplier_12_DW01_cmp2_0_DW01_cmp2_35'
+  Processing 'multiplier_12_DW01_cmp2_1_DW01_cmp2_36'
+  Processing 'multiplier_12_DW01_add_0_DW01_add_30'
   Mapping 'multiplier_12_DW_mult_tc_0'
-  Processing 'multiplier_13_DW01_cmp2_0_DW01_cmp2_26'
-  Processing 'multiplier_13_DW01_cmp2_1_DW01_cmp2_27'
-  Processing 'multiplier_13_DW01_add_0_DW01_add_29'
+  Processing 'multiplier_13_DW01_cmp2_0_DW01_cmp2_37'
+  Processing 'multiplier_13_DW01_cmp2_1_DW01_cmp2_38'
+  Processing 'multiplier_13_DW01_add_0_DW01_add_31'
   Mapping 'multiplier_13_DW_mult_tc_0'
-  Processing 'multiplier_14_DW01_cmp2_0_DW01_cmp2_28'
-  Processing 'multiplier_14_DW01_cmp2_1_DW01_cmp2_29'
-  Processing 'multiplier_14_DW01_add_0_DW01_add_30'
+  Processing 'multiplier_14_DW01_cmp2_0_DW01_cmp2_39'
+  Processing 'multiplier_14_DW01_cmp2_1_DW01_cmp2_40'
+  Processing 'multiplier_14_DW01_add_0_DW01_add_32'
   Mapping 'multiplier_14_DW_mult_tc_0'
-  Processing 'multiplier_15_DW01_cmp2_0_DW01_cmp2_30'
-  Processing 'multiplier_15_DW01_cmp2_1_DW01_cmp2_31'
-  Processing 'multiplier_15_DW01_add_0_DW01_add_31'
+  Processing 'multiplier_15_DW01_cmp2_0_DW01_cmp2_41'
+  Processing 'multiplier_15_DW01_cmp2_1_DW01_cmp2_42'
+  Processing 'multiplier_15_DW01_add_0_DW01_add_33'
   Mapping 'multiplier_15_DW_mult_tc_0'
   Processing 'adder_12_DW01_sub_0_DW01_sub_16'
-  Processing 'adder_12_DW01_add_0_DW01_add_32'
+  Processing 'adder_12_DW01_add_0_DW01_add_34'
   Processing 'adder_13_DW01_sub_0_DW01_sub_17'
-  Processing 'adder_13_DW01_add_0_DW01_add_33'
+  Processing 'adder_13_DW01_add_0_DW01_add_35'
   Processing 'adder_14_DW01_sub_0_DW01_sub_18'
-  Processing 'adder_14_DW01_add_0_DW01_add_34'
+  Processing 'adder_14_DW01_add_0_DW01_add_36'
   Processing 'adder_15_DW01_sub_0_DW01_sub_19'
-  Processing 'adder_15_DW01_add_0_DW01_add_35'
+  Processing 'adder_15_DW01_add_0_DW01_add_37'
   Processing 'flex_counter_3_DW01_inc_0_DW01_inc_3'
   Mapping 'flex_counter_3_DW_cmp_0'
-  Processing 'math_STAGE4_DW01_add_0_DW01_add_36'
+  Processing 'fft_stage_STAGE4_DW01_dec_0_DW01_dec_4'
+  Processing 'math_STAGE4_DW01_add_0_DW01_add_38'
   Processing 'math_STAGE4_DW01_sub_0_DW01_sub_20'
-  Processing 'multiplier_16_DW01_cmp2_0_DW01_cmp2_32'
-  Processing 'multiplier_16_DW01_cmp2_1_DW01_cmp2_33'
-  Processing 'multiplier_16_DW01_add_0_DW01_add_37'
+  Processing 'multiplier_16_DW01_cmp2_0_DW01_cmp2_43'
+  Processing 'multiplier_16_DW01_cmp2_1_DW01_cmp2_44'
+  Processing 'multiplier_16_DW01_add_0_DW01_add_39'
   Mapping 'multiplier_16_DW_mult_tc_0'
-  Processing 'multiplier_17_DW01_cmp2_0_DW01_cmp2_34'
-  Processing 'multiplier_17_DW01_cmp2_1_DW01_cmp2_35'
-  Processing 'multiplier_17_DW01_add_0_DW01_add_38'
+  Processing 'multiplier_17_DW01_cmp2_0_DW01_cmp2_45'
+  Processing 'multiplier_17_DW01_cmp2_1_DW01_cmp2_46'
+  Processing 'multiplier_17_DW01_add_0_DW01_add_40'
   Mapping 'multiplier_17_DW_mult_tc_0'
-  Processing 'multiplier_18_DW01_cmp2_0_DW01_cmp2_36'
-  Processing 'multiplier_18_DW01_cmp2_1_DW01_cmp2_37'
-  Processing 'multiplier_18_DW01_add_0_DW01_add_39'
+  Processing 'multiplier_18_DW01_cmp2_0_DW01_cmp2_47'
+  Processing 'multiplier_18_DW01_cmp2_1_DW01_cmp2_48'
+  Processing 'multiplier_18_DW01_add_0_DW01_add_41'
   Mapping 'multiplier_18_DW_mult_tc_0'
-  Processing 'multiplier_19_DW01_cmp2_0_DW01_cmp2_38'
-  Processing 'multiplier_19_DW01_cmp2_1_DW01_cmp2_39'
-  Processing 'multiplier_19_DW01_add_0_DW01_add_40'
+  Processing 'multiplier_19_DW01_cmp2_0_DW01_cmp2_49'
+  Processing 'multiplier_19_DW01_cmp2_1_DW01_cmp2_50'
+  Processing 'multiplier_19_DW01_add_0_DW01_add_42'
   Mapping 'multiplier_19_DW_mult_tc_0'
   Processing 'adder_16_DW01_sub_0_DW01_sub_21'
-  Processing 'adder_16_DW01_add_0_DW01_add_41'
+  Processing 'adder_16_DW01_add_0_DW01_add_43'
   Processing 'adder_17_DW01_sub_0_DW01_sub_22'
-  Processing 'adder_17_DW01_add_0_DW01_add_42'
+  Processing 'adder_17_DW01_add_0_DW01_add_44'
   Processing 'adder_18_DW01_sub_0_DW01_sub_23'
-  Processing 'adder_18_DW01_add_0_DW01_add_43'
+  Processing 'adder_18_DW01_add_0_DW01_add_45'
   Processing 'adder_19_DW01_sub_0_DW01_sub_24'
-  Processing 'adder_19_DW01_add_0_DW01_add_44'
+  Processing 'adder_19_DW01_add_0_DW01_add_46'
   Processing 'flex_counter_4_DW01_inc_0_DW01_inc_4'
   Mapping 'flex_counter_4_DW_cmp_0'
-  Processing 'math_STAGE3_DW01_add_0_DW01_add_45'
+  Processing 'fft_stage_STAGE3_DW01_dec_0_DW01_dec_5'
+  Processing 'math_STAGE3_DW01_add_0_DW01_add_47'
   Processing 'math_STAGE3_DW01_sub_0_DW01_sub_25'
-  Processing 'multiplier_20_DW01_cmp2_0_DW01_cmp2_40'
-  Processing 'multiplier_20_DW01_cmp2_1_DW01_cmp2_41'
-  Processing 'multiplier_20_DW01_add_0_DW01_add_46'
+  Processing 'multiplier_20_DW01_cmp2_0_DW01_cmp2_51'
+  Processing 'multiplier_20_DW01_cmp2_1_DW01_cmp2_52'
+  Processing 'multiplier_20_DW01_add_0_DW01_add_48'
   Mapping 'multiplier_20_DW_mult_tc_0'
-  Processing 'multiplier_21_DW01_cmp2_0_DW01_cmp2_42'
-  Processing 'multiplier_21_DW01_cmp2_1_DW01_cmp2_43'
-  Processing 'multiplier_21_DW01_add_0_DW01_add_47'
+  Processing 'multiplier_21_DW01_cmp2_0_DW01_cmp2_53'
+  Processing 'multiplier_21_DW01_cmp2_1_DW01_cmp2_54'
+  Processing 'multiplier_21_DW01_add_0_DW01_add_49'
   Mapping 'multiplier_21_DW_mult_tc_0'
-  Processing 'multiplier_22_DW01_cmp2_0_DW01_cmp2_44'
-  Processing 'multiplier_22_DW01_cmp2_1_DW01_cmp2_45'
-  Processing 'multiplier_22_DW01_add_0_DW01_add_48'
+  Processing 'multiplier_22_DW01_cmp2_0_DW01_cmp2_55'
+  Processing 'multiplier_22_DW01_cmp2_1_DW01_cmp2_56'
+  Processing 'multiplier_22_DW01_add_0_DW01_add_50'
   Mapping 'multiplier_22_DW_mult_tc_0'
-  Processing 'multiplier_23_DW01_cmp2_0_DW01_cmp2_46'
-  Processing 'multiplier_23_DW01_cmp2_1_DW01_cmp2_47'
-  Processing 'multiplier_23_DW01_add_0_DW01_add_49'
+  Processing 'multiplier_23_DW01_cmp2_0_DW01_cmp2_57'
+  Processing 'multiplier_23_DW01_cmp2_1_DW01_cmp2_58'
+  Processing 'multiplier_23_DW01_add_0_DW01_add_51'
   Mapping 'multiplier_23_DW_mult_tc_0'
   Processing 'adder_20_DW01_sub_0_DW01_sub_26'
-  Processing 'adder_20_DW01_add_0_DW01_add_50'
+  Processing 'adder_20_DW01_add_0_DW01_add_52'
   Processing 'adder_21_DW01_sub_0_DW01_sub_27'
-  Processing 'adder_21_DW01_add_0_DW01_add_51'
+  Processing 'adder_21_DW01_add_0_DW01_add_53'
   Processing 'adder_22_DW01_sub_0_DW01_sub_28'
-  Processing 'adder_22_DW01_add_0_DW01_add_52'
+  Processing 'adder_22_DW01_add_0_DW01_add_54'
   Processing 'adder_23_DW01_sub_0_DW01_sub_29'
-  Processing 'adder_23_DW01_add_0_DW01_add_53'
+  Processing 'adder_23_DW01_add_0_DW01_add_55'
   Processing 'flex_counter_5_DW01_inc_0_DW01_inc_5'
   Mapping 'flex_counter_5_DW_cmp_0'
-  Processing 'math_STAGE2_DW01_add_0_DW01_add_54'
+  Processing 'fft_stage_STAGE2_DW01_dec_0_DW01_dec_6'
+  Processing 'math_STAGE2_DW01_add_0_DW01_add_56'
   Processing 'math_STAGE2_DW01_sub_0_DW01_sub_30'
-  Processing 'multiplier_24_DW01_cmp2_0_DW01_cmp2_48'
-  Processing 'multiplier_24_DW01_cmp2_1_DW01_cmp2_49'
-  Processing 'multiplier_24_DW01_add_0_DW01_add_55'
+  Processing 'multiplier_24_DW01_cmp2_0_DW01_cmp2_59'
+  Processing 'multiplier_24_DW01_cmp2_1_DW01_cmp2_60'
+  Processing 'multiplier_24_DW01_add_0_DW01_add_57'
   Mapping 'multiplier_24_DW_mult_tc_0'
-  Processing 'multiplier_25_DW01_cmp2_0_DW01_cmp2_50'
-  Processing 'multiplier_25_DW01_cmp2_1_DW01_cmp2_51'
-  Processing 'multiplier_25_DW01_add_0_DW01_add_56'
+  Processing 'multiplier_25_DW01_cmp2_0_DW01_cmp2_61'
+  Processing 'multiplier_25_DW01_cmp2_1_DW01_cmp2_62'
+  Processing 'multiplier_25_DW01_add_0_DW01_add_58'
   Mapping 'multiplier_25_DW_mult_tc_0'
-  Processing 'multiplier_26_DW01_cmp2_0_DW01_cmp2_52'
-  Processing 'multiplier_26_DW01_cmp2_1_DW01_cmp2_53'
-  Processing 'multiplier_26_DW01_add_0_DW01_add_57'
+  Processing 'multiplier_26_DW01_cmp2_0_DW01_cmp2_63'
+  Processing 'multiplier_26_DW01_cmp2_1_DW01_cmp2_64'
+  Processing 'multiplier_26_DW01_add_0_DW01_add_59'
   Mapping 'multiplier_26_DW_mult_tc_0'
-  Processing 'multiplier_27_DW01_cmp2_0_DW01_cmp2_54'
-  Processing 'multiplier_27_DW01_cmp2_1_DW01_cmp2_55'
-  Processing 'multiplier_27_DW01_add_0_DW01_add_58'
+  Processing 'multiplier_27_DW01_cmp2_0_DW01_cmp2_65'
+  Processing 'multiplier_27_DW01_cmp2_1_DW01_cmp2_66'
+  Processing 'multiplier_27_DW01_add_0_DW01_add_60'
   Mapping 'multiplier_27_DW_mult_tc_0'
   Processing 'adder_24_DW01_sub_0_DW01_sub_31'
-  Processing 'adder_24_DW01_add_0_DW01_add_59'
+  Processing 'adder_24_DW01_add_0_DW01_add_61'
   Processing 'adder_25_DW01_sub_0_DW01_sub_32'
-  Processing 'adder_25_DW01_add_0_DW01_add_60'
+  Processing 'adder_25_DW01_add_0_DW01_add_62'
   Processing 'adder_26_DW01_sub_0_DW01_sub_33'
-  Processing 'adder_26_DW01_add_0_DW01_add_61'
+  Processing 'adder_26_DW01_add_0_DW01_add_63'
   Processing 'adder_27_DW01_sub_0_DW01_sub_34'
-  Processing 'adder_27_DW01_add_0_DW01_add_62'
+  Processing 'adder_27_DW01_add_0_DW01_add_64'
   Processing 'flex_counter_6_DW01_inc_0_DW01_inc_6'
   Mapping 'flex_counter_6_DW_cmp_0'
-  Processing 'math_STAGE1_DW01_add_0_DW01_add_63'
+  Processing 'fft_stage_STAGE1_DW01_dec_0_DW01_dec_7'
+  Processing 'math_STAGE1_DW01_add_0_DW01_add_65'
   Processing 'math_STAGE1_DW01_sub_0_DW01_sub_35'
-  Processing 'multiplier_28_DW01_cmp2_0_DW01_cmp2_56'
-  Processing 'multiplier_28_DW01_cmp2_1_DW01_cmp2_57'
-  Processing 'multiplier_28_DW01_add_0_DW01_add_64'
+  Processing 'multiplier_28_DW01_cmp2_0_DW01_cmp2_67'
+  Processing 'multiplier_28_DW01_cmp2_1_DW01_cmp2_68'
+  Processing 'multiplier_28_DW01_add_0_DW01_add_66'
   Mapping 'multiplier_28_DW_mult_tc_0'
-  Processing 'multiplier_29_DW01_cmp2_0_DW01_cmp2_58'
-  Processing 'multiplier_29_DW01_cmp2_1_DW01_cmp2_59'
-  Processing 'multiplier_29_DW01_add_0_DW01_add_65'
+  Processing 'multiplier_29_DW01_cmp2_0_DW01_cmp2_69'
+  Processing 'multiplier_29_DW01_cmp2_1_DW01_cmp2_70'
+  Processing 'multiplier_29_DW01_add_0_DW01_add_67'
   Mapping 'multiplier_29_DW_mult_tc_0'
-  Processing 'multiplier_30_DW01_cmp2_0_DW01_cmp2_60'
-  Processing 'multiplier_30_DW01_cmp2_1_DW01_cmp2_61'
-  Processing 'multiplier_30_DW01_add_0_DW01_add_66'
+  Processing 'multiplier_30_DW01_cmp2_0_DW01_cmp2_71'
+  Processing 'multiplier_30_DW01_cmp2_1_DW01_cmp2_72'
+  Processing 'multiplier_30_DW01_add_0_DW01_add_68'
   Mapping 'multiplier_30_DW_mult_tc_0'
-  Processing 'multiplier_31_DW01_cmp2_0_DW01_cmp2_62'
-  Processing 'multiplier_31_DW01_cmp2_1_DW01_cmp2_63'
-  Processing 'multiplier_31_DW01_add_0_DW01_add_67'
+  Processing 'multiplier_31_DW01_cmp2_0_DW01_cmp2_73'
+  Processing 'multiplier_31_DW01_cmp2_1_DW01_cmp2_74'
+  Processing 'multiplier_31_DW01_add_0_DW01_add_69'
   Mapping 'multiplier_31_DW_mult_tc_0'
   Processing 'adder_28_DW01_sub_0_DW01_sub_36'
-  Processing 'adder_28_DW01_add_0_DW01_add_68'
+  Processing 'adder_28_DW01_add_0_DW01_add_70'
   Processing 'adder_29_DW01_sub_0_DW01_sub_37'
-  Processing 'adder_29_DW01_add_0_DW01_add_69'
+  Processing 'adder_29_DW01_add_0_DW01_add_71'
   Processing 'adder_30_DW01_sub_0_DW01_sub_38'
-  Processing 'adder_30_DW01_add_0_DW01_add_70'
+  Processing 'adder_30_DW01_add_0_DW01_add_72'
   Processing 'adder_31_DW01_sub_0_DW01_sub_39'
-  Processing 'adder_31_DW01_add_0_DW01_add_71'
+  Processing 'adder_31_DW01_add_0_DW01_add_73'
   Processing 'flex_counter_7_DW01_inc_0_DW01_inc_7'
   Mapping 'flex_counter_7_DW_cmp_0'
-  Processing 'math_STAGE0_DW01_add_0_DW01_add_72'
+  Processing 'fft_stage_STAGE0_DW01_dec_0_DW01_dec_8'
+  Processing 'math_STAGE0_DW01_add_0_DW01_add_74'
   Processing 'math_STAGE0_DW01_sub_0_DW01_sub_40'
-  Processing 'multiplier_32_DW01_cmp2_0_DW01_cmp2_64'
-  Processing 'multiplier_32_DW01_cmp2_1_DW01_cmp2_65'
-  Processing 'multiplier_32_DW01_add_0_DW01_add_73'
+  Processing 'multiplier_32_DW01_cmp2_0_DW01_cmp2_75'
+  Processing 'multiplier_32_DW01_cmp2_1_DW01_cmp2_76'
+  Processing 'multiplier_32_DW01_add_0_DW01_add_75'
   Mapping 'multiplier_32_DW_mult_tc_0'
-  Processing 'multiplier_33_DW01_cmp2_0_DW01_cmp2_66'
-  Processing 'multiplier_33_DW01_cmp2_1_DW01_cmp2_67'
-  Processing 'multiplier_33_DW01_add_0_DW01_add_74'
+  Processing 'multiplier_33_DW01_cmp2_0_DW01_cmp2_77'
+  Processing 'multiplier_33_DW01_cmp2_1_DW01_cmp2_78'
+  Processing 'multiplier_33_DW01_add_0_DW01_add_76'
   Mapping 'multiplier_33_DW_mult_tc_0'
-  Processing 'multiplier_34_DW01_cmp2_0_DW01_cmp2_68'
-  Processing 'multiplier_34_DW01_cmp2_1_DW01_cmp2_69'
-  Processing 'multiplier_34_DW01_add_0_DW01_add_75'
+  Processing 'multiplier_34_DW01_cmp2_0_DW01_cmp2_79'
+  Processing 'multiplier_34_DW01_cmp2_1_DW01_cmp2_80'
+  Processing 'multiplier_34_DW01_add_0_DW01_add_77'
   Mapping 'multiplier_34_DW_mult_tc_0'
-  Processing 'multiplier_35_DW01_cmp2_0_DW01_cmp2_70'
-  Processing 'multiplier_35_DW01_cmp2_1_DW01_cmp2_71'
-  Processing 'multiplier_35_DW01_add_0_DW01_add_76'
+  Processing 'multiplier_35_DW01_cmp2_0_DW01_cmp2_81'
+  Processing 'multiplier_35_DW01_cmp2_1_DW01_cmp2_82'
+  Processing 'multiplier_35_DW01_add_0_DW01_add_78'
   Mapping 'multiplier_35_DW_mult_tc_0'
   Processing 'adder_32_DW01_sub_0_DW01_sub_41'
-  Processing 'adder_32_DW01_add_0_DW01_add_77'
+  Processing 'adder_32_DW01_add_0_DW01_add_79'
   Processing 'adder_33_DW01_sub_0_DW01_sub_42'
-  Processing 'adder_33_DW01_add_0_DW01_add_78'
+  Processing 'adder_33_DW01_add_0_DW01_add_80'
   Processing 'adder_34_DW01_sub_0_DW01_sub_43'
-  Processing 'adder_34_DW01_add_0_DW01_add_79'
+  Processing 'adder_34_DW01_add_0_DW01_add_81'
   Processing 'adder_35_DW01_sub_0_DW01_sub_44'
-  Processing 'adder_35_DW01_add_0_DW01_add_80'
+  Processing 'adder_35_DW01_add_0_DW01_add_82'
   Processing 'flex_counter_8_DW01_inc_0_DW01_inc_8'
   Mapping 'flex_counter_8_DW_cmp_0'
+  Processing 'arbiter_DW01_cmp2_0_DW01_cmp2_83'
+  Processing 'arbiter_DW01_cmp2_1_DW01_cmp2_84'
+  Processing 'sram_axi_DW01_cmp2_0_DW01_cmp2_85'
+  Processing 'sram_axi_DW01_dec_0_DW01_dec_9'
+  Processing 'sram_axi_DW01_inc_0_DW01_inc_9'
+  Processing 'sram_axi_DW01_sub_0_DW01_sub_45'
+  Processing 'sram_axi_DW01_dec_1_DW01_dec_10'
+  Processing 'sram_axi_DW01_inc_1_DW01_inc_10'
+  Processing 'sram_axi_DW01_sub_1_DW01_sub_46'
+  Processing 'sram_axi_DW01_cmp2_1_DW01_cmp2_86'
+  Mapping 'fft_axi_counter_WRITE_OR_READ0_0_DW_cmp_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ0_0_DW01_inc_0_DW01_inc_11'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1_0_DW_cmp_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_0_DW01_inc_0_DW01_inc_12'
+  Processing 'fft_axi_manager_DW01_cmp2_0_DW01_cmp2_87'
+  Processing 'fft_axi_manager_DW01_cmp2_1_DW01_cmp2_88'
+  Processing 'fft_axi_manager_DW01_cmp2_2_DW01_cmp2_89'
+  Processing 'fft_axi_manager_DW01_add_0_DW01_add_83'
+  Processing 'fft_axi_manager_DW01_dec_0_DW01_dec_11'
+  Processing 'fft_axi_manager_DW01_inc_0_DW01_inc_13'
+  Processing 'fft_axi_manager_DW01_inc_1_DW01_inc_14'
+  Processing 'fft_axi_manager_DW01_dec_1_DW01_dec_12'
+  Processing 'fft_axi_manager_DW01_inc_2_DW01_inc_15'
+  Processing 'fft_axi_manager_DW01_add_1_DW01_add_84'
+  Processing 'fft_axi_manager_DW01_cmp2_3_DW01_cmp2_90'
+  Processing 'fft_axi_manager_DW01_cmp6_0'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1_1_DW_cmp_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ1_1_DW01_inc_0_DW01_inc_16'
+  Mapping 'fft_axi_counter_WRITE_OR_READ0_1_DW_cmp_0'
+  Processing 'fft_axi_counter_WRITE_OR_READ0_1_DW01_inc_0_DW01_inc_17'
 
   Beginning Mapping Optimizations  (Medium effort)
   -------------------------------
@@ -1152,6 +1497,10 @@ Information: Added key list 'DesignWare' to design 'flex_counter_5'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'flex_counter_6'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'flex_counter_7'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ0_0'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1_0'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1_1'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ0_1'. (DDB-72)
   Structuring 'multiplier_34'
   Mapping 'multiplier_34'
   Structuring 'multiplier_33'
@@ -1324,6 +1673,12 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
   Mapping 'twiddle_lookup_1'
   Structuring 'twiddle_lookup_0'
   Mapping 'twiddle_lookup_0'
+  Structuring 'fft_axi_counter_WRITE_OR_READ1_0'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1_0'
+  Structuring 'fft_axi_counter_WRITE_OR_READ0_0'
+  Mapping 'fft_axi_counter_WRITE_OR_READ0_0'
+  Structuring 'fft_cla_0'
+  Mapping 'fft_cla_0'
   Structuring 'multiplier_35'
   Mapping 'multiplier_35'
   Structuring 'adder_35'
@@ -1368,27 +1723,45 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
   Mapping 'fft_stage_STAGE1'
   Structuring 'fft_stage_STAGE0'
   Mapping 'fft_stage_STAGE0'
+  Structuring 'fft_axi_counter_WRITE_OR_READ1_1'
+  Mapping 'fft_axi_counter_WRITE_OR_READ1_1'
+  Structuring 'fft_axi_counter_WRITE_OR_READ0_1'
+  Mapping 'fft_axi_counter_WRITE_OR_READ0_1'
+  Structuring 'fft_cla_1'
+  Mapping 'fft_cla_1'
+  Structuring 'fft_core'
+  Mapping 'fft_core'
+  Structuring 'arbiter'
+  Mapping 'arbiter'
+  Structuring 'sram_axi'
+  Mapping 'sram_axi'
+  Structuring 'fft_axi_subordinate'
+  Mapping 'fft_axi_subordinate'
+  Structuring 'fft_axi_manager'
+  Mapping 'fft_axi_manager'
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:20 56376135.0      0.00       0.0    3953.1                          
-    0:01:20 56376135.0      0.00       0.0    3953.1                          
-    0:01:20 56376135.0      0.00       0.0    3953.1                          
-    0:01:20 56376135.0      0.00       0.0    3953.1                          
-    0:01:21 56376135.0      0.00       0.0    3953.1                          
-    0:01:24 54496791.0      0.00       0.0    3953.1                          
-    0:01:25 54496575.0      0.00       0.0    3953.1                          
-    0:01:26 54496575.0      0.00       0.0    3953.1                          
-    0:01:26 54496575.0      0.00       0.0    3953.1                          
-    0:01:26 54496575.0      0.00       0.0    3953.1                          
-    0:01:26 54496575.0      0.00       0.0    3953.1                          
-    0:01:28 54538695.0      0.00       0.0    1965.5                          
-    0:01:28 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
+    0:01:37 58964157.0      0.00       0.0    7596.0                          
+    0:01:37 58964157.0      0.00       0.0    7596.0                          
+    0:01:37 58964157.0      0.00       0.0    7596.0                          
+    0:01:37 58964157.0      0.00       0.0    7596.0                          
+    0:01:39 58964157.0      0.00       0.0    7596.0                          
+    0:01:42 57075093.0      0.00       0.0    7596.0                          
+    0:01:43 57074733.0      0.00       0.0    7596.0                          
+    0:01:44 57074733.0      0.00       0.0    7596.0                          
+    0:01:44 57074733.0      0.00       0.0    7596.0                          
+    0:01:45 57074733.0      0.00       0.0    7596.0                          
+    0:01:45 57074733.0      0.00       0.0    7596.0                          
+    0:01:46 57102165.0      0.00       0.0    5911.3                          
+    0:01:47 57134925.0      0.00       0.0    4441.8                          
+    0:01:47 57142125.0      0.00       0.0    3923.3                          
+    0:01:48 57143133.0      0.00       0.0    3713.8                          
+    0:01:48 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
 
 
 
@@ -1399,11 +1772,11 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -1413,14 +1786,14 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:29 54544167.0      0.00       0.0    1617.7                          
-    0:01:29 54556695.0      0.00       0.0     726.9 butterfly_units[0].stage/delays/out[13]
-    0:01:29 54569943.0      0.00       0.0     585.2 butterfly_units[2].stage/delays/out[25]
-    0:01:29 54579159.0      0.00       0.0     468.2 butterfly_units[3].stage/mather/rl/b[13]
-    0:01:29 54584991.0      0.00       0.0     385.0 butterfly_units[4].stage/mather/rl/b[14]
-    0:01:30 54592335.0      0.00       0.0     280.3 butterfly_units[5].stage/mather/rl/b[8]
-    0:01:30 54599679.0      0.00       0.0     175.6 butterfly_units[6].stage/mather/rl/b[2]
-    0:01:30 54606375.0      0.00       0.0      80.1                          
+    0:01:49 57143133.0      0.00       0.0    3713.8                          
+    0:01:49 57156309.0      0.00       0.0    1337.3 fft_man/net406303        
+    0:01:49 57169053.0      0.00       0.0     701.2 fft/butterfly_units[0].stage/delays/out[8]
+    0:01:49 57179349.0      0.00       0.0     579.8 fft/butterfly_units[2].stage/mather/img/b[10]
+    0:01:49 57186693.0      0.00       0.0     476.6 fft/butterfly_units[3].stage/mather/img/b[4]
+    0:01:50 57194037.0      0.00       0.0     373.4 fft/butterfly_units[4].stage/mather/rl/b[12]
+    0:01:50 57201381.0      0.00       0.0     270.2 fft/butterfly_units[5].stage/mather/rl/b[6]
+    0:01:50 57208077.0      0.00       0.0     176.1                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -1430,19 +1803,20 @@ Information: Added key list 'DesignWare' to design 'flex_counter_8'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:30 54606375.0      0.00       0.0      80.1                          
-    0:01:30 54606375.0      0.00       0.0      80.1                          
-    0:02:11 54597519.0      0.00       0.0      80.1                          
-    0:02:16 54596943.0      0.00       0.0      80.1                          
-    0:02:18 54596943.0      0.00       0.0      80.1                          
-    0:02:18 54596943.0      0.00       0.0      80.1                          
-    0:02:18 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
-    0:02:19 54596943.0      0.00       0.0      80.1                          
+    0:01:50 57208077.0      0.00       0.0     176.1                          
+    0:01:50 57208077.0      0.00       0.0     176.1                          
+    0:02:31 57197277.0      0.00       0.0     176.1                          
+    0:02:35 57194613.0      0.00       0.0     176.1                          
+    0:02:37 57192741.0      0.00       0.0     176.1                          
+    0:02:44 57191517.0      0.00       0.0     176.1                          
+    0:02:45 57191517.0      0.00       0.0     176.1                          
+    0:02:45 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
+    0:02:46 57191517.0      0.00       0.0     176.1                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -1451,7 +1825,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 7%, Ram Free: 20 GB, Swap Free: 57 GB, Work Disk Free: 345 GB, Tmp Disk Free: 16 GB
+CPU Load: 18%, Ram Free: 73 GB, Swap Free: 30 GB, Work Disk Free: 293 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -1475,59 +1849,62 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Sat Apr 18 16:48:19 2026
+Date:        Tue Apr 21 21:14:53 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                    765
+Inputs/Outputs                                                   1076
     Unloaded inputs (LINT-8)                                       36
-    Unconnected ports (LINT-28)                                   729
+    Unconnected ports (LINT-28)                                   898
+    Feedthrough (LINT-29)                                          96
+    Shorted outputs (LINT-31)                                      44
+    Constant outputs (LINT-52)                                      2
 
-Cells                                                             332
-    Connected to power or ground (LINT-32)                        180
+Cells                                                             383
+    Connected to power or ground (LINT-32)                        231
     Nets connected to multiple pins on same cell (LINT-33)        152
 
 Nets                                                               36
     Unloaded nets (LINT-2)                                         36
 --------------------------------------------------------------------------------
 
-Warning: In design 'fft_core', net 'butterfly_units[1].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[1].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[1].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[1].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[2].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[2].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[2].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[2].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[3].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[3].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[3].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[3].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[4].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[4].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[4].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[4].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[5].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[5].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[5].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[5].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[6].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[6].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[6].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[6].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[7].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[7].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[7].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[7].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[8].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[8].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[8].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[8].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[0].stage/mather/img_sub/sub_13/B[15]' driven by pin 'butterfly_units[0].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[0].stage/mather/real_sub/sub_13/B[15]' driven by pin 'butterfly_units[0].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[0].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[0].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[0].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[0].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[1].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[1].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[1].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[1].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[2].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[2].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[2].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[2].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[3].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[3].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[3].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[3].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[4].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[4].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[4].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[4].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[5].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[5].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[5].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[5].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[6].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[6].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[6].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[6].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[7].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[7].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[7].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[7].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[8].stage/mather/img/sub_13/B[15]' driven by pin 'butterfly_units[8].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
-Warning: In design 'fft_core', net 'butterfly_units[8].stage/mather/rl/sub_13/B[15]' driven by pin 'butterfly_units[8].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[0].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[0].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[0].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[0].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[1].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[1].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[1].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[1].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[2].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[2].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[2].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[2].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[3].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[3].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[3].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[3].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[4].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[4].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[4].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[4].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[5].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[5].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[5].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[5].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[6].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[6].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[6].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[6].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[7].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[7].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[7].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[7].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[8].stage/mather/img_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[8].stage/mather/img_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[8].stage/mather/real_sub/sub_13/B[15]' driven by pin 'fft/butterfly_units[8].stage/mather/real_sub/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[0].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[0].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[0].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[0].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[1].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[1].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[1].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[1].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[2].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[2].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[2].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[2].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[3].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[3].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[3].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[3].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[4].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[4].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[4].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[4].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[5].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[5].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[5].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[5].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[6].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[6].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[6].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[6].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[7].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[7].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[7].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[7].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[8].stage/mather/img/sub_13/B[15]' driven by pin 'fft/butterfly_units[8].stage/mather/img/sub_13/B[15]' has no loads. (LINT-2)
+Warning: In design 'axi_top', net 'fft/butterfly_units[8].stage/mather/rl/sub_13/B[15]' driven by pin 'fft/butterfly_units[8].stage/mather/rl/sub_13/B[15]' has no loads. (LINT-2)
 Warning: In design 'adder_0_DW01_sub_0_DW01_sub_1', input port 'B[15]' is unloaded. (LINT-8)
 Warning: In design 'adder_1_DW01_sub_0_DW01_sub_2', input port 'B[15]' is unloaded. (LINT-8)
 Warning: In design 'adder_2_DW01_sub_0_DW01_sub_3', input port 'B[15]' is unloaded. (LINT-8)
@@ -1564,6 +1941,167 @@ Warning: In design 'adder_32_DW01_sub_0_DW01_sub_41', input port 'B[15]' is unlo
 Warning: In design 'adder_33_DW01_sub_0_DW01_sub_42', input port 'B[15]' is unloaded. (LINT-8)
 Warning: In design 'adder_34_DW01_sub_0_DW01_sub_43', input port 'B[15]' is unloaded. (LINT-8)
 Warning: In design 'adder_35_DW01_sub_0_DW01_sub_44', input port 'B[15]' is unloaded. (LINT-8)
+Warning: In design 'fft_axi_manager', port 'fft_man_bresp' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'fft_man_rlast' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][9]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][8]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][7]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][6]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][5]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][4]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][3]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][2]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][1]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[7][0]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][9]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][8]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][7]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][6]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][5]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][4]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][3]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][2]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[6][1]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][9]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][8]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][7]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][6]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][5]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][4]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][3]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[5][2]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[4][10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[2][10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][31]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][30]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][29]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][28]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][27]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][26]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][25]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][24]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][23]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][22]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][21]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][20]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][19]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][18]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][17]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][16]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][15]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][14]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][13]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][12]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', port 'config_reg[0][11]' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi', port 'sram_wlast' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_8', port 'addr[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_0', port 'addr[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_1', port 'addr[8]' is not connected to any nets. (LINT-28)
@@ -1573,186 +2111,194 @@ Warning: In design 'twiddle_lookup_4', port 'addr[8]' is not connected to any ne
 Warning: In design 'twiddle_lookup_5', port 'addr[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_6', port 'addr[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_7', port 'addr[8]' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE8_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE8_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE8_DW01_add_0_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE8_DW01_add_0_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE8_DW01_sub_0', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE8_DW01_sub_0', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_0_DW01_sub_0_DW01_sub_1', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_0_DW01_sub_0_DW01_sub_1', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_0_DW01_add_0_DW01_add_5', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_0_DW01_add_0_DW01_add_5', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_0_DW01_add_0_DW01_add_7', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_0_DW01_add_0_DW01_add_7', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_1_DW01_sub_0_DW01_sub_2', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_1_DW01_sub_0_DW01_sub_2', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_1_DW01_add_0_DW01_add_6', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_1_DW01_add_0_DW01_add_6', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_1_DW01_add_0_DW01_add_8', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_1_DW01_add_0_DW01_add_8', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_2_DW01_sub_0_DW01_sub_3', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_2_DW01_sub_0_DW01_sub_3', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_2_DW01_add_0_DW01_add_7', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_2_DW01_add_0_DW01_add_7', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_2_DW01_add_0_DW01_add_9', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_2_DW01_add_0_DW01_add_9', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_3_DW01_sub_0_DW01_sub_4', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_3_DW01_sub_0_DW01_sub_4', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_3_DW01_add_0_DW01_add_8', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_3_DW01_add_0_DW01_add_8', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE7_DW01_add_0_DW01_add_9', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE7_DW01_add_0_DW01_add_9', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_3_DW01_add_0_DW01_add_10', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_3_DW01_add_0_DW01_add_10', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE7_DW01_add_0_DW01_add_11', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE7_DW01_add_0_DW01_add_11', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE7_DW01_sub_0_DW01_sub_5', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE7_DW01_sub_0_DW01_sub_5', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_4_DW01_sub_0_DW01_sub_6', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_4_DW01_sub_0_DW01_sub_6', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_4_DW01_add_0_DW01_add_14', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_4_DW01_add_0_DW01_add_14', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_4_DW01_add_0_DW01_add_16', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_4_DW01_add_0_DW01_add_16', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_5_DW01_sub_0_DW01_sub_7', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_5_DW01_sub_0_DW01_sub_7', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_5_DW01_add_0_DW01_add_15', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_5_DW01_add_0_DW01_add_15', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_5_DW01_add_0_DW01_add_17', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_5_DW01_add_0_DW01_add_17', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_6_DW01_sub_0_DW01_sub_8', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_6_DW01_sub_0_DW01_sub_8', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_6_DW01_add_0_DW01_add_16', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_6_DW01_add_0_DW01_add_16', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_6_DW01_add_0_DW01_add_18', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_6_DW01_add_0_DW01_add_18', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_7_DW01_sub_0_DW01_sub_9', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_7_DW01_sub_0_DW01_sub_9', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_7_DW01_add_0_DW01_add_17', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_7_DW01_add_0_DW01_add_17', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE6_DW01_add_0_DW01_add_18', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE6_DW01_add_0_DW01_add_18', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_7_DW01_add_0_DW01_add_19', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_7_DW01_add_0_DW01_add_19', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE6_DW01_add_0_DW01_add_20', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE6_DW01_add_0_DW01_add_20', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE6_DW01_sub_0_DW01_sub_10', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE6_DW01_sub_0_DW01_sub_10', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_8_DW01_sub_0_DW01_sub_11', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_8_DW01_sub_0_DW01_sub_11', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_8_DW01_add_0_DW01_add_23', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_8_DW01_add_0_DW01_add_23', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_8_DW01_add_0_DW01_add_25', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_8_DW01_add_0_DW01_add_25', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_9_DW01_sub_0_DW01_sub_12', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_9_DW01_sub_0_DW01_sub_12', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_9_DW01_add_0_DW01_add_24', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_9_DW01_add_0_DW01_add_24', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_9_DW01_add_0_DW01_add_26', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_9_DW01_add_0_DW01_add_26', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_10_DW01_sub_0_DW01_sub_13', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_10_DW01_sub_0_DW01_sub_13', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_10_DW01_add_0_DW01_add_25', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_10_DW01_add_0_DW01_add_25', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_10_DW01_add_0_DW01_add_27', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_10_DW01_add_0_DW01_add_27', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_11_DW01_sub_0_DW01_sub_14', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_11_DW01_sub_0_DW01_sub_14', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_11_DW01_add_0_DW01_add_26', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_11_DW01_add_0_DW01_add_26', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE5_DW01_add_0_DW01_add_27', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE5_DW01_add_0_DW01_add_27', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_11_DW01_add_0_DW01_add_28', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_11_DW01_add_0_DW01_add_28', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE5_DW01_add_0_DW01_add_29', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE5_DW01_add_0_DW01_add_29', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE5_DW01_sub_0_DW01_sub_15', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE5_DW01_sub_0_DW01_sub_15', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_12_DW01_sub_0_DW01_sub_16', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_12_DW01_sub_0_DW01_sub_16', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_12_DW01_add_0_DW01_add_32', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_12_DW01_add_0_DW01_add_32', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_12_DW01_add_0_DW01_add_34', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_12_DW01_add_0_DW01_add_34', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_13_DW01_sub_0_DW01_sub_17', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_13_DW01_sub_0_DW01_sub_17', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_13_DW01_add_0_DW01_add_33', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_13_DW01_add_0_DW01_add_33', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_13_DW01_add_0_DW01_add_35', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_13_DW01_add_0_DW01_add_35', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_14_DW01_sub_0_DW01_sub_18', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_14_DW01_sub_0_DW01_sub_18', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_14_DW01_add_0_DW01_add_34', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_14_DW01_add_0_DW01_add_34', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_14_DW01_add_0_DW01_add_36', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_14_DW01_add_0_DW01_add_36', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_15_DW01_sub_0_DW01_sub_19', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_15_DW01_sub_0_DW01_sub_19', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_15_DW01_add_0_DW01_add_35', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_15_DW01_add_0_DW01_add_35', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE4_DW01_add_0_DW01_add_36', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE4_DW01_add_0_DW01_add_36', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_15_DW01_add_0_DW01_add_37', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_15_DW01_add_0_DW01_add_37', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE4_DW01_add_0_DW01_add_38', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE4_DW01_add_0_DW01_add_38', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE4_DW01_sub_0_DW01_sub_20', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE4_DW01_sub_0_DW01_sub_20', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_16_DW01_sub_0_DW01_sub_21', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_16_DW01_sub_0_DW01_sub_21', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_16_DW01_add_0_DW01_add_41', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_16_DW01_add_0_DW01_add_41', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_16_DW01_add_0_DW01_add_43', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_16_DW01_add_0_DW01_add_43', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_17_DW01_sub_0_DW01_sub_22', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_17_DW01_sub_0_DW01_sub_22', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_17_DW01_add_0_DW01_add_42', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_17_DW01_add_0_DW01_add_42', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_17_DW01_add_0_DW01_add_44', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_17_DW01_add_0_DW01_add_44', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_18_DW01_sub_0_DW01_sub_23', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_18_DW01_sub_0_DW01_sub_23', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_18_DW01_add_0_DW01_add_43', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_18_DW01_add_0_DW01_add_43', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_18_DW01_add_0_DW01_add_45', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_18_DW01_add_0_DW01_add_45', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_19_DW01_sub_0_DW01_sub_24', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_19_DW01_sub_0_DW01_sub_24', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_19_DW01_add_0_DW01_add_44', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_19_DW01_add_0_DW01_add_44', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE3_DW01_add_0_DW01_add_45', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE3_DW01_add_0_DW01_add_45', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_19_DW01_add_0_DW01_add_46', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_19_DW01_add_0_DW01_add_46', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE3_DW01_add_0_DW01_add_47', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE3_DW01_add_0_DW01_add_47', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE3_DW01_sub_0_DW01_sub_25', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE3_DW01_sub_0_DW01_sub_25', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_20_DW01_sub_0_DW01_sub_26', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_20_DW01_sub_0_DW01_sub_26', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_20_DW01_add_0_DW01_add_50', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_20_DW01_add_0_DW01_add_50', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_20_DW01_add_0_DW01_add_52', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_20_DW01_add_0_DW01_add_52', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_21_DW01_sub_0_DW01_sub_27', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_21_DW01_sub_0_DW01_sub_27', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_21_DW01_add_0_DW01_add_51', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_21_DW01_add_0_DW01_add_51', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_21_DW01_add_0_DW01_add_53', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_21_DW01_add_0_DW01_add_53', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_22_DW01_sub_0_DW01_sub_28', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_22_DW01_sub_0_DW01_sub_28', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_22_DW01_add_0_DW01_add_52', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_22_DW01_add_0_DW01_add_52', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_22_DW01_add_0_DW01_add_54', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_22_DW01_add_0_DW01_add_54', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_23_DW01_sub_0_DW01_sub_29', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_23_DW01_sub_0_DW01_sub_29', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_23_DW01_add_0_DW01_add_53', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_23_DW01_add_0_DW01_add_53', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE2_DW01_add_0_DW01_add_54', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE2_DW01_add_0_DW01_add_54', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_23_DW01_add_0_DW01_add_55', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_23_DW01_add_0_DW01_add_55', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE2_DW01_add_0_DW01_add_56', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE2_DW01_add_0_DW01_add_56', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE2_DW01_sub_0_DW01_sub_30', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE2_DW01_sub_0_DW01_sub_30', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_24_DW01_sub_0_DW01_sub_31', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_24_DW01_sub_0_DW01_sub_31', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_24_DW01_add_0_DW01_add_59', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_24_DW01_add_0_DW01_add_59', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_24_DW01_add_0_DW01_add_61', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_24_DW01_add_0_DW01_add_61', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_25_DW01_sub_0_DW01_sub_32', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_25_DW01_sub_0_DW01_sub_32', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_25_DW01_add_0_DW01_add_60', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_25_DW01_add_0_DW01_add_60', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_25_DW01_add_0_DW01_add_62', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_25_DW01_add_0_DW01_add_62', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_26_DW01_sub_0_DW01_sub_33', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_26_DW01_sub_0_DW01_sub_33', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_26_DW01_add_0_DW01_add_61', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_26_DW01_add_0_DW01_add_61', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_26_DW01_add_0_DW01_add_63', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_26_DW01_add_0_DW01_add_63', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_27_DW01_sub_0_DW01_sub_34', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_27_DW01_sub_0_DW01_sub_34', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_27_DW01_add_0_DW01_add_62', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_27_DW01_add_0_DW01_add_62', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE1_DW01_add_0_DW01_add_63', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE1_DW01_add_0_DW01_add_63', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_27_DW01_add_0_DW01_add_64', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_27_DW01_add_0_DW01_add_64', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE1_DW01_add_0_DW01_add_65', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE1_DW01_add_0_DW01_add_65', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE1_DW01_sub_0_DW01_sub_35', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE1_DW01_sub_0_DW01_sub_35', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_28_DW01_sub_0_DW01_sub_36', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_28_DW01_sub_0_DW01_sub_36', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_28_DW01_add_0_DW01_add_68', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_28_DW01_add_0_DW01_add_68', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_28_DW01_add_0_DW01_add_70', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_28_DW01_add_0_DW01_add_70', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_29_DW01_sub_0_DW01_sub_37', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_29_DW01_sub_0_DW01_sub_37', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_29_DW01_add_0_DW01_add_69', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_29_DW01_add_0_DW01_add_69', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_29_DW01_add_0_DW01_add_71', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_29_DW01_add_0_DW01_add_71', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_30_DW01_sub_0_DW01_sub_38', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_30_DW01_sub_0_DW01_sub_38', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_30_DW01_add_0_DW01_add_70', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_30_DW01_add_0_DW01_add_70', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_30_DW01_add_0_DW01_add_72', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_30_DW01_add_0_DW01_add_72', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_31_DW01_sub_0_DW01_sub_39', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_31_DW01_sub_0_DW01_sub_39', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_31_DW01_add_0_DW01_add_71', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_31_DW01_add_0_DW01_add_71', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE0_DW01_add_0_DW01_add_72', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'math_STAGE0_DW01_add_0_DW01_add_72', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_31_DW01_add_0_DW01_add_73', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_31_DW01_add_0_DW01_add_73', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE0_DW01_add_0_DW01_add_74', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'math_STAGE0_DW01_add_0_DW01_add_74', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE0_DW01_sub_0_DW01_sub_40', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'math_STAGE0_DW01_sub_0_DW01_sub_40', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_32_DW01_sub_0_DW01_sub_41', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_32_DW01_sub_0_DW01_sub_41', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_32_DW01_add_0_DW01_add_77', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_32_DW01_add_0_DW01_add_77', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_32_DW01_add_0_DW01_add_79', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_32_DW01_add_0_DW01_add_79', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_33_DW01_sub_0_DW01_sub_42', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_33_DW01_sub_0_DW01_sub_42', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_33_DW01_add_0_DW01_add_78', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_33_DW01_add_0_DW01_add_78', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_33_DW01_add_0_DW01_add_80', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_33_DW01_add_0_DW01_add_80', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_34_DW01_sub_0_DW01_sub_43', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_34_DW01_sub_0_DW01_sub_43', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_34_DW01_add_0_DW01_add_79', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_34_DW01_add_0_DW01_add_79', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_34_DW01_add_0_DW01_add_81', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_34_DW01_add_0_DW01_add_81', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_35_DW01_sub_0_DW01_sub_44', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'adder_35_DW01_sub_0_DW01_sub_44', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_35_DW01_add_0_DW01_add_80', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'adder_35_DW01_add_0_DW01_add_80', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_35_DW01_add_0_DW01_add_82', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'adder_35_DW01_add_0_DW01_add_82', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi_DW01_inc_0_DW01_inc_9', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'sram_axi_DW01_inc_1_DW01_inc_10', port 'SUM[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_0_DW01_add_83', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_0_DW01_add_83', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_inc_0_DW01_inc_13', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_inc_2_DW01_inc_15', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_1_DW01_add_84', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_1_DW01_add_84', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[14]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[13]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[12]' is not connected to any nets. (LINT-28)
@@ -2293,6 +2839,248 @@ Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[3]' is not connect
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[2]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[1]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[31]' is connected directly to output port 'data_in[31]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[30]' is connected directly to output port 'data_in[30]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[29]' is connected directly to output port 'data_in[29]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[28]' is connected directly to output port 'data_in[28]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[27]' is connected directly to output port 'data_in[27]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[26]' is connected directly to output port 'data_in[26]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[25]' is connected directly to output port 'data_in[25]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[24]' is connected directly to output port 'data_in[24]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[23]' is connected directly to output port 'data_in[23]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[22]' is connected directly to output port 'data_in[22]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[21]' is connected directly to output port 'data_in[21]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[20]' is connected directly to output port 'data_in[20]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[19]' is connected directly to output port 'data_in[19]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[18]' is connected directly to output port 'data_in[18]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[17]' is connected directly to output port 'data_in[17]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[16]' is connected directly to output port 'data_in[16]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[15]' is connected directly to output port 'data_in[15]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[14]' is connected directly to output port 'data_in[14]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[13]' is connected directly to output port 'data_in[13]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[12]' is connected directly to output port 'data_in[12]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[11]' is connected directly to output port 'data_in[11]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[10]' is connected directly to output port 'data_in[10]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[9]' is connected directly to output port 'data_in[9]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[8]' is connected directly to output port 'data_in[8]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[7]' is connected directly to output port 'data_in[7]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[6]' is connected directly to output port 'data_in[6]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[5]' is connected directly to output port 'data_in[5]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[4]' is connected directly to output port 'data_in[4]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[3]' is connected directly to output port 'data_in[3]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[2]' is connected directly to output port 'data_in[2]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[1]' is connected directly to output port 'data_in[1]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[0]' is connected directly to output port 'data_in[0]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[31]' is connected directly to output port 'fft_man_wdata[31]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[30]' is connected directly to output port 'fft_man_wdata[30]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[29]' is connected directly to output port 'fft_man_wdata[29]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[28]' is connected directly to output port 'fft_man_wdata[28]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[27]' is connected directly to output port 'fft_man_wdata[27]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[26]' is connected directly to output port 'fft_man_wdata[26]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[25]' is connected directly to output port 'fft_man_wdata[25]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[24]' is connected directly to output port 'fft_man_wdata[24]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[23]' is connected directly to output port 'fft_man_wdata[23]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[22]' is connected directly to output port 'fft_man_wdata[22]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[21]' is connected directly to output port 'fft_man_wdata[21]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[20]' is connected directly to output port 'fft_man_wdata[20]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[19]' is connected directly to output port 'fft_man_wdata[19]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[18]' is connected directly to output port 'fft_man_wdata[18]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[17]' is connected directly to output port 'fft_man_wdata[17]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[16]' is connected directly to output port 'fft_man_wdata[16]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[15]' is connected directly to output port 'fft_man_wdata[15]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[14]' is connected directly to output port 'fft_man_wdata[14]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[13]' is connected directly to output port 'fft_man_wdata[13]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[12]' is connected directly to output port 'fft_man_wdata[12]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[11]' is connected directly to output port 'fft_man_wdata[11]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[10]' is connected directly to output port 'fft_man_wdata[10]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[9]' is connected directly to output port 'fft_man_wdata[9]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[8]' is connected directly to output port 'fft_man_wdata[8]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[7]' is connected directly to output port 'fft_man_wdata[7]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[6]' is connected directly to output port 'fft_man_wdata[6]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[5]' is connected directly to output port 'fft_man_wdata[5]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[4]' is connected directly to output port 'fft_man_wdata[4]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[3]' is connected directly to output port 'fft_man_wdata[3]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[2]' is connected directly to output port 'fft_man_wdata[2]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[1]' is connected directly to output port 'fft_man_wdata[1]'. (LINT-29)
+Warning: In design 'fft_axi_manager', input port 'data_out[0]' is connected directly to output port 'fft_man_wdata[0]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'sram_rdata[31]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'sram_rdata[30]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'sram_rdata[29]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[28]' is connected directly to output port 'sram_rdata[28]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[27]' is connected directly to output port 'sram_rdata[27]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[26]' is connected directly to output port 'sram_rdata[26]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[25]' is connected directly to output port 'sram_rdata[25]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[24]' is connected directly to output port 'sram_rdata[24]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[23]' is connected directly to output port 'sram_rdata[23]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[22]' is connected directly to output port 'sram_rdata[22]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[21]' is connected directly to output port 'sram_rdata[21]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[20]' is connected directly to output port 'sram_rdata[20]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[19]' is connected directly to output port 'sram_rdata[19]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[18]' is connected directly to output port 'sram_rdata[18]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[17]' is connected directly to output port 'sram_rdata[17]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[16]' is connected directly to output port 'sram_rdata[16]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[15]' is connected directly to output port 'sram_rdata[15]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[14]' is connected directly to output port 'sram_rdata[14]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[13]' is connected directly to output port 'sram_rdata[13]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[12]' is connected directly to output port 'sram_rdata[12]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[11]' is connected directly to output port 'sram_rdata[11]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[10]' is connected directly to output port 'sram_rdata[10]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[9]' is connected directly to output port 'sram_rdata[9]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[8]' is connected directly to output port 'sram_rdata[8]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[7]' is connected directly to output port 'sram_rdata[7]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[6]' is connected directly to output port 'sram_rdata[6]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[5]' is connected directly to output port 'sram_rdata[5]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[4]' is connected directly to output port 'sram_rdata[4]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[3]' is connected directly to output port 'sram_rdata[3]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[2]' is connected directly to output port 'sram_rdata[2]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[1]' is connected directly to output port 'sram_rdata[1]'. (LINT-29)
+Warning: In design 'sram_axi', input port 'read_data[0]' is connected directly to output port 'sram_rdata[0]'. (LINT-29)
+Warning: In design 'sram_axi', output port 'sram_bresp' is connected directly to output port 'sram_rresp'. (LINT-31)
+Warning: In design 'sram_axi', output port 'wen[3]' is connected directly to output port 'wen[2]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'wen[1]' is connected directly to output port 'wen[0]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[10]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[11]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[12]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[13]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[14]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[15]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[16]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[17]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[18]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[19]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[20]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[21]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[22]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[23]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[24]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[25]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[26]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[27]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[28]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[29]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'read_addr[31]' is connected directly to output port 'read_addr[30]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[11]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[12]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[13]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[14]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[15]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[16]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[17]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[18]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[19]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[20]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[21]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[22]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[23]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[24]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[25]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[26]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[27]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[28]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[29]'. (LINT-31)
+Warning: In design 'sram_axi', output port 'write_addr[31]' is connected directly to output port 'write_addr[30]'. (LINT-31)
+Warning: In design 'axi_top', a pin on submodule 'arbit' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'sram_rresp' is connected to logic 0. 
+Warning: In design 'axi_top', a pin on submodule 'arbit' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'sram_bresp' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[31]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[30]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[29]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[28]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[27]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[26]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[25]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[24]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[23]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[22]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[21]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[20]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[19]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[18]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[17]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[16]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[15]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[14]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[13]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[12]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[11]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cin' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[31]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[30]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[29]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[28]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[27]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[26]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[25]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[24]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[23]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[22]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[21]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[20]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[19]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[18]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[17]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[16]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[15]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[14]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[13]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[12]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'b[11]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cin' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'write_counter' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'resp' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_228' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_129' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_130' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'A[10]' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_178' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
 Warning: In design 'fft_stage_STAGE0', a pin on submodule 'lut' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'addr[8]' is connected to logic 0. 
 Warning: In design 'fft_stage_STAGE0', a pin on submodule 'count' is connected to logic 1 or logic 0. (LINT-32)
@@ -2957,7 +3745,11 @@ Warning: In design 'adder_34', the same net is connected to more than one pin on
    Net 'a[15]' is connected to pins 'A[16]', 'A[15]''.
 Warning: In design 'adder_34', the same net is connected to more than one pin on submodule 'add_13'. (LINT-33)
    Net 'b[15]' is connected to pins 'B[16]', 'B[15]''.
-Writing verilog file '/home/ecegridfs/a/337mg041/FFT_Accelerator/tmp/build/team42_ece337_fft_core_1.0.0/syn-design_compiler/fft_core.v'.
+Warning: In design 'sram_axi', output port 'sram_bresp' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'sram_axi', output port 'sram_rresp' is connected directly to 'logic 0'. (LINT-52)
+Writing verilog file '/home/ecegridfs/a/337mg227/FFT_Accelerator/tmp/build/team42_ece337_axi_top_1.0.0/syn-design_compiler/axi_top.v'.
+Warning: Verilog writer has added 14 nets to module fft_axi_subordinate using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 2 nets to module sram_axi using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 Warning: Verilog writer has added 15 nets to module multiplier_35 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 Warning: Verilog writer has added 15 nets to module multiplier_34 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 Warning: Verilog writer has added 15 nets to module multiplier_33 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
@@ -3004,9 +3796,9 @@ Warning: Verilog writer has added 15 nets to module multiplier_1 using SYNOPSYS_
 Warning: Verilog writer has added 15 nets to module multiplier_0 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 Warning: Verilog writer has added 2 nets to module math_STAGE8 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 
-Memory usage for this session 462 Mbytes.
-Memory usage for this session including child processes 462 Mbytes.
-CPU usage for this session 156 seconds ( 0.04 hours ).
-Elapsed time for this session 160 seconds ( 0.04 hours ).
+Memory usage for this session 507 Mbytes.
+Memory usage for this session including child processes 507 Mbytes.
+CPU usage for this session 186 seconds ( 0.05 hours ).
+Elapsed time for this session 191 seconds ( 0.05 hours ).
 
 Thank you...
