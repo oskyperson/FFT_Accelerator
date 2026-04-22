@@ -58,7 +58,7 @@ module fft_stage #(
         if(!n_rst) begin
             out <= '0;
             out_valid <= '0;
-            primed <= '0;
+            //primed <= '0;
         end else if(sample_valid) begin
             out <= next_out;
             out_valid <= sel ? primed : 1'b1;
