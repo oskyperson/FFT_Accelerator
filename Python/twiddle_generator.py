@@ -5,7 +5,6 @@ bits = 16
 frac_bits = 15  
 
 def float_to_fixed(val, frac_bits):
-    # Calculate the integer value
     val_int = int(round(val * (1 << frac_bits)))
     
     max_val = (1 << frac_bits) - 1
