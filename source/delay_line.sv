@@ -5,7 +5,9 @@ module delay_line #(
     input logic n_rst,
     input logic [31:0] sample,
     input logic shift_en,
-    output logic [31:0] out
+    output logic [31:0] out,
+    
+    input logic clear
 );
     localparam int DEPTH = 1 << (8 - STAGE);
 
@@ -15,7 +17,11 @@ module delay_line #(
         if (!n_rst) begin
             for (int i = 0; i < DEPTH; i++)
                 shift[i] <= '0;
-        end else if (shift_en) begin
+        end else if (clear) begin
+            for(int i = 0; i < DEPTH; i++) begin
+                shift[i] <= '0;
+            end 
+        else if (shift_en) begin
             for (int j = DEPTH-1; j > 0; j--)
                 shift[j] <= shift[j-1];
             shift[0] <= sample;

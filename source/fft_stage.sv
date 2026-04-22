@@ -10,8 +10,11 @@ module fft_stage #(
     output logic [31:0] out,
     output logic out_valid,
 
+    input logic clear,
+
     input logic sel,
-    input logic [9:0] frame_size
+    input logic [9:0] frame_size,
+    input logic load_size
           
 );
 
@@ -51,7 +54,7 @@ module fft_stage #(
     end
 
     delay_line #(.STAGE(STAGE)) delays(.clk(clk), .n_rst(n_rst), .sample(next_delay_sample), 
-        .shift_en(sample_valid), .out(feedback_sample)
+        .shift_en(sample_valid), .out(feedback_sample), .clear(clear)
     );
 
     //logic next_primed;
@@ -89,12 +92,14 @@ module fft_stage #(
     assign control = count_out[8 - STAGE]; 
 
     flex_counter count(
-        .clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid), //NOTE: future AXI integration
+        .clk(clk), .n_rst(n_rst), .clear(clear), .count_enable(sample_valid), //NOTE: future AXI integration
         .count_out(count_out), .rollover_flag(rollover_flag), .rollover_val(frame_size - 1'd1), .next_count_out(next_count_out)
     );
 
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
+            primed <= 1'b0;
+        end else if (clear) begin
             primed <= 1'b0;
         end else if(sample_valid && (count_out == (1 << (8 - STAGE)) - 1))
             primed <= 1'b1;
