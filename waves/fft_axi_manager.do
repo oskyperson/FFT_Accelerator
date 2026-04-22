@@ -53,8 +53,14 @@ add wave -noupdate -divider {interal signals}
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/j
 add wave -noupdate -radix unsigned -childformat {{{/tb_fft_axi_manager/DUT/k[10]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[9]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[8]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[7]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[6]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[5]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[4]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[3]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[2]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[1]} -radix unsigned} {{/tb_fft_axi_manager/DUT/k[0]} -radix unsigned}} -subitemconfig {{/tb_fft_axi_manager/DUT/k[10]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[9]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[8]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[7]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[6]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[5]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[4]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[3]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[2]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[1]} {-height 16 -radix unsigned} {/tb_fft_axi_manager/DUT/k[0]} {-height 16 -radix unsigned}} /tb_fft_axi_manager/DUT/k
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/processing
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/r_offset
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/w_offset
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/r_frame_size
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/w_frame_size
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/next_r_offset_val
+add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/next_w_offset_val
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {80766030 ps} 0}
+WaveRestoreCursors {{Cursor 1} {131930000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -70,4 +76,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {196066500 ps}
+WaveRestoreZoom {0 ps} {458466303 ps}

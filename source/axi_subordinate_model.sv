@@ -36,7 +36,7 @@ module axi_subordinate_model (
 );
 
     // Define the valid addressable range for this model
-    localparam [31:0] ADDR_MAX = 32'h0000_07FF; // Example: 2KB range
+    localparam [31:0] ADDR_MAX = 32'h00010000; // Example: 2KB range
 
     // Associative array for sparse memory simulation
     logic [31:0] mem [logic [31:0]];

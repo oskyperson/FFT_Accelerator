@@ -179,26 +179,30 @@ module tb_fft_axi_manager ();
         fft_done = 0;
         test = "IDLE";
 
-        for (integer i = 0; i < 2048; i++) begin
+        for (integer i = 0; i < 4096; i++) begin
             BFM.mem[32'(i)] = i; 
         end
         
         reset_dut;
+        n_rst = 0;
+        @(negedge clk);
+        n_rst = 1;
+        @(negedge clk);
 
         test = "1 frame max samples";
-        configure_run(32'd1, 32'h0, 32'd511, 32'h800, 32'd511, 32'd1);
+        configure_run(32'd1, 32'h0, 32'd511, 32'd8000, 32'd511, 32'd1);
         wait_completion();
 
         test = "1 frame min samples";
-        configure_run(32'd1, 32'h0, 32'd1, 32'h800, 32'd1, 32'd2);
+        configure_run(32'd1, 32'h0, 32'd1, 32'd8000, 32'd1, 32'd2);
         wait_completion();
 
-        test = "2 frames max samples";
-        configure_run(32'd2, 32'h0, 32'd511, 32'h800, 32'd511, 32'd3);
+        test = "4 frames max samples";
+        configure_run(32'd4, 32'h0, 32'd511, 32'd8000, 32'd511, 32'd3);
         wait_completion();
 
-        test = "2 frames min samples";
-        configure_run(32'd2, 32'h0, 32'd1, 32'h800, 32'd1, 32'd4);
+        test = "3 frames min samples";
+        configure_run(32'd3, 32'h0, 32'd1, 32'd8000, 32'd1, 32'd4);
         wait_completion();
 
         test = "1 frame offset address";
