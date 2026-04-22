@@ -69,12 +69,12 @@ module sram_model #(
         end
     endtask
 
-    task dump_mem(input string filename);
+    task dump_mem(input string filename, input int frame_size, input int num_frames);
         int file;
         file = $fopen(filename, "w");
         if (file) begin
             foreach (mem[i]) begin
-                if(i>511) begin
+                if(i> (frame_size * num_frames) -1) begin
                     $fdisplay(file, "%h", mem[i]);
                 end
             end

@@ -62,7 +62,7 @@ def generate(signal_type='singleTone', N=512):
         signal = 0.8 * np.exp(1j * phase)
         
     elif signal_type == 'multiTone':
-        f1, f2, f3 = 25, 75, 150
+        f1, f2, f3 = 25/2, 75/2, 150/2
         signal = 0.5 * np.exp(1j * 2 * np.pi * f1 * t / fs) + \
                  0.2 * np.exp(1j * 2 * np.pi * f2 * t / fs) + \
                  0.05 * np.exp(1j * 2 * np.pi * f3 * t / fs)
@@ -80,7 +80,7 @@ def generate(signal_type='singleTone', N=512):
             im_hex = float_to_hex(val.imag)
             f_hex.write(f"stream_frame({re_hex}, {im_hex});\n")
 
-    with open('./Python/input_mem.txt', 'w') as f_hex:
+    with open('./Python/input_mem1.txt', 'w') as f_hex:
         for val in signal:
             re_hex = float_to_hex(val.real).replace("16'h", "")
             im_hex = float_to_hex(val.imag).replace("16'h", "")

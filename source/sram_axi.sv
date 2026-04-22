@@ -47,16 +47,16 @@ typedef enum logic [1:0] {R_IDLE, R_REQ, R_WAIT, R_DATA} r_state_t;
 w_state_t write_state, next_write;
 r_state_t read_state, next_read;
 
-logic [10:0] waddr_reg, raddr_reg;
+logic [31:0] waddr_reg, raddr_reg;
 logic [9:0] wlen_reg, rlen_reg;
 logic [31:0] wdata_reg;
 logic [1:0] wstrb_reg;
 
-logic [10:0] next_waddr_reg;
+logic [31:0] next_waddr_reg;
 logic [9:0] next_wlen_reg;
 logic [31:0] next_wdata_reg;
 logic [1:0] next_wstrb_reg;
-logic [10:0] next_raddr_reg;
+logic [31:0] next_raddr_reg;
 logic [9:0] next_rlen_reg;
 logic next_awready, next_wready, next_bvalid, next_arready, next_rvalid, next_rlast;
 
@@ -75,7 +75,7 @@ always_comb begin : WRITE_LOGIC
    
     sram_bresp = '0;
     wen = '0;
-    write_addr = waddr_reg-4'hF;
+    write_addr = waddr_reg-32'hF;
     write_data = wdata_reg;
 
     case(write_state)
@@ -106,7 +106,7 @@ always_comb begin : READ_LOGIC
     next_read = read_state;
     sram_rresp = 2'b00;
     ren = 1'b0;
-    read_addr = raddr_reg[9:0] - 4'hF;
+    read_addr = raddr_reg - 32'hF;
     sram_rdata = read_data;
     case (read_state)
         R_IDLE: begin
