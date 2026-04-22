@@ -138,15 +138,11 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
     end else if (processing && rstate == RIDLE && wstate == WIDLE) begin
         if (k_gt_0) begin
             k <= k - 11'd1;
-            if (k <= configs[0][10:0]) begin
-                r_offset <= next_r_offset_val;
-            end
+            r_offset <= next_r_offset_val;
         end
         if (j_gt_0 && j_eq_k) begin
             j <= j - 11'd1;
-            if (j < configs[0][10:0]) begin
-                w_offset <= next_w_offset_val;
-            end
+            w_offset <= next_w_offset_val;
         end
     end
 end
@@ -177,7 +173,11 @@ end
 always_ff @(posedge clk, negedge n_rst) begin : reg_araddr
     if (!n_rst) begin
         fft_man_araddr <= '0;
-    end else if (rstate == RIDLE && next_rstate == RADDR) begin
+    end 
+    else if (processing && wstate == WIDLE && next_wstate == WADDR) begin
+        fft_man_araddr <= configs[1] + next_r_offset_val;
+    end
+    else if (j == configs[0] || k == configs[0]) begin
         fft_man_araddr <= configs[1] + r_offset;
     end
 end
@@ -227,7 +227,11 @@ end
 always_ff @(posedge clk, negedge n_rst) begin : reg_awaddr
     if (!n_rst) begin
         fft_man_awaddr <= '0;
-    end else if (wstate == WIDLE && next_wstate == WADDR) begin
+    end
+    // else if (processing && wstate == WIDLE && next_wstate == WADDR) begin
+    //     fft_man_awaddr <= configs[3] + next_w_offset_val;
+    // end 
+    else if (wstate == WIDLE && next_wstate == WADDR) begin
         fft_man_awaddr <= configs[3] + w_offset;
     end
 end
