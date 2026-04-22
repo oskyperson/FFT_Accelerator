@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : W-2024.09-SP4
-// Date      : Tue Apr 21 21:15:02 2026
+// Date      : Tue Apr 21 23:43:45 2026
 /////////////////////////////////////////////////////////////
 
 
@@ -6433,8 +6433,8 @@ module arbiter ( clk, n_rst, cpu_awaddr, cpu_araddr, cpu_awvalid, cpu_arvalid,
          sram_wlast, sram_rready, sram_bready, fft_sub_awvalid,
          fft_sub_arvalid, fft_sub_wvalid, fft_sub_wlast, fft_sub_rready,
          fft_sub_bready;
-  wire   n459, n460, w_state, r_state, n410, n411, n412, n413, n414, n415, n1,
-         n3, n5, n6, n7, n8, n9, n10, n21, n22, n23, n24, n25, n26, n27, n28,
+  wire   n455, n456, w_state, r_state, n414, n415, n416, n417, n418, n419, n1,
+         n2, n3, n4, n5, n6, n7, n8, n9, n21, n23, n24, n25, n26, n27, n28,
          n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42,
          n43, n44, n45, n46, n47, n48, n49, n50, n51, n52, n53, n54, n55, n56,
          n57, n58, n59, n60, n61, n62, n63, n64, n65, n66, n67, n68, n69, n70,
@@ -6468,11 +6468,10 @@ module arbiter ( clk, n_rst, cpu_awaddr, cpu_araddr, cpu_awvalid, cpu_arvalid,
          n375, n376, n377, n378, n379, n380, n381, n382, n383, n384, n385,
          n386, n387, n388, n389, n390, n391, n392, n393, n394, n395, n396,
          n397, n398, n399, n400, n401, n402, n403, n404, n405, n406, n407,
-         n408, n409, n416, n417, n418, n419, n420, n421, n422, n423, n424,
+         n408, n409, n410, n411, n412, n413, n420, n421, n422, n423, n424,
          n425, n426, n427, n428, n429, n430, n431, n432, n433, n434, n435,
          n436, n437, n438, n439, n440, n441, n442, n443, n444, n445, n446,
-         n447, n448, n449, n450, n451, n452, n453, n454, n455, n456, n457,
-         n458;
+         n447, n448, n449, n450, n451, n452, n453, n454;
   wire   [1:0] w_perms;
   wire   [1:0] r_perms;
   wire   [1:0] w_dest;
@@ -6480,884 +6479,898 @@ module arbiter ( clk, n_rst, cpu_awaddr, cpu_araddr, cpu_awvalid, cpu_arvalid,
   wire   [1:0] w_next_dest;
   wire   [1:0] r_next_dest;
 
-  DFFSR \r_perms_reg[0]  ( .D(n415), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \r_perms_reg[0]  ( .D(n419), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         r_perms[0]) );
-  DFFSR r_state_reg ( .D(n414), .CLK(clk), .R(n_rst), .S(1'b1), .Q(r_state) );
+  DFFSR r_state_reg ( .D(n418), .CLK(clk), .R(n_rst), .S(1'b1), .Q(r_state) );
   DFFSR \r_dest_reg[0]  ( .D(r_next_dest[0]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(r_dest[0]) );
   DFFSR \r_dest_reg[1]  ( .D(r_next_dest[1]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(r_dest[1]) );
-  DFFSR \r_perms_reg[1]  ( .D(n413), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \r_perms_reg[1]  ( .D(n417), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         r_perms[1]) );
   DFFSR \w_dest_reg[0]  ( .D(w_next_dest[0]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(w_dest[0]) );
-  DFFSR w_state_reg ( .D(n412), .CLK(clk), .R(n_rst), .S(1'b1), .Q(w_state) );
+  DFFSR w_state_reg ( .D(n416), .CLK(clk), .R(n_rst), .S(1'b1), .Q(w_state) );
   DFFSR \w_dest_reg[1]  ( .D(w_next_dest[1]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(w_dest[1]) );
-  DFFSR \w_perms_reg[1]  ( .D(n410), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \w_perms_reg[1]  ( .D(n414), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         w_perms[1]) );
-  DFFSR \w_perms_reg[0]  ( .D(n411), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \w_perms_reg[0]  ( .D(n415), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         w_perms[0]) );
-  INVX1 U4 ( .A(n459), .Y(n1) );
-  INVX2 U5 ( .A(n1), .Y(fft_man_rdata[31]) );
-  INVX1 U15 ( .A(n460), .Y(n3) );
-  INVX2 U16 ( .A(n3), .Y(fft_man_rdata[15]) );
-  INVX1 U17 ( .A(n136), .Y(n5) );
-  INVX8 U18 ( .A(n5), .Y(n6) );
-  INVX1 U19 ( .A(n138), .Y(n7) );
-  INVX8 U20 ( .A(n7), .Y(n8) );
-  INVX1 U21 ( .A(n349), .Y(n9) );
-  INVX8 U22 ( .A(n9), .Y(n10) );
-  INVX1 U23 ( .A(n350), .Y(n21) );
-  INVX8 U24 ( .A(n21), .Y(n22) );
-  INVX1 U25 ( .A(n62), .Y(n23) );
-  INVX8 U26 ( .A(n23), .Y(n24) );
-  INVX1 U27 ( .A(n64), .Y(n25) );
-  INVX8 U28 ( .A(n25), .Y(n26) );
-  INVX1 U29 ( .A(n347), .Y(n27) );
-  INVX8 U30 ( .A(n27), .Y(n28) );
-  INVX1 U31 ( .A(n348), .Y(n29) );
-  INVX8 U32 ( .A(n29), .Y(n30) );
+  AND2X2 U4 ( .A(n453), .B(n438), .Y(n1) );
+  AND2X2 U5 ( .A(n431), .B(n450), .Y(n2) );
+  AND2X2 U15 ( .A(n438), .B(n437), .Y(n3) );
+  AND2X2 U16 ( .A(n429), .B(n431), .Y(n4) );
+  AND2X2 U17 ( .A(n429), .B(n432), .Y(n5) );
+  AND2X2 U18 ( .A(n432), .B(n450), .Y(n6) );
+  AND2X2 U19 ( .A(n439), .B(n437), .Y(n7) );
+  AND2X2 U20 ( .A(n439), .B(n453), .Y(n8) );
+  INVX1 U21 ( .A(n455), .Y(n9) );
+  INVX2 U22 ( .A(n9), .Y(fft_man_rdata[31]) );
+  INVX1 U23 ( .A(n456), .Y(n21) );
+  INVX2 U24 ( .A(n21), .Y(fft_man_rdata[15]) );
+  INVX8 U25 ( .A(n1), .Y(n23) );
+  INVX8 U26 ( .A(n3), .Y(n24) );
+  INVX8 U27 ( .A(n8), .Y(n25) );
+  INVX8 U28 ( .A(n7), .Y(n26) );
+  INVX8 U29 ( .A(n2), .Y(n27) );
+  INVX8 U30 ( .A(n4), .Y(n28) );
+  INVX8 U31 ( .A(n6), .Y(n29) );
+  INVX8 U32 ( .A(n5), .Y(n30) );
   OAI22X1 U33 ( .A(n31), .B(n32), .C(w_state), .D(n33), .Y(w_next_dest[1]) );
   OAI22X1 U34 ( .A(n34), .B(n32), .C(w_state), .D(n35), .Y(w_next_dest[0]) );
   INVX1 U35 ( .A(n33), .Y(n35) );
-  MUX2X1 U36 ( .B(n36), .A(n37), .S(n38), .Y(n33) );
-  NAND3X1 U37 ( .A(n39), .B(n40), .C(n41), .Y(n37) );
-  NOR2X1 U38 ( .A(n42), .B(n43), .Y(n41) );
-  OAI21X1 U39 ( .A(n44), .B(n45), .C(n46), .Y(n43) );
-  NAND2X1 U40 ( .A(n47), .B(fft_man_awaddr[0]), .Y(n45) );
-  NAND2X1 U41 ( .A(n48), .B(n49), .Y(n42) );
-  NOR2X1 U42 ( .A(fft_man_awaddr[9]), .B(fft_man_awaddr[8]), .Y(n40) );
-  NOR2X1 U43 ( .A(fft_man_awaddr[7]), .B(fft_man_awaddr[6]), .Y(n39) );
-  NAND3X1 U44 ( .A(n50), .B(n51), .C(n52), .Y(n36) );
-  NOR2X1 U45 ( .A(n53), .B(n54), .Y(n52) );
-  OAI21X1 U46 ( .A(n55), .B(n56), .C(n57), .Y(n54) );
-  NAND2X1 U47 ( .A(n47), .B(cpu_awaddr[0]), .Y(n56) );
-  MUX2X1 U48 ( .B(n58), .A(n59), .S(n38), .Y(n47) );
-  NAND2X1 U49 ( .A(fft_man_awaddr[3]), .B(fft_man_awaddr[2]), .Y(n59) );
-  NAND2X1 U50 ( .A(cpu_awaddr[3]), .B(cpu_awaddr[2]), .Y(n58) );
-  NAND2X1 U51 ( .A(n60), .B(n61), .Y(n53) );
-  NOR2X1 U52 ( .A(cpu_awaddr[9]), .B(cpu_awaddr[8]), .Y(n51) );
-  NOR2X1 U53 ( .A(cpu_awaddr[7]), .B(cpu_awaddr[6]), .Y(n50) );
-  OAI22X1 U54 ( .A(n24), .B(n63), .C(n26), .D(n65), .Y(sram_wvalid) );
-  OAI22X1 U55 ( .A(n24), .B(n66), .C(n26), .D(n67), .Y(sram_wstrb[1]) );
-  OAI22X1 U56 ( .A(n24), .B(n68), .C(n26), .D(n69), .Y(sram_wstrb[0]) );
-  OAI22X1 U57 ( .A(n24), .B(n70), .C(n26), .D(n71), .Y(sram_wlast) );
-  OAI22X1 U58 ( .A(n24), .B(n72), .C(n26), .D(n73), .Y(sram_wdata[9]) );
-  OAI22X1 U59 ( .A(n24), .B(n74), .C(n26), .D(n75), .Y(sram_wdata[8]) );
-  OAI22X1 U60 ( .A(n24), .B(n76), .C(n26), .D(n77), .Y(sram_wdata[7]) );
-  OAI22X1 U61 ( .A(n24), .B(n78), .C(n26), .D(n79), .Y(sram_wdata[6]) );
-  OAI22X1 U62 ( .A(n24), .B(n80), .C(n26), .D(n81), .Y(sram_wdata[5]) );
-  OAI22X1 U63 ( .A(n24), .B(n82), .C(n26), .D(n83), .Y(sram_wdata[4]) );
-  OAI22X1 U64 ( .A(n24), .B(n84), .C(n26), .D(n85), .Y(sram_wdata[3]) );
-  OAI22X1 U65 ( .A(n24), .B(n86), .C(n26), .D(n87), .Y(sram_wdata[31]) );
-  OAI22X1 U66 ( .A(n24), .B(n88), .C(n26), .D(n89), .Y(sram_wdata[30]) );
-  OAI22X1 U67 ( .A(n24), .B(n90), .C(n26), .D(n91), .Y(sram_wdata[2]) );
-  OAI22X1 U68 ( .A(n24), .B(n92), .C(n26), .D(n93), .Y(sram_wdata[29]) );
-  OAI22X1 U69 ( .A(n24), .B(n94), .C(n26), .D(n95), .Y(sram_wdata[28]) );
-  OAI22X1 U70 ( .A(n24), .B(n96), .C(n26), .D(n97), .Y(sram_wdata[27]) );
-  OAI22X1 U71 ( .A(n24), .B(n98), .C(n26), .D(n99), .Y(sram_wdata[26]) );
-  OAI22X1 U72 ( .A(n24), .B(n100), .C(n26), .D(n101), .Y(sram_wdata[25]) );
-  OAI22X1 U73 ( .A(n24), .B(n102), .C(n26), .D(n103), .Y(sram_wdata[24]) );
-  OAI22X1 U74 ( .A(n24), .B(n104), .C(n26), .D(n105), .Y(sram_wdata[23]) );
-  OAI22X1 U75 ( .A(n24), .B(n106), .C(n26), .D(n107), .Y(sram_wdata[22]) );
-  OAI22X1 U76 ( .A(n24), .B(n108), .C(n26), .D(n109), .Y(sram_wdata[21]) );
-  OAI22X1 U77 ( .A(n24), .B(n110), .C(n26), .D(n111), .Y(sram_wdata[20]) );
-  OAI22X1 U78 ( .A(n24), .B(n112), .C(n26), .D(n113), .Y(sram_wdata[1]) );
-  OAI22X1 U79 ( .A(n24), .B(n114), .C(n26), .D(n115), .Y(sram_wdata[19]) );
-  OAI22X1 U80 ( .A(n24), .B(n116), .C(n26), .D(n117), .Y(sram_wdata[18]) );
-  OAI22X1 U81 ( .A(n24), .B(n118), .C(n26), .D(n119), .Y(sram_wdata[17]) );
-  OAI22X1 U82 ( .A(n24), .B(n120), .C(n26), .D(n121), .Y(sram_wdata[16]) );
-  OAI22X1 U83 ( .A(n24), .B(n122), .C(n26), .D(n123), .Y(sram_wdata[15]) );
-  OAI22X1 U84 ( .A(n24), .B(n124), .C(n26), .D(n125), .Y(sram_wdata[14]) );
-  OAI22X1 U85 ( .A(n24), .B(n126), .C(n26), .D(n127), .Y(sram_wdata[13]) );
-  OAI22X1 U86 ( .A(n24), .B(n128), .C(n26), .D(n129), .Y(sram_wdata[12]) );
-  OAI22X1 U87 ( .A(n24), .B(n130), .C(n26), .D(n131), .Y(sram_wdata[11]) );
-  OAI22X1 U88 ( .A(n24), .B(n132), .C(n26), .D(n133), .Y(sram_wdata[10]) );
-  OAI22X1 U89 ( .A(n24), .B(n134), .C(n26), .D(n135), .Y(sram_wdata[0]) );
-  OAI22X1 U90 ( .A(n6), .B(n137), .C(n8), .D(n139), .Y(sram_rready) );
-  OAI22X1 U91 ( .A(n24), .B(n140), .C(n26), .D(n141), .Y(sram_bready) );
-  OAI22X1 U92 ( .A(n38), .B(n24), .C(n26), .D(n142), .Y(sram_awvalid) );
-  OAI22X1 U93 ( .A(n24), .B(n143), .C(n26), .D(n144), .Y(sram_awlen[9]) );
-  OAI22X1 U94 ( .A(n24), .B(n145), .C(n26), .D(n146), .Y(sram_awlen[8]) );
-  OAI22X1 U95 ( .A(n24), .B(n147), .C(n26), .D(n148), .Y(sram_awlen[7]) );
-  OAI22X1 U96 ( .A(n24), .B(n149), .C(n26), .D(n150), .Y(sram_awlen[6]) );
-  OAI22X1 U97 ( .A(n24), .B(n151), .C(n26), .D(n152), .Y(sram_awlen[5]) );
-  OAI22X1 U98 ( .A(n24), .B(n153), .C(n26), .D(n154), .Y(sram_awlen[4]) );
-  OAI22X1 U99 ( .A(n24), .B(n155), .C(n26), .D(n156), .Y(sram_awlen[3]) );
-  OAI22X1 U100 ( .A(n24), .B(n157), .C(n26), .D(n158), .Y(sram_awlen[2]) );
-  OAI22X1 U101 ( .A(n24), .B(n159), .C(n26), .D(n160), .Y(sram_awlen[1]) );
-  OAI22X1 U102 ( .A(n24), .B(n161), .C(n26), .D(n162), .Y(sram_awlen[0]) );
-  OAI22X1 U103 ( .A(n24), .B(n163), .C(n26), .D(n164), .Y(sram_awaddr[9]) );
-  OAI22X1 U104 ( .A(n24), .B(n165), .C(n26), .D(n166), .Y(sram_awaddr[8]) );
-  OAI22X1 U105 ( .A(n24), .B(n167), .C(n26), .D(n168), .Y(sram_awaddr[7]) );
-  OAI22X1 U106 ( .A(n24), .B(n169), .C(n26), .D(n170), .Y(sram_awaddr[6]) );
-  OAI22X1 U107 ( .A(n24), .B(n61), .C(n26), .D(n49), .Y(sram_awaddr[5]) );
-  OAI22X1 U108 ( .A(n24), .B(n60), .C(n26), .D(n48), .Y(sram_awaddr[4]) );
-  OAI22X1 U109 ( .A(n171), .B(n24), .C(n172), .D(n26), .Y(sram_awaddr[3]) );
-  OAI22X1 U110 ( .A(n24), .B(n173), .C(n26), .D(n174), .Y(sram_awaddr[31]) );
-  OAI22X1 U111 ( .A(n24), .B(n175), .C(n26), .D(n176), .Y(sram_awaddr[30]) );
-  OAI22X1 U112 ( .A(n177), .B(n24), .C(n178), .D(n26), .Y(sram_awaddr[2]) );
-  OAI22X1 U113 ( .A(n24), .B(n179), .C(n26), .D(n180), .Y(sram_awaddr[29]) );
-  OAI22X1 U114 ( .A(n24), .B(n181), .C(n26), .D(n182), .Y(sram_awaddr[28]) );
-  OAI22X1 U115 ( .A(n24), .B(n183), .C(n26), .D(n184), .Y(sram_awaddr[27]) );
-  OAI22X1 U116 ( .A(n24), .B(n185), .C(n26), .D(n186), .Y(sram_awaddr[26]) );
-  OAI22X1 U117 ( .A(n24), .B(n187), .C(n26), .D(n188), .Y(sram_awaddr[25]) );
-  OAI22X1 U118 ( .A(n24), .B(n189), .C(n26), .D(n190), .Y(sram_awaddr[24]) );
-  OAI22X1 U119 ( .A(n24), .B(n191), .C(n26), .D(n192), .Y(sram_awaddr[23]) );
-  OAI22X1 U120 ( .A(n24), .B(n193), .C(n26), .D(n194), .Y(sram_awaddr[22]) );
-  OAI22X1 U121 ( .A(n24), .B(n195), .C(n26), .D(n196), .Y(sram_awaddr[21]) );
-  OAI22X1 U122 ( .A(n24), .B(n197), .C(n26), .D(n198), .Y(sram_awaddr[20]) );
-  OAI22X1 U123 ( .A(n55), .B(n24), .C(n44), .D(n26), .Y(sram_awaddr[1]) );
-  OAI22X1 U124 ( .A(n24), .B(n199), .C(n26), .D(n200), .Y(sram_awaddr[19]) );
-  OAI22X1 U125 ( .A(n24), .B(n201), .C(n26), .D(n202), .Y(sram_awaddr[18]) );
-  OAI22X1 U126 ( .A(n24), .B(n203), .C(n26), .D(n204), .Y(sram_awaddr[17]) );
-  OAI22X1 U127 ( .A(n24), .B(n205), .C(n26), .D(n206), .Y(sram_awaddr[16]) );
-  OAI22X1 U128 ( .A(n24), .B(n207), .C(n26), .D(n208), .Y(sram_awaddr[15]) );
-  OAI22X1 U129 ( .A(n24), .B(n209), .C(n26), .D(n210), .Y(sram_awaddr[14]) );
-  OAI22X1 U130 ( .A(n24), .B(n211), .C(n26), .D(n212), .Y(sram_awaddr[13]) );
-  OAI22X1 U131 ( .A(n24), .B(n213), .C(n26), .D(n214), .Y(sram_awaddr[12]) );
-  OAI22X1 U132 ( .A(n24), .B(n215), .C(n26), .D(n216), .Y(sram_awaddr[11]) );
-  OAI22X1 U133 ( .A(n24), .B(n57), .C(n26), .D(n46), .Y(sram_awaddr[10]) );
-  OAI22X1 U134 ( .A(n217), .B(n24), .C(n218), .D(n26), .Y(sram_awaddr[0]) );
-  OAI22X1 U135 ( .A(n6), .B(n219), .C(n8), .D(n220), .Y(sram_arvalid) );
-  OAI22X1 U136 ( .A(n6), .B(n221), .C(n8), .D(n222), .Y(sram_arlen[9]) );
-  OAI22X1 U137 ( .A(n6), .B(n223), .C(n8), .D(n224), .Y(sram_arlen[8]) );
-  OAI22X1 U138 ( .A(n6), .B(n225), .C(n8), .D(n226), .Y(sram_arlen[7]) );
-  OAI22X1 U139 ( .A(n6), .B(n227), .C(n8), .D(n228), .Y(sram_arlen[6]) );
-  OAI22X1 U140 ( .A(n6), .B(n229), .C(n8), .D(n230), .Y(sram_arlen[5]) );
-  OAI22X1 U141 ( .A(n6), .B(n231), .C(n8), .D(n232), .Y(sram_arlen[4]) );
-  OAI22X1 U142 ( .A(n6), .B(n233), .C(n8), .D(n234), .Y(sram_arlen[3]) );
-  OAI22X1 U143 ( .A(n6), .B(n235), .C(n8), .D(n236), .Y(sram_arlen[2]) );
-  OAI22X1 U144 ( .A(n6), .B(n237), .C(n8), .D(n238), .Y(sram_arlen[1]) );
-  OAI22X1 U145 ( .A(n6), .B(n239), .C(n8), .D(n240), .Y(sram_arlen[0]) );
-  OAI22X1 U146 ( .A(n6), .B(n241), .C(n8), .D(n242), .Y(sram_araddr[9]) );
-  OAI22X1 U147 ( .A(n6), .B(n243), .C(n8), .D(n244), .Y(sram_araddr[8]) );
-  OAI22X1 U148 ( .A(n6), .B(n245), .C(n8), .D(n246), .Y(sram_araddr[7]) );
-  OAI22X1 U149 ( .A(n6), .B(n247), .C(n8), .D(n248), .Y(sram_araddr[6]) );
-  OAI22X1 U150 ( .A(n6), .B(n249), .C(n8), .D(n250), .Y(sram_araddr[5]) );
-  OAI22X1 U151 ( .A(n6), .B(n251), .C(n8), .D(n252), .Y(sram_araddr[4]) );
-  OAI22X1 U152 ( .A(n6), .B(n253), .C(n8), .D(n254), .Y(sram_araddr[3]) );
-  OAI22X1 U153 ( .A(n6), .B(n255), .C(n8), .D(n256), .Y(sram_araddr[31]) );
-  OAI22X1 U154 ( .A(n6), .B(n257), .C(n8), .D(n258), .Y(sram_araddr[30]) );
-  OAI22X1 U155 ( .A(n6), .B(n259), .C(n8), .D(n260), .Y(sram_araddr[2]) );
-  OAI22X1 U156 ( .A(n6), .B(n261), .C(n8), .D(n262), .Y(sram_araddr[29]) );
-  OAI22X1 U157 ( .A(n6), .B(n263), .C(n8), .D(n264), .Y(sram_araddr[28]) );
-  OAI22X1 U158 ( .A(n6), .B(n265), .C(n8), .D(n266), .Y(sram_araddr[27]) );
-  OAI22X1 U159 ( .A(n6), .B(n267), .C(n8), .D(n268), .Y(sram_araddr[26]) );
-  OAI22X1 U160 ( .A(n6), .B(n269), .C(n8), .D(n270), .Y(sram_araddr[25]) );
-  OAI22X1 U161 ( .A(n6), .B(n271), .C(n8), .D(n272), .Y(sram_araddr[24]) );
-  OAI22X1 U162 ( .A(n6), .B(n273), .C(n8), .D(n274), .Y(sram_araddr[23]) );
-  OAI22X1 U163 ( .A(n6), .B(n275), .C(n8), .D(n276), .Y(sram_araddr[22]) );
-  OAI22X1 U164 ( .A(n6), .B(n277), .C(n8), .D(n278), .Y(sram_araddr[21]) );
-  OAI22X1 U165 ( .A(n6), .B(n279), .C(n8), .D(n280), .Y(sram_araddr[20]) );
-  OAI22X1 U166 ( .A(n6), .B(n281), .C(n8), .D(n282), .Y(sram_araddr[1]) );
-  OAI22X1 U167 ( .A(n6), .B(n283), .C(n8), .D(n284), .Y(sram_araddr[19]) );
-  OAI22X1 U168 ( .A(n6), .B(n285), .C(n8), .D(n286), .Y(sram_araddr[18]) );
-  OAI22X1 U169 ( .A(n6), .B(n287), .C(n8), .D(n288), .Y(sram_araddr[17]) );
-  OAI22X1 U170 ( .A(n6), .B(n289), .C(n8), .D(n290), .Y(sram_araddr[16]) );
-  OAI22X1 U171 ( .A(n6), .B(n291), .C(n8), .D(n292), .Y(sram_araddr[15]) );
-  OAI22X1 U172 ( .A(n6), .B(n293), .C(n8), .D(n294), .Y(sram_araddr[14]) );
-  OAI22X1 U173 ( .A(n6), .B(n295), .C(n8), .D(n296), .Y(sram_araddr[13]) );
-  OAI22X1 U174 ( .A(n6), .B(n297), .C(n8), .D(n298), .Y(sram_araddr[12]) );
-  OAI22X1 U175 ( .A(n6), .B(n299), .C(n8), .D(n300), .Y(sram_araddr[11]) );
-  OAI22X1 U176 ( .A(n6), .B(n301), .C(n8), .D(n302), .Y(sram_araddr[10]) );
-  OAI22X1 U177 ( .A(n6), .B(n303), .C(n8), .D(n304), .Y(sram_araddr[0]) );
-  OAI22X1 U178 ( .A(n305), .B(n306), .C(r_state), .D(n307), .Y(r_next_dest[1])
-         );
-  OAI22X1 U179 ( .A(n308), .B(n306), .C(r_state), .D(n309), .Y(r_next_dest[0])
-         );
-  INVX1 U180 ( .A(n307), .Y(n309) );
-  MUX2X1 U181 ( .B(n310), .A(n311), .S(n219), .Y(n307) );
-  NAND3X1 U182 ( .A(n312), .B(n313), .C(n314), .Y(n311) );
-  NOR2X1 U183 ( .A(n315), .B(n316), .Y(n314) );
-  OAI21X1 U184 ( .A(n317), .B(n318), .C(n302), .Y(n316) );
-  NAND2X1 U185 ( .A(fft_man_araddr[0]), .B(fft_man_araddr[1]), .Y(n318) );
-  NAND2X1 U186 ( .A(n252), .B(n250), .Y(n315) );
-  NOR2X1 U187 ( .A(fft_man_araddr[9]), .B(fft_man_araddr[8]), .Y(n313) );
-  NOR2X1 U188 ( .A(fft_man_araddr[7]), .B(fft_man_araddr[6]), .Y(n312) );
-  NAND3X1 U189 ( .A(n319), .B(n320), .C(n321), .Y(n310) );
-  NOR2X1 U190 ( .A(n322), .B(n323), .Y(n321) );
-  OAI21X1 U191 ( .A(n317), .B(n324), .C(n301), .Y(n323) );
-  NAND2X1 U192 ( .A(cpu_araddr[0]), .B(cpu_araddr[1]), .Y(n324) );
-  INVX1 U193 ( .A(n325), .Y(n317) );
-  MUX2X1 U194 ( .B(n326), .A(n327), .S(n219), .Y(n325) );
-  NAND2X1 U195 ( .A(fft_man_araddr[2]), .B(fft_man_araddr[3]), .Y(n327) );
-  NAND2X1 U196 ( .A(cpu_araddr[2]), .B(cpu_araddr[3]), .Y(n326) );
-  NAND2X1 U197 ( .A(n251), .B(n249), .Y(n322) );
-  NOR2X1 U198 ( .A(cpu_araddr[9]), .B(cpu_araddr[8]), .Y(n320) );
-  NOR2X1 U199 ( .A(cpu_araddr[7]), .B(cpu_araddr[6]), .Y(n319) );
-  OAI21X1 U200 ( .A(n328), .B(n306), .C(n329), .Y(n415) );
-  OAI21X1 U201 ( .A(n330), .B(cpu_arvalid), .C(n331), .Y(n329) );
-  NOR2X1 U202 ( .A(fft_man_arvalid), .B(n328), .Y(n330) );
-  OAI21X1 U203 ( .A(r_state), .B(n332), .C(n306), .Y(n414) );
-  NOR2X1 U204 ( .A(cpu_arvalid), .B(fft_man_arvalid), .Y(n332) );
-  OAI21X1 U205 ( .A(n333), .B(n306), .C(n334), .Y(n413) );
-  OAI21X1 U206 ( .A(fft_man_arvalid), .B(r_perms[1]), .C(n335), .Y(n334) );
-  NOR2X1 U207 ( .A(r_state), .B(cpu_arvalid), .Y(n335) );
-  NAND3X1 U208 ( .A(n336), .B(n337), .C(r_state), .Y(n306) );
-  NAND3X1 U209 ( .A(cpu_rlast), .B(cpu_rvalid), .C(cpu_rready), .Y(n337) );
-  NAND3X1 U210 ( .A(fft_man_rlast), .B(fft_man_rvalid), .C(fft_man_rready), 
-        .Y(n336) );
-  OAI21X1 U211 ( .A(w_state), .B(n338), .C(n32), .Y(n412) );
-  NOR2X1 U212 ( .A(cpu_awvalid), .B(fft_man_awvalid), .Y(n338) );
-  OAI21X1 U213 ( .A(n339), .B(n32), .C(n340), .Y(n411) );
-  OAI21X1 U214 ( .A(n341), .B(cpu_awvalid), .C(n342), .Y(n340) );
-  NOR2X1 U215 ( .A(fft_man_awvalid), .B(n339), .Y(n341) );
-  OAI21X1 U216 ( .A(n343), .B(n32), .C(n344), .Y(n410) );
-  OAI21X1 U217 ( .A(fft_man_awvalid), .B(w_perms[1]), .C(n345), .Y(n344) );
-  NOR2X1 U218 ( .A(w_state), .B(cpu_awvalid), .Y(n345) );
-  NAND2X1 U219 ( .A(n346), .B(w_state), .Y(n32) );
-  AOI22X1 U220 ( .A(cpu_bready), .B(cpu_bvalid), .C(fft_man_bready), .D(
-        fft_man_bvalid), .Y(n346) );
-  OAI22X1 U221 ( .A(n28), .B(n63), .C(n30), .D(n65), .Y(fft_sub_wvalid) );
-  INVX1 U222 ( .A(fft_man_wvalid), .Y(n65) );
-  INVX1 U223 ( .A(cpu_wvalid), .Y(n63) );
-  OAI22X1 U224 ( .A(n28), .B(n66), .C(n30), .D(n67), .Y(fft_sub_wstrb[1]) );
-  INVX1 U225 ( .A(fft_man_wstrb[1]), .Y(n67) );
-  INVX1 U226 ( .A(cpu_wstrb[1]), .Y(n66) );
-  OAI22X1 U227 ( .A(n28), .B(n68), .C(n30), .D(n69), .Y(fft_sub_wstrb[0]) );
-  INVX1 U228 ( .A(fft_man_wstrb[0]), .Y(n69) );
-  INVX1 U229 ( .A(cpu_wstrb[0]), .Y(n68) );
-  OAI22X1 U230 ( .A(n28), .B(n70), .C(n30), .D(n71), .Y(fft_sub_wlast) );
-  INVX1 U231 ( .A(fft_man_wlast), .Y(n71) );
-  INVX1 U232 ( .A(cpu_wlast), .Y(n70) );
-  OAI22X1 U233 ( .A(n28), .B(n72), .C(n30), .D(n73), .Y(fft_sub_wdata[9]) );
-  INVX1 U234 ( .A(fft_man_wdata[9]), .Y(n73) );
-  INVX1 U235 ( .A(cpu_wdata[9]), .Y(n72) );
-  OAI22X1 U236 ( .A(n28), .B(n74), .C(n30), .D(n75), .Y(fft_sub_wdata[8]) );
-  INVX1 U237 ( .A(fft_man_wdata[8]), .Y(n75) );
-  INVX1 U238 ( .A(cpu_wdata[8]), .Y(n74) );
-  OAI22X1 U239 ( .A(n28), .B(n76), .C(n30), .D(n77), .Y(fft_sub_wdata[7]) );
-  INVX1 U240 ( .A(fft_man_wdata[7]), .Y(n77) );
-  INVX1 U241 ( .A(cpu_wdata[7]), .Y(n76) );
-  OAI22X1 U242 ( .A(n28), .B(n78), .C(n30), .D(n79), .Y(fft_sub_wdata[6]) );
-  INVX1 U243 ( .A(fft_man_wdata[6]), .Y(n79) );
-  INVX1 U244 ( .A(cpu_wdata[6]), .Y(n78) );
-  OAI22X1 U245 ( .A(n28), .B(n80), .C(n30), .D(n81), .Y(fft_sub_wdata[5]) );
-  INVX1 U246 ( .A(fft_man_wdata[5]), .Y(n81) );
-  INVX1 U247 ( .A(cpu_wdata[5]), .Y(n80) );
-  OAI22X1 U248 ( .A(n28), .B(n82), .C(n30), .D(n83), .Y(fft_sub_wdata[4]) );
-  INVX1 U249 ( .A(fft_man_wdata[4]), .Y(n83) );
-  INVX1 U250 ( .A(cpu_wdata[4]), .Y(n82) );
-  OAI22X1 U251 ( .A(n28), .B(n84), .C(n30), .D(n85), .Y(fft_sub_wdata[3]) );
-  INVX1 U252 ( .A(fft_man_wdata[3]), .Y(n85) );
-  INVX1 U253 ( .A(cpu_wdata[3]), .Y(n84) );
-  OAI22X1 U254 ( .A(n28), .B(n86), .C(n30), .D(n87), .Y(fft_sub_wdata[31]) );
-  INVX1 U255 ( .A(fft_man_wdata[31]), .Y(n87) );
-  INVX1 U256 ( .A(cpu_wdata[31]), .Y(n86) );
-  OAI22X1 U257 ( .A(n28), .B(n88), .C(n30), .D(n89), .Y(fft_sub_wdata[30]) );
-  INVX1 U258 ( .A(fft_man_wdata[30]), .Y(n89) );
-  INVX1 U259 ( .A(cpu_wdata[30]), .Y(n88) );
-  OAI22X1 U260 ( .A(n28), .B(n90), .C(n30), .D(n91), .Y(fft_sub_wdata[2]) );
-  INVX1 U261 ( .A(fft_man_wdata[2]), .Y(n91) );
-  INVX1 U262 ( .A(cpu_wdata[2]), .Y(n90) );
-  OAI22X1 U263 ( .A(n28), .B(n92), .C(n30), .D(n93), .Y(fft_sub_wdata[29]) );
-  INVX1 U264 ( .A(fft_man_wdata[29]), .Y(n93) );
-  INVX1 U265 ( .A(cpu_wdata[29]), .Y(n92) );
-  OAI22X1 U266 ( .A(n28), .B(n94), .C(n30), .D(n95), .Y(fft_sub_wdata[28]) );
-  INVX1 U267 ( .A(fft_man_wdata[28]), .Y(n95) );
-  INVX1 U268 ( .A(cpu_wdata[28]), .Y(n94) );
-  OAI22X1 U269 ( .A(n28), .B(n96), .C(n30), .D(n97), .Y(fft_sub_wdata[27]) );
-  INVX1 U270 ( .A(fft_man_wdata[27]), .Y(n97) );
-  INVX1 U271 ( .A(cpu_wdata[27]), .Y(n96) );
-  OAI22X1 U272 ( .A(n28), .B(n98), .C(n30), .D(n99), .Y(fft_sub_wdata[26]) );
-  INVX1 U273 ( .A(fft_man_wdata[26]), .Y(n99) );
-  INVX1 U274 ( .A(cpu_wdata[26]), .Y(n98) );
-  OAI22X1 U275 ( .A(n28), .B(n100), .C(n30), .D(n101), .Y(fft_sub_wdata[25])
-         );
-  INVX1 U276 ( .A(fft_man_wdata[25]), .Y(n101) );
-  INVX1 U277 ( .A(cpu_wdata[25]), .Y(n100) );
-  OAI22X1 U278 ( .A(n28), .B(n102), .C(n30), .D(n103), .Y(fft_sub_wdata[24])
-         );
-  INVX1 U279 ( .A(fft_man_wdata[24]), .Y(n103) );
-  INVX1 U280 ( .A(cpu_wdata[24]), .Y(n102) );
-  OAI22X1 U281 ( .A(n28), .B(n104), .C(n30), .D(n105), .Y(fft_sub_wdata[23])
-         );
-  INVX1 U282 ( .A(fft_man_wdata[23]), .Y(n105) );
-  INVX1 U283 ( .A(cpu_wdata[23]), .Y(n104) );
-  OAI22X1 U284 ( .A(n28), .B(n106), .C(n30), .D(n107), .Y(fft_sub_wdata[22])
-         );
-  INVX1 U285 ( .A(fft_man_wdata[22]), .Y(n107) );
-  INVX1 U286 ( .A(cpu_wdata[22]), .Y(n106) );
-  OAI22X1 U287 ( .A(n28), .B(n108), .C(n30), .D(n109), .Y(fft_sub_wdata[21])
-         );
-  INVX1 U288 ( .A(fft_man_wdata[21]), .Y(n109) );
-  INVX1 U289 ( .A(cpu_wdata[21]), .Y(n108) );
-  OAI22X1 U290 ( .A(n28), .B(n110), .C(n30), .D(n111), .Y(fft_sub_wdata[20])
-         );
-  INVX1 U291 ( .A(fft_man_wdata[20]), .Y(n111) );
-  INVX1 U292 ( .A(cpu_wdata[20]), .Y(n110) );
-  OAI22X1 U293 ( .A(n28), .B(n112), .C(n30), .D(n113), .Y(fft_sub_wdata[1]) );
-  INVX1 U294 ( .A(fft_man_wdata[1]), .Y(n113) );
-  INVX1 U295 ( .A(cpu_wdata[1]), .Y(n112) );
-  OAI22X1 U296 ( .A(n28), .B(n114), .C(n30), .D(n115), .Y(fft_sub_wdata[19])
-         );
-  INVX1 U297 ( .A(fft_man_wdata[19]), .Y(n115) );
-  INVX1 U298 ( .A(cpu_wdata[19]), .Y(n114) );
-  OAI22X1 U299 ( .A(n28), .B(n116), .C(n30), .D(n117), .Y(fft_sub_wdata[18])
-         );
-  INVX1 U300 ( .A(fft_man_wdata[18]), .Y(n117) );
-  INVX1 U301 ( .A(cpu_wdata[18]), .Y(n116) );
-  OAI22X1 U302 ( .A(n28), .B(n118), .C(n30), .D(n119), .Y(fft_sub_wdata[17])
-         );
-  INVX1 U303 ( .A(fft_man_wdata[17]), .Y(n119) );
-  INVX1 U304 ( .A(cpu_wdata[17]), .Y(n118) );
-  OAI22X1 U305 ( .A(n28), .B(n120), .C(n30), .D(n121), .Y(fft_sub_wdata[16])
-         );
-  INVX1 U306 ( .A(fft_man_wdata[16]), .Y(n121) );
-  INVX1 U307 ( .A(cpu_wdata[16]), .Y(n120) );
-  OAI22X1 U308 ( .A(n28), .B(n122), .C(n30), .D(n123), .Y(fft_sub_wdata[15])
-         );
-  INVX1 U309 ( .A(fft_man_wdata[15]), .Y(n123) );
-  INVX1 U310 ( .A(cpu_wdata[15]), .Y(n122) );
-  OAI22X1 U311 ( .A(n28), .B(n124), .C(n30), .D(n125), .Y(fft_sub_wdata[14])
-         );
-  INVX1 U312 ( .A(fft_man_wdata[14]), .Y(n125) );
-  INVX1 U313 ( .A(cpu_wdata[14]), .Y(n124) );
-  OAI22X1 U314 ( .A(n28), .B(n126), .C(n30), .D(n127), .Y(fft_sub_wdata[13])
-         );
-  INVX1 U315 ( .A(fft_man_wdata[13]), .Y(n127) );
-  INVX1 U316 ( .A(cpu_wdata[13]), .Y(n126) );
-  OAI22X1 U317 ( .A(n28), .B(n128), .C(n30), .D(n129), .Y(fft_sub_wdata[12])
-         );
-  INVX1 U318 ( .A(fft_man_wdata[12]), .Y(n129) );
-  INVX1 U319 ( .A(cpu_wdata[12]), .Y(n128) );
-  OAI22X1 U320 ( .A(n28), .B(n130), .C(n30), .D(n131), .Y(fft_sub_wdata[11])
-         );
-  INVX1 U321 ( .A(fft_man_wdata[11]), .Y(n131) );
-  INVX1 U322 ( .A(cpu_wdata[11]), .Y(n130) );
-  OAI22X1 U323 ( .A(n28), .B(n132), .C(n30), .D(n133), .Y(fft_sub_wdata[10])
-         );
-  INVX1 U324 ( .A(fft_man_wdata[10]), .Y(n133) );
-  INVX1 U325 ( .A(cpu_wdata[10]), .Y(n132) );
-  OAI22X1 U326 ( .A(n28), .B(n134), .C(n30), .D(n135), .Y(fft_sub_wdata[0]) );
-  INVX1 U327 ( .A(fft_man_wdata[0]), .Y(n135) );
-  INVX1 U328 ( .A(cpu_wdata[0]), .Y(n134) );
-  OAI22X1 U329 ( .A(n137), .B(n10), .C(n139), .D(n22), .Y(fft_sub_rready) );
-  INVX1 U330 ( .A(fft_man_rready), .Y(n139) );
-  INVX1 U331 ( .A(cpu_rready), .Y(n137) );
-  OAI22X1 U332 ( .A(n28), .B(n140), .C(n30), .D(n141), .Y(fft_sub_bready) );
-  INVX1 U333 ( .A(fft_man_bready), .Y(n141) );
-  INVX1 U334 ( .A(cpu_bready), .Y(n140) );
-  OAI22X1 U335 ( .A(n38), .B(n28), .C(n30), .D(n142), .Y(fft_sub_awvalid) );
-  INVX1 U336 ( .A(fft_man_awvalid), .Y(n142) );
-  INVX1 U337 ( .A(cpu_awvalid), .Y(n38) );
-  OAI22X1 U338 ( .A(n28), .B(n143), .C(n30), .D(n144), .Y(fft_sub_awlen[9]) );
-  INVX1 U339 ( .A(fft_man_awlen[9]), .Y(n144) );
-  INVX1 U340 ( .A(cpu_awlen[9]), .Y(n143) );
-  OAI22X1 U341 ( .A(n28), .B(n145), .C(n30), .D(n146), .Y(fft_sub_awlen[8]) );
-  INVX1 U342 ( .A(fft_man_awlen[8]), .Y(n146) );
-  INVX1 U343 ( .A(cpu_awlen[8]), .Y(n145) );
-  OAI22X1 U344 ( .A(n28), .B(n147), .C(n30), .D(n148), .Y(fft_sub_awlen[7]) );
-  INVX1 U345 ( .A(fft_man_awlen[7]), .Y(n148) );
-  INVX1 U346 ( .A(cpu_awlen[7]), .Y(n147) );
-  OAI22X1 U347 ( .A(n28), .B(n149), .C(n30), .D(n150), .Y(fft_sub_awlen[6]) );
-  INVX1 U348 ( .A(fft_man_awlen[6]), .Y(n150) );
-  INVX1 U349 ( .A(cpu_awlen[6]), .Y(n149) );
-  OAI22X1 U350 ( .A(n28), .B(n151), .C(n30), .D(n152), .Y(fft_sub_awlen[5]) );
-  INVX1 U351 ( .A(fft_man_awlen[5]), .Y(n152) );
-  INVX1 U352 ( .A(cpu_awlen[5]), .Y(n151) );
-  OAI22X1 U353 ( .A(n28), .B(n153), .C(n30), .D(n154), .Y(fft_sub_awlen[4]) );
-  INVX1 U354 ( .A(fft_man_awlen[4]), .Y(n154) );
-  INVX1 U355 ( .A(cpu_awlen[4]), .Y(n153) );
-  OAI22X1 U356 ( .A(n28), .B(n155), .C(n30), .D(n156), .Y(fft_sub_awlen[3]) );
-  INVX1 U357 ( .A(fft_man_awlen[3]), .Y(n156) );
-  INVX1 U358 ( .A(cpu_awlen[3]), .Y(n155) );
-  OAI22X1 U359 ( .A(n28), .B(n157), .C(n30), .D(n158), .Y(fft_sub_awlen[2]) );
-  INVX1 U360 ( .A(fft_man_awlen[2]), .Y(n158) );
-  INVX1 U361 ( .A(cpu_awlen[2]), .Y(n157) );
-  OAI22X1 U362 ( .A(n28), .B(n159), .C(n30), .D(n160), .Y(fft_sub_awlen[1]) );
-  INVX1 U363 ( .A(fft_man_awlen[1]), .Y(n160) );
-  INVX1 U364 ( .A(cpu_awlen[1]), .Y(n159) );
-  OAI22X1 U365 ( .A(n28), .B(n161), .C(n30), .D(n162), .Y(fft_sub_awlen[0]) );
-  INVX1 U366 ( .A(fft_man_awlen[0]), .Y(n162) );
-  INVX1 U367 ( .A(cpu_awlen[0]), .Y(n161) );
-  OAI22X1 U368 ( .A(n28), .B(n163), .C(n30), .D(n164), .Y(fft_sub_awaddr[9])
-         );
-  INVX1 U369 ( .A(fft_man_awaddr[9]), .Y(n164) );
-  INVX1 U370 ( .A(cpu_awaddr[9]), .Y(n163) );
-  OAI22X1 U371 ( .A(n28), .B(n165), .C(n30), .D(n166), .Y(fft_sub_awaddr[8])
-         );
-  INVX1 U372 ( .A(fft_man_awaddr[8]), .Y(n166) );
-  INVX1 U373 ( .A(cpu_awaddr[8]), .Y(n165) );
-  OAI22X1 U374 ( .A(n28), .B(n167), .C(n30), .D(n168), .Y(fft_sub_awaddr[7])
-         );
-  INVX1 U375 ( .A(fft_man_awaddr[7]), .Y(n168) );
-  INVX1 U376 ( .A(cpu_awaddr[7]), .Y(n167) );
-  OAI22X1 U377 ( .A(n28), .B(n169), .C(n30), .D(n170), .Y(fft_sub_awaddr[6])
-         );
-  INVX1 U378 ( .A(fft_man_awaddr[6]), .Y(n170) );
-  INVX1 U379 ( .A(cpu_awaddr[6]), .Y(n169) );
-  OAI22X1 U380 ( .A(n28), .B(n61), .C(n30), .D(n49), .Y(fft_sub_awaddr[5]) );
-  INVX1 U381 ( .A(fft_man_awaddr[5]), .Y(n49) );
-  INVX1 U382 ( .A(cpu_awaddr[5]), .Y(n61) );
-  OAI22X1 U383 ( .A(n28), .B(n60), .C(n30), .D(n48), .Y(fft_sub_awaddr[4]) );
-  INVX1 U384 ( .A(fft_man_awaddr[4]), .Y(n48) );
-  INVX1 U385 ( .A(cpu_awaddr[4]), .Y(n60) );
-  OAI22X1 U386 ( .A(n171), .B(n28), .C(n172), .D(n30), .Y(fft_sub_awaddr[3])
-         );
-  INVX1 U387 ( .A(fft_man_awaddr[3]), .Y(n172) );
-  INVX1 U388 ( .A(cpu_awaddr[3]), .Y(n171) );
-  OAI22X1 U389 ( .A(n28), .B(n173), .C(n30), .D(n174), .Y(fft_sub_awaddr[31])
-         );
-  INVX1 U390 ( .A(fft_man_awaddr[31]), .Y(n174) );
-  INVX1 U391 ( .A(cpu_awaddr[31]), .Y(n173) );
-  OAI22X1 U392 ( .A(n28), .B(n175), .C(n30), .D(n176), .Y(fft_sub_awaddr[30])
-         );
-  INVX1 U393 ( .A(fft_man_awaddr[30]), .Y(n176) );
-  INVX1 U394 ( .A(cpu_awaddr[30]), .Y(n175) );
-  OAI22X1 U395 ( .A(n177), .B(n28), .C(n178), .D(n30), .Y(fft_sub_awaddr[2])
-         );
-  INVX1 U396 ( .A(fft_man_awaddr[2]), .Y(n178) );
-  INVX1 U397 ( .A(cpu_awaddr[2]), .Y(n177) );
-  OAI22X1 U398 ( .A(n28), .B(n179), .C(n30), .D(n180), .Y(fft_sub_awaddr[29])
-         );
-  INVX1 U399 ( .A(fft_man_awaddr[29]), .Y(n180) );
-  INVX1 U400 ( .A(cpu_awaddr[29]), .Y(n179) );
-  OAI22X1 U401 ( .A(n28), .B(n181), .C(n30), .D(n182), .Y(fft_sub_awaddr[28])
-         );
-  INVX1 U402 ( .A(fft_man_awaddr[28]), .Y(n182) );
-  INVX1 U403 ( .A(cpu_awaddr[28]), .Y(n181) );
-  OAI22X1 U404 ( .A(n28), .B(n183), .C(n30), .D(n184), .Y(fft_sub_awaddr[27])
-         );
-  INVX1 U405 ( .A(fft_man_awaddr[27]), .Y(n184) );
-  INVX1 U406 ( .A(cpu_awaddr[27]), .Y(n183) );
-  OAI22X1 U407 ( .A(n28), .B(n185), .C(n30), .D(n186), .Y(fft_sub_awaddr[26])
-         );
-  INVX1 U408 ( .A(fft_man_awaddr[26]), .Y(n186) );
-  INVX1 U409 ( .A(cpu_awaddr[26]), .Y(n185) );
-  OAI22X1 U410 ( .A(n28), .B(n187), .C(n30), .D(n188), .Y(fft_sub_awaddr[25])
-         );
-  INVX1 U411 ( .A(fft_man_awaddr[25]), .Y(n188) );
-  INVX1 U412 ( .A(cpu_awaddr[25]), .Y(n187) );
-  OAI22X1 U413 ( .A(n28), .B(n189), .C(n30), .D(n190), .Y(fft_sub_awaddr[24])
-         );
-  INVX1 U414 ( .A(fft_man_awaddr[24]), .Y(n190) );
-  INVX1 U415 ( .A(cpu_awaddr[24]), .Y(n189) );
-  OAI22X1 U416 ( .A(n28), .B(n191), .C(n30), .D(n192), .Y(fft_sub_awaddr[23])
-         );
-  INVX1 U417 ( .A(fft_man_awaddr[23]), .Y(n192) );
-  INVX1 U418 ( .A(cpu_awaddr[23]), .Y(n191) );
-  OAI22X1 U419 ( .A(n28), .B(n193), .C(n30), .D(n194), .Y(fft_sub_awaddr[22])
-         );
-  INVX1 U420 ( .A(fft_man_awaddr[22]), .Y(n194) );
-  INVX1 U421 ( .A(cpu_awaddr[22]), .Y(n193) );
-  OAI22X1 U422 ( .A(n28), .B(n195), .C(n30), .D(n196), .Y(fft_sub_awaddr[21])
-         );
-  INVX1 U423 ( .A(fft_man_awaddr[21]), .Y(n196) );
-  INVX1 U424 ( .A(cpu_awaddr[21]), .Y(n195) );
-  OAI22X1 U425 ( .A(n28), .B(n197), .C(n30), .D(n198), .Y(fft_sub_awaddr[20])
-         );
-  INVX1 U426 ( .A(fft_man_awaddr[20]), .Y(n198) );
-  INVX1 U427 ( .A(cpu_awaddr[20]), .Y(n197) );
-  OAI22X1 U428 ( .A(n55), .B(n28), .C(n44), .D(n30), .Y(fft_sub_awaddr[1]) );
-  INVX1 U429 ( .A(fft_man_awaddr[1]), .Y(n44) );
-  INVX1 U430 ( .A(cpu_awaddr[1]), .Y(n55) );
-  OAI22X1 U431 ( .A(n28), .B(n199), .C(n30), .D(n200), .Y(fft_sub_awaddr[19])
-         );
-  INVX1 U432 ( .A(fft_man_awaddr[19]), .Y(n200) );
-  INVX1 U433 ( .A(cpu_awaddr[19]), .Y(n199) );
-  OAI22X1 U434 ( .A(n28), .B(n201), .C(n30), .D(n202), .Y(fft_sub_awaddr[18])
-         );
-  INVX1 U435 ( .A(fft_man_awaddr[18]), .Y(n202) );
-  INVX1 U436 ( .A(cpu_awaddr[18]), .Y(n201) );
-  OAI22X1 U437 ( .A(n28), .B(n203), .C(n30), .D(n204), .Y(fft_sub_awaddr[17])
-         );
-  INVX1 U438 ( .A(fft_man_awaddr[17]), .Y(n204) );
-  INVX1 U439 ( .A(cpu_awaddr[17]), .Y(n203) );
-  OAI22X1 U440 ( .A(n28), .B(n205), .C(n30), .D(n206), .Y(fft_sub_awaddr[16])
-         );
-  INVX1 U441 ( .A(fft_man_awaddr[16]), .Y(n206) );
-  INVX1 U442 ( .A(cpu_awaddr[16]), .Y(n205) );
-  OAI22X1 U443 ( .A(n28), .B(n207), .C(n30), .D(n208), .Y(fft_sub_awaddr[15])
-         );
-  INVX1 U444 ( .A(fft_man_awaddr[15]), .Y(n208) );
-  INVX1 U445 ( .A(cpu_awaddr[15]), .Y(n207) );
-  OAI22X1 U446 ( .A(n28), .B(n209), .C(n30), .D(n210), .Y(fft_sub_awaddr[14])
-         );
-  INVX1 U447 ( .A(fft_man_awaddr[14]), .Y(n210) );
-  INVX1 U448 ( .A(cpu_awaddr[14]), .Y(n209) );
-  OAI22X1 U449 ( .A(n28), .B(n211), .C(n30), .D(n212), .Y(fft_sub_awaddr[13])
-         );
-  INVX1 U450 ( .A(fft_man_awaddr[13]), .Y(n212) );
-  INVX1 U451 ( .A(cpu_awaddr[13]), .Y(n211) );
-  OAI22X1 U452 ( .A(n28), .B(n213), .C(n30), .D(n214), .Y(fft_sub_awaddr[12])
-         );
-  INVX1 U453 ( .A(fft_man_awaddr[12]), .Y(n214) );
-  INVX1 U454 ( .A(cpu_awaddr[12]), .Y(n213) );
-  OAI22X1 U455 ( .A(n28), .B(n215), .C(n30), .D(n216), .Y(fft_sub_awaddr[11])
-         );
-  INVX1 U456 ( .A(fft_man_awaddr[11]), .Y(n216) );
-  INVX1 U457 ( .A(cpu_awaddr[11]), .Y(n215) );
-  OAI22X1 U458 ( .A(n28), .B(n57), .C(n30), .D(n46), .Y(fft_sub_awaddr[10]) );
-  INVX1 U459 ( .A(fft_man_awaddr[10]), .Y(n46) );
-  INVX1 U460 ( .A(cpu_awaddr[10]), .Y(n57) );
-  OAI22X1 U461 ( .A(n217), .B(n28), .C(n218), .D(n30), .Y(fft_sub_awaddr[0])
-         );
-  INVX1 U462 ( .A(fft_man_awaddr[0]), .Y(n218) );
-  INVX1 U463 ( .A(cpu_awaddr[0]), .Y(n217) );
-  OAI22X1 U464 ( .A(n219), .B(n10), .C(n220), .D(n22), .Y(fft_sub_arvalid) );
-  INVX1 U465 ( .A(fft_man_arvalid), .Y(n220) );
-  INVX1 U466 ( .A(cpu_arvalid), .Y(n219) );
-  OAI22X1 U467 ( .A(n221), .B(n10), .C(n222), .D(n22), .Y(fft_sub_arlen[9]) );
-  INVX1 U468 ( .A(fft_man_arlen[9]), .Y(n222) );
-  INVX1 U469 ( .A(cpu_arlen[9]), .Y(n221) );
-  OAI22X1 U470 ( .A(n223), .B(n10), .C(n224), .D(n22), .Y(fft_sub_arlen[8]) );
-  INVX1 U471 ( .A(fft_man_arlen[8]), .Y(n224) );
-  INVX1 U472 ( .A(cpu_arlen[8]), .Y(n223) );
-  OAI22X1 U473 ( .A(n225), .B(n10), .C(n226), .D(n22), .Y(fft_sub_arlen[7]) );
-  INVX1 U474 ( .A(fft_man_arlen[7]), .Y(n226) );
-  INVX1 U475 ( .A(cpu_arlen[7]), .Y(n225) );
-  OAI22X1 U476 ( .A(n227), .B(n10), .C(n228), .D(n22), .Y(fft_sub_arlen[6]) );
-  INVX1 U477 ( .A(fft_man_arlen[6]), .Y(n228) );
-  INVX1 U478 ( .A(cpu_arlen[6]), .Y(n227) );
-  OAI22X1 U479 ( .A(n229), .B(n10), .C(n230), .D(n22), .Y(fft_sub_arlen[5]) );
-  INVX1 U480 ( .A(fft_man_arlen[5]), .Y(n230) );
-  INVX1 U481 ( .A(cpu_arlen[5]), .Y(n229) );
-  OAI22X1 U482 ( .A(n231), .B(n10), .C(n232), .D(n22), .Y(fft_sub_arlen[4]) );
-  INVX1 U483 ( .A(fft_man_arlen[4]), .Y(n232) );
-  INVX1 U484 ( .A(cpu_arlen[4]), .Y(n231) );
-  OAI22X1 U485 ( .A(n233), .B(n10), .C(n234), .D(n22), .Y(fft_sub_arlen[3]) );
-  INVX1 U486 ( .A(fft_man_arlen[3]), .Y(n234) );
-  INVX1 U487 ( .A(cpu_arlen[3]), .Y(n233) );
-  OAI22X1 U488 ( .A(n235), .B(n10), .C(n236), .D(n22), .Y(fft_sub_arlen[2]) );
-  INVX1 U489 ( .A(fft_man_arlen[2]), .Y(n236) );
-  INVX1 U490 ( .A(cpu_arlen[2]), .Y(n235) );
-  OAI22X1 U491 ( .A(n237), .B(n10), .C(n238), .D(n22), .Y(fft_sub_arlen[1]) );
-  INVX1 U492 ( .A(fft_man_arlen[1]), .Y(n238) );
-  INVX1 U493 ( .A(cpu_arlen[1]), .Y(n237) );
-  OAI22X1 U494 ( .A(n239), .B(n10), .C(n240), .D(n22), .Y(fft_sub_arlen[0]) );
-  INVX1 U495 ( .A(fft_man_arlen[0]), .Y(n240) );
-  INVX1 U496 ( .A(cpu_arlen[0]), .Y(n239) );
-  OAI22X1 U497 ( .A(n241), .B(n10), .C(n242), .D(n22), .Y(fft_sub_araddr[9])
-         );
-  INVX1 U498 ( .A(fft_man_araddr[9]), .Y(n242) );
-  INVX1 U499 ( .A(cpu_araddr[9]), .Y(n241) );
-  OAI22X1 U500 ( .A(n243), .B(n10), .C(n244), .D(n22), .Y(fft_sub_araddr[8])
-         );
-  INVX1 U501 ( .A(fft_man_araddr[8]), .Y(n244) );
-  INVX1 U502 ( .A(cpu_araddr[8]), .Y(n243) );
-  OAI22X1 U503 ( .A(n245), .B(n10), .C(n246), .D(n22), .Y(fft_sub_araddr[7])
-         );
-  INVX1 U504 ( .A(fft_man_araddr[7]), .Y(n246) );
-  INVX1 U505 ( .A(cpu_araddr[7]), .Y(n245) );
-  OAI22X1 U506 ( .A(n247), .B(n10), .C(n248), .D(n22), .Y(fft_sub_araddr[6])
-         );
-  INVX1 U507 ( .A(fft_man_araddr[6]), .Y(n248) );
-  INVX1 U508 ( .A(cpu_araddr[6]), .Y(n247) );
-  OAI22X1 U509 ( .A(n249), .B(n10), .C(n250), .D(n22), .Y(fft_sub_araddr[5])
-         );
-  INVX1 U510 ( .A(fft_man_araddr[5]), .Y(n250) );
-  INVX1 U511 ( .A(cpu_araddr[5]), .Y(n249) );
-  OAI22X1 U512 ( .A(n251), .B(n10), .C(n252), .D(n22), .Y(fft_sub_araddr[4])
-         );
-  INVX1 U513 ( .A(fft_man_araddr[4]), .Y(n252) );
-  INVX1 U514 ( .A(cpu_araddr[4]), .Y(n251) );
-  OAI22X1 U515 ( .A(n253), .B(n10), .C(n254), .D(n22), .Y(fft_sub_araddr[3])
-         );
-  INVX1 U516 ( .A(fft_man_araddr[3]), .Y(n254) );
-  INVX1 U517 ( .A(cpu_araddr[3]), .Y(n253) );
-  OAI22X1 U518 ( .A(n255), .B(n10), .C(n256), .D(n22), .Y(fft_sub_araddr[31])
-         );
-  INVX1 U519 ( .A(fft_man_araddr[31]), .Y(n256) );
-  INVX1 U520 ( .A(cpu_araddr[31]), .Y(n255) );
-  OAI22X1 U521 ( .A(n257), .B(n10), .C(n258), .D(n22), .Y(fft_sub_araddr[30])
-         );
-  INVX1 U522 ( .A(fft_man_araddr[30]), .Y(n258) );
-  INVX1 U523 ( .A(cpu_araddr[30]), .Y(n257) );
-  OAI22X1 U524 ( .A(n259), .B(n10), .C(n260), .D(n22), .Y(fft_sub_araddr[2])
-         );
-  INVX1 U525 ( .A(fft_man_araddr[2]), .Y(n260) );
-  INVX1 U526 ( .A(cpu_araddr[2]), .Y(n259) );
-  OAI22X1 U527 ( .A(n261), .B(n10), .C(n262), .D(n22), .Y(fft_sub_araddr[29])
-         );
-  INVX1 U528 ( .A(fft_man_araddr[29]), .Y(n262) );
-  INVX1 U529 ( .A(cpu_araddr[29]), .Y(n261) );
-  OAI22X1 U530 ( .A(n263), .B(n10), .C(n264), .D(n22), .Y(fft_sub_araddr[28])
-         );
-  INVX1 U531 ( .A(fft_man_araddr[28]), .Y(n264) );
-  INVX1 U532 ( .A(cpu_araddr[28]), .Y(n263) );
-  OAI22X1 U533 ( .A(n265), .B(n10), .C(n266), .D(n22), .Y(fft_sub_araddr[27])
-         );
-  INVX1 U534 ( .A(fft_man_araddr[27]), .Y(n266) );
-  INVX1 U535 ( .A(cpu_araddr[27]), .Y(n265) );
-  OAI22X1 U536 ( .A(n267), .B(n10), .C(n268), .D(n22), .Y(fft_sub_araddr[26])
-         );
-  INVX1 U537 ( .A(fft_man_araddr[26]), .Y(n268) );
-  INVX1 U538 ( .A(cpu_araddr[26]), .Y(n267) );
-  OAI22X1 U539 ( .A(n269), .B(n10), .C(n270), .D(n22), .Y(fft_sub_araddr[25])
-         );
-  INVX1 U540 ( .A(fft_man_araddr[25]), .Y(n270) );
-  INVX1 U541 ( .A(cpu_araddr[25]), .Y(n269) );
-  OAI22X1 U542 ( .A(n271), .B(n10), .C(n272), .D(n22), .Y(fft_sub_araddr[24])
-         );
-  INVX1 U543 ( .A(fft_man_araddr[24]), .Y(n272) );
-  INVX1 U544 ( .A(cpu_araddr[24]), .Y(n271) );
-  OAI22X1 U545 ( .A(n273), .B(n10), .C(n274), .D(n22), .Y(fft_sub_araddr[23])
-         );
-  INVX1 U546 ( .A(fft_man_araddr[23]), .Y(n274) );
-  INVX1 U547 ( .A(cpu_araddr[23]), .Y(n273) );
-  OAI22X1 U548 ( .A(n275), .B(n10), .C(n276), .D(n22), .Y(fft_sub_araddr[22])
-         );
-  INVX1 U549 ( .A(fft_man_araddr[22]), .Y(n276) );
-  INVX1 U550 ( .A(cpu_araddr[22]), .Y(n275) );
-  OAI22X1 U551 ( .A(n277), .B(n10), .C(n278), .D(n22), .Y(fft_sub_araddr[21])
-         );
-  INVX1 U552 ( .A(fft_man_araddr[21]), .Y(n278) );
-  INVX1 U553 ( .A(cpu_araddr[21]), .Y(n277) );
-  OAI22X1 U554 ( .A(n279), .B(n10), .C(n280), .D(n22), .Y(fft_sub_araddr[20])
-         );
-  INVX1 U555 ( .A(fft_man_araddr[20]), .Y(n280) );
-  INVX1 U556 ( .A(cpu_araddr[20]), .Y(n279) );
-  OAI22X1 U557 ( .A(n281), .B(n10), .C(n282), .D(n22), .Y(fft_sub_araddr[1])
-         );
-  INVX1 U558 ( .A(fft_man_araddr[1]), .Y(n282) );
-  INVX1 U559 ( .A(cpu_araddr[1]), .Y(n281) );
-  OAI22X1 U560 ( .A(n283), .B(n10), .C(n284), .D(n22), .Y(fft_sub_araddr[19])
-         );
-  INVX1 U561 ( .A(fft_man_araddr[19]), .Y(n284) );
-  INVX1 U562 ( .A(cpu_araddr[19]), .Y(n283) );
-  OAI22X1 U563 ( .A(n285), .B(n10), .C(n286), .D(n22), .Y(fft_sub_araddr[18])
-         );
-  INVX1 U564 ( .A(fft_man_araddr[18]), .Y(n286) );
-  INVX1 U565 ( .A(cpu_araddr[18]), .Y(n285) );
-  OAI22X1 U566 ( .A(n287), .B(n10), .C(n288), .D(n22), .Y(fft_sub_araddr[17])
-         );
-  INVX1 U567 ( .A(fft_man_araddr[17]), .Y(n288) );
-  INVX1 U568 ( .A(cpu_araddr[17]), .Y(n287) );
-  OAI22X1 U569 ( .A(n289), .B(n10), .C(n290), .D(n22), .Y(fft_sub_araddr[16])
-         );
-  INVX1 U570 ( .A(fft_man_araddr[16]), .Y(n290) );
-  INVX1 U571 ( .A(cpu_araddr[16]), .Y(n289) );
-  OAI22X1 U572 ( .A(n291), .B(n10), .C(n292), .D(n22), .Y(fft_sub_araddr[15])
-         );
-  INVX1 U573 ( .A(fft_man_araddr[15]), .Y(n292) );
-  INVX1 U574 ( .A(cpu_araddr[15]), .Y(n291) );
-  OAI22X1 U575 ( .A(n293), .B(n10), .C(n294), .D(n22), .Y(fft_sub_araddr[14])
-         );
-  INVX1 U576 ( .A(fft_man_araddr[14]), .Y(n294) );
-  INVX1 U577 ( .A(cpu_araddr[14]), .Y(n293) );
-  OAI22X1 U578 ( .A(n295), .B(n10), .C(n296), .D(n22), .Y(fft_sub_araddr[13])
-         );
-  INVX1 U579 ( .A(fft_man_araddr[13]), .Y(n296) );
-  INVX1 U580 ( .A(cpu_araddr[13]), .Y(n295) );
-  OAI22X1 U581 ( .A(n297), .B(n10), .C(n298), .D(n22), .Y(fft_sub_araddr[12])
-         );
-  INVX1 U582 ( .A(fft_man_araddr[12]), .Y(n298) );
-  INVX1 U583 ( .A(cpu_araddr[12]), .Y(n297) );
-  OAI22X1 U584 ( .A(n299), .B(n10), .C(n300), .D(n22), .Y(fft_sub_araddr[11])
-         );
-  INVX1 U585 ( .A(fft_man_araddr[11]), .Y(n300) );
-  INVX1 U586 ( .A(cpu_araddr[11]), .Y(n299) );
-  OAI22X1 U587 ( .A(n301), .B(n10), .C(n302), .D(n22), .Y(fft_sub_araddr[10])
-         );
-  INVX1 U588 ( .A(fft_man_araddr[10]), .Y(n302) );
-  INVX1 U589 ( .A(cpu_araddr[10]), .Y(n301) );
-  OAI22X1 U590 ( .A(n303), .B(n10), .C(n304), .D(n22), .Y(fft_sub_araddr[0])
-         );
-  INVX1 U591 ( .A(fft_man_araddr[0]), .Y(n304) );
-  INVX1 U592 ( .A(cpu_araddr[0]), .Y(n303) );
-  OAI21X1 U593 ( .A(n30), .B(n351), .C(n352), .Y(fft_man_wready) );
-  AOI21X1 U594 ( .A(sram_wready), .B(n25), .C(n353), .Y(n352) );
-  OAI21X1 U595 ( .A(n354), .B(n22), .C(n355), .Y(fft_man_rvalid) );
-  AOI21X1 U596 ( .A(sram_rvalid), .B(n7), .C(n356), .Y(n355) );
-  OAI21X1 U597 ( .A(n22), .B(n357), .C(n358), .Y(fft_man_rresp) );
-  AOI21X1 U598 ( .A(sram_rresp), .B(n7), .C(n356), .Y(n358) );
-  OAI21X1 U599 ( .A(n359), .B(n22), .C(n360), .Y(fft_man_rlast) );
-  AOI21X1 U600 ( .A(sram_rlast), .B(n7), .C(n356), .Y(n360) );
-  OAI22X1 U601 ( .A(n22), .B(n361), .C(n8), .D(n362), .Y(fft_man_rdata[9]) );
-  OAI22X1 U602 ( .A(n22), .B(n363), .C(n8), .D(n364), .Y(fft_man_rdata[8]) );
-  OAI22X1 U603 ( .A(n22), .B(n365), .C(n8), .D(n366), .Y(fft_man_rdata[7]) );
-  OAI22X1 U604 ( .A(n22), .B(n367), .C(n8), .D(n368), .Y(fft_man_rdata[6]) );
-  OAI22X1 U605 ( .A(n22), .B(n369), .C(n8), .D(n370), .Y(fft_man_rdata[5]) );
-  OAI22X1 U606 ( .A(n22), .B(n371), .C(n8), .D(n372), .Y(fft_man_rdata[4]) );
-  OAI22X1 U607 ( .A(n22), .B(n373), .C(n8), .D(n374), .Y(fft_man_rdata[3]) );
-  OAI22X1 U608 ( .A(n22), .B(n375), .C(n8), .D(n376), .Y(n459) );
-  OAI22X1 U609 ( .A(n22), .B(n377), .C(n8), .D(n378), .Y(fft_man_rdata[30]) );
-  OAI22X1 U610 ( .A(n22), .B(n379), .C(n8), .D(n380), .Y(fft_man_rdata[2]) );
-  OAI22X1 U611 ( .A(n22), .B(n381), .C(n8), .D(n382), .Y(fft_man_rdata[29]) );
-  OAI22X1 U612 ( .A(n22), .B(n383), .C(n8), .D(n384), .Y(fft_man_rdata[28]) );
-  OAI22X1 U613 ( .A(n22), .B(n385), .C(n8), .D(n386), .Y(fft_man_rdata[27]) );
-  OAI22X1 U614 ( .A(n22), .B(n387), .C(n8), .D(n388), .Y(fft_man_rdata[26]) );
-  OAI22X1 U615 ( .A(n22), .B(n389), .C(n8), .D(n390), .Y(fft_man_rdata[25]) );
-  OAI22X1 U616 ( .A(n22), .B(n391), .C(n8), .D(n392), .Y(fft_man_rdata[24]) );
-  OAI22X1 U617 ( .A(n22), .B(n393), .C(n8), .D(n394), .Y(fft_man_rdata[23]) );
-  OAI22X1 U618 ( .A(n22), .B(n395), .C(n8), .D(n396), .Y(fft_man_rdata[22]) );
-  OAI22X1 U619 ( .A(n22), .B(n397), .C(n8), .D(n398), .Y(fft_man_rdata[21]) );
-  OAI22X1 U620 ( .A(n22), .B(n399), .C(n8), .D(n400), .Y(fft_man_rdata[20]) );
-  OAI22X1 U621 ( .A(n22), .B(n401), .C(n8), .D(n402), .Y(fft_man_rdata[1]) );
-  OAI22X1 U622 ( .A(n22), .B(n403), .C(n8), .D(n404), .Y(fft_man_rdata[19]) );
-  OAI22X1 U623 ( .A(n22), .B(n405), .C(n8), .D(n406), .Y(fft_man_rdata[18]) );
-  OAI22X1 U624 ( .A(n22), .B(n407), .C(n8), .D(n408), .Y(fft_man_rdata[17]) );
-  OAI22X1 U625 ( .A(n22), .B(n409), .C(n8), .D(n416), .Y(fft_man_rdata[16]) );
-  OAI22X1 U626 ( .A(n22), .B(n417), .C(n8), .D(n418), .Y(n460) );
-  OAI22X1 U627 ( .A(n22), .B(n419), .C(n8), .D(n420), .Y(fft_man_rdata[14]) );
-  OAI22X1 U628 ( .A(n22), .B(n421), .C(n8), .D(n422), .Y(fft_man_rdata[13]) );
-  OAI22X1 U629 ( .A(n22), .B(n423), .C(n8), .D(n424), .Y(fft_man_rdata[12]) );
-  OAI22X1 U630 ( .A(n22), .B(n425), .C(n8), .D(n426), .Y(fft_man_rdata[11]) );
-  OAI22X1 U631 ( .A(n22), .B(n427), .C(n8), .D(n428), .Y(fft_man_rdata[10]) );
-  OAI22X1 U632 ( .A(n22), .B(n429), .C(n8), .D(n430), .Y(fft_man_rdata[0]) );
-  OAI21X1 U633 ( .A(n431), .B(n30), .C(n432), .Y(fft_man_bvalid) );
-  AOI21X1 U634 ( .A(n25), .B(sram_bvalid), .C(n353), .Y(n432) );
-  OAI21X1 U635 ( .A(n30), .B(n433), .C(n434), .Y(fft_man_bresp) );
-  AOI21X1 U636 ( .A(sram_bresp), .B(n25), .C(n353), .Y(n434) );
-  OAI21X1 U637 ( .A(n30), .B(n435), .C(n436), .Y(fft_man_awready) );
-  AOI21X1 U638 ( .A(sram_awready), .B(n25), .C(n353), .Y(n436) );
-  INVX1 U639 ( .A(n437), .Y(n353) );
-  NAND3X1 U640 ( .A(n438), .B(n339), .C(w_perms[1]), .Y(n437) );
-  NAND3X1 U641 ( .A(n439), .B(n339), .C(w_perms[1]), .Y(n64) );
-  NAND3X1 U642 ( .A(n440), .B(n339), .C(w_perms[1]), .Y(n348) );
-  INVX1 U643 ( .A(w_perms[0]), .Y(n339) );
-  OAI21X1 U644 ( .A(n22), .B(n441), .C(n442), .Y(fft_man_arready) );
-  AOI21X1 U645 ( .A(sram_arready), .B(n7), .C(n356), .Y(n442) );
-  INVX1 U646 ( .A(n443), .Y(n356) );
-  NAND3X1 U647 ( .A(r_perms[1]), .B(n328), .C(n444), .Y(n443) );
-  NAND3X1 U648 ( .A(n445), .B(n328), .C(r_perms[1]), .Y(n138) );
-  NAND3X1 U649 ( .A(r_perms[1]), .B(n328), .C(n446), .Y(n350) );
-  INVX1 U650 ( .A(r_perms[0]), .Y(n328) );
-  OAI21X1 U651 ( .A(n28), .B(n351), .C(n447), .Y(cpu_wready) );
-  AOI21X1 U652 ( .A(sram_wready), .B(n23), .C(n448), .Y(n447) );
-  INVX1 U653 ( .A(fft_sub_wready), .Y(n351) );
-  OAI21X1 U654 ( .A(n10), .B(n354), .C(n449), .Y(cpu_rvalid) );
-  AOI21X1 U655 ( .A(sram_rvalid), .B(n5), .C(n450), .Y(n449) );
-  INVX1 U656 ( .A(fft_sub_rvalid), .Y(n354) );
-  OAI21X1 U657 ( .A(n10), .B(n357), .C(n451), .Y(cpu_rresp) );
-  AOI21X1 U658 ( .A(sram_rresp), .B(n5), .C(n450), .Y(n451) );
-  INVX1 U659 ( .A(fft_sub_rresp), .Y(n357) );
-  OAI21X1 U660 ( .A(n10), .B(n359), .C(n452), .Y(cpu_rlast) );
-  AOI21X1 U661 ( .A(sram_rlast), .B(n5), .C(n450), .Y(n452) );
-  INVX1 U662 ( .A(fft_sub_rlast), .Y(n359) );
-  OAI22X1 U663 ( .A(n10), .B(n361), .C(n6), .D(n362), .Y(cpu_rdata[9]) );
-  INVX1 U664 ( .A(sram_rdata[9]), .Y(n362) );
-  INVX1 U665 ( .A(fft_sub_rdata[9]), .Y(n361) );
-  OAI22X1 U666 ( .A(n10), .B(n363), .C(n6), .D(n364), .Y(cpu_rdata[8]) );
-  INVX1 U667 ( .A(sram_rdata[8]), .Y(n364) );
-  INVX1 U668 ( .A(fft_sub_rdata[8]), .Y(n363) );
-  OAI22X1 U669 ( .A(n10), .B(n365), .C(n6), .D(n366), .Y(cpu_rdata[7]) );
-  INVX1 U670 ( .A(sram_rdata[7]), .Y(n366) );
-  INVX1 U671 ( .A(fft_sub_rdata[7]), .Y(n365) );
-  OAI22X1 U672 ( .A(n10), .B(n367), .C(n6), .D(n368), .Y(cpu_rdata[6]) );
-  INVX1 U673 ( .A(sram_rdata[6]), .Y(n368) );
-  INVX1 U674 ( .A(fft_sub_rdata[6]), .Y(n367) );
-  OAI22X1 U675 ( .A(n10), .B(n369), .C(n6), .D(n370), .Y(cpu_rdata[5]) );
-  INVX1 U676 ( .A(sram_rdata[5]), .Y(n370) );
-  INVX1 U677 ( .A(fft_sub_rdata[5]), .Y(n369) );
-  OAI22X1 U678 ( .A(n10), .B(n371), .C(n6), .D(n372), .Y(cpu_rdata[4]) );
-  INVX1 U679 ( .A(sram_rdata[4]), .Y(n372) );
-  INVX1 U680 ( .A(fft_sub_rdata[4]), .Y(n371) );
-  OAI22X1 U681 ( .A(n10), .B(n373), .C(n6), .D(n374), .Y(cpu_rdata[3]) );
-  INVX1 U682 ( .A(sram_rdata[3]), .Y(n374) );
-  INVX1 U683 ( .A(fft_sub_rdata[3]), .Y(n373) );
-  OAI22X1 U684 ( .A(n10), .B(n375), .C(n6), .D(n376), .Y(cpu_rdata[31]) );
-  INVX1 U685 ( .A(sram_rdata[31]), .Y(n376) );
-  INVX1 U686 ( .A(fft_sub_rdata[31]), .Y(n375) );
-  OAI22X1 U687 ( .A(n10), .B(n377), .C(n6), .D(n378), .Y(cpu_rdata[30]) );
-  INVX1 U688 ( .A(sram_rdata[30]), .Y(n378) );
-  INVX1 U689 ( .A(fft_sub_rdata[30]), .Y(n377) );
-  OAI22X1 U690 ( .A(n10), .B(n379), .C(n6), .D(n380), .Y(cpu_rdata[2]) );
-  INVX1 U691 ( .A(sram_rdata[2]), .Y(n380) );
-  INVX1 U692 ( .A(fft_sub_rdata[2]), .Y(n379) );
-  OAI22X1 U693 ( .A(n10), .B(n381), .C(n6), .D(n382), .Y(cpu_rdata[29]) );
-  INVX1 U694 ( .A(sram_rdata[29]), .Y(n382) );
-  INVX1 U695 ( .A(fft_sub_rdata[29]), .Y(n381) );
-  OAI22X1 U696 ( .A(n10), .B(n383), .C(n6), .D(n384), .Y(cpu_rdata[28]) );
-  INVX1 U697 ( .A(sram_rdata[28]), .Y(n384) );
-  INVX1 U698 ( .A(fft_sub_rdata[28]), .Y(n383) );
-  OAI22X1 U699 ( .A(n10), .B(n385), .C(n6), .D(n386), .Y(cpu_rdata[27]) );
-  INVX1 U700 ( .A(sram_rdata[27]), .Y(n386) );
-  INVX1 U701 ( .A(fft_sub_rdata[27]), .Y(n385) );
-  OAI22X1 U702 ( .A(n10), .B(n387), .C(n6), .D(n388), .Y(cpu_rdata[26]) );
-  INVX1 U703 ( .A(sram_rdata[26]), .Y(n388) );
-  INVX1 U704 ( .A(fft_sub_rdata[26]), .Y(n387) );
-  OAI22X1 U705 ( .A(n10), .B(n389), .C(n6), .D(n390), .Y(cpu_rdata[25]) );
-  INVX1 U706 ( .A(sram_rdata[25]), .Y(n390) );
-  INVX1 U707 ( .A(fft_sub_rdata[25]), .Y(n389) );
-  OAI22X1 U708 ( .A(n10), .B(n391), .C(n6), .D(n392), .Y(cpu_rdata[24]) );
-  INVX1 U709 ( .A(sram_rdata[24]), .Y(n392) );
-  INVX1 U710 ( .A(fft_sub_rdata[24]), .Y(n391) );
-  OAI22X1 U711 ( .A(n10), .B(n393), .C(n6), .D(n394), .Y(cpu_rdata[23]) );
-  INVX1 U712 ( .A(sram_rdata[23]), .Y(n394) );
-  INVX1 U713 ( .A(fft_sub_rdata[23]), .Y(n393) );
-  OAI22X1 U714 ( .A(n10), .B(n395), .C(n6), .D(n396), .Y(cpu_rdata[22]) );
-  INVX1 U715 ( .A(sram_rdata[22]), .Y(n396) );
-  INVX1 U716 ( .A(fft_sub_rdata[22]), .Y(n395) );
-  OAI22X1 U717 ( .A(n10), .B(n397), .C(n6), .D(n398), .Y(cpu_rdata[21]) );
-  INVX1 U718 ( .A(sram_rdata[21]), .Y(n398) );
-  INVX1 U719 ( .A(fft_sub_rdata[21]), .Y(n397) );
-  OAI22X1 U720 ( .A(n10), .B(n399), .C(n6), .D(n400), .Y(cpu_rdata[20]) );
-  INVX1 U721 ( .A(sram_rdata[20]), .Y(n400) );
-  INVX1 U722 ( .A(fft_sub_rdata[20]), .Y(n399) );
-  OAI22X1 U723 ( .A(n10), .B(n401), .C(n6), .D(n402), .Y(cpu_rdata[1]) );
-  INVX1 U724 ( .A(sram_rdata[1]), .Y(n402) );
-  INVX1 U725 ( .A(fft_sub_rdata[1]), .Y(n401) );
-  OAI22X1 U726 ( .A(n10), .B(n403), .C(n6), .D(n404), .Y(cpu_rdata[19]) );
-  INVX1 U727 ( .A(sram_rdata[19]), .Y(n404) );
-  INVX1 U728 ( .A(fft_sub_rdata[19]), .Y(n403) );
-  OAI22X1 U729 ( .A(n10), .B(n405), .C(n6), .D(n406), .Y(cpu_rdata[18]) );
-  INVX1 U730 ( .A(sram_rdata[18]), .Y(n406) );
-  INVX1 U731 ( .A(fft_sub_rdata[18]), .Y(n405) );
-  OAI22X1 U732 ( .A(n10), .B(n407), .C(n6), .D(n408), .Y(cpu_rdata[17]) );
-  INVX1 U733 ( .A(sram_rdata[17]), .Y(n408) );
-  INVX1 U734 ( .A(fft_sub_rdata[17]), .Y(n407) );
-  OAI22X1 U735 ( .A(n10), .B(n409), .C(n6), .D(n416), .Y(cpu_rdata[16]) );
-  INVX1 U736 ( .A(sram_rdata[16]), .Y(n416) );
-  INVX1 U737 ( .A(fft_sub_rdata[16]), .Y(n409) );
-  OAI22X1 U738 ( .A(n10), .B(n417), .C(n6), .D(n418), .Y(cpu_rdata[15]) );
-  INVX1 U739 ( .A(sram_rdata[15]), .Y(n418) );
-  INVX1 U740 ( .A(fft_sub_rdata[15]), .Y(n417) );
-  OAI22X1 U741 ( .A(n10), .B(n419), .C(n6), .D(n420), .Y(cpu_rdata[14]) );
-  INVX1 U742 ( .A(sram_rdata[14]), .Y(n420) );
-  INVX1 U743 ( .A(fft_sub_rdata[14]), .Y(n419) );
-  OAI22X1 U744 ( .A(n10), .B(n421), .C(n6), .D(n422), .Y(cpu_rdata[13]) );
-  INVX1 U745 ( .A(sram_rdata[13]), .Y(n422) );
-  INVX1 U746 ( .A(fft_sub_rdata[13]), .Y(n421) );
-  OAI22X1 U747 ( .A(n10), .B(n423), .C(n6), .D(n424), .Y(cpu_rdata[12]) );
-  INVX1 U748 ( .A(sram_rdata[12]), .Y(n424) );
-  INVX1 U749 ( .A(fft_sub_rdata[12]), .Y(n423) );
-  OAI22X1 U750 ( .A(n10), .B(n425), .C(n6), .D(n426), .Y(cpu_rdata[11]) );
-  INVX1 U751 ( .A(sram_rdata[11]), .Y(n426) );
-  INVX1 U752 ( .A(fft_sub_rdata[11]), .Y(n425) );
-  OAI22X1 U753 ( .A(n10), .B(n427), .C(n6), .D(n428), .Y(cpu_rdata[10]) );
-  INVX1 U754 ( .A(sram_rdata[10]), .Y(n428) );
-  INVX1 U755 ( .A(fft_sub_rdata[10]), .Y(n427) );
-  OAI22X1 U756 ( .A(n10), .B(n429), .C(n6), .D(n430), .Y(cpu_rdata[0]) );
-  INVX1 U757 ( .A(sram_rdata[0]), .Y(n430) );
-  INVX1 U758 ( .A(fft_sub_rdata[0]), .Y(n429) );
-  OAI21X1 U759 ( .A(n28), .B(n431), .C(n453), .Y(cpu_bvalid) );
-  AOI21X1 U760 ( .A(sram_bvalid), .B(n23), .C(n448), .Y(n453) );
-  INVX1 U761 ( .A(fft_sub_bvalid), .Y(n431) );
-  OAI21X1 U762 ( .A(n28), .B(n433), .C(n454), .Y(cpu_bresp) );
-  AOI21X1 U763 ( .A(sram_bresp), .B(n23), .C(n448), .Y(n454) );
-  INVX1 U764 ( .A(fft_sub_bresp), .Y(n433) );
-  OAI21X1 U765 ( .A(n28), .B(n435), .C(n455), .Y(cpu_awready) );
-  AOI21X1 U766 ( .A(sram_awready), .B(n23), .C(n448), .Y(n455) );
-  INVX1 U767 ( .A(n456), .Y(n448) );
-  NAND3X1 U768 ( .A(n438), .B(n343), .C(w_perms[0]), .Y(n456) );
-  NOR3X1 U769 ( .A(n440), .B(n439), .C(n342), .Y(n438) );
-  INVX1 U770 ( .A(w_state), .Y(n342) );
-  NAND3X1 U771 ( .A(w_perms[0]), .B(n343), .C(n439), .Y(n62) );
-  NOR2X1 U772 ( .A(n31), .B(w_dest[0]), .Y(n439) );
-  INVX1 U773 ( .A(w_dest[1]), .Y(n31) );
-  INVX1 U774 ( .A(fft_sub_awready), .Y(n435) );
-  NAND3X1 U775 ( .A(w_perms[0]), .B(n343), .C(n440), .Y(n347) );
-  NOR2X1 U776 ( .A(n34), .B(w_dest[1]), .Y(n440) );
-  INVX1 U777 ( .A(w_dest[0]), .Y(n34) );
-  INVX1 U778 ( .A(w_perms[1]), .Y(n343) );
-  OAI21X1 U779 ( .A(n10), .B(n441), .C(n457), .Y(cpu_arready) );
-  AOI21X1 U780 ( .A(sram_arready), .B(n5), .C(n450), .Y(n457) );
-  INVX1 U781 ( .A(n458), .Y(n450) );
-  NAND3X1 U782 ( .A(r_perms[0]), .B(n333), .C(n444), .Y(n458) );
-  NOR3X1 U783 ( .A(n445), .B(n446), .C(n331), .Y(n444) );
-  INVX1 U784 ( .A(r_state), .Y(n331) );
-  NAND3X1 U785 ( .A(n445), .B(n333), .C(r_perms[0]), .Y(n136) );
-  NOR2X1 U786 ( .A(n305), .B(r_dest[0]), .Y(n445) );
-  INVX1 U787 ( .A(r_dest[1]), .Y(n305) );
-  INVX1 U788 ( .A(fft_sub_arready), .Y(n441) );
-  NAND3X1 U789 ( .A(r_perms[0]), .B(n333), .C(n446), .Y(n349) );
-  NOR2X1 U790 ( .A(n308), .B(r_dest[1]), .Y(n446) );
-  INVX1 U791 ( .A(r_dest[0]), .Y(n308) );
-  INVX1 U792 ( .A(r_perms[1]), .Y(n333) );
+  MUX2X1 U36 ( .B(n36), .A(n37), .S(cpu_awvalid), .Y(n33) );
+  NAND3X1 U37 ( .A(n38), .B(n39), .C(n40), .Y(n37) );
+  NOR2X1 U38 ( .A(n41), .B(n42), .Y(n40) );
+  OAI21X1 U39 ( .A(n43), .B(n44), .C(n45), .Y(n42) );
+  NAND2X1 U40 ( .A(n46), .B(cpu_awaddr[0]), .Y(n44) );
+  NAND2X1 U41 ( .A(n47), .B(n48), .Y(n41) );
+  NOR2X1 U42 ( .A(cpu_awaddr[9]), .B(cpu_awaddr[8]), .Y(n39) );
+  NOR2X1 U43 ( .A(cpu_awaddr[7]), .B(cpu_awaddr[6]), .Y(n38) );
+  NAND3X1 U44 ( .A(n49), .B(n50), .C(n51), .Y(n36) );
+  NOR2X1 U45 ( .A(n52), .B(n53), .Y(n51) );
+  OAI21X1 U46 ( .A(n54), .B(n55), .C(n56), .Y(n53) );
+  NAND2X1 U47 ( .A(n46), .B(fft_man_awaddr[0]), .Y(n55) );
+  MUX2X1 U48 ( .B(n57), .A(n58), .S(cpu_awvalid), .Y(n46) );
+  NAND2X1 U49 ( .A(cpu_awaddr[3]), .B(cpu_awaddr[2]), .Y(n58) );
+  NAND2X1 U50 ( .A(fft_man_awaddr[3]), .B(fft_man_awaddr[2]), .Y(n57) );
+  NAND2X1 U51 ( .A(n59), .B(n60), .Y(n52) );
+  NOR2X1 U52 ( .A(fft_man_awaddr[9]), .B(fft_man_awaddr[8]), .Y(n50) );
+  NOR2X1 U53 ( .A(fft_man_awaddr[7]), .B(fft_man_awaddr[6]), .Y(n49) );
+  OAI22X1 U54 ( .A(n27), .B(n61), .C(n28), .D(n62), .Y(sram_wvalid) );
+  OAI22X1 U55 ( .A(n27), .B(n63), .C(n28), .D(n64), .Y(sram_wstrb[1]) );
+  OAI22X1 U56 ( .A(n27), .B(n65), .C(n28), .D(n66), .Y(sram_wstrb[0]) );
+  OAI22X1 U57 ( .A(n27), .B(n67), .C(n28), .D(n68), .Y(sram_wlast) );
+  OAI22X1 U58 ( .A(n27), .B(n69), .C(n28), .D(n70), .Y(sram_wdata[9]) );
+  OAI22X1 U59 ( .A(n27), .B(n71), .C(n28), .D(n72), .Y(sram_wdata[8]) );
+  OAI22X1 U60 ( .A(n27), .B(n73), .C(n28), .D(n74), .Y(sram_wdata[7]) );
+  OAI22X1 U61 ( .A(n27), .B(n75), .C(n28), .D(n76), .Y(sram_wdata[6]) );
+  OAI22X1 U62 ( .A(n27), .B(n77), .C(n28), .D(n78), .Y(sram_wdata[5]) );
+  OAI22X1 U63 ( .A(n27), .B(n79), .C(n28), .D(n80), .Y(sram_wdata[4]) );
+  OAI22X1 U64 ( .A(n27), .B(n81), .C(n28), .D(n82), .Y(sram_wdata[3]) );
+  OAI22X1 U65 ( .A(n27), .B(n83), .C(n28), .D(n84), .Y(sram_wdata[31]) );
+  OAI22X1 U66 ( .A(n27), .B(n85), .C(n28), .D(n86), .Y(sram_wdata[30]) );
+  OAI22X1 U67 ( .A(n27), .B(n87), .C(n28), .D(n88), .Y(sram_wdata[2]) );
+  OAI22X1 U68 ( .A(n27), .B(n89), .C(n28), .D(n90), .Y(sram_wdata[29]) );
+  OAI22X1 U69 ( .A(n27), .B(n91), .C(n28), .D(n92), .Y(sram_wdata[28]) );
+  OAI22X1 U70 ( .A(n27), .B(n93), .C(n28), .D(n94), .Y(sram_wdata[27]) );
+  OAI22X1 U71 ( .A(n27), .B(n95), .C(n28), .D(n96), .Y(sram_wdata[26]) );
+  OAI22X1 U72 ( .A(n27), .B(n97), .C(n28), .D(n98), .Y(sram_wdata[25]) );
+  OAI22X1 U73 ( .A(n27), .B(n99), .C(n28), .D(n100), .Y(sram_wdata[24]) );
+  OAI22X1 U74 ( .A(n27), .B(n101), .C(n28), .D(n102), .Y(sram_wdata[23]) );
+  OAI22X1 U75 ( .A(n27), .B(n103), .C(n28), .D(n104), .Y(sram_wdata[22]) );
+  OAI22X1 U76 ( .A(n27), .B(n105), .C(n28), .D(n106), .Y(sram_wdata[21]) );
+  OAI22X1 U77 ( .A(n27), .B(n107), .C(n28), .D(n108), .Y(sram_wdata[20]) );
+  OAI22X1 U78 ( .A(n27), .B(n109), .C(n28), .D(n110), .Y(sram_wdata[1]) );
+  OAI22X1 U79 ( .A(n27), .B(n111), .C(n28), .D(n112), .Y(sram_wdata[19]) );
+  OAI22X1 U80 ( .A(n27), .B(n113), .C(n28), .D(n114), .Y(sram_wdata[18]) );
+  OAI22X1 U81 ( .A(n27), .B(n115), .C(n28), .D(n116), .Y(sram_wdata[17]) );
+  OAI22X1 U82 ( .A(n27), .B(n117), .C(n28), .D(n118), .Y(sram_wdata[16]) );
+  OAI22X1 U83 ( .A(n27), .B(n119), .C(n28), .D(n120), .Y(sram_wdata[15]) );
+  OAI22X1 U84 ( .A(n27), .B(n121), .C(n28), .D(n122), .Y(sram_wdata[14]) );
+  OAI22X1 U85 ( .A(n27), .B(n123), .C(n28), .D(n124), .Y(sram_wdata[13]) );
+  OAI22X1 U86 ( .A(n27), .B(n125), .C(n28), .D(n126), .Y(sram_wdata[12]) );
+  OAI22X1 U87 ( .A(n27), .B(n127), .C(n28), .D(n128), .Y(sram_wdata[11]) );
+  OAI22X1 U88 ( .A(n27), .B(n129), .C(n28), .D(n130), .Y(sram_wdata[10]) );
+  OAI22X1 U89 ( .A(n27), .B(n131), .C(n28), .D(n132), .Y(sram_wdata[0]) );
+  OAI22X1 U90 ( .A(n23), .B(n133), .C(n24), .D(n134), .Y(sram_rready) );
+  OAI22X1 U91 ( .A(n27), .B(n135), .C(n28), .D(n136), .Y(sram_bready) );
+  OAI22X1 U92 ( .A(n137), .B(n27), .C(n28), .D(n138), .Y(sram_awvalid) );
+  OAI22X1 U93 ( .A(n27), .B(n139), .C(n28), .D(n140), .Y(sram_awlen[9]) );
+  OAI22X1 U94 ( .A(n27), .B(n141), .C(n28), .D(n142), .Y(sram_awlen[8]) );
+  OAI22X1 U95 ( .A(n27), .B(n143), .C(n28), .D(n144), .Y(sram_awlen[7]) );
+  OAI22X1 U96 ( .A(n27), .B(n145), .C(n28), .D(n146), .Y(sram_awlen[6]) );
+  OAI22X1 U97 ( .A(n27), .B(n147), .C(n28), .D(n148), .Y(sram_awlen[5]) );
+  OAI22X1 U98 ( .A(n27), .B(n149), .C(n28), .D(n150), .Y(sram_awlen[4]) );
+  OAI22X1 U99 ( .A(n27), .B(n151), .C(n28), .D(n152), .Y(sram_awlen[3]) );
+  OAI22X1 U100 ( .A(n27), .B(n153), .C(n28), .D(n154), .Y(sram_awlen[2]) );
+  OAI22X1 U101 ( .A(n27), .B(n155), .C(n28), .D(n156), .Y(sram_awlen[1]) );
+  OAI22X1 U102 ( .A(n27), .B(n157), .C(n28), .D(n158), .Y(sram_awlen[0]) );
+  OAI22X1 U103 ( .A(n27), .B(n159), .C(n28), .D(n160), .Y(sram_awaddr[9]) );
+  OAI22X1 U104 ( .A(n27), .B(n161), .C(n28), .D(n162), .Y(sram_awaddr[8]) );
+  OAI22X1 U105 ( .A(n27), .B(n163), .C(n28), .D(n164), .Y(sram_awaddr[7]) );
+  OAI22X1 U106 ( .A(n27), .B(n165), .C(n28), .D(n166), .Y(sram_awaddr[6]) );
+  OAI22X1 U107 ( .A(n27), .B(n48), .C(n28), .D(n60), .Y(sram_awaddr[5]) );
+  OAI22X1 U108 ( .A(n27), .B(n47), .C(n28), .D(n59), .Y(sram_awaddr[4]) );
+  OAI22X1 U109 ( .A(n167), .B(n27), .C(n168), .D(n28), .Y(sram_awaddr[3]) );
+  OAI22X1 U110 ( .A(n27), .B(n169), .C(n28), .D(n170), .Y(sram_awaddr[31]) );
+  OAI22X1 U111 ( .A(n27), .B(n171), .C(n28), .D(n172), .Y(sram_awaddr[30]) );
+  OAI22X1 U112 ( .A(n173), .B(n27), .C(n174), .D(n28), .Y(sram_awaddr[2]) );
+  OAI22X1 U113 ( .A(n27), .B(n175), .C(n28), .D(n176), .Y(sram_awaddr[29]) );
+  OAI22X1 U114 ( .A(n27), .B(n177), .C(n28), .D(n178), .Y(sram_awaddr[28]) );
+  OAI22X1 U115 ( .A(n27), .B(n179), .C(n28), .D(n180), .Y(sram_awaddr[27]) );
+  OAI22X1 U116 ( .A(n27), .B(n181), .C(n28), .D(n182), .Y(sram_awaddr[26]) );
+  OAI22X1 U117 ( .A(n27), .B(n183), .C(n28), .D(n184), .Y(sram_awaddr[25]) );
+  OAI22X1 U118 ( .A(n27), .B(n185), .C(n28), .D(n186), .Y(sram_awaddr[24]) );
+  OAI22X1 U119 ( .A(n27), .B(n187), .C(n28), .D(n188), .Y(sram_awaddr[23]) );
+  OAI22X1 U120 ( .A(n27), .B(n189), .C(n28), .D(n190), .Y(sram_awaddr[22]) );
+  OAI22X1 U121 ( .A(n27), .B(n191), .C(n28), .D(n192), .Y(sram_awaddr[21]) );
+  OAI22X1 U122 ( .A(n27), .B(n193), .C(n28), .D(n194), .Y(sram_awaddr[20]) );
+  OAI22X1 U123 ( .A(n43), .B(n27), .C(n54), .D(n28), .Y(sram_awaddr[1]) );
+  OAI22X1 U124 ( .A(n27), .B(n195), .C(n28), .D(n196), .Y(sram_awaddr[19]) );
+  OAI22X1 U125 ( .A(n27), .B(n197), .C(n28), .D(n198), .Y(sram_awaddr[18]) );
+  OAI22X1 U126 ( .A(n27), .B(n199), .C(n28), .D(n200), .Y(sram_awaddr[17]) );
+  OAI22X1 U127 ( .A(n27), .B(n201), .C(n28), .D(n202), .Y(sram_awaddr[16]) );
+  OAI22X1 U128 ( .A(n27), .B(n203), .C(n28), .D(n204), .Y(sram_awaddr[15]) );
+  OAI22X1 U129 ( .A(n27), .B(n205), .C(n28), .D(n206), .Y(sram_awaddr[14]) );
+  OAI22X1 U130 ( .A(n27), .B(n207), .C(n28), .D(n208), .Y(sram_awaddr[13]) );
+  OAI22X1 U131 ( .A(n27), .B(n209), .C(n28), .D(n210), .Y(sram_awaddr[12]) );
+  OAI22X1 U132 ( .A(n27), .B(n211), .C(n28), .D(n212), .Y(sram_awaddr[11]) );
+  OAI22X1 U133 ( .A(n27), .B(n45), .C(n28), .D(n56), .Y(sram_awaddr[10]) );
+  OAI22X1 U134 ( .A(n213), .B(n27), .C(n214), .D(n28), .Y(sram_awaddr[0]) );
+  OAI22X1 U135 ( .A(n23), .B(n215), .C(n24), .D(n216), .Y(sram_arvalid) );
+  OAI22X1 U136 ( .A(n23), .B(n217), .C(n24), .D(n218), .Y(sram_arlen[9]) );
+  OAI22X1 U137 ( .A(n23), .B(n219), .C(n24), .D(n220), .Y(sram_arlen[8]) );
+  OAI22X1 U138 ( .A(n23), .B(n221), .C(n24), .D(n222), .Y(sram_arlen[7]) );
+  OAI22X1 U139 ( .A(n23), .B(n223), .C(n24), .D(n224), .Y(sram_arlen[6]) );
+  OAI22X1 U140 ( .A(n23), .B(n225), .C(n24), .D(n226), .Y(sram_arlen[5]) );
+  OAI22X1 U141 ( .A(n23), .B(n227), .C(n24), .D(n228), .Y(sram_arlen[4]) );
+  OAI22X1 U142 ( .A(n23), .B(n229), .C(n24), .D(n230), .Y(sram_arlen[3]) );
+  OAI22X1 U143 ( .A(n23), .B(n231), .C(n24), .D(n232), .Y(sram_arlen[2]) );
+  OAI22X1 U144 ( .A(n23), .B(n233), .C(n24), .D(n234), .Y(sram_arlen[1]) );
+  OAI22X1 U145 ( .A(n23), .B(n235), .C(n24), .D(n236), .Y(sram_arlen[0]) );
+  OAI22X1 U146 ( .A(n23), .B(n237), .C(n24), .D(n238), .Y(sram_araddr[9]) );
+  OAI22X1 U147 ( .A(n23), .B(n239), .C(n24), .D(n240), .Y(sram_araddr[8]) );
+  OAI22X1 U148 ( .A(n23), .B(n241), .C(n24), .D(n242), .Y(sram_araddr[7]) );
+  OAI22X1 U149 ( .A(n23), .B(n243), .C(n24), .D(n244), .Y(sram_araddr[6]) );
+  OAI22X1 U150 ( .A(n23), .B(n245), .C(n24), .D(n246), .Y(sram_araddr[5]) );
+  OAI22X1 U151 ( .A(n23), .B(n247), .C(n24), .D(n248), .Y(sram_araddr[4]) );
+  OAI22X1 U152 ( .A(n23), .B(n249), .C(n24), .D(n250), .Y(sram_araddr[3]) );
+  OAI22X1 U153 ( .A(n23), .B(n251), .C(n24), .D(n252), .Y(sram_araddr[31]) );
+  OAI22X1 U154 ( .A(n23), .B(n253), .C(n24), .D(n254), .Y(sram_araddr[30]) );
+  OAI22X1 U155 ( .A(n23), .B(n255), .C(n24), .D(n256), .Y(sram_araddr[2]) );
+  OAI22X1 U156 ( .A(n23), .B(n257), .C(n24), .D(n258), .Y(sram_araddr[29]) );
+  OAI22X1 U157 ( .A(n23), .B(n259), .C(n24), .D(n260), .Y(sram_araddr[28]) );
+  OAI22X1 U158 ( .A(n23), .B(n261), .C(n24), .D(n262), .Y(sram_araddr[27]) );
+  OAI22X1 U159 ( .A(n23), .B(n263), .C(n24), .D(n264), .Y(sram_araddr[26]) );
+  OAI22X1 U160 ( .A(n23), .B(n265), .C(n24), .D(n266), .Y(sram_araddr[25]) );
+  OAI22X1 U161 ( .A(n23), .B(n267), .C(n24), .D(n268), .Y(sram_araddr[24]) );
+  OAI22X1 U162 ( .A(n23), .B(n269), .C(n24), .D(n270), .Y(sram_araddr[23]) );
+  OAI22X1 U163 ( .A(n23), .B(n271), .C(n24), .D(n272), .Y(sram_araddr[22]) );
+  OAI22X1 U164 ( .A(n23), .B(n273), .C(n24), .D(n274), .Y(sram_araddr[21]) );
+  OAI22X1 U165 ( .A(n23), .B(n275), .C(n24), .D(n276), .Y(sram_araddr[20]) );
+  OAI22X1 U166 ( .A(n23), .B(n277), .C(n24), .D(n278), .Y(sram_araddr[1]) );
+  OAI22X1 U167 ( .A(n23), .B(n279), .C(n24), .D(n280), .Y(sram_araddr[19]) );
+  OAI22X1 U168 ( .A(n23), .B(n281), .C(n24), .D(n282), .Y(sram_araddr[18]) );
+  OAI22X1 U169 ( .A(n23), .B(n283), .C(n24), .D(n284), .Y(sram_araddr[17]) );
+  OAI22X1 U170 ( .A(n23), .B(n285), .C(n24), .D(n286), .Y(sram_araddr[16]) );
+  OAI22X1 U171 ( .A(n23), .B(n287), .C(n24), .D(n288), .Y(sram_araddr[15]) );
+  OAI22X1 U172 ( .A(n23), .B(n289), .C(n24), .D(n290), .Y(sram_araddr[14]) );
+  OAI22X1 U173 ( .A(n23), .B(n291), .C(n24), .D(n292), .Y(sram_araddr[13]) );
+  OAI22X1 U174 ( .A(n23), .B(n293), .C(n24), .D(n294), .Y(sram_araddr[12]) );
+  OAI22X1 U175 ( .A(n23), .B(n295), .C(n24), .D(n296), .Y(sram_araddr[11]) );
+  OAI22X1 U176 ( .A(n23), .B(n297), .C(n24), .D(n298), .Y(sram_araddr[10]) );
+  OAI22X1 U177 ( .A(n23), .B(n299), .C(n24), .D(n300), .Y(sram_araddr[0]) );
+  OAI22X1 U178 ( .A(n301), .B(n302), .C(r_state), .D(n303), .Y(r_next_dest[1])
+         );
+  OAI22X1 U179 ( .A(n304), .B(n302), .C(r_state), .D(n305), .Y(r_next_dest[0])
+         );
+  INVX1 U180 ( .A(n303), .Y(n305) );
+  MUX2X1 U181 ( .B(n306), .A(n307), .S(cpu_arvalid), .Y(n303) );
+  NAND3X1 U182 ( .A(n308), .B(n309), .C(n310), .Y(n307) );
+  NOR2X1 U183 ( .A(n311), .B(n312), .Y(n310) );
+  OAI21X1 U184 ( .A(n313), .B(n314), .C(n297), .Y(n312) );
+  NAND2X1 U185 ( .A(cpu_araddr[0]), .B(cpu_araddr[1]), .Y(n314) );
+  NAND2X1 U186 ( .A(n247), .B(n245), .Y(n311) );
+  NOR2X1 U187 ( .A(cpu_araddr[9]), .B(cpu_araddr[8]), .Y(n309) );
+  NOR2X1 U188 ( .A(cpu_araddr[7]), .B(cpu_araddr[6]), .Y(n308) );
+  NAND3X1 U189 ( .A(n315), .B(n316), .C(n317), .Y(n306) );
+  NOR2X1 U190 ( .A(n318), .B(n319), .Y(n317) );
+  OAI21X1 U191 ( .A(n313), .B(n320), .C(n298), .Y(n319) );
+  NAND2X1 U192 ( .A(fft_man_araddr[0]), .B(fft_man_araddr[1]), .Y(n320) );
+  INVX1 U193 ( .A(n321), .Y(n313) );
+  MUX2X1 U194 ( .B(n322), .A(n323), .S(cpu_arvalid), .Y(n321) );
+  NAND2X1 U195 ( .A(cpu_araddr[2]), .B(cpu_araddr[3]), .Y(n323) );
+  NAND2X1 U196 ( .A(fft_man_araddr[2]), .B(fft_man_araddr[3]), .Y(n322) );
+  NAND2X1 U197 ( .A(n248), .B(n246), .Y(n318) );
+  NOR2X1 U198 ( .A(fft_man_araddr[9]), .B(fft_man_araddr[8]), .Y(n316) );
+  NOR2X1 U199 ( .A(fft_man_araddr[7]), .B(fft_man_araddr[6]), .Y(n315) );
+  OAI21X1 U200 ( .A(n324), .B(n302), .C(n325), .Y(n419) );
+  OAI21X1 U201 ( .A(n326), .B(cpu_arvalid), .C(n327), .Y(n325) );
+  INVX1 U202 ( .A(r_state), .Y(n327) );
+  NOR2X1 U203 ( .A(fft_man_arvalid), .B(n324), .Y(n326) );
+  OAI21X1 U204 ( .A(r_state), .B(n328), .C(n302), .Y(n418) );
+  NOR2X1 U205 ( .A(cpu_arvalid), .B(fft_man_arvalid), .Y(n328) );
+  OAI21X1 U206 ( .A(n329), .B(n302), .C(n330), .Y(n417) );
+  OAI21X1 U207 ( .A(fft_man_arvalid), .B(r_perms[1]), .C(n331), .Y(n330) );
+  NOR2X1 U208 ( .A(r_state), .B(cpu_arvalid), .Y(n331) );
+  NAND3X1 U209 ( .A(n332), .B(n333), .C(r_state), .Y(n302) );
+  NAND3X1 U210 ( .A(cpu_rlast), .B(cpu_rvalid), .C(cpu_rready), .Y(n333) );
+  NAND3X1 U211 ( .A(fft_man_rlast), .B(fft_man_rvalid), .C(fft_man_rready), 
+        .Y(n332) );
+  OAI21X1 U212 ( .A(w_state), .B(n334), .C(n32), .Y(n416) );
+  NOR2X1 U213 ( .A(cpu_awvalid), .B(fft_man_awvalid), .Y(n334) );
+  OAI21X1 U214 ( .A(n335), .B(n32), .C(n336), .Y(n415) );
+  OAI21X1 U215 ( .A(n337), .B(cpu_awvalid), .C(n338), .Y(n336) );
+  INVX1 U216 ( .A(w_state), .Y(n338) );
+  NOR2X1 U217 ( .A(fft_man_awvalid), .B(n335), .Y(n337) );
+  OAI21X1 U218 ( .A(n339), .B(n32), .C(n340), .Y(n414) );
+  OAI21X1 U219 ( .A(fft_man_awvalid), .B(w_perms[1]), .C(n341), .Y(n340) );
+  NOR2X1 U220 ( .A(w_state), .B(cpu_awvalid), .Y(n341) );
+  NAND2X1 U221 ( .A(n342), .B(w_state), .Y(n32) );
+  AOI22X1 U222 ( .A(cpu_bready), .B(cpu_bvalid), .C(fft_man_bready), .D(
+        fft_man_bvalid), .Y(n342) );
+  OAI22X1 U223 ( .A(n29), .B(n61), .C(n30), .D(n62), .Y(fft_sub_wvalid) );
+  INVX1 U224 ( .A(fft_man_wvalid), .Y(n62) );
+  INVX1 U225 ( .A(cpu_wvalid), .Y(n61) );
+  OAI22X1 U226 ( .A(n29), .B(n63), .C(n30), .D(n64), .Y(fft_sub_wstrb[1]) );
+  INVX1 U227 ( .A(fft_man_wstrb[1]), .Y(n64) );
+  INVX1 U228 ( .A(cpu_wstrb[1]), .Y(n63) );
+  OAI22X1 U229 ( .A(n29), .B(n65), .C(n30), .D(n66), .Y(fft_sub_wstrb[0]) );
+  INVX1 U230 ( .A(fft_man_wstrb[0]), .Y(n66) );
+  INVX1 U231 ( .A(cpu_wstrb[0]), .Y(n65) );
+  OAI22X1 U232 ( .A(n29), .B(n67), .C(n30), .D(n68), .Y(fft_sub_wlast) );
+  INVX1 U233 ( .A(fft_man_wlast), .Y(n68) );
+  INVX1 U234 ( .A(cpu_wlast), .Y(n67) );
+  OAI22X1 U235 ( .A(n29), .B(n69), .C(n30), .D(n70), .Y(fft_sub_wdata[9]) );
+  INVX1 U236 ( .A(fft_man_wdata[9]), .Y(n70) );
+  INVX1 U237 ( .A(cpu_wdata[9]), .Y(n69) );
+  OAI22X1 U238 ( .A(n29), .B(n71), .C(n30), .D(n72), .Y(fft_sub_wdata[8]) );
+  INVX1 U239 ( .A(fft_man_wdata[8]), .Y(n72) );
+  INVX1 U240 ( .A(cpu_wdata[8]), .Y(n71) );
+  OAI22X1 U241 ( .A(n29), .B(n73), .C(n30), .D(n74), .Y(fft_sub_wdata[7]) );
+  INVX1 U242 ( .A(fft_man_wdata[7]), .Y(n74) );
+  INVX1 U243 ( .A(cpu_wdata[7]), .Y(n73) );
+  OAI22X1 U244 ( .A(n29), .B(n75), .C(n30), .D(n76), .Y(fft_sub_wdata[6]) );
+  INVX1 U245 ( .A(fft_man_wdata[6]), .Y(n76) );
+  INVX1 U246 ( .A(cpu_wdata[6]), .Y(n75) );
+  OAI22X1 U247 ( .A(n29), .B(n77), .C(n30), .D(n78), .Y(fft_sub_wdata[5]) );
+  INVX1 U248 ( .A(fft_man_wdata[5]), .Y(n78) );
+  INVX1 U249 ( .A(cpu_wdata[5]), .Y(n77) );
+  OAI22X1 U250 ( .A(n29), .B(n79), .C(n30), .D(n80), .Y(fft_sub_wdata[4]) );
+  INVX1 U251 ( .A(fft_man_wdata[4]), .Y(n80) );
+  INVX1 U252 ( .A(cpu_wdata[4]), .Y(n79) );
+  OAI22X1 U253 ( .A(n29), .B(n81), .C(n30), .D(n82), .Y(fft_sub_wdata[3]) );
+  INVX1 U254 ( .A(fft_man_wdata[3]), .Y(n82) );
+  INVX1 U255 ( .A(cpu_wdata[3]), .Y(n81) );
+  OAI22X1 U256 ( .A(n29), .B(n83), .C(n30), .D(n84), .Y(fft_sub_wdata[31]) );
+  INVX1 U257 ( .A(fft_man_wdata[31]), .Y(n84) );
+  INVX1 U258 ( .A(cpu_wdata[31]), .Y(n83) );
+  OAI22X1 U259 ( .A(n29), .B(n85), .C(n30), .D(n86), .Y(fft_sub_wdata[30]) );
+  INVX1 U260 ( .A(fft_man_wdata[30]), .Y(n86) );
+  INVX1 U261 ( .A(cpu_wdata[30]), .Y(n85) );
+  OAI22X1 U262 ( .A(n29), .B(n87), .C(n30), .D(n88), .Y(fft_sub_wdata[2]) );
+  INVX1 U263 ( .A(fft_man_wdata[2]), .Y(n88) );
+  INVX1 U264 ( .A(cpu_wdata[2]), .Y(n87) );
+  OAI22X1 U265 ( .A(n29), .B(n89), .C(n30), .D(n90), .Y(fft_sub_wdata[29]) );
+  INVX1 U266 ( .A(fft_man_wdata[29]), .Y(n90) );
+  INVX1 U267 ( .A(cpu_wdata[29]), .Y(n89) );
+  OAI22X1 U268 ( .A(n29), .B(n91), .C(n30), .D(n92), .Y(fft_sub_wdata[28]) );
+  INVX1 U269 ( .A(fft_man_wdata[28]), .Y(n92) );
+  INVX1 U270 ( .A(cpu_wdata[28]), .Y(n91) );
+  OAI22X1 U271 ( .A(n29), .B(n93), .C(n30), .D(n94), .Y(fft_sub_wdata[27]) );
+  INVX1 U272 ( .A(fft_man_wdata[27]), .Y(n94) );
+  INVX1 U273 ( .A(cpu_wdata[27]), .Y(n93) );
+  OAI22X1 U274 ( .A(n29), .B(n95), .C(n30), .D(n96), .Y(fft_sub_wdata[26]) );
+  INVX1 U275 ( .A(fft_man_wdata[26]), .Y(n96) );
+  INVX1 U276 ( .A(cpu_wdata[26]), .Y(n95) );
+  OAI22X1 U277 ( .A(n29), .B(n97), .C(n30), .D(n98), .Y(fft_sub_wdata[25]) );
+  INVX1 U278 ( .A(fft_man_wdata[25]), .Y(n98) );
+  INVX1 U279 ( .A(cpu_wdata[25]), .Y(n97) );
+  OAI22X1 U280 ( .A(n29), .B(n99), .C(n30), .D(n100), .Y(fft_sub_wdata[24]) );
+  INVX1 U281 ( .A(fft_man_wdata[24]), .Y(n100) );
+  INVX1 U282 ( .A(cpu_wdata[24]), .Y(n99) );
+  OAI22X1 U283 ( .A(n29), .B(n101), .C(n30), .D(n102), .Y(fft_sub_wdata[23])
+         );
+  INVX1 U284 ( .A(fft_man_wdata[23]), .Y(n102) );
+  INVX1 U285 ( .A(cpu_wdata[23]), .Y(n101) );
+  OAI22X1 U286 ( .A(n29), .B(n103), .C(n30), .D(n104), .Y(fft_sub_wdata[22])
+         );
+  INVX1 U287 ( .A(fft_man_wdata[22]), .Y(n104) );
+  INVX1 U288 ( .A(cpu_wdata[22]), .Y(n103) );
+  OAI22X1 U289 ( .A(n29), .B(n105), .C(n30), .D(n106), .Y(fft_sub_wdata[21])
+         );
+  INVX1 U290 ( .A(fft_man_wdata[21]), .Y(n106) );
+  INVX1 U291 ( .A(cpu_wdata[21]), .Y(n105) );
+  OAI22X1 U292 ( .A(n29), .B(n107), .C(n30), .D(n108), .Y(fft_sub_wdata[20])
+         );
+  INVX1 U293 ( .A(fft_man_wdata[20]), .Y(n108) );
+  INVX1 U294 ( .A(cpu_wdata[20]), .Y(n107) );
+  OAI22X1 U295 ( .A(n29), .B(n109), .C(n30), .D(n110), .Y(fft_sub_wdata[1]) );
+  INVX1 U296 ( .A(fft_man_wdata[1]), .Y(n110) );
+  INVX1 U297 ( .A(cpu_wdata[1]), .Y(n109) );
+  OAI22X1 U298 ( .A(n29), .B(n111), .C(n30), .D(n112), .Y(fft_sub_wdata[19])
+         );
+  INVX1 U299 ( .A(fft_man_wdata[19]), .Y(n112) );
+  INVX1 U300 ( .A(cpu_wdata[19]), .Y(n111) );
+  OAI22X1 U301 ( .A(n29), .B(n113), .C(n30), .D(n114), .Y(fft_sub_wdata[18])
+         );
+  INVX1 U302 ( .A(fft_man_wdata[18]), .Y(n114) );
+  INVX1 U303 ( .A(cpu_wdata[18]), .Y(n113) );
+  OAI22X1 U304 ( .A(n29), .B(n115), .C(n30), .D(n116), .Y(fft_sub_wdata[17])
+         );
+  INVX1 U305 ( .A(fft_man_wdata[17]), .Y(n116) );
+  INVX1 U306 ( .A(cpu_wdata[17]), .Y(n115) );
+  OAI22X1 U307 ( .A(n29), .B(n117), .C(n30), .D(n118), .Y(fft_sub_wdata[16])
+         );
+  INVX1 U308 ( .A(fft_man_wdata[16]), .Y(n118) );
+  INVX1 U309 ( .A(cpu_wdata[16]), .Y(n117) );
+  OAI22X1 U310 ( .A(n29), .B(n119), .C(n30), .D(n120), .Y(fft_sub_wdata[15])
+         );
+  INVX1 U311 ( .A(fft_man_wdata[15]), .Y(n120) );
+  INVX1 U312 ( .A(cpu_wdata[15]), .Y(n119) );
+  OAI22X1 U313 ( .A(n29), .B(n121), .C(n30), .D(n122), .Y(fft_sub_wdata[14])
+         );
+  INVX1 U314 ( .A(fft_man_wdata[14]), .Y(n122) );
+  INVX1 U315 ( .A(cpu_wdata[14]), .Y(n121) );
+  OAI22X1 U316 ( .A(n29), .B(n123), .C(n30), .D(n124), .Y(fft_sub_wdata[13])
+         );
+  INVX1 U317 ( .A(fft_man_wdata[13]), .Y(n124) );
+  INVX1 U318 ( .A(cpu_wdata[13]), .Y(n123) );
+  OAI22X1 U319 ( .A(n29), .B(n125), .C(n30), .D(n126), .Y(fft_sub_wdata[12])
+         );
+  INVX1 U320 ( .A(fft_man_wdata[12]), .Y(n126) );
+  INVX1 U321 ( .A(cpu_wdata[12]), .Y(n125) );
+  OAI22X1 U322 ( .A(n29), .B(n127), .C(n30), .D(n128), .Y(fft_sub_wdata[11])
+         );
+  INVX1 U323 ( .A(fft_man_wdata[11]), .Y(n128) );
+  INVX1 U324 ( .A(cpu_wdata[11]), .Y(n127) );
+  OAI22X1 U325 ( .A(n29), .B(n129), .C(n30), .D(n130), .Y(fft_sub_wdata[10])
+         );
+  INVX1 U326 ( .A(fft_man_wdata[10]), .Y(n130) );
+  INVX1 U327 ( .A(cpu_wdata[10]), .Y(n129) );
+  OAI22X1 U328 ( .A(n29), .B(n131), .C(n30), .D(n132), .Y(fft_sub_wdata[0]) );
+  INVX1 U329 ( .A(fft_man_wdata[0]), .Y(n132) );
+  INVX1 U330 ( .A(cpu_wdata[0]), .Y(n131) );
+  OAI22X1 U331 ( .A(n133), .B(n25), .C(n134), .D(n26), .Y(fft_sub_rready) );
+  INVX1 U332 ( .A(fft_man_rready), .Y(n134) );
+  INVX1 U333 ( .A(cpu_rready), .Y(n133) );
+  OAI22X1 U334 ( .A(n29), .B(n135), .C(n30), .D(n136), .Y(fft_sub_bready) );
+  INVX1 U335 ( .A(fft_man_bready), .Y(n136) );
+  INVX1 U336 ( .A(cpu_bready), .Y(n135) );
+  OAI22X1 U337 ( .A(n137), .B(n29), .C(n30), .D(n138), .Y(fft_sub_awvalid) );
+  INVX1 U338 ( .A(fft_man_awvalid), .Y(n138) );
+  INVX1 U339 ( .A(cpu_awvalid), .Y(n137) );
+  OAI22X1 U340 ( .A(n29), .B(n139), .C(n30), .D(n140), .Y(fft_sub_awlen[9]) );
+  INVX1 U341 ( .A(fft_man_awlen[9]), .Y(n140) );
+  INVX1 U342 ( .A(cpu_awlen[9]), .Y(n139) );
+  OAI22X1 U343 ( .A(n29), .B(n141), .C(n30), .D(n142), .Y(fft_sub_awlen[8]) );
+  INVX1 U344 ( .A(fft_man_awlen[8]), .Y(n142) );
+  INVX1 U345 ( .A(cpu_awlen[8]), .Y(n141) );
+  OAI22X1 U346 ( .A(n29), .B(n143), .C(n30), .D(n144), .Y(fft_sub_awlen[7]) );
+  INVX1 U347 ( .A(fft_man_awlen[7]), .Y(n144) );
+  INVX1 U348 ( .A(cpu_awlen[7]), .Y(n143) );
+  OAI22X1 U349 ( .A(n29), .B(n145), .C(n30), .D(n146), .Y(fft_sub_awlen[6]) );
+  INVX1 U350 ( .A(fft_man_awlen[6]), .Y(n146) );
+  INVX1 U351 ( .A(cpu_awlen[6]), .Y(n145) );
+  OAI22X1 U352 ( .A(n29), .B(n147), .C(n30), .D(n148), .Y(fft_sub_awlen[5]) );
+  INVX1 U353 ( .A(fft_man_awlen[5]), .Y(n148) );
+  INVX1 U354 ( .A(cpu_awlen[5]), .Y(n147) );
+  OAI22X1 U355 ( .A(n29), .B(n149), .C(n30), .D(n150), .Y(fft_sub_awlen[4]) );
+  INVX1 U356 ( .A(fft_man_awlen[4]), .Y(n150) );
+  INVX1 U357 ( .A(cpu_awlen[4]), .Y(n149) );
+  OAI22X1 U358 ( .A(n29), .B(n151), .C(n30), .D(n152), .Y(fft_sub_awlen[3]) );
+  INVX1 U359 ( .A(fft_man_awlen[3]), .Y(n152) );
+  INVX1 U360 ( .A(cpu_awlen[3]), .Y(n151) );
+  OAI22X1 U361 ( .A(n29), .B(n153), .C(n30), .D(n154), .Y(fft_sub_awlen[2]) );
+  INVX1 U362 ( .A(fft_man_awlen[2]), .Y(n154) );
+  INVX1 U363 ( .A(cpu_awlen[2]), .Y(n153) );
+  OAI22X1 U364 ( .A(n29), .B(n155), .C(n30), .D(n156), .Y(fft_sub_awlen[1]) );
+  INVX1 U365 ( .A(fft_man_awlen[1]), .Y(n156) );
+  INVX1 U366 ( .A(cpu_awlen[1]), .Y(n155) );
+  OAI22X1 U367 ( .A(n29), .B(n157), .C(n30), .D(n158), .Y(fft_sub_awlen[0]) );
+  INVX1 U368 ( .A(fft_man_awlen[0]), .Y(n158) );
+  INVX1 U369 ( .A(cpu_awlen[0]), .Y(n157) );
+  OAI22X1 U370 ( .A(n29), .B(n159), .C(n30), .D(n160), .Y(fft_sub_awaddr[9])
+         );
+  INVX1 U371 ( .A(fft_man_awaddr[9]), .Y(n160) );
+  INVX1 U372 ( .A(cpu_awaddr[9]), .Y(n159) );
+  OAI22X1 U373 ( .A(n29), .B(n161), .C(n30), .D(n162), .Y(fft_sub_awaddr[8])
+         );
+  INVX1 U374 ( .A(fft_man_awaddr[8]), .Y(n162) );
+  INVX1 U375 ( .A(cpu_awaddr[8]), .Y(n161) );
+  OAI22X1 U376 ( .A(n29), .B(n163), .C(n30), .D(n164), .Y(fft_sub_awaddr[7])
+         );
+  INVX1 U377 ( .A(fft_man_awaddr[7]), .Y(n164) );
+  INVX1 U378 ( .A(cpu_awaddr[7]), .Y(n163) );
+  OAI22X1 U379 ( .A(n29), .B(n165), .C(n30), .D(n166), .Y(fft_sub_awaddr[6])
+         );
+  INVX1 U380 ( .A(fft_man_awaddr[6]), .Y(n166) );
+  INVX1 U381 ( .A(cpu_awaddr[6]), .Y(n165) );
+  OAI22X1 U382 ( .A(n29), .B(n48), .C(n30), .D(n60), .Y(fft_sub_awaddr[5]) );
+  INVX1 U383 ( .A(fft_man_awaddr[5]), .Y(n60) );
+  INVX1 U384 ( .A(cpu_awaddr[5]), .Y(n48) );
+  OAI22X1 U385 ( .A(n29), .B(n47), .C(n30), .D(n59), .Y(fft_sub_awaddr[4]) );
+  INVX1 U386 ( .A(fft_man_awaddr[4]), .Y(n59) );
+  INVX1 U387 ( .A(cpu_awaddr[4]), .Y(n47) );
+  OAI22X1 U388 ( .A(n167), .B(n29), .C(n168), .D(n30), .Y(fft_sub_awaddr[3])
+         );
+  INVX1 U389 ( .A(fft_man_awaddr[3]), .Y(n168) );
+  INVX1 U390 ( .A(cpu_awaddr[3]), .Y(n167) );
+  OAI22X1 U391 ( .A(n29), .B(n169), .C(n30), .D(n170), .Y(fft_sub_awaddr[31])
+         );
+  INVX1 U392 ( .A(fft_man_awaddr[31]), .Y(n170) );
+  INVX1 U393 ( .A(cpu_awaddr[31]), .Y(n169) );
+  OAI22X1 U394 ( .A(n29), .B(n171), .C(n30), .D(n172), .Y(fft_sub_awaddr[30])
+         );
+  INVX1 U395 ( .A(fft_man_awaddr[30]), .Y(n172) );
+  INVX1 U396 ( .A(cpu_awaddr[30]), .Y(n171) );
+  OAI22X1 U397 ( .A(n173), .B(n29), .C(n174), .D(n30), .Y(fft_sub_awaddr[2])
+         );
+  INVX1 U398 ( .A(fft_man_awaddr[2]), .Y(n174) );
+  INVX1 U399 ( .A(cpu_awaddr[2]), .Y(n173) );
+  OAI22X1 U400 ( .A(n29), .B(n175), .C(n30), .D(n176), .Y(fft_sub_awaddr[29])
+         );
+  INVX1 U401 ( .A(fft_man_awaddr[29]), .Y(n176) );
+  INVX1 U402 ( .A(cpu_awaddr[29]), .Y(n175) );
+  OAI22X1 U403 ( .A(n29), .B(n177), .C(n30), .D(n178), .Y(fft_sub_awaddr[28])
+         );
+  INVX1 U404 ( .A(fft_man_awaddr[28]), .Y(n178) );
+  INVX1 U405 ( .A(cpu_awaddr[28]), .Y(n177) );
+  OAI22X1 U406 ( .A(n29), .B(n179), .C(n30), .D(n180), .Y(fft_sub_awaddr[27])
+         );
+  INVX1 U407 ( .A(fft_man_awaddr[27]), .Y(n180) );
+  INVX1 U408 ( .A(cpu_awaddr[27]), .Y(n179) );
+  OAI22X1 U409 ( .A(n29), .B(n181), .C(n30), .D(n182), .Y(fft_sub_awaddr[26])
+         );
+  INVX1 U410 ( .A(fft_man_awaddr[26]), .Y(n182) );
+  INVX1 U411 ( .A(cpu_awaddr[26]), .Y(n181) );
+  OAI22X1 U412 ( .A(n29), .B(n183), .C(n30), .D(n184), .Y(fft_sub_awaddr[25])
+         );
+  INVX1 U413 ( .A(fft_man_awaddr[25]), .Y(n184) );
+  INVX1 U414 ( .A(cpu_awaddr[25]), .Y(n183) );
+  OAI22X1 U415 ( .A(n29), .B(n185), .C(n30), .D(n186), .Y(fft_sub_awaddr[24])
+         );
+  INVX1 U416 ( .A(fft_man_awaddr[24]), .Y(n186) );
+  INVX1 U417 ( .A(cpu_awaddr[24]), .Y(n185) );
+  OAI22X1 U418 ( .A(n29), .B(n187), .C(n30), .D(n188), .Y(fft_sub_awaddr[23])
+         );
+  INVX1 U419 ( .A(fft_man_awaddr[23]), .Y(n188) );
+  INVX1 U420 ( .A(cpu_awaddr[23]), .Y(n187) );
+  OAI22X1 U421 ( .A(n29), .B(n189), .C(n30), .D(n190), .Y(fft_sub_awaddr[22])
+         );
+  INVX1 U422 ( .A(fft_man_awaddr[22]), .Y(n190) );
+  INVX1 U423 ( .A(cpu_awaddr[22]), .Y(n189) );
+  OAI22X1 U424 ( .A(n29), .B(n191), .C(n30), .D(n192), .Y(fft_sub_awaddr[21])
+         );
+  INVX1 U425 ( .A(fft_man_awaddr[21]), .Y(n192) );
+  INVX1 U426 ( .A(cpu_awaddr[21]), .Y(n191) );
+  OAI22X1 U427 ( .A(n29), .B(n193), .C(n30), .D(n194), .Y(fft_sub_awaddr[20])
+         );
+  INVX1 U428 ( .A(fft_man_awaddr[20]), .Y(n194) );
+  INVX1 U429 ( .A(cpu_awaddr[20]), .Y(n193) );
+  OAI22X1 U430 ( .A(n43), .B(n29), .C(n54), .D(n30), .Y(fft_sub_awaddr[1]) );
+  INVX1 U431 ( .A(fft_man_awaddr[1]), .Y(n54) );
+  INVX1 U432 ( .A(cpu_awaddr[1]), .Y(n43) );
+  OAI22X1 U433 ( .A(n29), .B(n195), .C(n30), .D(n196), .Y(fft_sub_awaddr[19])
+         );
+  INVX1 U434 ( .A(fft_man_awaddr[19]), .Y(n196) );
+  INVX1 U435 ( .A(cpu_awaddr[19]), .Y(n195) );
+  OAI22X1 U436 ( .A(n29), .B(n197), .C(n30), .D(n198), .Y(fft_sub_awaddr[18])
+         );
+  INVX1 U437 ( .A(fft_man_awaddr[18]), .Y(n198) );
+  INVX1 U438 ( .A(cpu_awaddr[18]), .Y(n197) );
+  OAI22X1 U439 ( .A(n29), .B(n199), .C(n30), .D(n200), .Y(fft_sub_awaddr[17])
+         );
+  INVX1 U440 ( .A(fft_man_awaddr[17]), .Y(n200) );
+  INVX1 U441 ( .A(cpu_awaddr[17]), .Y(n199) );
+  OAI22X1 U442 ( .A(n29), .B(n201), .C(n30), .D(n202), .Y(fft_sub_awaddr[16])
+         );
+  INVX1 U443 ( .A(fft_man_awaddr[16]), .Y(n202) );
+  INVX1 U444 ( .A(cpu_awaddr[16]), .Y(n201) );
+  OAI22X1 U445 ( .A(n29), .B(n203), .C(n30), .D(n204), .Y(fft_sub_awaddr[15])
+         );
+  INVX1 U446 ( .A(fft_man_awaddr[15]), .Y(n204) );
+  INVX1 U447 ( .A(cpu_awaddr[15]), .Y(n203) );
+  OAI22X1 U448 ( .A(n29), .B(n205), .C(n30), .D(n206), .Y(fft_sub_awaddr[14])
+         );
+  INVX1 U449 ( .A(fft_man_awaddr[14]), .Y(n206) );
+  INVX1 U450 ( .A(cpu_awaddr[14]), .Y(n205) );
+  OAI22X1 U451 ( .A(n29), .B(n207), .C(n30), .D(n208), .Y(fft_sub_awaddr[13])
+         );
+  INVX1 U452 ( .A(fft_man_awaddr[13]), .Y(n208) );
+  INVX1 U453 ( .A(cpu_awaddr[13]), .Y(n207) );
+  OAI22X1 U454 ( .A(n29), .B(n209), .C(n30), .D(n210), .Y(fft_sub_awaddr[12])
+         );
+  INVX1 U455 ( .A(fft_man_awaddr[12]), .Y(n210) );
+  INVX1 U456 ( .A(cpu_awaddr[12]), .Y(n209) );
+  OAI22X1 U457 ( .A(n29), .B(n211), .C(n30), .D(n212), .Y(fft_sub_awaddr[11])
+         );
+  INVX1 U458 ( .A(fft_man_awaddr[11]), .Y(n212) );
+  INVX1 U459 ( .A(cpu_awaddr[11]), .Y(n211) );
+  OAI22X1 U460 ( .A(n29), .B(n45), .C(n30), .D(n56), .Y(fft_sub_awaddr[10]) );
+  INVX1 U461 ( .A(fft_man_awaddr[10]), .Y(n56) );
+  INVX1 U462 ( .A(cpu_awaddr[10]), .Y(n45) );
+  OAI22X1 U463 ( .A(n213), .B(n29), .C(n214), .D(n30), .Y(fft_sub_awaddr[0])
+         );
+  INVX1 U464 ( .A(fft_man_awaddr[0]), .Y(n214) );
+  INVX1 U465 ( .A(cpu_awaddr[0]), .Y(n213) );
+  OAI22X1 U466 ( .A(n215), .B(n25), .C(n216), .D(n26), .Y(fft_sub_arvalid) );
+  INVX1 U467 ( .A(fft_man_arvalid), .Y(n216) );
+  INVX1 U468 ( .A(cpu_arvalid), .Y(n215) );
+  OAI22X1 U469 ( .A(n217), .B(n25), .C(n218), .D(n26), .Y(fft_sub_arlen[9]) );
+  INVX1 U470 ( .A(fft_man_arlen[9]), .Y(n218) );
+  INVX1 U471 ( .A(cpu_arlen[9]), .Y(n217) );
+  OAI22X1 U472 ( .A(n219), .B(n25), .C(n220), .D(n26), .Y(fft_sub_arlen[8]) );
+  INVX1 U473 ( .A(fft_man_arlen[8]), .Y(n220) );
+  INVX1 U474 ( .A(cpu_arlen[8]), .Y(n219) );
+  OAI22X1 U475 ( .A(n221), .B(n25), .C(n222), .D(n26), .Y(fft_sub_arlen[7]) );
+  INVX1 U476 ( .A(fft_man_arlen[7]), .Y(n222) );
+  INVX1 U477 ( .A(cpu_arlen[7]), .Y(n221) );
+  OAI22X1 U478 ( .A(n223), .B(n25), .C(n224), .D(n26), .Y(fft_sub_arlen[6]) );
+  INVX1 U479 ( .A(fft_man_arlen[6]), .Y(n224) );
+  INVX1 U480 ( .A(cpu_arlen[6]), .Y(n223) );
+  OAI22X1 U481 ( .A(n225), .B(n25), .C(n226), .D(n26), .Y(fft_sub_arlen[5]) );
+  INVX1 U482 ( .A(fft_man_arlen[5]), .Y(n226) );
+  INVX1 U483 ( .A(cpu_arlen[5]), .Y(n225) );
+  OAI22X1 U484 ( .A(n227), .B(n25), .C(n228), .D(n26), .Y(fft_sub_arlen[4]) );
+  INVX1 U485 ( .A(fft_man_arlen[4]), .Y(n228) );
+  INVX1 U486 ( .A(cpu_arlen[4]), .Y(n227) );
+  OAI22X1 U487 ( .A(n229), .B(n25), .C(n230), .D(n26), .Y(fft_sub_arlen[3]) );
+  INVX1 U488 ( .A(fft_man_arlen[3]), .Y(n230) );
+  INVX1 U489 ( .A(cpu_arlen[3]), .Y(n229) );
+  OAI22X1 U490 ( .A(n231), .B(n25), .C(n232), .D(n26), .Y(fft_sub_arlen[2]) );
+  INVX1 U491 ( .A(fft_man_arlen[2]), .Y(n232) );
+  INVX1 U492 ( .A(cpu_arlen[2]), .Y(n231) );
+  OAI22X1 U493 ( .A(n233), .B(n25), .C(n234), .D(n26), .Y(fft_sub_arlen[1]) );
+  INVX1 U494 ( .A(fft_man_arlen[1]), .Y(n234) );
+  INVX1 U495 ( .A(cpu_arlen[1]), .Y(n233) );
+  OAI22X1 U496 ( .A(n235), .B(n25), .C(n236), .D(n26), .Y(fft_sub_arlen[0]) );
+  INVX1 U497 ( .A(fft_man_arlen[0]), .Y(n236) );
+  INVX1 U498 ( .A(cpu_arlen[0]), .Y(n235) );
+  OAI22X1 U499 ( .A(n237), .B(n25), .C(n238), .D(n26), .Y(fft_sub_araddr[9])
+         );
+  INVX1 U500 ( .A(fft_man_araddr[9]), .Y(n238) );
+  INVX1 U501 ( .A(cpu_araddr[9]), .Y(n237) );
+  OAI22X1 U502 ( .A(n239), .B(n25), .C(n240), .D(n26), .Y(fft_sub_araddr[8])
+         );
+  INVX1 U503 ( .A(fft_man_araddr[8]), .Y(n240) );
+  INVX1 U504 ( .A(cpu_araddr[8]), .Y(n239) );
+  OAI22X1 U505 ( .A(n241), .B(n25), .C(n242), .D(n26), .Y(fft_sub_araddr[7])
+         );
+  INVX1 U506 ( .A(fft_man_araddr[7]), .Y(n242) );
+  INVX1 U507 ( .A(cpu_araddr[7]), .Y(n241) );
+  OAI22X1 U508 ( .A(n243), .B(n25), .C(n244), .D(n26), .Y(fft_sub_araddr[6])
+         );
+  INVX1 U509 ( .A(fft_man_araddr[6]), .Y(n244) );
+  INVX1 U510 ( .A(cpu_araddr[6]), .Y(n243) );
+  OAI22X1 U511 ( .A(n245), .B(n25), .C(n246), .D(n26), .Y(fft_sub_araddr[5])
+         );
+  INVX1 U512 ( .A(fft_man_araddr[5]), .Y(n246) );
+  INVX1 U513 ( .A(cpu_araddr[5]), .Y(n245) );
+  OAI22X1 U514 ( .A(n247), .B(n25), .C(n248), .D(n26), .Y(fft_sub_araddr[4])
+         );
+  INVX1 U515 ( .A(fft_man_araddr[4]), .Y(n248) );
+  INVX1 U516 ( .A(cpu_araddr[4]), .Y(n247) );
+  OAI22X1 U517 ( .A(n249), .B(n25), .C(n250), .D(n26), .Y(fft_sub_araddr[3])
+         );
+  INVX1 U518 ( .A(fft_man_araddr[3]), .Y(n250) );
+  INVX1 U519 ( .A(cpu_araddr[3]), .Y(n249) );
+  OAI22X1 U520 ( .A(n251), .B(n25), .C(n252), .D(n26), .Y(fft_sub_araddr[31])
+         );
+  INVX1 U521 ( .A(fft_man_araddr[31]), .Y(n252) );
+  INVX1 U522 ( .A(cpu_araddr[31]), .Y(n251) );
+  OAI22X1 U523 ( .A(n253), .B(n25), .C(n254), .D(n26), .Y(fft_sub_araddr[30])
+         );
+  INVX1 U524 ( .A(fft_man_araddr[30]), .Y(n254) );
+  INVX1 U525 ( .A(cpu_araddr[30]), .Y(n253) );
+  OAI22X1 U526 ( .A(n255), .B(n25), .C(n256), .D(n26), .Y(fft_sub_araddr[2])
+         );
+  INVX1 U527 ( .A(fft_man_araddr[2]), .Y(n256) );
+  INVX1 U528 ( .A(cpu_araddr[2]), .Y(n255) );
+  OAI22X1 U529 ( .A(n257), .B(n25), .C(n258), .D(n26), .Y(fft_sub_araddr[29])
+         );
+  INVX1 U530 ( .A(fft_man_araddr[29]), .Y(n258) );
+  INVX1 U531 ( .A(cpu_araddr[29]), .Y(n257) );
+  OAI22X1 U532 ( .A(n259), .B(n25), .C(n260), .D(n26), .Y(fft_sub_araddr[28])
+         );
+  INVX1 U533 ( .A(fft_man_araddr[28]), .Y(n260) );
+  INVX1 U534 ( .A(cpu_araddr[28]), .Y(n259) );
+  OAI22X1 U535 ( .A(n261), .B(n25), .C(n262), .D(n26), .Y(fft_sub_araddr[27])
+         );
+  INVX1 U536 ( .A(fft_man_araddr[27]), .Y(n262) );
+  INVX1 U537 ( .A(cpu_araddr[27]), .Y(n261) );
+  OAI22X1 U538 ( .A(n263), .B(n25), .C(n264), .D(n26), .Y(fft_sub_araddr[26])
+         );
+  INVX1 U539 ( .A(fft_man_araddr[26]), .Y(n264) );
+  INVX1 U540 ( .A(cpu_araddr[26]), .Y(n263) );
+  OAI22X1 U541 ( .A(n265), .B(n25), .C(n266), .D(n26), .Y(fft_sub_araddr[25])
+         );
+  INVX1 U542 ( .A(fft_man_araddr[25]), .Y(n266) );
+  INVX1 U543 ( .A(cpu_araddr[25]), .Y(n265) );
+  OAI22X1 U544 ( .A(n267), .B(n25), .C(n268), .D(n26), .Y(fft_sub_araddr[24])
+         );
+  INVX1 U545 ( .A(fft_man_araddr[24]), .Y(n268) );
+  INVX1 U546 ( .A(cpu_araddr[24]), .Y(n267) );
+  OAI22X1 U547 ( .A(n269), .B(n25), .C(n270), .D(n26), .Y(fft_sub_araddr[23])
+         );
+  INVX1 U548 ( .A(fft_man_araddr[23]), .Y(n270) );
+  INVX1 U549 ( .A(cpu_araddr[23]), .Y(n269) );
+  OAI22X1 U550 ( .A(n271), .B(n25), .C(n272), .D(n26), .Y(fft_sub_araddr[22])
+         );
+  INVX1 U551 ( .A(fft_man_araddr[22]), .Y(n272) );
+  INVX1 U552 ( .A(cpu_araddr[22]), .Y(n271) );
+  OAI22X1 U553 ( .A(n273), .B(n25), .C(n274), .D(n26), .Y(fft_sub_araddr[21])
+         );
+  INVX1 U554 ( .A(fft_man_araddr[21]), .Y(n274) );
+  INVX1 U555 ( .A(cpu_araddr[21]), .Y(n273) );
+  OAI22X1 U556 ( .A(n275), .B(n25), .C(n276), .D(n26), .Y(fft_sub_araddr[20])
+         );
+  INVX1 U557 ( .A(fft_man_araddr[20]), .Y(n276) );
+  INVX1 U558 ( .A(cpu_araddr[20]), .Y(n275) );
+  OAI22X1 U559 ( .A(n277), .B(n25), .C(n278), .D(n26), .Y(fft_sub_araddr[1])
+         );
+  INVX1 U560 ( .A(fft_man_araddr[1]), .Y(n278) );
+  INVX1 U561 ( .A(cpu_araddr[1]), .Y(n277) );
+  OAI22X1 U562 ( .A(n279), .B(n25), .C(n280), .D(n26), .Y(fft_sub_araddr[19])
+         );
+  INVX1 U563 ( .A(fft_man_araddr[19]), .Y(n280) );
+  INVX1 U564 ( .A(cpu_araddr[19]), .Y(n279) );
+  OAI22X1 U565 ( .A(n281), .B(n25), .C(n282), .D(n26), .Y(fft_sub_araddr[18])
+         );
+  INVX1 U566 ( .A(fft_man_araddr[18]), .Y(n282) );
+  INVX1 U567 ( .A(cpu_araddr[18]), .Y(n281) );
+  OAI22X1 U568 ( .A(n283), .B(n25), .C(n284), .D(n26), .Y(fft_sub_araddr[17])
+         );
+  INVX1 U569 ( .A(fft_man_araddr[17]), .Y(n284) );
+  INVX1 U570 ( .A(cpu_araddr[17]), .Y(n283) );
+  OAI22X1 U571 ( .A(n285), .B(n25), .C(n286), .D(n26), .Y(fft_sub_araddr[16])
+         );
+  INVX1 U572 ( .A(fft_man_araddr[16]), .Y(n286) );
+  INVX1 U573 ( .A(cpu_araddr[16]), .Y(n285) );
+  OAI22X1 U574 ( .A(n287), .B(n25), .C(n288), .D(n26), .Y(fft_sub_araddr[15])
+         );
+  INVX1 U575 ( .A(fft_man_araddr[15]), .Y(n288) );
+  INVX1 U576 ( .A(cpu_araddr[15]), .Y(n287) );
+  OAI22X1 U577 ( .A(n289), .B(n25), .C(n290), .D(n26), .Y(fft_sub_araddr[14])
+         );
+  INVX1 U578 ( .A(fft_man_araddr[14]), .Y(n290) );
+  INVX1 U579 ( .A(cpu_araddr[14]), .Y(n289) );
+  OAI22X1 U580 ( .A(n291), .B(n25), .C(n292), .D(n26), .Y(fft_sub_araddr[13])
+         );
+  INVX1 U581 ( .A(fft_man_araddr[13]), .Y(n292) );
+  INVX1 U582 ( .A(cpu_araddr[13]), .Y(n291) );
+  OAI22X1 U583 ( .A(n293), .B(n25), .C(n294), .D(n26), .Y(fft_sub_araddr[12])
+         );
+  INVX1 U584 ( .A(fft_man_araddr[12]), .Y(n294) );
+  INVX1 U585 ( .A(cpu_araddr[12]), .Y(n293) );
+  OAI22X1 U586 ( .A(n295), .B(n25), .C(n296), .D(n26), .Y(fft_sub_araddr[11])
+         );
+  INVX1 U587 ( .A(fft_man_araddr[11]), .Y(n296) );
+  INVX1 U588 ( .A(cpu_araddr[11]), .Y(n295) );
+  OAI22X1 U589 ( .A(n297), .B(n25), .C(n298), .D(n26), .Y(fft_sub_araddr[10])
+         );
+  INVX1 U590 ( .A(fft_man_araddr[10]), .Y(n298) );
+  INVX1 U591 ( .A(cpu_araddr[10]), .Y(n297) );
+  OAI22X1 U592 ( .A(n299), .B(n25), .C(n300), .D(n26), .Y(fft_sub_araddr[0])
+         );
+  INVX1 U593 ( .A(fft_man_araddr[0]), .Y(n300) );
+  INVX1 U594 ( .A(cpu_araddr[0]), .Y(n299) );
+  OAI21X1 U595 ( .A(n30), .B(n343), .C(n344), .Y(fft_man_wready) );
+  AOI21X1 U596 ( .A(sram_wready), .B(n4), .C(n345), .Y(n344) );
+  OAI21X1 U597 ( .A(n346), .B(n26), .C(n347), .Y(fft_man_rvalid) );
+  AOI21X1 U598 ( .A(sram_rvalid), .B(n3), .C(n348), .Y(n347) );
+  OAI21X1 U599 ( .A(n26), .B(n349), .C(n350), .Y(fft_man_rresp) );
+  AOI21X1 U600 ( .A(sram_rresp), .B(n3), .C(n348), .Y(n350) );
+  OAI21X1 U601 ( .A(n351), .B(n26), .C(n352), .Y(fft_man_rlast) );
+  AOI21X1 U602 ( .A(sram_rlast), .B(n3), .C(n348), .Y(n352) );
+  OAI22X1 U603 ( .A(n26), .B(n353), .C(n24), .D(n354), .Y(fft_man_rdata[9]) );
+  OAI22X1 U604 ( .A(n26), .B(n355), .C(n24), .D(n356), .Y(fft_man_rdata[8]) );
+  OAI22X1 U605 ( .A(n26), .B(n357), .C(n24), .D(n358), .Y(fft_man_rdata[7]) );
+  OAI22X1 U606 ( .A(n26), .B(n359), .C(n24), .D(n360), .Y(fft_man_rdata[6]) );
+  OAI22X1 U607 ( .A(n26), .B(n361), .C(n24), .D(n362), .Y(fft_man_rdata[5]) );
+  OAI22X1 U608 ( .A(n26), .B(n363), .C(n24), .D(n364), .Y(fft_man_rdata[4]) );
+  OAI22X1 U609 ( .A(n26), .B(n365), .C(n24), .D(n366), .Y(fft_man_rdata[3]) );
+  OAI22X1 U610 ( .A(n26), .B(n367), .C(n24), .D(n368), .Y(n455) );
+  OAI22X1 U611 ( .A(n26), .B(n369), .C(n24), .D(n370), .Y(fft_man_rdata[30])
+         );
+  OAI22X1 U612 ( .A(n26), .B(n371), .C(n24), .D(n372), .Y(fft_man_rdata[2]) );
+  OAI22X1 U613 ( .A(n26), .B(n373), .C(n24), .D(n374), .Y(fft_man_rdata[29])
+         );
+  OAI22X1 U614 ( .A(n26), .B(n375), .C(n24), .D(n376), .Y(fft_man_rdata[28])
+         );
+  OAI22X1 U615 ( .A(n26), .B(n377), .C(n24), .D(n378), .Y(fft_man_rdata[27])
+         );
+  OAI22X1 U616 ( .A(n26), .B(n379), .C(n24), .D(n380), .Y(fft_man_rdata[26])
+         );
+  OAI22X1 U617 ( .A(n26), .B(n381), .C(n24), .D(n382), .Y(fft_man_rdata[25])
+         );
+  OAI22X1 U618 ( .A(n26), .B(n383), .C(n24), .D(n384), .Y(fft_man_rdata[24])
+         );
+  OAI22X1 U619 ( .A(n26), .B(n385), .C(n24), .D(n386), .Y(fft_man_rdata[23])
+         );
+  OAI22X1 U620 ( .A(n26), .B(n387), .C(n24), .D(n388), .Y(fft_man_rdata[22])
+         );
+  OAI22X1 U621 ( .A(n26), .B(n389), .C(n24), .D(n390), .Y(fft_man_rdata[21])
+         );
+  OAI22X1 U622 ( .A(n26), .B(n391), .C(n24), .D(n392), .Y(fft_man_rdata[20])
+         );
+  OAI22X1 U623 ( .A(n26), .B(n393), .C(n24), .D(n394), .Y(fft_man_rdata[1]) );
+  OAI22X1 U624 ( .A(n26), .B(n395), .C(n24), .D(n396), .Y(fft_man_rdata[19])
+         );
+  OAI22X1 U625 ( .A(n26), .B(n397), .C(n24), .D(n398), .Y(fft_man_rdata[18])
+         );
+  OAI22X1 U626 ( .A(n26), .B(n399), .C(n24), .D(n400), .Y(fft_man_rdata[17])
+         );
+  OAI22X1 U627 ( .A(n26), .B(n401), .C(n24), .D(n402), .Y(fft_man_rdata[16])
+         );
+  OAI22X1 U628 ( .A(n26), .B(n403), .C(n24), .D(n404), .Y(n456) );
+  OAI22X1 U629 ( .A(n26), .B(n405), .C(n24), .D(n406), .Y(fft_man_rdata[14])
+         );
+  OAI22X1 U630 ( .A(n26), .B(n407), .C(n24), .D(n408), .Y(fft_man_rdata[13])
+         );
+  OAI22X1 U631 ( .A(n26), .B(n409), .C(n24), .D(n410), .Y(fft_man_rdata[12])
+         );
+  OAI22X1 U632 ( .A(n26), .B(n411), .C(n24), .D(n412), .Y(fft_man_rdata[11])
+         );
+  OAI22X1 U633 ( .A(n26), .B(n413), .C(n24), .D(n420), .Y(fft_man_rdata[10])
+         );
+  OAI22X1 U634 ( .A(n26), .B(n421), .C(n24), .D(n422), .Y(fft_man_rdata[0]) );
+  OAI21X1 U635 ( .A(n423), .B(n30), .C(n424), .Y(fft_man_bvalid) );
+  AOI21X1 U636 ( .A(n4), .B(sram_bvalid), .C(n345), .Y(n424) );
+  OAI21X1 U637 ( .A(n30), .B(n425), .C(n426), .Y(fft_man_bresp) );
+  AOI21X1 U638 ( .A(sram_bresp), .B(n4), .C(n345), .Y(n426) );
+  OAI21X1 U639 ( .A(n30), .B(n427), .C(n428), .Y(fft_man_awready) );
+  AOI21X1 U640 ( .A(sram_awready), .B(n4), .C(n345), .Y(n428) );
+  AND2X1 U641 ( .A(n429), .B(n430), .Y(n345) );
+  INVX1 U642 ( .A(n433), .Y(n429) );
+  NAND3X1 U643 ( .A(w_state), .B(n335), .C(w_perms[1]), .Y(n433) );
+  INVX1 U644 ( .A(w_perms[0]), .Y(n335) );
+  OAI21X1 U645 ( .A(n26), .B(n434), .C(n435), .Y(fft_man_arready) );
+  AOI21X1 U646 ( .A(sram_arready), .B(n3), .C(n348), .Y(n435) );
+  AND2X1 U647 ( .A(n436), .B(n437), .Y(n348) );
+  INVX1 U648 ( .A(n440), .Y(n437) );
+  NAND3X1 U649 ( .A(r_perms[1]), .B(n324), .C(r_state), .Y(n440) );
+  INVX1 U650 ( .A(r_perms[0]), .Y(n324) );
+  OAI21X1 U651 ( .A(n29), .B(n343), .C(n441), .Y(cpu_wready) );
+  AOI21X1 U652 ( .A(sram_wready), .B(n2), .C(n442), .Y(n441) );
+  INVX1 U653 ( .A(fft_sub_wready), .Y(n343) );
+  OAI21X1 U654 ( .A(n25), .B(n346), .C(n443), .Y(cpu_rvalid) );
+  AOI21X1 U655 ( .A(sram_rvalid), .B(n1), .C(n444), .Y(n443) );
+  INVX1 U656 ( .A(fft_sub_rvalid), .Y(n346) );
+  OAI21X1 U657 ( .A(n25), .B(n349), .C(n445), .Y(cpu_rresp) );
+  AOI21X1 U658 ( .A(sram_rresp), .B(n1), .C(n444), .Y(n445) );
+  INVX1 U659 ( .A(fft_sub_rresp), .Y(n349) );
+  OAI21X1 U660 ( .A(n25), .B(n351), .C(n446), .Y(cpu_rlast) );
+  AOI21X1 U661 ( .A(sram_rlast), .B(n1), .C(n444), .Y(n446) );
+  INVX1 U662 ( .A(fft_sub_rlast), .Y(n351) );
+  OAI22X1 U663 ( .A(n25), .B(n353), .C(n23), .D(n354), .Y(cpu_rdata[9]) );
+  INVX1 U664 ( .A(sram_rdata[9]), .Y(n354) );
+  INVX1 U665 ( .A(fft_sub_rdata[9]), .Y(n353) );
+  OAI22X1 U666 ( .A(n25), .B(n355), .C(n23), .D(n356), .Y(cpu_rdata[8]) );
+  INVX1 U667 ( .A(sram_rdata[8]), .Y(n356) );
+  INVX1 U668 ( .A(fft_sub_rdata[8]), .Y(n355) );
+  OAI22X1 U669 ( .A(n25), .B(n357), .C(n23), .D(n358), .Y(cpu_rdata[7]) );
+  INVX1 U670 ( .A(sram_rdata[7]), .Y(n358) );
+  INVX1 U671 ( .A(fft_sub_rdata[7]), .Y(n357) );
+  OAI22X1 U672 ( .A(n25), .B(n359), .C(n23), .D(n360), .Y(cpu_rdata[6]) );
+  INVX1 U673 ( .A(sram_rdata[6]), .Y(n360) );
+  INVX1 U674 ( .A(fft_sub_rdata[6]), .Y(n359) );
+  OAI22X1 U675 ( .A(n25), .B(n361), .C(n23), .D(n362), .Y(cpu_rdata[5]) );
+  INVX1 U676 ( .A(sram_rdata[5]), .Y(n362) );
+  INVX1 U677 ( .A(fft_sub_rdata[5]), .Y(n361) );
+  OAI22X1 U678 ( .A(n25), .B(n363), .C(n23), .D(n364), .Y(cpu_rdata[4]) );
+  INVX1 U679 ( .A(sram_rdata[4]), .Y(n364) );
+  INVX1 U680 ( .A(fft_sub_rdata[4]), .Y(n363) );
+  OAI22X1 U681 ( .A(n25), .B(n365), .C(n23), .D(n366), .Y(cpu_rdata[3]) );
+  INVX1 U682 ( .A(sram_rdata[3]), .Y(n366) );
+  INVX1 U683 ( .A(fft_sub_rdata[3]), .Y(n365) );
+  OAI22X1 U684 ( .A(n25), .B(n367), .C(n23), .D(n368), .Y(cpu_rdata[31]) );
+  INVX1 U685 ( .A(sram_rdata[31]), .Y(n368) );
+  INVX1 U686 ( .A(fft_sub_rdata[31]), .Y(n367) );
+  OAI22X1 U687 ( .A(n25), .B(n369), .C(n23), .D(n370), .Y(cpu_rdata[30]) );
+  INVX1 U688 ( .A(sram_rdata[30]), .Y(n370) );
+  INVX1 U689 ( .A(fft_sub_rdata[30]), .Y(n369) );
+  OAI22X1 U690 ( .A(n25), .B(n371), .C(n23), .D(n372), .Y(cpu_rdata[2]) );
+  INVX1 U691 ( .A(sram_rdata[2]), .Y(n372) );
+  INVX1 U692 ( .A(fft_sub_rdata[2]), .Y(n371) );
+  OAI22X1 U693 ( .A(n25), .B(n373), .C(n23), .D(n374), .Y(cpu_rdata[29]) );
+  INVX1 U694 ( .A(sram_rdata[29]), .Y(n374) );
+  INVX1 U695 ( .A(fft_sub_rdata[29]), .Y(n373) );
+  OAI22X1 U696 ( .A(n25), .B(n375), .C(n23), .D(n376), .Y(cpu_rdata[28]) );
+  INVX1 U697 ( .A(sram_rdata[28]), .Y(n376) );
+  INVX1 U698 ( .A(fft_sub_rdata[28]), .Y(n375) );
+  OAI22X1 U699 ( .A(n25), .B(n377), .C(n23), .D(n378), .Y(cpu_rdata[27]) );
+  INVX1 U700 ( .A(sram_rdata[27]), .Y(n378) );
+  INVX1 U701 ( .A(fft_sub_rdata[27]), .Y(n377) );
+  OAI22X1 U702 ( .A(n25), .B(n379), .C(n23), .D(n380), .Y(cpu_rdata[26]) );
+  INVX1 U703 ( .A(sram_rdata[26]), .Y(n380) );
+  INVX1 U704 ( .A(fft_sub_rdata[26]), .Y(n379) );
+  OAI22X1 U705 ( .A(n25), .B(n381), .C(n23), .D(n382), .Y(cpu_rdata[25]) );
+  INVX1 U706 ( .A(sram_rdata[25]), .Y(n382) );
+  INVX1 U707 ( .A(fft_sub_rdata[25]), .Y(n381) );
+  OAI22X1 U708 ( .A(n25), .B(n383), .C(n23), .D(n384), .Y(cpu_rdata[24]) );
+  INVX1 U709 ( .A(sram_rdata[24]), .Y(n384) );
+  INVX1 U710 ( .A(fft_sub_rdata[24]), .Y(n383) );
+  OAI22X1 U711 ( .A(n25), .B(n385), .C(n23), .D(n386), .Y(cpu_rdata[23]) );
+  INVX1 U712 ( .A(sram_rdata[23]), .Y(n386) );
+  INVX1 U713 ( .A(fft_sub_rdata[23]), .Y(n385) );
+  OAI22X1 U714 ( .A(n25), .B(n387), .C(n23), .D(n388), .Y(cpu_rdata[22]) );
+  INVX1 U715 ( .A(sram_rdata[22]), .Y(n388) );
+  INVX1 U716 ( .A(fft_sub_rdata[22]), .Y(n387) );
+  OAI22X1 U717 ( .A(n25), .B(n389), .C(n23), .D(n390), .Y(cpu_rdata[21]) );
+  INVX1 U718 ( .A(sram_rdata[21]), .Y(n390) );
+  INVX1 U719 ( .A(fft_sub_rdata[21]), .Y(n389) );
+  OAI22X1 U720 ( .A(n25), .B(n391), .C(n23), .D(n392), .Y(cpu_rdata[20]) );
+  INVX1 U721 ( .A(sram_rdata[20]), .Y(n392) );
+  INVX1 U722 ( .A(fft_sub_rdata[20]), .Y(n391) );
+  OAI22X1 U723 ( .A(n25), .B(n393), .C(n23), .D(n394), .Y(cpu_rdata[1]) );
+  INVX1 U724 ( .A(sram_rdata[1]), .Y(n394) );
+  INVX1 U725 ( .A(fft_sub_rdata[1]), .Y(n393) );
+  OAI22X1 U726 ( .A(n25), .B(n395), .C(n23), .D(n396), .Y(cpu_rdata[19]) );
+  INVX1 U727 ( .A(sram_rdata[19]), .Y(n396) );
+  INVX1 U728 ( .A(fft_sub_rdata[19]), .Y(n395) );
+  OAI22X1 U729 ( .A(n25), .B(n397), .C(n23), .D(n398), .Y(cpu_rdata[18]) );
+  INVX1 U730 ( .A(sram_rdata[18]), .Y(n398) );
+  INVX1 U731 ( .A(fft_sub_rdata[18]), .Y(n397) );
+  OAI22X1 U732 ( .A(n25), .B(n399), .C(n23), .D(n400), .Y(cpu_rdata[17]) );
+  INVX1 U733 ( .A(sram_rdata[17]), .Y(n400) );
+  INVX1 U734 ( .A(fft_sub_rdata[17]), .Y(n399) );
+  OAI22X1 U735 ( .A(n25), .B(n401), .C(n23), .D(n402), .Y(cpu_rdata[16]) );
+  INVX1 U736 ( .A(sram_rdata[16]), .Y(n402) );
+  INVX1 U737 ( .A(fft_sub_rdata[16]), .Y(n401) );
+  OAI22X1 U738 ( .A(n25), .B(n403), .C(n23), .D(n404), .Y(cpu_rdata[15]) );
+  INVX1 U739 ( .A(sram_rdata[15]), .Y(n404) );
+  INVX1 U740 ( .A(fft_sub_rdata[15]), .Y(n403) );
+  OAI22X1 U741 ( .A(n25), .B(n405), .C(n23), .D(n406), .Y(cpu_rdata[14]) );
+  INVX1 U742 ( .A(sram_rdata[14]), .Y(n406) );
+  INVX1 U743 ( .A(fft_sub_rdata[14]), .Y(n405) );
+  OAI22X1 U744 ( .A(n25), .B(n407), .C(n23), .D(n408), .Y(cpu_rdata[13]) );
+  INVX1 U745 ( .A(sram_rdata[13]), .Y(n408) );
+  INVX1 U746 ( .A(fft_sub_rdata[13]), .Y(n407) );
+  OAI22X1 U747 ( .A(n25), .B(n409), .C(n23), .D(n410), .Y(cpu_rdata[12]) );
+  INVX1 U748 ( .A(sram_rdata[12]), .Y(n410) );
+  INVX1 U749 ( .A(fft_sub_rdata[12]), .Y(n409) );
+  OAI22X1 U750 ( .A(n25), .B(n411), .C(n23), .D(n412), .Y(cpu_rdata[11]) );
+  INVX1 U751 ( .A(sram_rdata[11]), .Y(n412) );
+  INVX1 U752 ( .A(fft_sub_rdata[11]), .Y(n411) );
+  OAI22X1 U753 ( .A(n25), .B(n413), .C(n23), .D(n420), .Y(cpu_rdata[10]) );
+  INVX1 U754 ( .A(sram_rdata[10]), .Y(n420) );
+  INVX1 U755 ( .A(fft_sub_rdata[10]), .Y(n413) );
+  OAI22X1 U756 ( .A(n25), .B(n421), .C(n23), .D(n422), .Y(cpu_rdata[0]) );
+  INVX1 U757 ( .A(sram_rdata[0]), .Y(n422) );
+  INVX1 U758 ( .A(fft_sub_rdata[0]), .Y(n421) );
+  OAI21X1 U759 ( .A(n29), .B(n423), .C(n447), .Y(cpu_bvalid) );
+  AOI21X1 U760 ( .A(sram_bvalid), .B(n2), .C(n442), .Y(n447) );
+  INVX1 U761 ( .A(fft_sub_bvalid), .Y(n423) );
+  OAI21X1 U762 ( .A(n29), .B(n425), .C(n448), .Y(cpu_bresp) );
+  AOI21X1 U763 ( .A(sram_bresp), .B(n2), .C(n442), .Y(n448) );
+  INVX1 U764 ( .A(fft_sub_bresp), .Y(n425) );
+  OAI21X1 U765 ( .A(n29), .B(n427), .C(n449), .Y(cpu_awready) );
+  AOI21X1 U766 ( .A(sram_awready), .B(n2), .C(n442), .Y(n449) );
+  AND2X1 U767 ( .A(n430), .B(n450), .Y(n442) );
+  NOR2X1 U768 ( .A(n432), .B(n431), .Y(n430) );
+  NOR2X1 U769 ( .A(n31), .B(w_dest[0]), .Y(n431) );
+  INVX1 U770 ( .A(w_dest[1]), .Y(n31) );
+  INVX1 U771 ( .A(fft_sub_awready), .Y(n427) );
+  INVX1 U772 ( .A(n451), .Y(n450) );
+  NAND3X1 U773 ( .A(w_perms[0]), .B(n339), .C(w_state), .Y(n451) );
+  INVX1 U774 ( .A(w_perms[1]), .Y(n339) );
+  NOR2X1 U775 ( .A(n34), .B(w_dest[1]), .Y(n432) );
+  INVX1 U776 ( .A(w_dest[0]), .Y(n34) );
+  OAI21X1 U777 ( .A(n25), .B(n434), .C(n452), .Y(cpu_arready) );
+  AOI21X1 U778 ( .A(sram_arready), .B(n1), .C(n444), .Y(n452) );
+  AND2X1 U779 ( .A(n436), .B(n453), .Y(n444) );
+  NOR2X1 U780 ( .A(n438), .B(n439), .Y(n436) );
+  NOR2X1 U781 ( .A(n301), .B(r_dest[0]), .Y(n438) );
+  INVX1 U782 ( .A(r_dest[1]), .Y(n301) );
+  INVX1 U783 ( .A(fft_sub_arready), .Y(n434) );
+  INVX1 U784 ( .A(n454), .Y(n453) );
+  NAND3X1 U785 ( .A(r_state), .B(n329), .C(r_perms[0]), .Y(n454) );
+  INVX1 U786 ( .A(r_perms[1]), .Y(n329) );
+  NOR2X1 U787 ( .A(n304), .B(r_dest[1]), .Y(n439) );
+  INVX1 U788 ( .A(r_dest[0]), .Y(n304) );
 endmodule
 
 

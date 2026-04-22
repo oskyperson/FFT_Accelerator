@@ -37,6 +37,23 @@ module manager_model (
 );
 
     
+
+    initial begin
+        
+        cpu_awaddr  = '0;  
+        cpu_awvalid = '0;
+        cpu_awlen   = '0;
+        cpu_wdata  = '0;
+        cpu_wstrb  = '0;
+        cpu_wlast  = '0;
+        cpu_wvalid = '0;
+        cpu_bready = '0;
+        cpu_araddr  = '0;
+        cpu_arvalid = '0;
+        cpu_arlen   = '0;
+        cpu_rready = '0;
+    end
+
     task automatic write_burst(input [31:0] start_addr, input [31:0] data_queue [$]);
         int num_beats = data_queue.size();
         if (num_beats == 0) return;
@@ -46,8 +63,10 @@ module manager_model (
         cpu_awaddr <= start_addr;
         cpu_awlen <= num_beats - 1; 
         cpu_awvalid <= 1'b1;
-        wait(cpu_awready);
-        @(posedge clk);
+        do begin
+            @(negedge clk);
+        end while(!cpu_awready);
+        @(negedge clk);
         cpu_awvalid <= 1'b0;
 
         
@@ -80,18 +99,22 @@ module manager_model (
         cpu_araddr <= start_addr;
         cpu_arlen <= num_beats - 1;
         cpu_arvalid <= 1'b1;
-        wait(cpu_arready);
-        @(posedge clk);
+        do begin
+            @(negedge clk);
+        end while(!cpu_arready);
+        
+        @(negedge clk);
         cpu_arvalid <= 1'b0;
 
         
         cpu_rready <= 1'b1;
         for (int i = 0; i < num_beats; i++) begin
+
             wait(cpu_rvalid);
             
             result_queue.push_back(cpu_rdata);
             
-            
+            $display("read: %d", i);
             if (i == num_beats - 1 && !cpu_rlast) 
                 $display("[ERROR] cpu_rlast not asserted on final beat!");
             

@@ -129,6 +129,7 @@ module arbiter #(
             BUSY: begin
                 if(w_done) w_next_state = IDLE;
             end
+            default: w_next_state = IDLE;
         endcase
         case(r_state)
             IDLE: begin
@@ -137,6 +138,7 @@ module arbiter #(
             BUSY: begin
                 if(r_done) r_next_state = IDLE;
             end
+            default: r_next_state = IDLE;
         endcase
     end
 
@@ -188,7 +190,7 @@ module arbiter #(
         {fft_sub_awvalid, sram_awvalid, fft_sub_arvalid, sram_arvalid} = '0;
         {fft_sub_wvalid, sram_wvalid,  fft_sub_bready, sram_bready}  = '0;
         {fft_sub_rready, sram_rready} = '0;
-        {cpu_awready, fft_man_awready, cpu_arready, fft_man_arready}   = '0;
+        {cpu_awready, fft_man_awready, cpu_arready, fft_man_arready} = '0;
         {cpu_wready, fft_man_wready, cpu_bvalid, fft_man_bvalid}    = '0;
         {cpu_rvalid, fft_man_rvalid} = '0;
 
@@ -200,7 +202,7 @@ module arbiter #(
         {sram_arlen, sram_wstrb, sram_awlen} = '0;
 
         //write routing
-        if (w_perms == 2'b01) begin
+        if (w_perms == 2'b01 && w_state == BUSY) begin
             if (w_dest == 2'b01) begin
                 fft_sub_awaddr = cpu_awaddr; fft_sub_awvalid = cpu_awvalid; cpu_awready = fft_sub_awready;
                 fft_sub_wdata = cpu_wdata; fft_sub_wvalid  = cpu_wvalid; fft_sub_wlast = cpu_wlast; cpu_wready = fft_sub_wready;
@@ -217,7 +219,7 @@ module arbiter #(
                 cpu_bresp = 1'b1; 
                 cpu_awready = 1'b1; cpu_wready = 1'b1; cpu_bvalid = 1'b1;
             end
-        end else if (w_perms == 2'b10) begin 
+        end else if (w_perms == 2'b10 && w_state == BUSY) begin 
             if (w_dest == 2'b01) begin 
                 fft_sub_awaddr = fft_man_awaddr; fft_sub_awvalid = fft_man_awvalid; fft_man_awready = fft_sub_awready;
                 fft_sub_wdata = fft_man_wdata; fft_sub_wvalid = fft_man_wvalid; fft_sub_wlast = fft_man_wlast; fft_man_wready = fft_sub_wready;
@@ -236,7 +238,7 @@ module arbiter #(
             end
         end
         //read
-        if (r_perms == 2'b01) begin 
+        if (r_perms == 2'b01 && r_state == BUSY) begin 
             if (r_dest == 2'b01) begin 
                 fft_sub_araddr = cpu_araddr; fft_sub_arvalid = cpu_arvalid; cpu_arready = fft_sub_arready;
                 cpu_rdata = fft_sub_rdata; cpu_rresp = fft_sub_rresp; cpu_rlast = fft_sub_rlast; cpu_rvalid = fft_sub_rvalid; fft_sub_rready = cpu_rready;
@@ -250,7 +252,7 @@ module arbiter #(
                 cpu_arready = 1'b1; cpu_rvalid = 1'b1; cpu_rlast = 1'b1;
             end
             
-        end else if (r_perms == 2'b10) begin 
+        end else if (r_perms == 2'b10 && r_state == BUSY) begin 
             if (r_dest == 2'b01) begin
                 fft_sub_araddr = fft_man_araddr; fft_sub_arvalid = fft_man_arvalid; fft_man_arready = fft_sub_arready;
                 fft_man_rdata = fft_sub_rdata; fft_man_rresp = fft_sub_rresp; fft_man_rlast = fft_sub_rlast; fft_man_rvalid = fft_sub_rvalid; fft_sub_rready = fft_man_rready;

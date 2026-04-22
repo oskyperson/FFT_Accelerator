@@ -74,7 +74,9 @@ module sram_model #(
         file = $fopen(filename, "w");
         if (file) begin
             foreach (mem[i]) begin
-                $fdisplay(file, "%h", mem[i]);
+                if(i>511) begin
+                    $fdisplay(file, "%h", mem[i]);
+                end
             end
             $fclose(file);
         end

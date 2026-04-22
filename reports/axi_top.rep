@@ -7,13 +7,13 @@ Report : timing
         -max_paths 1
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 21:14:56 2026
+Date   : Tue Apr 21 23:43:38 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
 Wire Load Model Mode: top
 
-  Startpoint: arbit/r_perms_reg[1]
+  Startpoint: arbit/r_state_reg
               (rising edge-triggered flip-flop)
   Endpoint: cpu_rlast (output port)
   Path Group: (none)
@@ -21,35 +21,35 @@ Wire Load Model Mode: top
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
-  arbit/r_perms_reg[1]/CLK (DFFSR)                        0.00       0.00 r
-  arbit/r_perms_reg[1]/Q (DFFSR)                          0.71       0.71 f
-  arbit/U792/Y (INVX1)                                    0.34       1.04 r
-  arbit/U789/Y (NAND3X1)                                  0.04       1.08 f
-  arbit/U21/Y (INVX1)                                     0.30       1.38 r
-  arbit/U22/Y (INVX8)                                     0.73       2.11 f
-  arbit/U485/Y (OAI22X1)                                  0.40       2.51 r
-  arbit/fft_sub_arlen[3] (arbiter)                        0.00       2.51 r
-  fft_sub/fft_sub_arlen[3] (fft_axi_subordinate)          0.00       2.51 r
+  arbit/r_state_reg/CLK (DFFSR)                           0.00       0.00 r
+  arbit/r_state_reg/Q (DFFSR)                             0.91       0.91 f
+  arbit/U785/Y (NAND3X1)                                  0.36       1.26 r
+  arbit/U784/Y (INVX1)                                    0.22       1.48 f
+  arbit/U20/Y (AND2X2)                                    0.35       1.84 f
+  arbit/U27/Y (INVX8)                                     0.63       2.47 r
+  arbit/U487/Y (OAI22X1)                                  0.17       2.64 f
+  arbit/fft_sub_arlen[3] (arbiter)                        0.00       2.64 f
+  fft_sub/fft_sub_arlen[3] (fft_axi_subordinate)          0.00       2.64 f
   fft_sub/read_counter/len[3] (fft_axi_counter_WRITE_OR_READ0_0)
-                                                          0.00       2.51 r
-  fft_sub/read_counter/U57/Y (NOR2X1)                     0.23       2.75 f
-  fft_sub/read_counter/U50/Y (NOR2X1)                     0.12       2.87 r
-  fft_sub/read_counter/U49/Y (AOI22X1)                    0.14       3.01 f
-  fft_sub/read_counter/U48/Y (OAI21X1)                    0.14       3.15 r
-  fft_sub/read_counter/U47/Y (OAI21X1)                    0.10       3.25 f
-  fft_sub/read_counter/U44/Y (OAI22X1)                    0.14       3.40 r
-  fft_sub/read_counter/U40/Y (OAI21X1)                    0.10       3.50 f
-  fft_sub/read_counter/U37/Y (OAI21X1)                    0.17       3.67 r
-  fft_sub/read_counter/U36/Y (NOR2X1)                     0.24       3.91 f
+                                                          0.00       2.64 f
+  fft_sub/read_counter/U57/Y (NOR2X1)                     0.16       2.80 r
+  fft_sub/read_counter/U50/Y (NOR2X1)                     0.16       2.96 f
+  fft_sub/read_counter/U49/Y (AOI22X1)                    0.15       3.12 r
+  fft_sub/read_counter/U48/Y (OAI21X1)                    0.09       3.21 f
+  fft_sub/read_counter/U47/Y (OAI21X1)                    0.13       3.34 r
+  fft_sub/read_counter/U44/Y (OAI22X1)                    0.15       3.50 f
+  fft_sub/read_counter/U40/Y (OAI21X1)                    0.15       3.65 r
+  fft_sub/read_counter/U37/Y (OAI21X1)                    0.13       3.78 f
+  fft_sub/read_counter/U36/Y (NOR2X1)                     0.18       3.96 r
   fft_sub/read_counter/last (fft_axi_counter_WRITE_OR_READ0_0)
-                                                          0.00       3.91 f
-  fft_sub/fft_sub_rlast (fft_axi_subordinate)             0.00       3.91 f
-  arbit/fft_sub_rlast (arbiter)                           0.00       3.91 f
-  arbit/U662/Y (INVX1)                                    0.21       4.12 r
-  arbit/U660/Y (OAI21X1)                                  0.09       4.21 f
-  arbit/cpu_rlast (arbiter)                               0.00       4.21 f
-  cpu_rlast (out)                                         0.00       4.21 f
-  data arrival time                                                  4.21
+                                                          0.00       3.96 r
+  fft_sub/fft_sub_rlast (fft_axi_subordinate)             0.00       3.96 r
+  arbit/fft_sub_rlast (arbiter)                           0.00       3.96 r
+  arbit/U662/Y (INVX1)                                    0.21       4.17 f
+  arbit/U660/Y (OAI21X1)                                  0.15       4.32 r
+  arbit/cpu_rlast (arbiter)                               0.00       4.32 r
+  cpu_rlast (out)                                         0.00       4.32 r
+  data arrival time                                                  4.32
   --------------------------------------------------------------------------
   (Path is unconstrained)
 
@@ -60,7 +60,7 @@ Wire Load Model Mode: top
 Report : area
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 21:14:56 2026
+Date   : Tue Apr 21 23:43:38 2026
 ****************************************
 
 Library(s) Used:
@@ -68,21 +68,21 @@ Library(s) Used:
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
 Number of ports:                        17128
-Number of nets:                        142513
-Number of cells:                       120903
-Number of combinational cells:          85444
+Number of nets:                        142509
+Number of cells:                       120899
+Number of combinational cells:          85440
 Number of sequential cells:             17509
 Number of macros/black boxes:               0
-Number of buf/inv:                      31062
+Number of buf/inv:                      31054
 Number of references:                       5
 
-Combinational area:           29457261.000000
-Buf/Inv area:                  5055336.000000
+Combinational area:           29456253.000000
+Buf/Inv area:                  5054184.000000
 Noncombinational area:        27734256.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:              57191517.000000
+Total cell area:              57190509.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -96,7 +96,7 @@ Report : power
         -analysis_effort low
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Tue Apr 21 21:15:01 2026
+Date   : Tue Apr 21 23:43:44 2026
 ****************************************
 
 
@@ -124,11 +124,11 @@ i - Including register clock pin internal power
 
 
   Cell Internal Power  =   2.5168  W   (65%)
-  Net Switching Power  =   1.3829  W   (35%)
+  Net Switching Power  =   1.3828  W   (35%)
                          ---------
-Total Dynamic Power    =   3.8998  W  (100%)
+Total Dynamic Power    =   3.8995  W  (100%)
 
-Cell Leakage Power     =  18.2687 uW
+Cell Leakage Power     =  18.2691 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -140,8 +140,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential     2.2233e+03            0.4893        9.3319e+03        2.2238e+03  (  57.03%)
-combinational    293.3084        1.3825e+03        8.9368e+03        1.6757e+03  (  42.97%)
+sequential     2.2233e+03            0.4890        9.3319e+03        2.2238e+03  (  57.03%)
+combinational    293.2265        1.3823e+03        8.9372e+03        1.6755e+03  (  42.97%)
 --------------------------------------------------------------------------------------------------
-Total          2.5166e+03 mW     1.3829e+03 mW     1.8269e+04 nW     3.8995e+03 mW
+Total          2.5165e+03 mW     1.3828e+03 mW     1.8269e+04 nW     3.8993e+03 mW
 1

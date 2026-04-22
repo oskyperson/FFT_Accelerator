@@ -3,7 +3,7 @@
 
 module tb_axi_top ();
 
-    localparam CLK_PERIOD = 100ns;
+    localparam CLK_PERIOD = 20ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -71,25 +71,7 @@ module tb_axi_top ();
 
         reset_dut;
         
-        force BFM.cpu_awvalid = 0;
-        force BFM.cpu_wvalid  = 0;
-        force BFM.cpu_bready  = 0;
-        force BFM.cpu_arvalid = 0;
-        force BFM.cpu_rready  = 0;
-        force BFM.cpu_araddr = '0;
-        force BFM.cpu_awaddr = '0;
 
-        #1;
-        release BFM.cpu_awvalid;
-        release BFM.cpu_wvalid;
-        release BFM.cpu_bready;
-        release BFM.cpu_arvalid;
-        release BFM.cpu_rready;
-        release BFM.cpu_araddr;
-        release BFM.cpu_awaddr;
-
-
-        $display(" TEST 2: 4-Beat Burst Access (Addr 20)");
 
         w_queue.delete();
         w_queue.push_back(32'h11111111);
@@ -97,8 +79,8 @@ module tb_axi_top ();
         w_queue.push_back(32'h33333333);
         w_queue.push_back(32'h44444444);
         
-        BFM.write_burst(31'd20, w_queue);
-        BFM.read_burst(31'd20, 4, r_queue);
+        BFM.write_burst(32'd20, w_queue);
+        BFM.read_burst(32'd20, 4, r_queue);
         
         for(int i = 0; i < 4; i++) begin
             if (r_queue[i] == w_queue[i])
@@ -114,7 +96,7 @@ module tb_axi_top ();
         w_queue.push_back(32'h1);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
-        w_queue.push_back(32'd600);
+        w_queue.push_back(32'd1000);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'h3);
         w_queue.push_back(32'h1);
@@ -124,13 +106,17 @@ module tb_axi_top ();
         BFM.write_burst(32'd6, w_queue);
         w_queue.delete();
         r_queue.delete();
-        BFM.read_burst(32'd15,511,r_queue);
+        $display("ugh");
+        
+        $display("ugh2");
         for(int i = 0; i<1024; i++)begin
             @(posedge clk);
             @(posedge clk);
             @(posedge clk);
             @(posedge clk);
+            $display("I HATE OSCAR, %d", i);
         end
+        $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram.txt");
         
         $finish;
