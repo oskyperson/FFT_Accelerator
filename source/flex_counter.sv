@@ -10,10 +10,13 @@ module flex_counter #(
     input logic [SIZE-1:0] rollover_val,
     output logic [SIZE-1:0] count_out,
     output logic rollover_flag
+    output logic [SIZE-1:0] next_count_out
 );
 
     logic [SIZE-1:0] count, next_count;
     logic flag, flag_next;
+
+    assign next_count_out = next_count;
 
     //assign rollover_flag = flag;
 

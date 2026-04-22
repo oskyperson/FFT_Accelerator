@@ -17,7 +17,7 @@ module fft_stage #(
 
     logic [8:0] twiddle_addr;
     logic [31:0] math_sum_reg, delay_sample, sample_reg, feedback_reg, rotation_reg, next_delay_sample, next_out;
-    logic [9:0] count_out;
+    logic [9:0] count_out, next_count_out;
     logic next_valid, valid_reg, control_delay, out_valid_delay, control_reg;
     
     logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d;
@@ -27,7 +27,7 @@ module fft_stage #(
 
     localparam [8:0] ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
     //assign twiddle_addr = (count_out & ADDR_ADJUST) << (STAGE);
-    assign twiddle_addr = (count_out & ADDR_ADJUST) << (STAGE);
+    assign twiddle_addr = (next_count_out & ADDR_ADJUST) << (STAGE);
     logic control; //1 for math mode 0 for delay mode
 
     logic [31:0] math_sum;
@@ -75,7 +75,7 @@ module fft_stage #(
 
     flex_counter count(
         .clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid), //NOTE: future AXI integration
-        .count_out(count_out), .rollover_flag(rollover_flag), .rollover_val(frame_size - 1'd1)
+        .count_out(count_out), .rollover_flag(rollover_flag), .rollover_val(frame_size - 1'd1), .next_count_out(next_count_out)
     );
 
     always_ff @(posedge clk or negedge n_rst) begin
