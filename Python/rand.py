@@ -12,17 +12,17 @@ def float_to_hex(val):
     hex_val = int_val & 0xFFFF
     return f"16'h{hex_val:04X}"
 
-def generate(signal_type='single_tone', N=512):
+def generate(signal_type='singleTone', N=512):
     fs = N
     #N = 512
     #fs = 512
     t = np.arange(N)
 
-    if signal_type == 'single_tone':
+    if signal_type == 'singleTone':
         k = max(1, N // 16)
         signal = 0.5 * np.exp(1j * 2 * np.pi * frequency * t / fs)
         
-    elif signal_type == 'two_tone':
+    elif signal_type == 'twoTone':
         f1, f2 = 30, 100
         signal = 0.25 * np.exp(1j * 2 * np.pi * f1 * t / fs) + 0.25 * np.exp(1j * 2 * np.pi * f2 * t / fs)
                  
@@ -47,11 +47,11 @@ def generate(signal_type='single_tone', N=512):
         noise = np.random.uniform(-0.3, 0.3, N) + 1j * np.random.uniform(-0.3, 0.3, N)
         signal = clean_signal + noise
 
-    elif signal_type == 'low_amp_tone':
+    elif signal_type == 'lowTone':
         frequency = 45
         signal = 0.025 * np.exp(1j * 2 * np.pi * frequency * t / fs)
 
-    elif signal_type == 'square_wave':
+    elif signal_type == 'squareWave':
         frequency = 20
         signal = 0.8 * np.sign(np.cos(2 * np.pi * frequency * t / fs)) + 0j
 
@@ -61,7 +61,7 @@ def generate(signal_type='single_tone', N=512):
         phase = 2 * np.pi * (f_start * t + (f_end - f_start) * (t**2) / (2 * N)) / fs
         signal = 0.8 * np.exp(1j * phase)
         
-    elif signal_type == 'multi_tone_varying':
+    elif signal_type == 'multiTone':
         f1, f2, f3 = 25, 75, 150
         signal = 0.5 * np.exp(1j * 2 * np.pi * f1 * t / fs) + \
                  0.2 * np.exp(1j * 2 * np.pi * f2 * t / fs) + \

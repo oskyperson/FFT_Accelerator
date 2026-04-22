@@ -1,6 +1,34 @@
 import numpy as np
 import sys
 
+def load_hex_fft_file(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+
+    real_parts = []
+    imag_parts = []
+
+    for line in lines:
+        line = line.strip()
+        if not line: continue
+
+        try:
+            val = int(line, 16)
+        except: 
+            continue
+
+        
+        raw_real = (val >> 16) & 0xFFFF
+        raw_imag = val & 0xFFFF
+        
+        real = raw_real if raw_real < 0x8000 else raw_real - 0x10000
+        imag = raw_imag if raw_imag < 0x8000 else raw_imag - 0x10000
+        
+        real_parts.append(real / 32768.0)
+        imag_parts.append(imag / 32768.0)
+
+    return np.array(real_parts) + 1j * np.array(imag_parts)
+
 def load_fft_file(filename):
     data = np.genfromtxt(filename, delimiter=',', skip_header=1)
     return data[:, 0] + 1j * data[:, 1]
@@ -17,10 +45,10 @@ def calculate_snr(ref_signal, test_signal):
     return snr_db
 
 if __name__ == "__main__":
-    ref_file = "./sram.txt"
+    ref_file = "./Python/sram.txt" #MODIFY AS NEEDED
     hw_file = "./Python/input_output.txt"
 
-    ref = load_fft_file(ref_file)
+    ref = load_hex_fft_file(ref_file)
     hw = load_fft_file(hw_file)
 
     snr = calculate_snr(ref, hw)
