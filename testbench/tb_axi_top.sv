@@ -90,13 +90,21 @@ module tb_axi_top ();
         end
         $display("");
 
+
+        w_queue.delete();
+        for(int i = 0; i < 1024; i++) begin
+            w_queue.push_back(32'd0);
+        end
+        BFM.write_burst(32'd15, w_queue);
+        BFM.write_burst(32'd1039, w_queue);
+
         SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem1.txt");
         
         w_queue.delete();
         w_queue.push_back(32'h1);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
-        w_queue.push_back(32'd1500);
+        w_queue.push_back(32'd3000);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'h3);
         w_queue.push_back(32'h0);
@@ -117,40 +125,10 @@ module tb_axi_top ();
             @(posedge clk);
             $display("I HATE OSCAR, %d", i);
         end
-        $display("mem dumped");
-        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram1.txt", 512, 1);
+        $display("mem dumped1");
+        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram1.txt", 2048, 1);
 
-        //flush
-        for(int i = 0; i < 512; i++) begin
-            w_queue.push_back(32'h0);
-        end
-        BFM.write_burst(32'd15, w_queue);
-
-        w_queue.delete();
-        w_queue.push_back(32'h1);
-        w_queue.push_back(32'd15);
-        w_queue.push_back(32'd149);
-        w_queue.push_back(32'd1500);
-        w_queue.push_back(32'd149);
-        w_queue.push_back(32'h3);
-        w_queue.push_back(32'h0);
-        w_queue.push_back(32'h1);
-        BFM.write_burst(32'd0, w_queue);
-        w_queue.delete();
-        w_queue.push_back(32'h0);
-        BFM.write_burst(32'd7, w_queue);
-        w_queue.delete();
-        r_queue.delete();
-        $display("ugh");
         
-        $display("ugh2");
-        for(int i = 0; i<2048; i++)begin
-            @(posedge clk);
-            @(posedge clk);
-            @(posedge clk);
-            @(posedge clk);
-            $display("I HATE OSCAR, %d", i);
-        end
 
         // next frame
         SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem2.txt");
@@ -158,7 +136,7 @@ module tb_axi_top ();
         w_queue.push_back(32'h1);
         w_queue.push_back(32'd15);
         w_queue.push_back(32'd511);
-        w_queue.push_back(32'd1500);
+        w_queue.push_back(32'd3000);
         w_queue.push_back(32'd511);
         w_queue.push_back(32'h3);
         w_queue.push_back(32'h0);
@@ -180,7 +158,7 @@ module tb_axi_top ();
             $display("I HATE OSCAR, %d", i);
         end
         $display("mem dumped");
-        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram2.txt", 512, 1);
+        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram2.txt", 2048, 1);
 
         $finish;
     end

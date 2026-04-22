@@ -32,16 +32,13 @@ module fft_core(
             size_reg <= frame_size;
     end
 
-    logic clear;
-    assign clear = load_size || clear_ext;
-
 
     genvar i;
     generate
         for(i = 0; i < 9; i = i + 1) begin : butterfly_units
             fft_stage #(i) stage (.clk(clk), .n_rst(n_rst), .sample(sample_stream[i]), .sample_valid(valid_stream[i]),
                 .out(sample_stream[i+1]), .out_valid(valid_stream[i+1]), .sel(size_reg > (9'd1 << (8-i))),
-                .frame_size(size_reg), .load_size(load_size), .clear(clear)
+                .frame_size(size_reg)
             );
         end        
     endgenerate

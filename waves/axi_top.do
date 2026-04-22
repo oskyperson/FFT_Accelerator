@@ -33,7 +33,6 @@ add wave -noupdate /tb_axi_top/DUT/cpu_bresp
 add wave -noupdate /tb_axi_top/DUT/ren
 add wave -noupdate /tb_axi_top/DUT/valid
 add wave -noupdate /tb_axi_top/DUT/load_size
-add wave -noupdate /tb_axi_top/DUT/out_valid
 add wave -noupdate /tb_axi_top/DUT/fft_man_rresp
 add wave -noupdate /tb_axi_top/DUT/fft_man_rready
 add wave -noupdate /tb_axi_top/DUT/fft_man_rvalid
@@ -81,6 +80,9 @@ add wave -noupdate /tb_axi_top/DUT/fft_man_rdata
 add wave -noupdate /tb_axi_top/DUT/fft_man_arlen
 add wave -noupdate /tb_axi_top/DUT/fft_man_araddr
 add wave -noupdate /tb_axi_top/DUT/fft_man_wstrb
+add wave -noupdate /tb_axi_top/DUT/out_valid
+add wave -noupdate -expand -group {Write Counter} /tb_axi_top/DUT/fft_man/write_counter/last
+add wave -noupdate -expand -group {Write Counter} /tb_axi_top/DUT/fft_man/write_counter/i
 add wave -noupdate /tb_axi_top/DUT/fft_man_wdata
 add wave -noupdate /tb_axi_top/DUT/fft_man_awlen
 add wave -noupdate /tb_axi_top/DUT/fft_man_awaddr
@@ -98,8 +100,12 @@ add wave -noupdate /tb_axi_top/DUT/sram_wstrb
 add wave -noupdate /tb_axi_top/DUT/sram_wdata
 add wave -noupdate /tb_axi_top/DUT/sram_awlen
 add wave -noupdate /tb_axi_top/DUT/sram_awaddr
+add wave -noupdate /tb_axi_top/DUT/fft_man/read_counter/last
+add wave -noupdate /tb_axi_top/DUT/fft_man/read_counter/i
+add wave -noupdate /tb_axi_top/DUT/fft_man/rstate
+add wave -noupdate /tb_axi_top/DUT/fft_man/wstate
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {605485 ps} 0}
+WaveRestoreCursors {{Cursor 1} {319025329 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -115,4 +121,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {7313792 ps} {8216117 ps}
+WaveRestoreZoom {318666949 ps} {320258097 ps}

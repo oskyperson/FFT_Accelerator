@@ -95,7 +95,7 @@ module tb_fft_core ();
     endtask
 
     integer out_file;
-    initial out_file = $fopen("/home/ecegridfs/a/337mg041/FFT_Accelerator/connor.txt", "w");
+    initial out_file = $fopen("/home/ecegridfs/a/337mg227/FFT_Accelerator/connor.txt", "w");
 
     logic signed [15:0] out_re, out_im;
     assign {out_re, out_im} = out;
@@ -114,7 +114,7 @@ module tb_fft_core ();
     logic [31:0] memory2 [0:511];
     integer j;
     initial begin
-        $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem.txt", memory);
+        $readmemh("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem.txt", memory);
         n_rst = 1;
         reset_dut;
         @(negedge clk);
