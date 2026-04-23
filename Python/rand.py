@@ -70,7 +70,7 @@ def generate(signal_type='singleTone', N=512):
     else:
         raise ValueError(f"Unknown signal type: {signal_type}")
 
-    with open('./Python/input.txt', 'w') as f_txt:
+    with open('./Python/expected/input_square256.txt', 'w') as f_txt:
         for val in signal:
             f_txt.write(f"{val.real:.8f} {val.imag:.8f}\n")
             
@@ -80,7 +80,7 @@ def generate(signal_type='singleTone', N=512):
             im_hex = float_to_hex(val.imag)
             f_hex.write(f"stream_frame({re_hex}, {im_hex});\n")
 
-    with open('./Python/input_dc256.txt', 'w') as f_hex:
+    with open('./Python/input_mem.txt', 'w') as f_hex:
         for val in signal:
             re_hex = float_to_hex(val.real).replace("16'h", "")
             im_hex = float_to_hex(val.imag).replace("16'h", "")

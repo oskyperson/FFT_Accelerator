@@ -45,8 +45,8 @@ def calculate_snr(ref_signal, test_signal):
     return snr_db
 
 if __name__ == "__main__":
-    ref_file = "./sram2.txt" #MODIFY AS NEEDED
-    hw_file = "./Python/input_output_norm.txt"
+    ref_file = "./result/impulse3x256.txt" #MODIFY AS NEEDED
+    hw_file = "./Python/expected/input_impulse256_output_norm.txt"
 
     ref = load_hex_fft_file(ref_file)
     hw = load_fft_file(hw_file)
