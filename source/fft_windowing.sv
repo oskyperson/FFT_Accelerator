@@ -32,12 +32,12 @@ module fft_windowing(
             out <= '0;
         end else begin
             out_valid <= valid;
-            out <= (window_type == 0) ? sample : total;
+            out <= (window == 0) ? sample : total;
             coeff_reg <= coeff;
         end
     end
-
-case(window_type)
+always_comb begin
+case(window)
   3'd0: next_sample = sample; // Rectangular Bypass
   3'd1: begin // Hamming
     case(frame_size)
@@ -4329,6 +4329,7 @@ case(window_type)
   end
   default: next_sample = sample;
 endcase
+end
     
     localparam signed [15:0] MAX = 16'sh7FFF;
     localparam signed [15:0] MIN = 16'sh8000;
@@ -4349,7 +4350,7 @@ endcase
         else if (shifted_re < MIN)
             total_re = MIN;
         else
-            total_re = shifted[15:0];
+            total_re = shifted_re[15:0];
     end
 
     logic signed [32:0] product_im;
@@ -4367,12 +4368,12 @@ endcase
         else if (shifted_im < MIN)
             total_im = MIN;
         else
-            total_im = shifted[15:0];
+            total_im = shifted_im[15:0];
     end
 
     always_comb begin
         {sample_re, sample_im} = sample;
-        total = {total_re, total_im}
+        total = {total_re, total_im};
     end
 
    

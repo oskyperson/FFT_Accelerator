@@ -50,10 +50,13 @@ module tb_fft_core ();
     logic start, valid, out_valid;
 
     logic [9:0] frame_size;
-    logic load_size;
+    logic load_size, load_window;
+
+    logic [4:0] window;
 
     fft_core dut (.clk(clk), .n_rst(n_rst), .sample(sample), .valid(valid), 
-        .out(out), .out_valid(out_valid), .frame_size(frame_size), .load_size(load_size)
+        .out(out), .out_valid(out_valid), .frame_size(frame_size), .load_size(load_size), .window(window),
+        .load_window(load_window)
     );
     integer p;
     // clockgen
@@ -125,10 +128,13 @@ module tb_fft_core ();
         @(negedge clk);
         frame_size = FRAME_SIZE;
         load_size = 1'b1;
+        window = 1;
+        load_window = 1'b1;
         @(posedge clk);
         @(posedge clk);
         @(negedge clk);
         load_size = 1'b0;
+        load_window = 1'b0;
         @(posedge clk);
         @(posedge clk);
         

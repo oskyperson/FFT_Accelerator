@@ -3,7 +3,7 @@
 
 module tb_sram_axi ();
 
-    localparam CLK_PERIOD = 10ns;
+    localparam CLK_PERIOD = 20ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -122,7 +122,7 @@ module tb_sram_axi ();
 
          
  
-        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem.txt");
+        
 
         $display(" TEST 1: Single Word Access (Addr 15)");
 
@@ -198,7 +198,7 @@ module tb_sram_axi ();
                 $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
         end
         
-        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram.txt");
+        
 
         $finish;
     end

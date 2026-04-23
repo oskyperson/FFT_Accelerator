@@ -9,6 +9,7 @@ filesets:
         file_type: systemVerilogSource
         depend:
             - "team42:ece337:fft_stage:1.0.0"
+            - "team42:ece337:fft_windowing:1.0.0"
 
     synth:
         depend:
