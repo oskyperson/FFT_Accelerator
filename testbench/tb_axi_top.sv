@@ -3,7 +3,7 @@
 
 module tb_axi_top ();
 
-    localparam CLK_PERIOD = 20ns;
+    localparam CLK_PERIOD = 100ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -52,6 +52,8 @@ module tb_axi_top ();
         @(posedge clk);
         @(negedge clk);
         n_rst = 1;
+        @(posedge clk);
+        @(posedge clk);
         @(posedge clk);
         @(posedge clk);
     end

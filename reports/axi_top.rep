@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Wed Apr 22 19:33:51 2026
+Date   : Thu Apr 23 15:09:58 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -71,29 +71,29 @@ Wire Load Model Mode: top
 Report : area
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Wed Apr 22 19:33:51 2026
+Date   : Thu Apr 23 15:09:58 2026
 ****************************************
 
 Library(s) Used:
 
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
-Number of ports:                        17692
-Number of nets:                        145529
-Number of cells:                       123429
-Number of combinational cells:          87132
-Number of sequential cells:             17924
+Number of ports:                        17701
+Number of nets:                        144937
+Number of cells:                       122828
+Number of combinational cells:          86716
+Number of sequential cells:             17809
 Number of macros/black boxes:               0
-Number of buf/inv:                      31594
+Number of buf/inv:                      31349
 Number of references:                       5
 
-Combinational area:           29987073.000000
-Buf/Inv area:                  5142600.000000
-Noncombinational area:        28391616.000000
+Combinational area:           29867121.000000
+Buf/Inv area:                  5103432.000000
+Noncombinational area:        28209456.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:              58378689.000000
+Total cell area:              58076577.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -107,7 +107,7 @@ Report : power
         -analysis_effort low
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Wed Apr 22 19:33:57 2026
+Date   : Thu Apr 23 15:10:03 2026
 ****************************************
 
 
@@ -134,12 +134,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   2.5878  W   (65%)
-  Net Switching Power  =   1.4173  W   (35%)
+  Cell Internal Power  =   2.5736  W   (65%)
+  Net Switching Power  =   1.4104  W   (35%)
                          ---------
-Total Dynamic Power    =   4.0051  W  (100%)
+Total Dynamic Power    =   3.9840  W  (100%)
 
-Cell Leakage Power     =  18.6480 uW
+Cell Leakage Power     =  18.5532 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -151,8 +151,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential     2.2926e+03            0.5092        9.5531e+03        2.2931e+03  (  57.26%)
-combinational    294.8765        1.4168e+03        9.0949e+03        1.7117e+03  (  42.74%)
+sequential     2.2754e+03            0.5092        9.4918e+03        2.2759e+03  (  57.13%)
+combinational    297.9614        1.4099e+03        9.0613e+03        1.7078e+03  (  42.87%)
 --------------------------------------------------------------------------------------------------
-Total          2.5875e+03 mW     1.4173e+03 mW     1.8648e+04 nW     4.0048e+03 mW
+Total          2.5734e+03 mW     1.4104e+03 mW     1.8553e+04 nW     3.9837e+03 mW
 1

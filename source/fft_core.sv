@@ -37,8 +37,36 @@ module fft_core(
     logic temp1_v;
     logic [31:0] temp1;
 
+    logic [31:0] out_internal;
+    logic out_valid_internal;
 
     always_ff @(posedge clk or negedge n_rst) begin
+        if(!n_rst) begin
+            temp1 <= '0;
+            temp1_v <= '0;
+            out_internal <= '0;
+            out_valid_internal <= '0;
+        end else begin
+            if(valid_stream[9]) begin
+                temp1 <= sample_stream[9];
+                temp1_v <= 1'b1;
+                out_valid_internal <= temp1_v;
+                out_internal <= temp1;
+            end else begin
+                out_valid_internal <= '0;
+                out_internal <= '0;
+            end
+        end
+    end
+
+    assign out = out_internal;
+    assign out_valid = out_valid_internal;
+
+    //logic temp1_v;
+    //logic [31:0] temp1;
+
+
+    /*always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
             temp1 <= '0;
             temp1_v <= '0;
@@ -53,7 +81,7 @@ module fft_core(
                 out <= '0;
             end
         end
-    end
+    end*/
 
 
     logic [9:0] out_count;
