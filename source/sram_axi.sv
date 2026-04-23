@@ -60,6 +60,7 @@ logic [31:0] next_raddr_reg;
 logic [9:0] next_rlen_reg;
 logic next_awready, next_wready, next_bvalid, next_arready, next_rvalid, next_rlast;
 
+logic [31:0] next_sram_rdata;
 always_ff @(posedge clk, negedge n_rst) begin : next_states
     if(!n_rst) begin
         read_state <= R_IDLE;
@@ -68,7 +69,7 @@ always_ff @(posedge clk, negedge n_rst) begin : next_states
     end else begin
         read_state <= next_read;
         write_state <= next_write;
-        sram_rdata <= read_data;
+        sram_rdata <= next_sram_rdata;
     end
 end
 
@@ -134,7 +135,7 @@ end
 always_ff @(posedge clk, negedge n_rst) begin: registers
     if (!n_rst) begin
         waddr_reg <= '0;
-        wlen_reg  <= '0;
+        wlen_reg <= '0;
         wdata_reg <= '0; 
         wstrb_reg <= '0;
         raddr_reg <= '0; 
@@ -165,13 +166,14 @@ end
 
 always_comb begin : next_reg
 
+
+        next_sram_rdata = '0;
         next_waddr_reg = waddr_reg;
         next_wlen_reg = wlen_reg;
         next_raddr_reg = raddr_reg;
         next_rlen_reg = rlen_reg;
         next_wdata_reg = wdata_reg;
         next_wstrb_reg = wstrb_reg;
-        
         next_awready = (next_write == W_IDLE) && (sram_awaddr >= 11'd15);
         next_wready = (next_write == W_DATA);
         next_bvalid = (next_write == W_RESP);
@@ -198,6 +200,10 @@ always_comb begin : next_reg
         if (read_state == R_DATA && sram_rready && sram_rvalid) begin
             next_raddr_reg = raddr_reg + 1'b1;
             next_rlen_reg = rlen_reg - 1'b1;
+        end
+
+        if(read_valid)begin
+            next_sram_rdata = read_data;
         end
 end
 

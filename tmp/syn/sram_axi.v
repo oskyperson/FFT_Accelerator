@@ -1,16 +1,37 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : W-2024.09-SP4
-// Date      : Tue Apr 21 22:43:20 2026
+// Date      : Thu Apr 23 19:48:35 2026
 /////////////////////////////////////////////////////////////
 
 
 module sram_axi_DW01_inc_0 ( A, SUM );
-  input [10:0] A;
-  output [10:0] SUM;
+  input [31:0] A;
+  output [31:0] SUM;
 
-  wire   [10:2] carry;
+  wire   [31:2] carry;
 
+  HAX1 U1_1_30 ( .A(A[30]), .B(carry[30]), .YC(carry[31]), .YS(SUM[30]) );
+  HAX1 U1_1_29 ( .A(A[29]), .B(carry[29]), .YC(carry[30]), .YS(SUM[29]) );
+  HAX1 U1_1_28 ( .A(A[28]), .B(carry[28]), .YC(carry[29]), .YS(SUM[28]) );
+  HAX1 U1_1_27 ( .A(A[27]), .B(carry[27]), .YC(carry[28]), .YS(SUM[27]) );
+  HAX1 U1_1_26 ( .A(A[26]), .B(carry[26]), .YC(carry[27]), .YS(SUM[26]) );
+  HAX1 U1_1_25 ( .A(A[25]), .B(carry[25]), .YC(carry[26]), .YS(SUM[25]) );
+  HAX1 U1_1_24 ( .A(A[24]), .B(carry[24]), .YC(carry[25]), .YS(SUM[24]) );
+  HAX1 U1_1_23 ( .A(A[23]), .B(carry[23]), .YC(carry[24]), .YS(SUM[23]) );
+  HAX1 U1_1_22 ( .A(A[22]), .B(carry[22]), .YC(carry[23]), .YS(SUM[22]) );
+  HAX1 U1_1_21 ( .A(A[21]), .B(carry[21]), .YC(carry[22]), .YS(SUM[21]) );
+  HAX1 U1_1_20 ( .A(A[20]), .B(carry[20]), .YC(carry[21]), .YS(SUM[20]) );
+  HAX1 U1_1_19 ( .A(A[19]), .B(carry[19]), .YC(carry[20]), .YS(SUM[19]) );
+  HAX1 U1_1_18 ( .A(A[18]), .B(carry[18]), .YC(carry[19]), .YS(SUM[18]) );
+  HAX1 U1_1_17 ( .A(A[17]), .B(carry[17]), .YC(carry[18]), .YS(SUM[17]) );
+  HAX1 U1_1_16 ( .A(A[16]), .B(carry[16]), .YC(carry[17]), .YS(SUM[16]) );
+  HAX1 U1_1_15 ( .A(A[15]), .B(carry[15]), .YC(carry[16]), .YS(SUM[15]) );
+  HAX1 U1_1_14 ( .A(A[14]), .B(carry[14]), .YC(carry[15]), .YS(SUM[14]) );
+  HAX1 U1_1_13 ( .A(A[13]), .B(carry[13]), .YC(carry[14]), .YS(SUM[13]) );
+  HAX1 U1_1_12 ( .A(A[12]), .B(carry[12]), .YC(carry[13]), .YS(SUM[12]) );
+  HAX1 U1_1_11 ( .A(A[11]), .B(carry[11]), .YC(carry[12]), .YS(SUM[11]) );
+  HAX1 U1_1_10 ( .A(A[10]), .B(carry[10]), .YC(carry[11]), .YS(SUM[10]) );
   HAX1 U1_1_9 ( .A(A[9]), .B(carry[9]), .YC(carry[10]), .YS(SUM[9]) );
   HAX1 U1_1_8 ( .A(A[8]), .B(carry[8]), .YC(carry[9]), .YS(SUM[8]) );
   HAX1 U1_1_7 ( .A(A[7]), .B(carry[7]), .YC(carry[8]), .YS(SUM[7]) );
@@ -20,16 +41,112 @@ module sram_axi_DW01_inc_0 ( A, SUM );
   HAX1 U1_1_3 ( .A(A[3]), .B(carry[3]), .YC(carry[4]), .YS(SUM[3]) );
   HAX1 U1_1_2 ( .A(A[2]), .B(carry[2]), .YC(carry[3]), .YS(SUM[2]) );
   HAX1 U1_1_1 ( .A(A[1]), .B(A[0]), .YC(carry[2]), .YS(SUM[1]) );
-  XOR2X1 U1 ( .A(carry[10]), .B(A[10]), .Y(SUM[10]) );
+  XOR2X1 U1 ( .A(carry[31]), .B(A[31]), .Y(SUM[31]) );
+endmodule
+
+
+module sram_axi_DW01_sub_0 ( A, B, CI, DIFF, CO );
+  input [31:0] A;
+  input [31:0] B;
+  output [31:0] DIFF;
+  input CI;
+  output CO;
+  wire   n1, n2, n3;
+  wire   [32:0] carry;
+  assign carry[1] = A[0];
+
+  AND2X2 U1 ( .A(n3), .B(A[3]), .Y(n1) );
+  AND2X2 U2 ( .A(carry[1]), .B(A[1]), .Y(n2) );
+  AND2X2 U3 ( .A(n2), .B(A[2]), .Y(n3) );
+  OR2X1 U4 ( .A(A[10]), .B(carry[10]), .Y(carry[11]) );
+  XNOR2X1 U5 ( .A(carry[10]), .B(A[10]), .Y(DIFF[10]) );
+  OR2X1 U6 ( .A(A[11]), .B(carry[11]), .Y(carry[12]) );
+  XNOR2X1 U7 ( .A(carry[11]), .B(A[11]), .Y(DIFF[11]) );
+  OR2X1 U8 ( .A(A[12]), .B(carry[12]), .Y(carry[13]) );
+  XNOR2X1 U9 ( .A(carry[12]), .B(A[12]), .Y(DIFF[12]) );
+  OR2X1 U10 ( .A(A[13]), .B(carry[13]), .Y(carry[14]) );
+  XNOR2X1 U11 ( .A(carry[13]), .B(A[13]), .Y(DIFF[13]) );
+  OR2X1 U12 ( .A(A[14]), .B(carry[14]), .Y(carry[15]) );
+  XNOR2X1 U13 ( .A(carry[14]), .B(A[14]), .Y(DIFF[14]) );
+  OR2X1 U14 ( .A(A[15]), .B(carry[15]), .Y(carry[16]) );
+  XNOR2X1 U15 ( .A(carry[15]), .B(A[15]), .Y(DIFF[15]) );
+  OR2X1 U16 ( .A(A[16]), .B(carry[16]), .Y(carry[17]) );
+  XNOR2X1 U17 ( .A(carry[16]), .B(A[16]), .Y(DIFF[16]) );
+  OR2X1 U18 ( .A(A[17]), .B(carry[17]), .Y(carry[18]) );
+  XNOR2X1 U19 ( .A(carry[17]), .B(A[17]), .Y(DIFF[17]) );
+  OR2X1 U20 ( .A(A[18]), .B(carry[18]), .Y(carry[19]) );
+  XNOR2X1 U21 ( .A(carry[18]), .B(A[18]), .Y(DIFF[18]) );
+  OR2X1 U22 ( .A(A[19]), .B(carry[19]), .Y(carry[20]) );
+  XNOR2X1 U23 ( .A(carry[19]), .B(A[19]), .Y(DIFF[19]) );
+  OR2X1 U24 ( .A(A[20]), .B(carry[20]), .Y(carry[21]) );
+  XNOR2X1 U25 ( .A(carry[20]), .B(A[20]), .Y(DIFF[20]) );
+  OR2X1 U26 ( .A(A[21]), .B(carry[21]), .Y(carry[22]) );
+  XNOR2X1 U27 ( .A(carry[21]), .B(A[21]), .Y(DIFF[21]) );
+  OR2X1 U28 ( .A(A[22]), .B(carry[22]), .Y(carry[23]) );
+  XNOR2X1 U29 ( .A(carry[22]), .B(A[22]), .Y(DIFF[22]) );
+  OR2X1 U30 ( .A(A[23]), .B(carry[23]), .Y(carry[24]) );
+  XNOR2X1 U31 ( .A(carry[23]), .B(A[23]), .Y(DIFF[23]) );
+  OR2X1 U32 ( .A(A[24]), .B(carry[24]), .Y(carry[25]) );
+  XNOR2X1 U33 ( .A(carry[24]), .B(A[24]), .Y(DIFF[24]) );
+  OR2X1 U34 ( .A(A[25]), .B(carry[25]), .Y(carry[26]) );
+  XNOR2X1 U35 ( .A(carry[25]), .B(A[25]), .Y(DIFF[25]) );
+  OR2X1 U36 ( .A(A[26]), .B(carry[26]), .Y(carry[27]) );
+  XNOR2X1 U37 ( .A(carry[26]), .B(A[26]), .Y(DIFF[26]) );
+  OR2X1 U38 ( .A(A[27]), .B(carry[27]), .Y(carry[28]) );
+  XNOR2X1 U39 ( .A(carry[27]), .B(A[27]), .Y(DIFF[27]) );
+  OR2X1 U40 ( .A(A[28]), .B(carry[28]), .Y(carry[29]) );
+  XNOR2X1 U41 ( .A(carry[28]), .B(A[28]), .Y(DIFF[28]) );
+  OR2X1 U42 ( .A(A[29]), .B(carry[29]), .Y(carry[30]) );
+  XNOR2X1 U43 ( .A(carry[29]), .B(A[29]), .Y(DIFF[29]) );
+  OR2X1 U44 ( .A(A[30]), .B(carry[30]), .Y(carry[31]) );
+  XNOR2X1 U45 ( .A(carry[30]), .B(A[30]), .Y(DIFF[30]) );
+  XNOR2X1 U46 ( .A(A[31]), .B(carry[31]), .Y(DIFF[31]) );
+  OR2X1 U47 ( .A(A[4]), .B(n1), .Y(carry[5]) );
+  XNOR2X1 U48 ( .A(n1), .B(A[4]), .Y(DIFF[4]) );
+  OR2X1 U49 ( .A(A[5]), .B(carry[5]), .Y(carry[6]) );
+  XNOR2X1 U50 ( .A(carry[5]), .B(A[5]), .Y(DIFF[5]) );
+  OR2X1 U51 ( .A(A[6]), .B(carry[6]), .Y(carry[7]) );
+  XNOR2X1 U52 ( .A(carry[6]), .B(A[6]), .Y(DIFF[6]) );
+  OR2X1 U53 ( .A(A[7]), .B(carry[7]), .Y(carry[8]) );
+  XNOR2X1 U54 ( .A(carry[7]), .B(A[7]), .Y(DIFF[7]) );
+  OR2X1 U55 ( .A(A[8]), .B(carry[8]), .Y(carry[9]) );
+  XNOR2X1 U56 ( .A(carry[8]), .B(A[8]), .Y(DIFF[8]) );
+  OR2X1 U57 ( .A(A[9]), .B(carry[9]), .Y(carry[10]) );
+  XNOR2X1 U58 ( .A(carry[9]), .B(A[9]), .Y(DIFF[9]) );
+  XOR2X1 U59 ( .A(carry[1]), .B(A[1]), .Y(DIFF[1]) );
+  XOR2X1 U60 ( .A(n2), .B(A[2]), .Y(DIFF[2]) );
+  XOR2X1 U61 ( .A(n3), .B(A[3]), .Y(DIFF[3]) );
+  INVX2 U62 ( .A(carry[1]), .Y(DIFF[0]) );
 endmodule
 
 
 module sram_axi_DW01_inc_1 ( A, SUM );
-  input [10:0] A;
-  output [10:0] SUM;
+  input [31:0] A;
+  output [31:0] SUM;
 
-  wire   [10:2] carry;
+  wire   [31:2] carry;
 
+  HAX1 U1_1_30 ( .A(A[30]), .B(carry[30]), .YC(carry[31]), .YS(SUM[30]) );
+  HAX1 U1_1_29 ( .A(A[29]), .B(carry[29]), .YC(carry[30]), .YS(SUM[29]) );
+  HAX1 U1_1_28 ( .A(A[28]), .B(carry[28]), .YC(carry[29]), .YS(SUM[28]) );
+  HAX1 U1_1_27 ( .A(A[27]), .B(carry[27]), .YC(carry[28]), .YS(SUM[27]) );
+  HAX1 U1_1_26 ( .A(A[26]), .B(carry[26]), .YC(carry[27]), .YS(SUM[26]) );
+  HAX1 U1_1_25 ( .A(A[25]), .B(carry[25]), .YC(carry[26]), .YS(SUM[25]) );
+  HAX1 U1_1_24 ( .A(A[24]), .B(carry[24]), .YC(carry[25]), .YS(SUM[24]) );
+  HAX1 U1_1_23 ( .A(A[23]), .B(carry[23]), .YC(carry[24]), .YS(SUM[23]) );
+  HAX1 U1_1_22 ( .A(A[22]), .B(carry[22]), .YC(carry[23]), .YS(SUM[22]) );
+  HAX1 U1_1_21 ( .A(A[21]), .B(carry[21]), .YC(carry[22]), .YS(SUM[21]) );
+  HAX1 U1_1_20 ( .A(A[20]), .B(carry[20]), .YC(carry[21]), .YS(SUM[20]) );
+  HAX1 U1_1_19 ( .A(A[19]), .B(carry[19]), .YC(carry[20]), .YS(SUM[19]) );
+  HAX1 U1_1_18 ( .A(A[18]), .B(carry[18]), .YC(carry[19]), .YS(SUM[18]) );
+  HAX1 U1_1_17 ( .A(A[17]), .B(carry[17]), .YC(carry[18]), .YS(SUM[17]) );
+  HAX1 U1_1_16 ( .A(A[16]), .B(carry[16]), .YC(carry[17]), .YS(SUM[16]) );
+  HAX1 U1_1_15 ( .A(A[15]), .B(carry[15]), .YC(carry[16]), .YS(SUM[15]) );
+  HAX1 U1_1_14 ( .A(A[14]), .B(carry[14]), .YC(carry[15]), .YS(SUM[14]) );
+  HAX1 U1_1_13 ( .A(A[13]), .B(carry[13]), .YC(carry[14]), .YS(SUM[13]) );
+  HAX1 U1_1_12 ( .A(A[12]), .B(carry[12]), .YC(carry[13]), .YS(SUM[12]) );
+  HAX1 U1_1_11 ( .A(A[11]), .B(carry[11]), .YC(carry[12]), .YS(SUM[11]) );
+  HAX1 U1_1_10 ( .A(A[10]), .B(carry[10]), .YC(carry[11]), .YS(SUM[10]) );
   HAX1 U1_1_9 ( .A(A[9]), .B(carry[9]), .YC(carry[10]), .YS(SUM[9]) );
   HAX1 U1_1_8 ( .A(A[8]), .B(carry[8]), .YC(carry[9]), .YS(SUM[8]) );
   HAX1 U1_1_7 ( .A(A[7]), .B(carry[7]), .YC(carry[8]), .YS(SUM[7]) );
@@ -39,7 +156,82 @@ module sram_axi_DW01_inc_1 ( A, SUM );
   HAX1 U1_1_3 ( .A(A[3]), .B(carry[3]), .YC(carry[4]), .YS(SUM[3]) );
   HAX1 U1_1_2 ( .A(A[2]), .B(carry[2]), .YC(carry[3]), .YS(SUM[2]) );
   HAX1 U1_1_1 ( .A(A[1]), .B(A[0]), .YC(carry[2]), .YS(SUM[1]) );
-  XOR2X1 U1 ( .A(carry[10]), .B(A[10]), .Y(SUM[10]) );
+  XOR2X1 U1 ( .A(carry[31]), .B(A[31]), .Y(SUM[31]) );
+endmodule
+
+
+module sram_axi_DW01_sub_1 ( A, B, CI, DIFF, CO );
+  input [31:0] A;
+  input [31:0] B;
+  output [31:0] DIFF;
+  input CI;
+  output CO;
+  wire   n1, n2, n3;
+  wire   [32:0] carry;
+  assign carry[1] = A[0];
+
+  AND2X2 U1 ( .A(n3), .B(A[3]), .Y(n1) );
+  AND2X2 U2 ( .A(carry[1]), .B(A[1]), .Y(n2) );
+  AND2X2 U3 ( .A(n2), .B(A[2]), .Y(n3) );
+  OR2X1 U4 ( .A(A[10]), .B(carry[10]), .Y(carry[11]) );
+  XNOR2X1 U5 ( .A(carry[10]), .B(A[10]), .Y(DIFF[10]) );
+  OR2X1 U6 ( .A(A[11]), .B(carry[11]), .Y(carry[12]) );
+  XNOR2X1 U7 ( .A(carry[11]), .B(A[11]), .Y(DIFF[11]) );
+  OR2X1 U8 ( .A(A[12]), .B(carry[12]), .Y(carry[13]) );
+  XNOR2X1 U9 ( .A(carry[12]), .B(A[12]), .Y(DIFF[12]) );
+  OR2X1 U10 ( .A(A[13]), .B(carry[13]), .Y(carry[14]) );
+  XNOR2X1 U11 ( .A(carry[13]), .B(A[13]), .Y(DIFF[13]) );
+  OR2X1 U12 ( .A(A[14]), .B(carry[14]), .Y(carry[15]) );
+  XNOR2X1 U13 ( .A(carry[14]), .B(A[14]), .Y(DIFF[14]) );
+  OR2X1 U14 ( .A(A[15]), .B(carry[15]), .Y(carry[16]) );
+  XNOR2X1 U15 ( .A(carry[15]), .B(A[15]), .Y(DIFF[15]) );
+  OR2X1 U16 ( .A(A[16]), .B(carry[16]), .Y(carry[17]) );
+  XNOR2X1 U17 ( .A(carry[16]), .B(A[16]), .Y(DIFF[16]) );
+  OR2X1 U18 ( .A(A[17]), .B(carry[17]), .Y(carry[18]) );
+  XNOR2X1 U19 ( .A(carry[17]), .B(A[17]), .Y(DIFF[17]) );
+  OR2X1 U20 ( .A(A[18]), .B(carry[18]), .Y(carry[19]) );
+  XNOR2X1 U21 ( .A(carry[18]), .B(A[18]), .Y(DIFF[18]) );
+  OR2X1 U22 ( .A(A[19]), .B(carry[19]), .Y(carry[20]) );
+  XNOR2X1 U23 ( .A(carry[19]), .B(A[19]), .Y(DIFF[19]) );
+  OR2X1 U24 ( .A(A[20]), .B(carry[20]), .Y(carry[21]) );
+  XNOR2X1 U25 ( .A(carry[20]), .B(A[20]), .Y(DIFF[20]) );
+  OR2X1 U26 ( .A(A[21]), .B(carry[21]), .Y(carry[22]) );
+  XNOR2X1 U27 ( .A(carry[21]), .B(A[21]), .Y(DIFF[21]) );
+  OR2X1 U28 ( .A(A[22]), .B(carry[22]), .Y(carry[23]) );
+  XNOR2X1 U29 ( .A(carry[22]), .B(A[22]), .Y(DIFF[22]) );
+  OR2X1 U30 ( .A(A[23]), .B(carry[23]), .Y(carry[24]) );
+  XNOR2X1 U31 ( .A(carry[23]), .B(A[23]), .Y(DIFF[23]) );
+  OR2X1 U32 ( .A(A[24]), .B(carry[24]), .Y(carry[25]) );
+  XNOR2X1 U33 ( .A(carry[24]), .B(A[24]), .Y(DIFF[24]) );
+  OR2X1 U34 ( .A(A[25]), .B(carry[25]), .Y(carry[26]) );
+  XNOR2X1 U35 ( .A(carry[25]), .B(A[25]), .Y(DIFF[25]) );
+  OR2X1 U36 ( .A(A[26]), .B(carry[26]), .Y(carry[27]) );
+  XNOR2X1 U37 ( .A(carry[26]), .B(A[26]), .Y(DIFF[26]) );
+  OR2X1 U38 ( .A(A[27]), .B(carry[27]), .Y(carry[28]) );
+  XNOR2X1 U39 ( .A(carry[27]), .B(A[27]), .Y(DIFF[27]) );
+  OR2X1 U40 ( .A(A[28]), .B(carry[28]), .Y(carry[29]) );
+  XNOR2X1 U41 ( .A(carry[28]), .B(A[28]), .Y(DIFF[28]) );
+  OR2X1 U42 ( .A(A[29]), .B(carry[29]), .Y(carry[30]) );
+  XNOR2X1 U43 ( .A(carry[29]), .B(A[29]), .Y(DIFF[29]) );
+  OR2X1 U44 ( .A(A[30]), .B(carry[30]), .Y(carry[31]) );
+  XNOR2X1 U45 ( .A(carry[30]), .B(A[30]), .Y(DIFF[30]) );
+  XNOR2X1 U46 ( .A(A[31]), .B(carry[31]), .Y(DIFF[31]) );
+  OR2X1 U47 ( .A(A[4]), .B(n1), .Y(carry[5]) );
+  XNOR2X1 U48 ( .A(n1), .B(A[4]), .Y(DIFF[4]) );
+  OR2X1 U49 ( .A(A[5]), .B(carry[5]), .Y(carry[6]) );
+  XNOR2X1 U50 ( .A(carry[5]), .B(A[5]), .Y(DIFF[5]) );
+  OR2X1 U51 ( .A(A[6]), .B(carry[6]), .Y(carry[7]) );
+  XNOR2X1 U52 ( .A(carry[6]), .B(A[6]), .Y(DIFF[6]) );
+  OR2X1 U53 ( .A(A[7]), .B(carry[7]), .Y(carry[8]) );
+  XNOR2X1 U54 ( .A(carry[7]), .B(A[7]), .Y(DIFF[7]) );
+  OR2X1 U55 ( .A(A[8]), .B(carry[8]), .Y(carry[9]) );
+  XNOR2X1 U56 ( .A(carry[8]), .B(A[8]), .Y(DIFF[8]) );
+  OR2X1 U57 ( .A(A[9]), .B(carry[9]), .Y(carry[10]) );
+  XNOR2X1 U58 ( .A(carry[9]), .B(A[9]), .Y(DIFF[9]) );
+  XOR2X1 U59 ( .A(carry[1]), .B(A[1]), .Y(DIFF[1]) );
+  XOR2X1 U60 ( .A(n2), .B(A[2]), .Y(DIFF[2]) );
+  XOR2X1 U61 ( .A(n3), .B(A[3]), .Y(DIFF[3]) );
+  INVX2 U62 ( .A(carry[1]), .Y(DIFF[0]) );
 endmodule
 
 
@@ -65,761 +257,1025 @@ module sram_axi ( clk, n_rst, sram_awaddr, sram_awvalid, sram_awlen,
          sram_arvalid, sram_rready, read_valid, write_valid;
   output sram_awready, sram_wready, sram_bresp, sram_bvalid, sram_arready,
          sram_rresp, sram_rlast, sram_rvalid, ren;
-  wire   \read_addr[31] , \write_addr[31] , next_rlast, N85, N86, N87, N88,
-         N89, N90, N91, N92, N93, N94, N108, N109, N110, N111, N112, N113,
-         N114, N115, N116, N117, N132, N136, n278, n280, n310, n311, n312,
-         n313, n314, n315, n316, n317, n318, n319, n320, n321, n322, n323,
-         n324, n325, n326, n327, n328, n329, n330, n331, n332, n333, n334,
-         n335, n336, n337, n338, n339, n340, n341, n342, n343, n344, n345,
-         n346, n347, n348, n349, n350, n351, n352, n353, n354, n355, n356,
-         n357, n358, n359, n360, n361, n362, n363, n364, n365, n366, n367,
-         n368, n369, n370, n371, n372, n373, n374, n375, n376, n377, n378,
-         n379, n380, n381, n382, n383, n384, n385, n386, n387, n388, n389,
-         n390, n391, n392, n393, n394, n395, n396, n397, n398, n399, n400,
-         n401, n402, n403, n404, n405, n406, n407, n408, n409, n410, n411,
-         n412, n413, n414, n415, n416, n417, n418, n419, n420, n421, n422,
-         n423, n424, n425, n426, n427, n428, n429, n430, n431, n432, n433,
-         n434, n435, n436, n437, n438, n439, n440, n441, n442, n443, n444,
-         n445, n446, n447, n448, n449, n450, n451, n452, n453, n454, n455,
-         n456, n457, n458, n459, n460, n461, n462, n463, n464, n465, n466,
-         n467, n468, n469, n470, n471, n472, n473, n474, n475, n476, n477,
-         n478, n479, n480, n481, n482, n483, n484, n485, n486, n487, n488,
-         n489, n490, n491, n492, n493, n494, n495, n496, n497, n498, n499,
-         n500, n501, n502, n503, n504, n505, n506, n507, n508, n509, n510,
-         n511, n512, n513, n514, n515, n516, n517, n518, n519, n520, n521,
-         n522, n523, n524, n525, n526, n527, n528, n529, n530, n531, n532,
-         n533, n534, n535, n536, n537, n538, n539, n540, n541, n542, n543,
-         n544, n545, n546, n547, n548, n549, n550, n551, n552, n553, n554,
-         n555, n556, n557, n558, n559, n560, n561, n562, n563, n564, n565,
-         n566, n567, n568, n569, n570, n571, n572, n573, n574, n575, n576,
-         n577, n578, n579, n580, n581, n582, n583, n584, n585, n586, n587,
-         n588, n589, n590, n591, n592, n593, n594, n595, n596, n597, n598,
-         n599, n600, n601, n602, n603, n604, n605, n606, n607, n608, n609,
-         n610, n611, n612, n613, n614, n615, n616, n617, n618, n619, n620,
-         n621, n622, n623, n624, n625, n626, n627, n628, n629, n630, n631,
-         n632, n633, n634, n635, n636, n637, n638, n639, n640, n641, n642,
-         n643, n644, n645, n646, n647, n648, n649, n650, n651, n652, n653,
-         n654, n655, n656, n657, n658, n659, n660, n661, n662, n663, n664,
-         n665, n666, n667, n668, n669, n670, n671, n672, n673, n674, n675,
-         n676, n677, n678, n679, n680, n681, n682, n683, n684, n685, n686,
-         n687, n688, n689, n690, n691, n692, n693, n694, n695, n696, n697,
-         n698, n699, n700, n701, n702, n703;
+  wire   next_arready, next_rlast, N84, N85, N86, N87, N88, N89, N90, N91, N92,
+         N93, N94, N95, N96, N97, N98, N99, N100, N101, N102, N103, N104, N105,
+         N106, N107, N108, N109, N110, N111, N112, N113, N114, N128, N129,
+         N130, N131, N132, N133, N134, N135, N136, N137, N138, N139, N140,
+         N141, N142, N143, N144, N145, N146, N147, N148, N149, N150, N151,
+         N152, N153, N154, N155, N156, N157, N158, N178, n384, n386, n469,
+         n470, n471, n472, n473, n474, n475, n476, n477, n478, n479, n480,
+         n481, n482, n483, n484, n485, n486, n487, n488, n489, n490, n491,
+         n492, n493, n494, n495, n496, n497, n498, n499, n500, n501, n502,
+         n503, n504, n505, n506, n507, n508, n509, n510, n511, n512, n513,
+         n514, n515, n516, n517, n518, n519, n520, n521, n522, n523, n524,
+         n525, n526, n527, n528, n529, n530, n531, n532, n533, n534, n535,
+         n536, n537, n538, n539, n540, n541, n542, n543, n544, n545, n546,
+         n547, n548, n549, n550, n551, n552, n553, n554, n555, n556, n557,
+         n558, n559, n560, n561, n562, n563, n564, n565, n566, n567, n568,
+         n569, n570, n571, n572, n573, n574, n575, n576, n577, n578, n579,
+         n580, n581, n582, n583, n584, n585, n586, n587, n588, n589, n590,
+         n591, n592, n593, n594, n595, n596, n597, n598, n599, n600, n601,
+         n602, n603, n604, n605, n606, n607, n608, n609, n610, n611, n612,
+         n613, n614, n615, n616, n617, n618, n619, n620, n621, n622, n623,
+         n624, n625, n626, n627, n628, n629, n630, n631, n632, n633, n634,
+         n635, n636, n637, n638, n639, n640, n641, n642, n643, n644, n645,
+         n646, n647, n648, n649, n650, n651, n652, n653, n654, n655, n656,
+         n657, n658, n659, n660, n661, n662, n663, n664, n665, n666, n667,
+         n668, n669, n670, n671, n672, n673, n674, n675, n676, n677, n678,
+         n679, n680, n681, n682, n683, n684, n685, n686, n687, n688, n689,
+         n690, n691, n692, n693, n694, n695, n696, n697, n698, n699, n700,
+         n701, n702, n703, n704, n705, n706, n707, n708, n709, n710, n711,
+         n712, n713, n714, n715, n716, n717, n718, n719, n720, n721, n722,
+         n723, n724, n725, n726, n727, n728, n729, n730, n731, n732, n733,
+         n734, n735, n736, n737, n738, n739, n740, n741, n742, n743, n744,
+         n745, n746, n747, n748, n749, n750, n751, n752, n753, n754, n755,
+         n756, n757, n758, n759, n760, n761, n762, n763, n764, n765, n766,
+         n767, n768, n769, n770, n771, n772, n773, n774, n775, n776, n777,
+         n778, n779, n780, n781, n782, n783, n784, n785, n786, n787, n788,
+         n789, n790, n791, n792, n793, n794, n795, n796, n797, n798, n799,
+         n800, n801, n802, n803, n804, n805, n806, n807, n808, n809, n810,
+         n811, n812, n813, n814, n815, n816, n817, n818, n819, n820, n821,
+         n822, n823, n824, n825, n826, n827, n828, n829, n830, n831, n832,
+         n833, n834, n835, n836, n837, n838, n839, n840, n841, n842, n843,
+         n844, n845, n846, n847, n848, n849, n850, n851, n852, n853, n854,
+         n855, n856, n857, n858, n859, n860, n861, n862, n863, n864, n865,
+         n866, n867, n868, n869, n870, n871, n872, n873, n874, n875, n876,
+         n877, n878, n879, n880, n881, n882, n883, n884, n885, n886, n887,
+         n888, n889, n890, n891, n892, n893, n894, n895, n896, n897, n898,
+         n899, n900, n901, n902, n903, n904, n905, n906, n907, n908, n909,
+         n910, n911, n912, n913, n914, n915, n916, n917, n918, n919, n920,
+         n921, n922, n923, n924, n925, n926, n927, n928, n929, n930, n931,
+         n932, n933, n934, n935, n936, n937, n938, n939, n940, n941, n942,
+         n943, n944, n945, n946, n947, n948, n949, n950, n951, n952, n953,
+         n954, n955, n956, n957, n958, n959, n960, n961, n962, n963, n964,
+         n965, n966, n967, n968, n969, n970, n971, n972, n973, n974;
   wire   [1:0] read_state;
   wire   [1:0] write_state;
   wire   [1:0] next_read;
   wire   [1:0] next_write;
+  wire   [31:0] next_sram_rdata;
   wire   [1:0] wstrb_reg;
-  wire   [10:0] waddr_reg;
+  wire   [31:0] waddr_reg;
   wire   [9:0] wlen_reg;
-  wire   [10:0] raddr_reg;
+  wire   [31:0] raddr_reg;
   wire   [9:0] rlen_reg;
   wire   SYNOPSYS_UNCONNECTED__0, SYNOPSYS_UNCONNECTED__1;
   assign sram_rresp = 1'b0;
   assign sram_bresp = 1'b0;
-  assign sram_rdata[31] = read_data[31];
-  assign sram_rdata[30] = read_data[30];
-  assign sram_rdata[29] = read_data[29];
-  assign sram_rdata[28] = read_data[28];
-  assign sram_rdata[27] = read_data[27];
-  assign sram_rdata[26] = read_data[26];
-  assign sram_rdata[25] = read_data[25];
-  assign sram_rdata[24] = read_data[24];
-  assign sram_rdata[23] = read_data[23];
-  assign sram_rdata[22] = read_data[22];
-  assign sram_rdata[21] = read_data[21];
-  assign sram_rdata[20] = read_data[20];
-  assign sram_rdata[19] = read_data[19];
-  assign sram_rdata[18] = read_data[18];
-  assign sram_rdata[17] = read_data[17];
-  assign sram_rdata[16] = read_data[16];
-  assign sram_rdata[15] = read_data[15];
-  assign sram_rdata[14] = read_data[14];
-  assign sram_rdata[13] = read_data[13];
-  assign sram_rdata[12] = read_data[12];
-  assign sram_rdata[11] = read_data[11];
-  assign sram_rdata[10] = read_data[10];
-  assign sram_rdata[9] = read_data[9];
-  assign sram_rdata[8] = read_data[8];
-  assign sram_rdata[7] = read_data[7];
-  assign sram_rdata[6] = read_data[6];
-  assign sram_rdata[5] = read_data[5];
-  assign sram_rdata[4] = read_data[4];
-  assign sram_rdata[3] = read_data[3];
-  assign sram_rdata[2] = read_data[2];
-  assign sram_rdata[1] = read_data[1];
-  assign sram_rdata[0] = read_data[0];
   assign wen[2] = wen[3];
   assign wen[0] = wen[1];
-  assign read_addr[10] = \read_addr[31] ;
-  assign read_addr[11] = \read_addr[31] ;
-  assign read_addr[12] = \read_addr[31] ;
-  assign read_addr[13] = \read_addr[31] ;
-  assign read_addr[14] = \read_addr[31] ;
-  assign read_addr[15] = \read_addr[31] ;
-  assign read_addr[16] = \read_addr[31] ;
-  assign read_addr[17] = \read_addr[31] ;
-  assign read_addr[18] = \read_addr[31] ;
-  assign read_addr[19] = \read_addr[31] ;
-  assign read_addr[20] = \read_addr[31] ;
-  assign read_addr[21] = \read_addr[31] ;
-  assign read_addr[22] = \read_addr[31] ;
-  assign read_addr[23] = \read_addr[31] ;
-  assign read_addr[24] = \read_addr[31] ;
-  assign read_addr[25] = \read_addr[31] ;
-  assign read_addr[26] = \read_addr[31] ;
-  assign read_addr[27] = \read_addr[31] ;
-  assign read_addr[28] = \read_addr[31] ;
-  assign read_addr[29] = \read_addr[31] ;
-  assign read_addr[30] = \read_addr[31] ;
-  assign read_addr[31] = \read_addr[31] ;
-  assign write_addr[11] = \write_addr[31] ;
-  assign write_addr[12] = \write_addr[31] ;
-  assign write_addr[13] = \write_addr[31] ;
-  assign write_addr[14] = \write_addr[31] ;
-  assign write_addr[15] = \write_addr[31] ;
-  assign write_addr[16] = \write_addr[31] ;
-  assign write_addr[17] = \write_addr[31] ;
-  assign write_addr[18] = \write_addr[31] ;
-  assign write_addr[19] = \write_addr[31] ;
-  assign write_addr[20] = \write_addr[31] ;
-  assign write_addr[21] = \write_addr[31] ;
-  assign write_addr[22] = \write_addr[31] ;
-  assign write_addr[23] = \write_addr[31] ;
-  assign write_addr[24] = \write_addr[31] ;
-  assign write_addr[25] = \write_addr[31] ;
-  assign write_addr[26] = \write_addr[31] ;
-  assign write_addr[27] = \write_addr[31] ;
-  assign write_addr[28] = \write_addr[31] ;
-  assign write_addr[29] = \write_addr[31] ;
-  assign write_addr[30] = \write_addr[31] ;
-  assign write_addr[31] = \write_addr[31] ;
 
-  DFFSR sram_awready_reg ( .D(n670), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \sram_rdata_reg[31]  ( .D(next_sram_rdata[31]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[31]) );
+  DFFSR \sram_rdata_reg[30]  ( .D(next_sram_rdata[30]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[30]) );
+  DFFSR \sram_rdata_reg[29]  ( .D(next_sram_rdata[29]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[29]) );
+  DFFSR \sram_rdata_reg[28]  ( .D(next_sram_rdata[28]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[28]) );
+  DFFSR \sram_rdata_reg[27]  ( .D(next_sram_rdata[27]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[27]) );
+  DFFSR \sram_rdata_reg[26]  ( .D(next_sram_rdata[26]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[26]) );
+  DFFSR \sram_rdata_reg[25]  ( .D(next_sram_rdata[25]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[25]) );
+  DFFSR \sram_rdata_reg[24]  ( .D(next_sram_rdata[24]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[24]) );
+  DFFSR \sram_rdata_reg[23]  ( .D(next_sram_rdata[23]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[23]) );
+  DFFSR \sram_rdata_reg[22]  ( .D(next_sram_rdata[22]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[22]) );
+  DFFSR \sram_rdata_reg[21]  ( .D(next_sram_rdata[21]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[21]) );
+  DFFSR \sram_rdata_reg[20]  ( .D(next_sram_rdata[20]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[20]) );
+  DFFSR \sram_rdata_reg[19]  ( .D(next_sram_rdata[19]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[19]) );
+  DFFSR \sram_rdata_reg[18]  ( .D(next_sram_rdata[18]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[18]) );
+  DFFSR \sram_rdata_reg[17]  ( .D(next_sram_rdata[17]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[17]) );
+  DFFSR \sram_rdata_reg[16]  ( .D(next_sram_rdata[16]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[16]) );
+  DFFSR \sram_rdata_reg[15]  ( .D(next_sram_rdata[15]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[15]) );
+  DFFSR \sram_rdata_reg[14]  ( .D(next_sram_rdata[14]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[14]) );
+  DFFSR \sram_rdata_reg[13]  ( .D(next_sram_rdata[13]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[13]) );
+  DFFSR \sram_rdata_reg[12]  ( .D(next_sram_rdata[12]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[12]) );
+  DFFSR \sram_rdata_reg[11]  ( .D(next_sram_rdata[11]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[11]) );
+  DFFSR \sram_rdata_reg[10]  ( .D(next_sram_rdata[10]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[10]) );
+  DFFSR \sram_rdata_reg[9]  ( .D(next_sram_rdata[9]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[9]) );
+  DFFSR \sram_rdata_reg[8]  ( .D(next_sram_rdata[8]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[8]) );
+  DFFSR \sram_rdata_reg[7]  ( .D(next_sram_rdata[7]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[7]) );
+  DFFSR \sram_rdata_reg[6]  ( .D(next_sram_rdata[6]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[6]) );
+  DFFSR \sram_rdata_reg[5]  ( .D(next_sram_rdata[5]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[5]) );
+  DFFSR \sram_rdata_reg[4]  ( .D(next_sram_rdata[4]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[4]) );
+  DFFSR \sram_rdata_reg[3]  ( .D(next_sram_rdata[3]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[3]) );
+  DFFSR \sram_rdata_reg[2]  ( .D(next_sram_rdata[2]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[2]) );
+  DFFSR \sram_rdata_reg[1]  ( .D(next_sram_rdata[1]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[1]) );
+  DFFSR \sram_rdata_reg[0]  ( .D(next_sram_rdata[0]), .CLK(clk), .R(n_rst), 
+        .S(1'b1), .Q(sram_rdata[0]) );
+  DFFSR sram_awready_reg ( .D(n941), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         sram_awready) );
-  DFFSR \wlen_reg_reg[0]  ( .D(n351), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[0]  ( .D(n552), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[0]) );
   DFFSR \write_state_reg[1]  ( .D(next_write[1]), .CLK(clk), .R(n_rst), .S(
         1'b1), .Q(write_state[1]) );
   DFFSR \write_state_reg[0]  ( .D(next_write[0]), .CLK(clk), .R(n_rst), .S(
         1'b1), .Q(write_state[0]) );
-  DFFSR \wlen_reg_reg[9]  ( .D(n342), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[9]  ( .D(n543), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[9]) );
-  DFFSR \wlen_reg_reg[1]  ( .D(n350), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[1]  ( .D(n551), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[1]) );
-  DFFSR \wlen_reg_reg[2]  ( .D(n349), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[2]  ( .D(n550), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[2]) );
-  DFFSR \wlen_reg_reg[3]  ( .D(n348), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[3]  ( .D(n549), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[3]) );
-  DFFSR \wlen_reg_reg[4]  ( .D(n347), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[4]  ( .D(n548), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[4]) );
-  DFFSR \wlen_reg_reg[5]  ( .D(n346), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[5]  ( .D(n547), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[5]) );
-  DFFSR \wlen_reg_reg[6]  ( .D(n345), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[6]  ( .D(n546), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[6]) );
-  DFFSR \wlen_reg_reg[7]  ( .D(n344), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[7]  ( .D(n545), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[7]) );
-  DFFSR \wlen_reg_reg[8]  ( .D(n343), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wlen_reg_reg[8]  ( .D(n544), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wlen_reg[8]) );
-  DFFSR \waddr_reg_reg[10]  ( .D(n331), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        waddr_reg[10]) );
-  DFFSR \waddr_reg_reg[0]  ( .D(n341), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[31]  ( .D(n511), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[31]) );
+  DFFSR \waddr_reg_reg[0]  ( .D(n542), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[0]) );
-  DFFSR \waddr_reg_reg[1]  ( .D(n340), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[1]  ( .D(n541), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[1]) );
-  DFFSR \waddr_reg_reg[2]  ( .D(n339), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[2]  ( .D(n540), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[2]) );
-  DFFSR \waddr_reg_reg[3]  ( .D(n338), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[3]  ( .D(n539), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[3]) );
-  DFFSR \waddr_reg_reg[4]  ( .D(n337), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[4]  ( .D(n538), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[4]) );
-  DFFSR \waddr_reg_reg[5]  ( .D(n336), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[5]  ( .D(n537), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[5]) );
-  DFFSR \waddr_reg_reg[6]  ( .D(n335), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[6]  ( .D(n536), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[6]) );
-  DFFSR \waddr_reg_reg[7]  ( .D(n334), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[7]  ( .D(n535), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[7]) );
-  DFFSR \waddr_reg_reg[8]  ( .D(n333), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[8]  ( .D(n534), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[8]) );
-  DFFSR \waddr_reg_reg[9]  ( .D(n332), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[9]  ( .D(n533), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         waddr_reg[9]) );
-  DFFSR sram_wready_reg ( .D(n352), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \waddr_reg_reg[10]  ( .D(n532), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[10]) );
+  DFFSR \waddr_reg_reg[11]  ( .D(n531), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[11]) );
+  DFFSR \waddr_reg_reg[12]  ( .D(n530), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[12]) );
+  DFFSR \waddr_reg_reg[13]  ( .D(n529), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[13]) );
+  DFFSR \waddr_reg_reg[14]  ( .D(n528), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[14]) );
+  DFFSR \waddr_reg_reg[15]  ( .D(n527), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[15]) );
+  DFFSR \waddr_reg_reg[16]  ( .D(n526), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[16]) );
+  DFFSR \waddr_reg_reg[17]  ( .D(n525), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[17]) );
+  DFFSR \waddr_reg_reg[18]  ( .D(n524), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[18]) );
+  DFFSR \waddr_reg_reg[19]  ( .D(n523), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[19]) );
+  DFFSR \waddr_reg_reg[20]  ( .D(n522), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[20]) );
+  DFFSR \waddr_reg_reg[21]  ( .D(n521), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[21]) );
+  DFFSR \waddr_reg_reg[22]  ( .D(n520), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[22]) );
+  DFFSR \waddr_reg_reg[23]  ( .D(n519), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[23]) );
+  DFFSR \waddr_reg_reg[24]  ( .D(n518), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[24]) );
+  DFFSR \waddr_reg_reg[25]  ( .D(n517), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[25]) );
+  DFFSR \waddr_reg_reg[26]  ( .D(n516), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[26]) );
+  DFFSR \waddr_reg_reg[27]  ( .D(n515), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[27]) );
+  DFFSR \waddr_reg_reg[28]  ( .D(n514), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[28]) );
+  DFFSR \waddr_reg_reg[29]  ( .D(n513), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[29]) );
+  DFFSR \waddr_reg_reg[30]  ( .D(n512), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        waddr_reg[30]) );
+  DFFSR sram_wready_reg ( .D(n553), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         sram_wready) );
-  DFFSR \wdata_reg_reg[31]  ( .D(n671), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[31]  ( .D(n942), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[31]) );
-  DFFSR \wstrb_reg_reg[0]  ( .D(n280), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wstrb_reg_reg[0]  ( .D(n386), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wstrb_reg[0]) );
-  DFFSR \wstrb_reg_reg[1]  ( .D(n278), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wstrb_reg_reg[1]  ( .D(n384), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         wstrb_reg[1]) );
-  DFFSR \wdata_reg_reg[0]  ( .D(n702), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[0]  ( .D(n973), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[0]) );
-  DFFSR \wdata_reg_reg[1]  ( .D(n701), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[1]  ( .D(n972), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[1]) );
-  DFFSR \wdata_reg_reg[2]  ( .D(n700), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[2]  ( .D(n971), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[2]) );
-  DFFSR \wdata_reg_reg[3]  ( .D(n699), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[3]  ( .D(n970), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[3]) );
-  DFFSR \wdata_reg_reg[4]  ( .D(n698), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[4]  ( .D(n969), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[4]) );
-  DFFSR \wdata_reg_reg[5]  ( .D(n697), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[5]  ( .D(n968), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[5]) );
-  DFFSR \wdata_reg_reg[6]  ( .D(n696), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[6]  ( .D(n967), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[6]) );
-  DFFSR \wdata_reg_reg[7]  ( .D(n695), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[7]  ( .D(n966), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[7]) );
-  DFFSR \wdata_reg_reg[8]  ( .D(n694), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[8]  ( .D(n965), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[8]) );
-  DFFSR \wdata_reg_reg[9]  ( .D(n693), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[9]  ( .D(n964), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[9]) );
-  DFFSR \wdata_reg_reg[10]  ( .D(n692), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[10]  ( .D(n963), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[10]) );
-  DFFSR \wdata_reg_reg[11]  ( .D(n691), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[11]  ( .D(n962), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[11]) );
-  DFFSR \wdata_reg_reg[12]  ( .D(n690), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[12]  ( .D(n961), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[12]) );
-  DFFSR \wdata_reg_reg[13]  ( .D(n689), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[13]  ( .D(n960), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[13]) );
-  DFFSR \wdata_reg_reg[14]  ( .D(n688), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[14]  ( .D(n959), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[14]) );
-  DFFSR \wdata_reg_reg[15]  ( .D(n687), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[15]  ( .D(n958), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[15]) );
-  DFFSR \wdata_reg_reg[16]  ( .D(n686), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[16]  ( .D(n957), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[16]) );
-  DFFSR \wdata_reg_reg[17]  ( .D(n685), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[17]  ( .D(n956), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[17]) );
-  DFFSR \wdata_reg_reg[18]  ( .D(n684), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[18]  ( .D(n955), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[18]) );
-  DFFSR \wdata_reg_reg[19]  ( .D(n683), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[19]  ( .D(n954), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[19]) );
-  DFFSR \wdata_reg_reg[20]  ( .D(n682), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[20]  ( .D(n953), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[20]) );
-  DFFSR \wdata_reg_reg[21]  ( .D(n681), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[21]  ( .D(n952), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[21]) );
-  DFFSR \wdata_reg_reg[22]  ( .D(n680), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[22]  ( .D(n951), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[22]) );
-  DFFSR \wdata_reg_reg[23]  ( .D(n679), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[23]  ( .D(n950), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[23]) );
-  DFFSR \wdata_reg_reg[24]  ( .D(n678), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[24]  ( .D(n949), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[24]) );
-  DFFSR \wdata_reg_reg[25]  ( .D(n677), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[25]  ( .D(n948), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[25]) );
-  DFFSR \wdata_reg_reg[26]  ( .D(n676), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[26]  ( .D(n947), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[26]) );
-  DFFSR \wdata_reg_reg[27]  ( .D(n675), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[27]  ( .D(n946), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[27]) );
-  DFFSR \wdata_reg_reg[28]  ( .D(n674), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[28]  ( .D(n945), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[28]) );
-  DFFSR \wdata_reg_reg[29]  ( .D(n673), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[29]  ( .D(n944), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[29]) );
-  DFFSR \wdata_reg_reg[30]  ( .D(n672), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \wdata_reg_reg[30]  ( .D(n943), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         write_data[30]) );
-  DFFSR sram_bvalid_reg ( .D(N136), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR sram_bvalid_reg ( .D(N178), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         sram_bvalid) );
-  DFFSR sram_arready_reg ( .D(n703), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        sram_arready) );
-  DFFSR \rlen_reg_reg[9]  ( .D(n321), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR sram_arready_reg ( .D(next_arready), .CLK(clk), .R(n_rst), .S(1'b1), 
+        .Q(sram_arready) );
+  DFFSR \rlen_reg_reg[9]  ( .D(n501), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         rlen_reg[9]) );
   DFFSR \read_state_reg[0]  ( .D(next_read[0]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(read_state[0]) );
   DFFSR \read_state_reg[1]  ( .D(next_read[1]), .CLK(clk), .R(n_rst), .S(1'b1), 
         .Q(read_state[1]) );
-  DFFSR sram_rvalid_reg ( .D(N132), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        sram_rvalid) );
-  DFFSR \rlen_reg_reg[8]  ( .D(n322), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[8]) );
-  DFFSR \rlen_reg_reg[0]  ( .D(n330), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[0]) );
-  DFFSR \rlen_reg_reg[1]  ( .D(n329), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[1]) );
-  DFFSR \rlen_reg_reg[2]  ( .D(n328), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[2]) );
-  DFFSR \rlen_reg_reg[3]  ( .D(n327), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[3]) );
-  DFFSR \rlen_reg_reg[4]  ( .D(n326), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[4]) );
-  DFFSR \rlen_reg_reg[5]  ( .D(n325), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[5]) );
-  DFFSR \rlen_reg_reg[6]  ( .D(n324), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[6]) );
-  DFFSR \rlen_reg_reg[7]  ( .D(n323), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        rlen_reg[7]) );
   DFFSR sram_rlast_reg ( .D(next_rlast), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         sram_rlast) );
-  DFFSR \raddr_reg_reg[10]  ( .D(n310), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
-        raddr_reg[10]) );
-  DFFSR \raddr_reg_reg[0]  ( .D(n320), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR sram_rvalid_reg ( .D(n974), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        sram_rvalid) );
+  DFFSR \rlen_reg_reg[8]  ( .D(n502), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[8]) );
+  DFFSR \rlen_reg_reg[0]  ( .D(n510), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[0]) );
+  DFFSR \rlen_reg_reg[1]  ( .D(n509), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[1]) );
+  DFFSR \rlen_reg_reg[2]  ( .D(n508), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[2]) );
+  DFFSR \rlen_reg_reg[3]  ( .D(n507), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[3]) );
+  DFFSR \rlen_reg_reg[4]  ( .D(n506), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[4]) );
+  DFFSR \rlen_reg_reg[5]  ( .D(n505), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[5]) );
+  DFFSR \rlen_reg_reg[6]  ( .D(n504), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[6]) );
+  DFFSR \rlen_reg_reg[7]  ( .D(n503), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        rlen_reg[7]) );
+  DFFSR \raddr_reg_reg[31]  ( .D(n469), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[31]) );
+  DFFSR \raddr_reg_reg[0]  ( .D(n500), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[0]) );
-  DFFSR \raddr_reg_reg[1]  ( .D(n319), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[1]  ( .D(n499), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[1]) );
-  DFFSR \raddr_reg_reg[2]  ( .D(n318), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[2]  ( .D(n498), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[2]) );
-  DFFSR \raddr_reg_reg[3]  ( .D(n317), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[3]  ( .D(n497), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[3]) );
-  DFFSR \raddr_reg_reg[4]  ( .D(n316), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[4]  ( .D(n496), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[4]) );
-  DFFSR \raddr_reg_reg[5]  ( .D(n315), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[5]  ( .D(n495), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[5]) );
-  DFFSR \raddr_reg_reg[6]  ( .D(n314), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[6]  ( .D(n494), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[6]) );
-  DFFSR \raddr_reg_reg[7]  ( .D(n313), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[7]  ( .D(n493), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[7]) );
-  DFFSR \raddr_reg_reg[8]  ( .D(n312), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[8]  ( .D(n492), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[8]) );
-  DFFSR \raddr_reg_reg[9]  ( .D(n311), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+  DFFSR \raddr_reg_reg[9]  ( .D(n491), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
         raddr_reg[9]) );
-  sram_axi_DW01_inc_0 add_193 ( .A(waddr_reg), .SUM({N94, N93, N92, N91, N90, 
-        N89, N88, N87, N86, N85, SYNOPSYS_UNCONNECTED__0}) );
-  sram_axi_DW01_inc_1 add_197 ( .A(raddr_reg), .SUM({N117, N116, N115, N114, 
-        N113, N112, N111, N110, N109, N108, SYNOPSYS_UNCONNECTED__1}) );
-  INVX2 U359 ( .A(n506), .Y(n492) );
-  INVX2 U360 ( .A(n584), .Y(n353) );
-  INVX2 U361 ( .A(n571), .Y(n354) );
-  INVX2 U362 ( .A(n493), .Y(n355) );
-  NAND2X1 U363 ( .A(sram_wready), .B(sram_wvalid), .Y(n426) );
-  INVX4 U364 ( .A(n426), .Y(n356) );
-  XNOR2X1 U365 ( .A(waddr_reg[9]), .B(n357), .Y(write_addr[9]) );
-  OAI21X1 U366 ( .A(n358), .B(n359), .C(n357), .Y(write_addr[8]) );
-  INVX1 U367 ( .A(n360), .Y(write_addr[7]) );
-  AOI21X1 U368 ( .A(n361), .B(waddr_reg[7]), .C(n358), .Y(n360) );
-  OAI21X1 U369 ( .A(n362), .B(n363), .C(n361), .Y(write_addr[6]) );
-  INVX1 U370 ( .A(n364), .Y(write_addr[5]) );
-  AOI21X1 U371 ( .A(n365), .B(waddr_reg[5]), .C(n362), .Y(n364) );
-  OAI21X1 U372 ( .A(n366), .B(n367), .C(n365), .Y(write_addr[4]) );
-  OR2X1 U373 ( .A(n368), .B(n369), .Y(n367) );
-  XNOR2X1 U374 ( .A(waddr_reg[3]), .B(n369), .Y(write_addr[3]) );
-  XNOR2X1 U375 ( .A(waddr_reg[2]), .B(n370), .Y(write_addr[2]) );
-  NAND2X1 U376 ( .A(waddr_reg[1]), .B(waddr_reg[0]), .Y(n370) );
-  XNOR2X1 U377 ( .A(waddr_reg[1]), .B(write_addr[0]), .Y(write_addr[1]) );
-  NAND2X1 U378 ( .A(n371), .B(n372), .Y(write_addr[10]) );
-  OAI21X1 U379 ( .A(waddr_reg[9]), .B(n357), .C(waddr_reg[10]), .Y(n372) );
-  INVX1 U380 ( .A(\write_addr[31] ), .Y(n371) );
-  NOR3X1 U381 ( .A(waddr_reg[10]), .B(waddr_reg[9]), .C(n357), .Y(
-        \write_addr[31] ) );
-  NAND2X1 U382 ( .A(n358), .B(n359), .Y(n357) );
-  INVX1 U383 ( .A(waddr_reg[8]), .Y(n359) );
-  NOR2X1 U384 ( .A(n361), .B(waddr_reg[7]), .Y(n358) );
-  NAND2X1 U385 ( .A(n362), .B(n363), .Y(n361) );
-  INVX1 U386 ( .A(waddr_reg[6]), .Y(n363) );
-  NOR2X1 U387 ( .A(n365), .B(waddr_reg[5]), .Y(n362) );
-  OAI21X1 U388 ( .A(n369), .B(n368), .C(n366), .Y(n365) );
-  INVX1 U389 ( .A(waddr_reg[4]), .Y(n366) );
-  INVX1 U390 ( .A(waddr_reg[3]), .Y(n368) );
-  NAND3X1 U391 ( .A(waddr_reg[1]), .B(waddr_reg[0]), .C(waddr_reg[2]), .Y(n369) );
-  INVX1 U392 ( .A(n373), .Y(wen[3]) );
-  MUX2X1 U393 ( .B(n374), .A(n373), .S(wstrb_reg[1]), .Y(wen[1]) );
-  NAND2X1 U394 ( .A(wstrb_reg[0]), .B(n375), .Y(n373) );
-  NAND2X1 U395 ( .A(n375), .B(n376), .Y(n374) );
-  INVX1 U396 ( .A(wstrb_reg[0]), .Y(n376) );
-  INVX1 U397 ( .A(n377), .Y(read_addr[9]) );
-  AOI21X1 U398 ( .A(n378), .B(raddr_reg[9]), .C(\read_addr[31] ), .Y(n377) );
-  OAI21X1 U399 ( .A(n379), .B(n380), .C(n378), .Y(read_addr[8]) );
-  INVX1 U400 ( .A(n381), .Y(read_addr[7]) );
-  AOI21X1 U401 ( .A(n382), .B(raddr_reg[7]), .C(n379), .Y(n381) );
-  OAI21X1 U402 ( .A(n383), .B(n384), .C(n382), .Y(read_addr[6]) );
-  INVX1 U403 ( .A(n385), .Y(read_addr[5]) );
-  AOI21X1 U404 ( .A(n386), .B(raddr_reg[5]), .C(n383), .Y(n385) );
-  OAI21X1 U405 ( .A(n387), .B(n388), .C(n386), .Y(read_addr[4]) );
-  OR2X1 U406 ( .A(n389), .B(n390), .Y(n388) );
-  XNOR2X1 U407 ( .A(raddr_reg[3]), .B(n390), .Y(read_addr[3]) );
-  NOR2X1 U408 ( .A(n378), .B(raddr_reg[9]), .Y(\read_addr[31] ) );
-  NAND2X1 U409 ( .A(n379), .B(n380), .Y(n378) );
-  INVX1 U410 ( .A(raddr_reg[8]), .Y(n380) );
-  NOR2X1 U411 ( .A(n382), .B(raddr_reg[7]), .Y(n379) );
-  NAND2X1 U412 ( .A(n383), .B(n384), .Y(n382) );
-  INVX1 U413 ( .A(raddr_reg[6]), .Y(n384) );
-  NOR2X1 U414 ( .A(n386), .B(raddr_reg[5]), .Y(n383) );
-  OAI21X1 U415 ( .A(n390), .B(n389), .C(n387), .Y(n386) );
-  INVX1 U416 ( .A(raddr_reg[4]), .Y(n387) );
-  INVX1 U417 ( .A(raddr_reg[3]), .Y(n389) );
-  NAND3X1 U418 ( .A(raddr_reg[1]), .B(raddr_reg[0]), .C(raddr_reg[2]), .Y(n390) );
-  XNOR2X1 U419 ( .A(raddr_reg[2]), .B(n391), .Y(read_addr[2]) );
-  NAND2X1 U420 ( .A(raddr_reg[1]), .B(raddr_reg[0]), .Y(n391) );
-  XNOR2X1 U421 ( .A(raddr_reg[1]), .B(read_addr[0]), .Y(read_addr[1]) );
-  NOR2X1 U422 ( .A(n392), .B(n393), .Y(next_rlast) );
-  AOI21X1 U423 ( .A(n394), .B(n395), .C(n396), .Y(n670) );
-  NAND2X1 U424 ( .A(n397), .B(n398), .Y(n396) );
-  NOR2X1 U425 ( .A(n399), .B(n400), .Y(n395) );
-  NAND3X1 U426 ( .A(n401), .B(n402), .C(n403), .Y(n400) );
-  NOR2X1 U427 ( .A(sram_awaddr[23]), .B(n404), .Y(n403) );
-  OR2X1 U428 ( .A(sram_awaddr[25]), .B(sram_awaddr[24]), .Y(n404) );
-  NOR2X1 U429 ( .A(sram_awaddr[29]), .B(sram_awaddr[28]), .Y(n402) );
-  NOR2X1 U430 ( .A(sram_awaddr[27]), .B(sram_awaddr[26]), .Y(n401) );
-  OR2X1 U431 ( .A(n405), .B(n406), .Y(n399) );
-  NAND3X1 U432 ( .A(n407), .B(n408), .C(n409), .Y(n406) );
-  NOR2X1 U433 ( .A(sram_awaddr[31]), .B(sram_awaddr[30]), .Y(n409) );
-  INVX1 U434 ( .A(sram_awaddr[5]), .Y(n408) );
-  INVX1 U435 ( .A(sram_awaddr[4]), .Y(n407) );
-  NAND3X1 U436 ( .A(n410), .B(n411), .C(n412), .Y(n405) );
-  NOR2X1 U437 ( .A(sram_awaddr[9]), .B(sram_awaddr[8]), .Y(n412) );
-  INVX1 U438 ( .A(sram_awaddr[7]), .Y(n411) );
-  INVX1 U439 ( .A(sram_awaddr[6]), .Y(n410) );
-  NOR2X1 U440 ( .A(n413), .B(n414), .Y(n394) );
-  NAND3X1 U441 ( .A(n415), .B(n416), .C(n417), .Y(n414) );
-  AOI21X1 U442 ( .A(n418), .B(n419), .C(n420), .Y(n417) );
-  OR2X1 U443 ( .A(sram_awaddr[11]), .B(sram_awaddr[10]), .Y(n420) );
-  AND2X1 U444 ( .A(sram_awaddr[0]), .B(sram_awaddr[1]), .Y(n419) );
-  AND2X1 U445 ( .A(sram_awaddr[2]), .B(sram_awaddr[3]), .Y(n418) );
-  NOR2X1 U446 ( .A(sram_awaddr[15]), .B(sram_awaddr[14]), .Y(n416) );
-  NOR2X1 U447 ( .A(sram_awaddr[13]), .B(sram_awaddr[12]), .Y(n415) );
-  NAND3X1 U448 ( .A(n421), .B(n422), .C(n423), .Y(n413) );
-  NOR2X1 U449 ( .A(sram_awaddr[16]), .B(n424), .Y(n423) );
-  OR2X1 U450 ( .A(sram_awaddr[18]), .B(sram_awaddr[17]), .Y(n424) );
-  NOR2X1 U451 ( .A(sram_awaddr[22]), .B(sram_awaddr[21]), .Y(n422) );
-  NOR2X1 U452 ( .A(sram_awaddr[20]), .B(sram_awaddr[19]), .Y(n421) );
-  INVX1 U453 ( .A(n425), .Y(n671) );
-  MUX2X1 U454 ( .B(write_data[31]), .A(sram_wdata[31]), .S(n356), .Y(n425) );
-  INVX1 U455 ( .A(n427), .Y(n672) );
-  MUX2X1 U456 ( .B(write_data[30]), .A(sram_wdata[30]), .S(n356), .Y(n427) );
-  INVX1 U457 ( .A(n428), .Y(n673) );
-  MUX2X1 U458 ( .B(write_data[29]), .A(sram_wdata[29]), .S(n356), .Y(n428) );
-  INVX1 U459 ( .A(n429), .Y(n674) );
-  MUX2X1 U460 ( .B(write_data[28]), .A(sram_wdata[28]), .S(n356), .Y(n429) );
-  INVX1 U461 ( .A(n430), .Y(n675) );
-  MUX2X1 U462 ( .B(write_data[27]), .A(sram_wdata[27]), .S(n356), .Y(n430) );
-  INVX1 U463 ( .A(n431), .Y(n676) );
-  MUX2X1 U464 ( .B(write_data[26]), .A(sram_wdata[26]), .S(n356), .Y(n431) );
-  INVX1 U465 ( .A(n432), .Y(n677) );
-  MUX2X1 U466 ( .B(write_data[25]), .A(sram_wdata[25]), .S(n356), .Y(n432) );
-  INVX1 U467 ( .A(n433), .Y(n678) );
-  MUX2X1 U468 ( .B(write_data[24]), .A(sram_wdata[24]), .S(n356), .Y(n433) );
-  INVX1 U469 ( .A(n434), .Y(n679) );
-  MUX2X1 U470 ( .B(write_data[23]), .A(sram_wdata[23]), .S(n356), .Y(n434) );
-  INVX1 U471 ( .A(n435), .Y(n680) );
-  MUX2X1 U472 ( .B(write_data[22]), .A(sram_wdata[22]), .S(n356), .Y(n435) );
-  INVX1 U473 ( .A(n436), .Y(n681) );
-  MUX2X1 U474 ( .B(write_data[21]), .A(sram_wdata[21]), .S(n356), .Y(n436) );
-  INVX1 U475 ( .A(n437), .Y(n682) );
-  MUX2X1 U476 ( .B(write_data[20]), .A(sram_wdata[20]), .S(n356), .Y(n437) );
-  INVX1 U477 ( .A(n438), .Y(n683) );
-  MUX2X1 U478 ( .B(write_data[19]), .A(sram_wdata[19]), .S(n356), .Y(n438) );
-  INVX1 U479 ( .A(n439), .Y(n684) );
-  MUX2X1 U480 ( .B(write_data[18]), .A(sram_wdata[18]), .S(n356), .Y(n439) );
-  INVX1 U481 ( .A(n440), .Y(n685) );
-  MUX2X1 U482 ( .B(write_data[17]), .A(sram_wdata[17]), .S(n356), .Y(n440) );
-  INVX1 U483 ( .A(n441), .Y(n686) );
-  MUX2X1 U484 ( .B(write_data[16]), .A(sram_wdata[16]), .S(n356), .Y(n441) );
-  INVX1 U485 ( .A(n442), .Y(n687) );
-  MUX2X1 U486 ( .B(write_data[15]), .A(sram_wdata[15]), .S(n356), .Y(n442) );
-  INVX1 U487 ( .A(n443), .Y(n688) );
-  MUX2X1 U488 ( .B(write_data[14]), .A(sram_wdata[14]), .S(n356), .Y(n443) );
-  INVX1 U489 ( .A(n444), .Y(n689) );
-  MUX2X1 U490 ( .B(write_data[13]), .A(sram_wdata[13]), .S(n356), .Y(n444) );
-  INVX1 U491 ( .A(n445), .Y(n690) );
-  MUX2X1 U492 ( .B(write_data[12]), .A(sram_wdata[12]), .S(n356), .Y(n445) );
-  INVX1 U493 ( .A(n446), .Y(n691) );
-  MUX2X1 U494 ( .B(write_data[11]), .A(sram_wdata[11]), .S(n356), .Y(n446) );
-  INVX1 U495 ( .A(n447), .Y(n692) );
-  MUX2X1 U496 ( .B(write_data[10]), .A(sram_wdata[10]), .S(n356), .Y(n447) );
-  INVX1 U497 ( .A(n448), .Y(n693) );
-  MUX2X1 U498 ( .B(write_data[9]), .A(sram_wdata[9]), .S(n356), .Y(n448) );
-  INVX1 U499 ( .A(n449), .Y(n694) );
-  MUX2X1 U500 ( .B(write_data[8]), .A(sram_wdata[8]), .S(n356), .Y(n449) );
-  INVX1 U501 ( .A(n450), .Y(n695) );
-  MUX2X1 U502 ( .B(write_data[7]), .A(sram_wdata[7]), .S(n356), .Y(n450) );
-  INVX1 U503 ( .A(n451), .Y(n696) );
-  MUX2X1 U504 ( .B(write_data[6]), .A(sram_wdata[6]), .S(n356), .Y(n451) );
-  INVX1 U505 ( .A(n452), .Y(n697) );
-  MUX2X1 U506 ( .B(write_data[5]), .A(sram_wdata[5]), .S(n356), .Y(n452) );
-  INVX1 U507 ( .A(n453), .Y(n698) );
-  MUX2X1 U508 ( .B(write_data[4]), .A(sram_wdata[4]), .S(n356), .Y(n453) );
-  INVX1 U509 ( .A(n454), .Y(n699) );
-  MUX2X1 U510 ( .B(write_data[3]), .A(sram_wdata[3]), .S(n356), .Y(n454) );
-  INVX1 U511 ( .A(n455), .Y(n700) );
-  MUX2X1 U512 ( .B(write_data[2]), .A(sram_wdata[2]), .S(n356), .Y(n455) );
-  INVX1 U513 ( .A(n456), .Y(n701) );
-  MUX2X1 U514 ( .B(write_data[1]), .A(sram_wdata[1]), .S(n356), .Y(n456) );
-  INVX1 U515 ( .A(n457), .Y(n702) );
-  MUX2X1 U516 ( .B(write_data[0]), .A(sram_wdata[0]), .S(n356), .Y(n457) );
-  NOR2X1 U517 ( .A(next_read[0]), .B(n458), .Y(n703) );
-  OAI21X1 U518 ( .A(n459), .B(n460), .C(n461), .Y(n458) );
-  NAND3X1 U519 ( .A(n462), .B(n463), .C(n464), .Y(n460) );
-  NOR2X1 U520 ( .A(n465), .B(n466), .Y(n464) );
-  OAI21X1 U521 ( .A(n467), .B(n468), .C(n469), .Y(n466) );
-  NOR2X1 U522 ( .A(sram_araddr[11]), .B(sram_araddr[10]), .Y(n469) );
-  NAND2X1 U523 ( .A(sram_araddr[3]), .B(sram_araddr[2]), .Y(n468) );
-  NAND2X1 U524 ( .A(sram_araddr[1]), .B(sram_araddr[0]), .Y(n467) );
-  NAND2X1 U525 ( .A(n470), .B(n471), .Y(n465) );
-  NOR2X1 U526 ( .A(sram_araddr[15]), .B(sram_araddr[14]), .Y(n471) );
-  NOR2X1 U527 ( .A(sram_araddr[13]), .B(sram_araddr[12]), .Y(n470) );
-  AND2X1 U528 ( .A(n472), .B(n473), .Y(n463) );
-  NOR2X1 U529 ( .A(sram_araddr[22]), .B(sram_araddr[21]), .Y(n473) );
-  NOR2X1 U530 ( .A(sram_araddr[20]), .B(sram_araddr[19]), .Y(n472) );
-  NOR2X1 U531 ( .A(sram_araddr[16]), .B(n474), .Y(n462) );
-  OR2X1 U532 ( .A(sram_araddr[18]), .B(sram_araddr[17]), .Y(n474) );
-  NAND3X1 U533 ( .A(n475), .B(n476), .C(n477), .Y(n459) );
-  NOR2X1 U534 ( .A(n478), .B(n479), .Y(n477) );
-  NAND3X1 U535 ( .A(n480), .B(n481), .C(n482), .Y(n479) );
-  NOR2X1 U536 ( .A(sram_araddr[31]), .B(sram_araddr[30]), .Y(n482) );
-  INVX1 U537 ( .A(sram_araddr[5]), .Y(n481) );
-  INVX1 U538 ( .A(sram_araddr[4]), .Y(n480) );
-  NAND3X1 U539 ( .A(n483), .B(n484), .C(n485), .Y(n478) );
-  NOR2X1 U540 ( .A(sram_araddr[9]), .B(sram_araddr[8]), .Y(n485) );
-  INVX1 U541 ( .A(sram_araddr[7]), .Y(n484) );
-  INVX1 U542 ( .A(sram_araddr[6]), .Y(n483) );
-  AND2X1 U543 ( .A(n486), .B(n487), .Y(n476) );
-  NOR2X1 U544 ( .A(sram_araddr[29]), .B(sram_araddr[28]), .Y(n487) );
-  NOR2X1 U545 ( .A(sram_araddr[27]), .B(sram_araddr[26]), .Y(n486) );
-  NOR2X1 U546 ( .A(sram_araddr[23]), .B(n488), .Y(n475) );
-  OR2X1 U547 ( .A(sram_araddr[25]), .B(sram_araddr[24]), .Y(n488) );
-  NOR2X1 U548 ( .A(next_write[1]), .B(n397), .Y(n352) );
-  OAI21X1 U549 ( .A(n489), .B(n490), .C(n491), .Y(n351) );
-  MUX2X1 U550 ( .B(n492), .A(n493), .S(n494), .Y(n491) );
-  INVX1 U551 ( .A(sram_awlen[0]), .Y(n490) );
-  OAI21X1 U552 ( .A(n489), .B(n495), .C(n496), .Y(n350) );
-  MUX2X1 U553 ( .B(n497), .A(n498), .S(n499), .Y(n496) );
-  NOR2X1 U554 ( .A(wlen_reg[0]), .B(n355), .Y(n498) );
-  INVX1 U555 ( .A(sram_awlen[1]), .Y(n495) );
-  OAI21X1 U556 ( .A(n489), .B(n501), .C(n502), .Y(n349) );
-  AOI22X1 U557 ( .A(wlen_reg[2]), .B(n503), .C(n493), .D(n504), .Y(n502) );
-  OAI21X1 U558 ( .A(n355), .B(n499), .C(n505), .Y(n503) );
-  INVX1 U559 ( .A(n497), .Y(n505) );
-  OAI21X1 U560 ( .A(n355), .B(n494), .C(n506), .Y(n497) );
-  INVX1 U561 ( .A(sram_awlen[2]), .Y(n501) );
-  OAI21X1 U562 ( .A(n489), .B(n507), .C(n508), .Y(n348) );
-  MUX2X1 U563 ( .B(n509), .A(n510), .S(n511), .Y(n508) );
-  NOR2X1 U564 ( .A(n512), .B(n355), .Y(n510) );
-  INVX1 U565 ( .A(sram_awlen[3]), .Y(n507) );
-  OAI21X1 U566 ( .A(n489), .B(n513), .C(n514), .Y(n347) );
-  AOI22X1 U567 ( .A(wlen_reg[4]), .B(n515), .C(n493), .D(n516), .Y(n514) );
-  OAI21X1 U568 ( .A(n355), .B(n511), .C(n517), .Y(n515) );
-  INVX1 U569 ( .A(n509), .Y(n517) );
-  OAI21X1 U570 ( .A(n504), .B(n500), .C(n506), .Y(n509) );
-  INVX1 U571 ( .A(sram_awlen[4]), .Y(n513) );
-  OAI21X1 U572 ( .A(n489), .B(n518), .C(n519), .Y(n346) );
-  MUX2X1 U573 ( .B(n520), .A(n521), .S(wlen_reg[5]), .Y(n519) );
-  NOR2X1 U574 ( .A(n522), .B(n355), .Y(n520) );
-  INVX1 U575 ( .A(sram_awlen[5]), .Y(n518) );
-  OAI21X1 U576 ( .A(n489), .B(n523), .C(n524), .Y(n345) );
-  AOI22X1 U577 ( .A(wlen_reg[6]), .B(n525), .C(n493), .D(n526), .Y(n524) );
-  INVX1 U578 ( .A(n527), .Y(n525) );
-  AOI21X1 U579 ( .A(n493), .B(wlen_reg[5]), .C(n521), .Y(n527) );
-  OAI21X1 U580 ( .A(n516), .B(n500), .C(n506), .Y(n521) );
-  INVX1 U581 ( .A(n522), .Y(n516) );
-  INVX1 U582 ( .A(sram_awlen[6]), .Y(n523) );
-  OAI21X1 U583 ( .A(n489), .B(n528), .C(n529), .Y(n344) );
-  AOI21X1 U584 ( .A(wlen_reg[7]), .B(n530), .C(n531), .Y(n529) );
-  INVX1 U585 ( .A(sram_awlen[7]), .Y(n528) );
-  INVX1 U586 ( .A(n532), .Y(n343) );
-  AOI21X1 U587 ( .A(n533), .B(sram_awlen[8]), .C(n534), .Y(n532) );
-  MUX2X1 U588 ( .B(n535), .A(n536), .S(n537), .Y(n534) );
-  OAI21X1 U589 ( .A(n489), .B(n538), .C(n539), .Y(n342) );
-  AOI21X1 U590 ( .A(wlen_reg[9]), .B(n540), .C(n541), .Y(n539) );
-  INVX1 U591 ( .A(n542), .Y(n541) );
-  OAI21X1 U592 ( .A(n355), .B(n537), .C(n535), .Y(n540) );
-  AOI21X1 U593 ( .A(n493), .B(wlen_reg[7]), .C(n530), .Y(n535) );
-  OAI21X1 U594 ( .A(n526), .B(n500), .C(n506), .Y(n530) );
-  INVX1 U595 ( .A(sram_awlen[9]), .Y(n538) );
-  OAI21X1 U596 ( .A(n543), .B(n489), .C(n544), .Y(n341) );
-  MUX2X1 U597 ( .B(n492), .A(n493), .S(write_addr[0]), .Y(n544) );
-  INVX1 U598 ( .A(waddr_reg[0]), .Y(write_addr[0]) );
-  INVX1 U599 ( .A(n533), .Y(n489) );
-  INVX1 U600 ( .A(sram_awaddr[0]), .Y(n543) );
-  OAI21X1 U601 ( .A(n355), .B(n545), .C(n546), .Y(n340) );
-  AOI22X1 U602 ( .A(n533), .B(sram_awaddr[1]), .C(n492), .D(waddr_reg[1]), .Y(
-        n546) );
-  INVX1 U603 ( .A(N85), .Y(n545) );
-  OAI21X1 U604 ( .A(n355), .B(n547), .C(n548), .Y(n339) );
-  AOI22X1 U605 ( .A(n533), .B(sram_awaddr[2]), .C(n492), .D(waddr_reg[2]), .Y(
-        n548) );
-  INVX1 U606 ( .A(N86), .Y(n547) );
-  OAI21X1 U607 ( .A(n500), .B(n549), .C(n550), .Y(n338) );
-  AOI22X1 U608 ( .A(n533), .B(sram_awaddr[3]), .C(n492), .D(waddr_reg[3]), .Y(
-        n550) );
-  INVX1 U609 ( .A(N87), .Y(n549) );
-  OAI21X1 U610 ( .A(n500), .B(n551), .C(n552), .Y(n337) );
-  AOI22X1 U611 ( .A(sram_awaddr[4]), .B(n533), .C(n492), .D(waddr_reg[4]), .Y(
-        n552) );
-  INVX1 U612 ( .A(N88), .Y(n551) );
-  OAI21X1 U613 ( .A(n500), .B(n553), .C(n554), .Y(n336) );
-  AOI22X1 U614 ( .A(sram_awaddr[5]), .B(n533), .C(n492), .D(waddr_reg[5]), .Y(
-        n554) );
-  INVX1 U615 ( .A(N89), .Y(n553) );
-  OAI21X1 U616 ( .A(n500), .B(n555), .C(n556), .Y(n335) );
-  AOI22X1 U617 ( .A(sram_awaddr[6]), .B(n533), .C(n492), .D(waddr_reg[6]), .Y(
-        n556) );
-  INVX1 U618 ( .A(N90), .Y(n555) );
-  OAI21X1 U619 ( .A(n500), .B(n557), .C(n558), .Y(n334) );
-  AOI22X1 U620 ( .A(sram_awaddr[7]), .B(n533), .C(n492), .D(waddr_reg[7]), .Y(
-        n558) );
-  INVX1 U621 ( .A(N91), .Y(n557) );
-  OAI21X1 U622 ( .A(n500), .B(n559), .C(n560), .Y(n333) );
-  AOI22X1 U623 ( .A(sram_awaddr[8]), .B(n533), .C(n492), .D(waddr_reg[8]), .Y(
-        n560) );
-  INVX1 U624 ( .A(N92), .Y(n559) );
-  OAI21X1 U625 ( .A(n500), .B(n561), .C(n562), .Y(n332) );
-  AOI22X1 U626 ( .A(sram_awaddr[9]), .B(n533), .C(n492), .D(waddr_reg[9]), .Y(
-        n562) );
-  INVX1 U627 ( .A(N93), .Y(n561) );
-  OAI21X1 U628 ( .A(n500), .B(n563), .C(n564), .Y(n331) );
-  AOI22X1 U629 ( .A(sram_awaddr[10]), .B(n533), .C(n492), .D(waddr_reg[10]), 
-        .Y(n564) );
-  NOR2X1 U630 ( .A(n492), .B(n493), .Y(n533) );
-  OAI21X1 U631 ( .A(n565), .B(n566), .C(n355), .Y(n506) );
-  INVX1 U632 ( .A(N94), .Y(n563) );
-  OAI21X1 U633 ( .A(n567), .B(n568), .C(n569), .Y(n330) );
-  MUX2X1 U634 ( .B(n353), .A(n571), .S(n572), .Y(n569) );
-  INVX1 U635 ( .A(sram_arlen[0]), .Y(n568) );
-  OAI21X1 U636 ( .A(n567), .B(n573), .C(n574), .Y(n329) );
-  MUX2X1 U637 ( .B(n575), .A(n576), .S(n577), .Y(n574) );
-  NOR2X1 U638 ( .A(rlen_reg[0]), .B(n354), .Y(n576) );
-  INVX1 U639 ( .A(sram_arlen[1]), .Y(n573) );
-  OAI21X1 U640 ( .A(n567), .B(n579), .C(n580), .Y(n328) );
-  AOI22X1 U641 ( .A(rlen_reg[2]), .B(n581), .C(n571), .D(n582), .Y(n580) );
-  OAI21X1 U642 ( .A(n354), .B(n577), .C(n583), .Y(n581) );
-  INVX1 U643 ( .A(n575), .Y(n583) );
-  OAI21X1 U644 ( .A(n572), .B(n578), .C(n584), .Y(n575) );
-  INVX1 U645 ( .A(sram_arlen[2]), .Y(n579) );
-  OAI21X1 U646 ( .A(n567), .B(n585), .C(n586), .Y(n327) );
-  MUX2X1 U647 ( .B(n587), .A(n588), .S(n589), .Y(n586) );
-  NOR2X1 U648 ( .A(n590), .B(n354), .Y(n588) );
-  INVX1 U649 ( .A(sram_arlen[3]), .Y(n585) );
-  OAI21X1 U650 ( .A(n567), .B(n591), .C(n592), .Y(n326) );
-  AOI22X1 U651 ( .A(rlen_reg[4]), .B(n593), .C(n571), .D(n594), .Y(n592) );
-  OAI21X1 U652 ( .A(n354), .B(n589), .C(n595), .Y(n593) );
-  INVX1 U653 ( .A(n587), .Y(n595) );
-  OAI21X1 U654 ( .A(n582), .B(n578), .C(n584), .Y(n587) );
-  INVX1 U655 ( .A(sram_arlen[4]), .Y(n591) );
-  OAI21X1 U656 ( .A(n567), .B(n596), .C(n597), .Y(n325) );
-  MUX2X1 U657 ( .B(n598), .A(n599), .S(rlen_reg[5]), .Y(n597) );
-  NOR2X1 U658 ( .A(n600), .B(n354), .Y(n598) );
-  INVX1 U659 ( .A(sram_arlen[5]), .Y(n596) );
-  OAI21X1 U660 ( .A(n567), .B(n601), .C(n602), .Y(n324) );
-  AOI21X1 U661 ( .A(rlen_reg[6]), .B(n603), .C(n604), .Y(n602) );
-  INVX1 U662 ( .A(n605), .Y(n603) );
-  AOI21X1 U663 ( .A(n571), .B(rlen_reg[5]), .C(n599), .Y(n605) );
-  OAI21X1 U664 ( .A(n594), .B(n578), .C(n584), .Y(n599) );
-  INVX1 U665 ( .A(n600), .Y(n594) );
-  INVX1 U666 ( .A(sram_arlen[6]), .Y(n601) );
-  OAI21X1 U667 ( .A(n567), .B(n606), .C(n607), .Y(n323) );
-  MUX2X1 U668 ( .B(n608), .A(n604), .S(n609), .Y(n607) );
-  INVX1 U669 ( .A(n610), .Y(n604) );
-  INVX1 U670 ( .A(sram_arlen[7]), .Y(n606) );
-  OAI21X1 U671 ( .A(n567), .B(n611), .C(n612), .Y(n322) );
-  MUX2X1 U672 ( .B(n613), .A(n614), .S(n615), .Y(n612) );
-  NOR2X1 U673 ( .A(rlen_reg[7]), .B(n610), .Y(n614) );
-  NAND2X1 U674 ( .A(n571), .B(n616), .Y(n610) );
-  INVX1 U675 ( .A(n617), .Y(n613) );
-  INVX1 U676 ( .A(sram_arlen[8]), .Y(n611) );
-  OAI21X1 U677 ( .A(n392), .B(n578), .C(n618), .Y(n321) );
-  AOI22X1 U678 ( .A(rlen_reg[9]), .B(n619), .C(sram_arlen[9]), .D(n620), .Y(
-        n618) );
-  OAI21X1 U679 ( .A(n354), .B(n615), .C(n617), .Y(n619) );
-  AOI21X1 U680 ( .A(n571), .B(rlen_reg[7]), .C(n608), .Y(n617) );
-  OAI21X1 U681 ( .A(n616), .B(n578), .C(n584), .Y(n608) );
-  INVX1 U682 ( .A(n570), .Y(n584) );
-  INVX1 U683 ( .A(rlen_reg[8]), .Y(n615) );
-  OAI21X1 U684 ( .A(n621), .B(n567), .C(n622), .Y(n320) );
-  MUX2X1 U685 ( .B(n353), .A(n571), .S(read_addr[0]), .Y(n622) );
-  INVX1 U686 ( .A(raddr_reg[0]), .Y(read_addr[0]) );
-  INVX1 U687 ( .A(n620), .Y(n567) );
-  INVX1 U688 ( .A(sram_araddr[0]), .Y(n621) );
-  OAI21X1 U689 ( .A(n354), .B(n623), .C(n624), .Y(n319) );
-  AOI22X1 U690 ( .A(n620), .B(sram_araddr[1]), .C(n570), .D(raddr_reg[1]), .Y(
-        n624) );
-  INVX1 U691 ( .A(N108), .Y(n623) );
-  OAI21X1 U692 ( .A(n354), .B(n625), .C(n626), .Y(n318) );
-  AOI22X1 U693 ( .A(n620), .B(sram_araddr[2]), .C(n570), .D(raddr_reg[2]), .Y(
-        n626) );
-  INVX1 U694 ( .A(N109), .Y(n625) );
-  OAI21X1 U695 ( .A(n354), .B(n627), .C(n628), .Y(n317) );
-  AOI22X1 U696 ( .A(n620), .B(sram_araddr[3]), .C(n570), .D(raddr_reg[3]), .Y(
-        n628) );
-  INVX1 U697 ( .A(N110), .Y(n627) );
-  OAI21X1 U698 ( .A(n578), .B(n629), .C(n630), .Y(n316) );
-  AOI22X1 U699 ( .A(sram_araddr[4]), .B(n620), .C(n570), .D(raddr_reg[4]), .Y(
-        n630) );
-  INVX1 U700 ( .A(N111), .Y(n629) );
-  OAI21X1 U701 ( .A(n578), .B(n631), .C(n632), .Y(n315) );
-  AOI22X1 U702 ( .A(sram_araddr[5]), .B(n620), .C(n570), .D(raddr_reg[5]), .Y(
-        n632) );
-  INVX1 U703 ( .A(N112), .Y(n631) );
-  OAI21X1 U704 ( .A(n578), .B(n633), .C(n634), .Y(n314) );
-  AOI22X1 U705 ( .A(sram_araddr[6]), .B(n620), .C(n570), .D(raddr_reg[6]), .Y(
-        n634) );
-  INVX1 U706 ( .A(N113), .Y(n633) );
-  OAI21X1 U707 ( .A(n578), .B(n635), .C(n636), .Y(n313) );
-  AOI22X1 U708 ( .A(sram_araddr[7]), .B(n620), .C(n570), .D(raddr_reg[7]), .Y(
-        n636) );
-  INVX1 U709 ( .A(N114), .Y(n635) );
-  OAI21X1 U710 ( .A(n578), .B(n637), .C(n638), .Y(n312) );
-  AOI22X1 U711 ( .A(sram_araddr[8]), .B(n620), .C(n570), .D(raddr_reg[8]), .Y(
-        n638) );
-  INVX1 U712 ( .A(N115), .Y(n637) );
-  OAI21X1 U713 ( .A(n578), .B(n639), .C(n640), .Y(n311) );
-  AOI22X1 U714 ( .A(sram_araddr[9]), .B(n620), .C(n570), .D(raddr_reg[9]), .Y(
-        n640) );
-  INVX1 U715 ( .A(N116), .Y(n639) );
-  OAI21X1 U716 ( .A(n578), .B(n641), .C(n642), .Y(n310) );
-  AOI22X1 U717 ( .A(sram_araddr[10]), .B(n620), .C(raddr_reg[10]), .D(n570), 
-        .Y(n642) );
-  NOR2X1 U718 ( .A(n571), .B(n353), .Y(n620) );
-  AOI21X1 U719 ( .A(sram_arready), .B(sram_arvalid), .C(n571), .Y(n570) );
-  INVX1 U720 ( .A(n578), .Y(n571) );
-  INVX1 U721 ( .A(N117), .Y(n641) );
-  NAND3X1 U722 ( .A(sram_rvalid), .B(sram_rready), .C(n643), .Y(n578) );
-  NOR2X1 U723 ( .A(n644), .B(n645), .Y(n643) );
-  INVX1 U724 ( .A(n646), .Y(n280) );
-  MUX2X1 U725 ( .B(wstrb_reg[0]), .A(sram_wstrb[0]), .S(n356), .Y(n646) );
-  INVX1 U726 ( .A(n647), .Y(n278) );
-  MUX2X1 U727 ( .B(wstrb_reg[1]), .A(sram_wstrb[1]), .S(n356), .Y(n647) );
-  NOR2X1 U728 ( .A(n398), .B(n397), .Y(N136) );
-  INVX1 U729 ( .A(next_write[0]), .Y(n397) );
-  OAI21X1 U730 ( .A(write_state[1]), .B(n648), .C(n649), .Y(next_write[0]) );
-  AND2X1 U731 ( .A(n355), .B(n650), .Y(n649) );
-  MUX2X1 U732 ( .B(n651), .A(n652), .S(write_state[0]), .Y(n648) );
-  INVX1 U733 ( .A(sram_wvalid), .Y(n652) );
-  NOR2X1 U734 ( .A(n565), .B(n566), .Y(n651) );
-  INVX1 U735 ( .A(sram_awvalid), .Y(n566) );
-  INVX1 U736 ( .A(sram_awready), .Y(n565) );
-  INVX1 U737 ( .A(next_write[1]), .Y(n398) );
-  NAND3X1 U738 ( .A(n650), .B(n542), .C(n653), .Y(next_write[1]) );
-  AOI22X1 U739 ( .A(n654), .B(sram_wvalid), .C(n375), .D(n655), .Y(n653) );
-  INVX1 U740 ( .A(write_valid), .Y(n655) );
-  AND2X1 U741 ( .A(n656), .B(write_state[0]), .Y(n654) );
-  NAND3X1 U742 ( .A(n537), .B(n657), .C(n531), .Y(n542) );
-  INVX1 U743 ( .A(n536), .Y(n531) );
-  NAND3X1 U744 ( .A(n526), .B(n658), .C(n493), .Y(n536) );
-  INVX1 U745 ( .A(n500), .Y(n493) );
-  NAND2X1 U746 ( .A(write_valid), .B(n375), .Y(n500) );
-  NOR2X1 U747 ( .A(n656), .B(write_state[0]), .Y(n375) );
-  INVX1 U748 ( .A(wlen_reg[7]), .Y(n658) );
-  NOR3X1 U749 ( .A(wlen_reg[5]), .B(wlen_reg[6]), .C(n522), .Y(n526) );
-  NAND3X1 U750 ( .A(n511), .B(n659), .C(n504), .Y(n522) );
-  INVX1 U751 ( .A(n512), .Y(n504) );
-  NAND3X1 U752 ( .A(n499), .B(n660), .C(n494), .Y(n512) );
-  INVX1 U753 ( .A(wlen_reg[0]), .Y(n494) );
-  INVX1 U754 ( .A(wlen_reg[2]), .Y(n660) );
-  INVX1 U755 ( .A(wlen_reg[1]), .Y(n499) );
-  INVX1 U756 ( .A(wlen_reg[4]), .Y(n659) );
-  INVX1 U757 ( .A(wlen_reg[3]), .Y(n511) );
-  INVX1 U758 ( .A(wlen_reg[9]), .Y(n657) );
-  INVX1 U759 ( .A(wlen_reg[8]), .Y(n537) );
-  NAND2X1 U760 ( .A(n661), .B(write_state[0]), .Y(n650) );
-  NOR2X1 U761 ( .A(sram_bready), .B(n656), .Y(n661) );
-  INVX1 U762 ( .A(write_state[1]), .Y(n656) );
-  INVX1 U763 ( .A(n393), .Y(N132) );
-  NAND2X1 U764 ( .A(next_read[0]), .B(next_read[1]), .Y(n393) );
-  INVX1 U765 ( .A(n461), .Y(next_read[1]) );
-  NOR2X1 U766 ( .A(n662), .B(ren), .Y(n461) );
-  NOR2X1 U767 ( .A(n644), .B(read_state[1]), .Y(ren) );
-  MUX2X1 U768 ( .B(n645), .A(sram_rready), .S(read_state[0]), .Y(n662) );
-  MUX2X1 U769 ( .B(n663), .A(n664), .S(n645), .Y(next_read[0]) );
-  INVX1 U770 ( .A(read_state[1]), .Y(n645) );
-  NAND3X1 U771 ( .A(sram_arready), .B(n644), .C(sram_arvalid), .Y(n664) );
-  MUX2X1 U772 ( .B(n665), .A(read_valid), .S(n644), .Y(n663) );
-  INVX1 U773 ( .A(read_state[0]), .Y(n644) );
-  NAND2X1 U774 ( .A(sram_rready), .B(n666), .Y(n665) );
-  INVX1 U775 ( .A(n392), .Y(n666) );
-  NAND3X1 U776 ( .A(n616), .B(n609), .C(n667), .Y(n392) );
-  NOR2X1 U777 ( .A(rlen_reg[9]), .B(rlen_reg[8]), .Y(n667) );
-  INVX1 U778 ( .A(rlen_reg[7]), .Y(n609) );
-  NOR3X1 U779 ( .A(rlen_reg[5]), .B(rlen_reg[6]), .C(n600), .Y(n616) );
-  NAND3X1 U780 ( .A(n589), .B(n668), .C(n582), .Y(n600) );
-  INVX1 U781 ( .A(n590), .Y(n582) );
-  NAND3X1 U782 ( .A(n577), .B(n669), .C(n572), .Y(n590) );
-  INVX1 U783 ( .A(rlen_reg[0]), .Y(n572) );
-  INVX1 U784 ( .A(rlen_reg[2]), .Y(n669) );
-  INVX1 U785 ( .A(rlen_reg[1]), .Y(n577) );
-  INVX1 U786 ( .A(rlen_reg[4]), .Y(n668) );
-  INVX1 U787 ( .A(rlen_reg[3]), .Y(n589) );
+  DFFSR \raddr_reg_reg[10]  ( .D(n490), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[10]) );
+  DFFSR \raddr_reg_reg[11]  ( .D(n489), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[11]) );
+  DFFSR \raddr_reg_reg[12]  ( .D(n488), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[12]) );
+  DFFSR \raddr_reg_reg[13]  ( .D(n487), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[13]) );
+  DFFSR \raddr_reg_reg[14]  ( .D(n486), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[14]) );
+  DFFSR \raddr_reg_reg[15]  ( .D(n485), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[15]) );
+  DFFSR \raddr_reg_reg[16]  ( .D(n484), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[16]) );
+  DFFSR \raddr_reg_reg[17]  ( .D(n483), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[17]) );
+  DFFSR \raddr_reg_reg[18]  ( .D(n482), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[18]) );
+  DFFSR \raddr_reg_reg[19]  ( .D(n481), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[19]) );
+  DFFSR \raddr_reg_reg[20]  ( .D(n480), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[20]) );
+  DFFSR \raddr_reg_reg[21]  ( .D(n479), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[21]) );
+  DFFSR \raddr_reg_reg[22]  ( .D(n478), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[22]) );
+  DFFSR \raddr_reg_reg[23]  ( .D(n477), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[23]) );
+  DFFSR \raddr_reg_reg[24]  ( .D(n476), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[24]) );
+  DFFSR \raddr_reg_reg[25]  ( .D(n475), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[25]) );
+  DFFSR \raddr_reg_reg[26]  ( .D(n474), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[26]) );
+  DFFSR \raddr_reg_reg[27]  ( .D(n473), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[27]) );
+  DFFSR \raddr_reg_reg[28]  ( .D(n472), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[28]) );
+  DFFSR \raddr_reg_reg[29]  ( .D(n471), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[29]) );
+  DFFSR \raddr_reg_reg[30]  ( .D(n470), .CLK(clk), .R(n_rst), .S(1'b1), .Q(
+        raddr_reg[30]) );
+  sram_axi_DW01_inc_0 add_197 ( .A(waddr_reg), .SUM({N114, N113, N112, N111, 
+        N110, N109, N108, N107, N106, N105, N104, N103, N102, N101, N100, N99, 
+        N98, N97, N96, N95, N94, N93, N92, N91, N90, N89, N88, N87, N86, N85, 
+        N84, SYNOPSYS_UNCONNECTED__0}) );
+  sram_axi_DW01_sub_0 sub_81 ( .A(waddr_reg), .B({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 
+        1'b1, 1'b1, 1'b1}), .CI(1'b0), .DIFF(write_addr) );
+  sram_axi_DW01_inc_1 add_201 ( .A(raddr_reg), .SUM({N158, N157, N156, N155, 
+        N154, N153, N152, N151, N150, N149, N148, N147, N146, N145, N144, N143, 
+        N142, N141, N140, N139, N138, N137, N136, N135, N134, N133, N132, N131, 
+        N130, N129, N128, SYNOPSYS_UNCONNECTED__1}) );
+  sram_axi_DW01_sub_1 sub_112 ( .A(raddr_reg), .B({1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b1, 1'b1, 1'b1, 1'b1}), .CI(1'b0), .DIFF(read_addr) );
+  INVX2 U592 ( .A(n801), .Y(n554) );
+  INVX2 U593 ( .A(n681), .Y(n555) );
+  INVX2 U594 ( .A(n818), .Y(n556) );
+  INVX4 U595 ( .A(n698), .Y(n684) );
+  NAND2X1 U596 ( .A(sram_wready), .B(sram_wvalid), .Y(n639) );
+  INVX4 U597 ( .A(n639), .Y(n557) );
+  INVX2 U598 ( .A(n805), .Y(n558) );
+  INVX4 U599 ( .A(n685), .Y(n559) );
+  INVX1 U600 ( .A(n560), .Y(wen[3]) );
+  MUX2X1 U601 ( .B(n561), .A(n560), .S(wstrb_reg[1]), .Y(wen[1]) );
+  NAND2X1 U602 ( .A(wstrb_reg[0]), .B(n562), .Y(n560) );
+  NAND2X1 U603 ( .A(n562), .B(n563), .Y(n561) );
+  INVX1 U604 ( .A(wstrb_reg[0]), .Y(n563) );
+  AND2X1 U605 ( .A(read_valid), .B(read_data[9]), .Y(next_sram_rdata[9]) );
+  AND2X1 U606 ( .A(read_data[8]), .B(read_valid), .Y(next_sram_rdata[8]) );
+  AND2X1 U607 ( .A(read_data[7]), .B(read_valid), .Y(next_sram_rdata[7]) );
+  AND2X1 U608 ( .A(read_data[6]), .B(read_valid), .Y(next_sram_rdata[6]) );
+  AND2X1 U609 ( .A(read_data[5]), .B(read_valid), .Y(next_sram_rdata[5]) );
+  AND2X1 U610 ( .A(read_data[4]), .B(read_valid), .Y(next_sram_rdata[4]) );
+  AND2X1 U611 ( .A(read_data[3]), .B(read_valid), .Y(next_sram_rdata[3]) );
+  AND2X1 U612 ( .A(read_data[31]), .B(read_valid), .Y(next_sram_rdata[31]) );
+  AND2X1 U613 ( .A(read_data[30]), .B(read_valid), .Y(next_sram_rdata[30]) );
+  AND2X1 U614 ( .A(read_data[2]), .B(read_valid), .Y(next_sram_rdata[2]) );
+  AND2X1 U615 ( .A(read_data[29]), .B(read_valid), .Y(next_sram_rdata[29]) );
+  AND2X1 U616 ( .A(read_data[28]), .B(read_valid), .Y(next_sram_rdata[28]) );
+  AND2X1 U617 ( .A(read_data[27]), .B(read_valid), .Y(next_sram_rdata[27]) );
+  AND2X1 U618 ( .A(read_data[26]), .B(read_valid), .Y(next_sram_rdata[26]) );
+  AND2X1 U619 ( .A(read_data[25]), .B(read_valid), .Y(next_sram_rdata[25]) );
+  AND2X1 U620 ( .A(read_data[24]), .B(read_valid), .Y(next_sram_rdata[24]) );
+  AND2X1 U621 ( .A(read_data[23]), .B(read_valid), .Y(next_sram_rdata[23]) );
+  AND2X1 U622 ( .A(read_data[22]), .B(read_valid), .Y(next_sram_rdata[22]) );
+  AND2X1 U623 ( .A(read_data[21]), .B(read_valid), .Y(next_sram_rdata[21]) );
+  AND2X1 U624 ( .A(read_data[20]), .B(read_valid), .Y(next_sram_rdata[20]) );
+  AND2X1 U625 ( .A(read_data[1]), .B(read_valid), .Y(next_sram_rdata[1]) );
+  AND2X1 U626 ( .A(read_data[19]), .B(read_valid), .Y(next_sram_rdata[19]) );
+  AND2X1 U627 ( .A(read_data[18]), .B(read_valid), .Y(next_sram_rdata[18]) );
+  AND2X1 U628 ( .A(read_data[17]), .B(read_valid), .Y(next_sram_rdata[17]) );
+  AND2X1 U629 ( .A(read_data[16]), .B(read_valid), .Y(next_sram_rdata[16]) );
+  AND2X1 U630 ( .A(read_data[15]), .B(read_valid), .Y(next_sram_rdata[15]) );
+  AND2X1 U631 ( .A(read_data[14]), .B(read_valid), .Y(next_sram_rdata[14]) );
+  AND2X1 U632 ( .A(read_data[13]), .B(read_valid), .Y(next_sram_rdata[13]) );
+  AND2X1 U633 ( .A(read_data[12]), .B(read_valid), .Y(next_sram_rdata[12]) );
+  AND2X1 U634 ( .A(read_data[11]), .B(read_valid), .Y(next_sram_rdata[11]) );
+  AND2X1 U635 ( .A(read_data[10]), .B(read_valid), .Y(next_sram_rdata[10]) );
+  AND2X1 U636 ( .A(read_data[0]), .B(read_valid), .Y(next_sram_rdata[0]) );
+  AND2X1 U637 ( .A(n564), .B(n974), .Y(next_rlast) );
+  INVX1 U638 ( .A(n565), .Y(next_read[1]) );
+  NOR2X1 U639 ( .A(next_read[0]), .B(n566), .Y(next_arready) );
+  OAI21X1 U640 ( .A(n567), .B(n568), .C(n565), .Y(n566) );
+  NAND2X1 U641 ( .A(n569), .B(n570), .Y(n568) );
+  NOR2X1 U642 ( .A(n571), .B(n572), .Y(n570) );
+  INVX1 U643 ( .A(n573), .Y(n572) );
+  NOR3X1 U644 ( .A(sram_araddr[17]), .B(sram_araddr[18]), .C(sram_araddr[16]), 
+        .Y(n573) );
+  NAND3X1 U645 ( .A(n574), .B(n575), .C(n576), .Y(n571) );
+  NOR2X1 U646 ( .A(sram_araddr[22]), .B(sram_araddr[21]), .Y(n576) );
+  INVX1 U647 ( .A(sram_araddr[20]), .Y(n575) );
+  INVX1 U648 ( .A(sram_araddr[19]), .Y(n574) );
+  NOR2X1 U649 ( .A(n577), .B(n578), .Y(n569) );
+  OAI21X1 U650 ( .A(n579), .B(n580), .C(n581), .Y(n578) );
+  NOR2X1 U651 ( .A(sram_araddr[11]), .B(sram_araddr[10]), .Y(n581) );
+  NAND2X1 U652 ( .A(sram_araddr[3]), .B(sram_araddr[2]), .Y(n580) );
+  NAND2X1 U653 ( .A(sram_araddr[1]), .B(sram_araddr[0]), .Y(n579) );
+  NAND3X1 U654 ( .A(n582), .B(n583), .C(n584), .Y(n577) );
+  NOR2X1 U655 ( .A(sram_araddr[15]), .B(sram_araddr[14]), .Y(n584) );
+  INVX1 U656 ( .A(sram_araddr[13]), .Y(n583) );
+  INVX1 U657 ( .A(sram_araddr[12]), .Y(n582) );
+  NAND2X1 U658 ( .A(n585), .B(n586), .Y(n567) );
+  NOR2X1 U659 ( .A(n587), .B(n588), .Y(n586) );
+  NAND3X1 U660 ( .A(n589), .B(n590), .C(n591), .Y(n588) );
+  NOR2X1 U661 ( .A(sram_araddr[5]), .B(sram_araddr[4]), .Y(n591) );
+  INVX1 U662 ( .A(sram_araddr[31]), .Y(n590) );
+  INVX1 U663 ( .A(sram_araddr[30]), .Y(n589) );
+  NAND3X1 U664 ( .A(n592), .B(n593), .C(n594), .Y(n587) );
+  NOR2X1 U665 ( .A(sram_araddr[9]), .B(sram_araddr[8]), .Y(n594) );
+  INVX1 U666 ( .A(sram_araddr[7]), .Y(n593) );
+  INVX1 U667 ( .A(sram_araddr[6]), .Y(n592) );
+  NOR2X1 U668 ( .A(n595), .B(n596), .Y(n585) );
+  INVX1 U669 ( .A(n597), .Y(n596) );
+  NOR3X1 U670 ( .A(sram_araddr[24]), .B(sram_araddr[25]), .C(sram_araddr[23]), 
+        .Y(n597) );
+  NAND3X1 U671 ( .A(n598), .B(n599), .C(n600), .Y(n595) );
+  NOR2X1 U672 ( .A(sram_araddr[29]), .B(sram_araddr[28]), .Y(n600) );
+  INVX1 U673 ( .A(sram_araddr[27]), .Y(n599) );
+  INVX1 U674 ( .A(sram_araddr[26]), .Y(n598) );
+  INVX1 U675 ( .A(n601), .Y(next_read[0]) );
+  INVX1 U676 ( .A(n602), .Y(n941) );
+  OAI21X1 U677 ( .A(n603), .B(n604), .C(n605), .Y(n602) );
+  NOR2X1 U678 ( .A(next_write[1]), .B(next_write[0]), .Y(n605) );
+  NAND2X1 U679 ( .A(n606), .B(n607), .Y(n604) );
+  NOR2X1 U680 ( .A(n608), .B(n609), .Y(n607) );
+  INVX1 U681 ( .A(n610), .Y(n609) );
+  NOR3X1 U682 ( .A(sram_awaddr[17]), .B(sram_awaddr[18]), .C(sram_awaddr[16]), 
+        .Y(n610) );
+  NAND3X1 U683 ( .A(n611), .B(n612), .C(n613), .Y(n608) );
+  NOR2X1 U684 ( .A(sram_awaddr[22]), .B(sram_awaddr[21]), .Y(n613) );
+  INVX1 U685 ( .A(sram_awaddr[20]), .Y(n612) );
+  INVX1 U686 ( .A(sram_awaddr[19]), .Y(n611) );
+  NOR2X1 U687 ( .A(n614), .B(n615), .Y(n606) );
+  OAI21X1 U688 ( .A(n616), .B(n617), .C(n618), .Y(n615) );
+  NOR2X1 U689 ( .A(sram_awaddr[11]), .B(sram_awaddr[10]), .Y(n618) );
+  NAND2X1 U690 ( .A(sram_awaddr[3]), .B(sram_awaddr[2]), .Y(n617) );
+  NAND2X1 U691 ( .A(sram_awaddr[1]), .B(sram_awaddr[0]), .Y(n616) );
+  NAND3X1 U692 ( .A(n619), .B(n620), .C(n621), .Y(n614) );
+  NOR2X1 U693 ( .A(sram_awaddr[15]), .B(sram_awaddr[14]), .Y(n621) );
+  INVX1 U694 ( .A(sram_awaddr[13]), .Y(n620) );
+  INVX1 U695 ( .A(sram_awaddr[12]), .Y(n619) );
+  NAND2X1 U696 ( .A(n622), .B(n623), .Y(n603) );
+  NOR2X1 U697 ( .A(n624), .B(n625), .Y(n623) );
+  NAND3X1 U698 ( .A(n626), .B(n627), .C(n628), .Y(n625) );
+  NOR2X1 U699 ( .A(sram_awaddr[5]), .B(sram_awaddr[4]), .Y(n628) );
+  INVX1 U700 ( .A(sram_awaddr[31]), .Y(n627) );
+  INVX1 U701 ( .A(sram_awaddr[30]), .Y(n626) );
+  NAND3X1 U702 ( .A(n629), .B(n630), .C(n631), .Y(n624) );
+  NOR2X1 U703 ( .A(sram_awaddr[9]), .B(sram_awaddr[8]), .Y(n631) );
+  INVX1 U704 ( .A(sram_awaddr[7]), .Y(n630) );
+  INVX1 U705 ( .A(sram_awaddr[6]), .Y(n629) );
+  NOR2X1 U706 ( .A(n632), .B(n633), .Y(n622) );
+  INVX1 U707 ( .A(n634), .Y(n633) );
+  NOR3X1 U708 ( .A(sram_awaddr[24]), .B(sram_awaddr[25]), .C(sram_awaddr[23]), 
+        .Y(n634) );
+  NAND3X1 U709 ( .A(n635), .B(n636), .C(n637), .Y(n632) );
+  NOR2X1 U710 ( .A(sram_awaddr[29]), .B(sram_awaddr[28]), .Y(n637) );
+  INVX1 U711 ( .A(sram_awaddr[27]), .Y(n636) );
+  INVX1 U712 ( .A(sram_awaddr[26]), .Y(n635) );
+  INVX1 U713 ( .A(n638), .Y(n942) );
+  MUX2X1 U714 ( .B(write_data[31]), .A(sram_wdata[31]), .S(n557), .Y(n638) );
+  INVX1 U715 ( .A(n640), .Y(n943) );
+  MUX2X1 U716 ( .B(write_data[30]), .A(sram_wdata[30]), .S(n557), .Y(n640) );
+  INVX1 U717 ( .A(n641), .Y(n944) );
+  MUX2X1 U718 ( .B(write_data[29]), .A(sram_wdata[29]), .S(n557), .Y(n641) );
+  INVX1 U719 ( .A(n642), .Y(n945) );
+  MUX2X1 U720 ( .B(write_data[28]), .A(sram_wdata[28]), .S(n557), .Y(n642) );
+  INVX1 U721 ( .A(n643), .Y(n946) );
+  MUX2X1 U722 ( .B(write_data[27]), .A(sram_wdata[27]), .S(n557), .Y(n643) );
+  INVX1 U723 ( .A(n644), .Y(n947) );
+  MUX2X1 U724 ( .B(write_data[26]), .A(sram_wdata[26]), .S(n557), .Y(n644) );
+  INVX1 U725 ( .A(n645), .Y(n948) );
+  MUX2X1 U726 ( .B(write_data[25]), .A(sram_wdata[25]), .S(n557), .Y(n645) );
+  INVX1 U727 ( .A(n646), .Y(n949) );
+  MUX2X1 U728 ( .B(write_data[24]), .A(sram_wdata[24]), .S(n557), .Y(n646) );
+  INVX1 U729 ( .A(n647), .Y(n950) );
+  MUX2X1 U730 ( .B(write_data[23]), .A(sram_wdata[23]), .S(n557), .Y(n647) );
+  INVX1 U731 ( .A(n648), .Y(n951) );
+  MUX2X1 U732 ( .B(write_data[22]), .A(sram_wdata[22]), .S(n557), .Y(n648) );
+  INVX1 U733 ( .A(n649), .Y(n952) );
+  MUX2X1 U734 ( .B(write_data[21]), .A(sram_wdata[21]), .S(n557), .Y(n649) );
+  INVX1 U735 ( .A(n650), .Y(n953) );
+  MUX2X1 U736 ( .B(write_data[20]), .A(sram_wdata[20]), .S(n557), .Y(n650) );
+  INVX1 U737 ( .A(n651), .Y(n954) );
+  MUX2X1 U738 ( .B(write_data[19]), .A(sram_wdata[19]), .S(n557), .Y(n651) );
+  INVX1 U739 ( .A(n652), .Y(n955) );
+  MUX2X1 U740 ( .B(write_data[18]), .A(sram_wdata[18]), .S(n557), .Y(n652) );
+  INVX1 U741 ( .A(n653), .Y(n956) );
+  MUX2X1 U742 ( .B(write_data[17]), .A(sram_wdata[17]), .S(n557), .Y(n653) );
+  INVX1 U743 ( .A(n654), .Y(n957) );
+  MUX2X1 U744 ( .B(write_data[16]), .A(sram_wdata[16]), .S(n557), .Y(n654) );
+  INVX1 U745 ( .A(n655), .Y(n958) );
+  MUX2X1 U746 ( .B(write_data[15]), .A(sram_wdata[15]), .S(n557), .Y(n655) );
+  INVX1 U747 ( .A(n656), .Y(n959) );
+  MUX2X1 U748 ( .B(write_data[14]), .A(sram_wdata[14]), .S(n557), .Y(n656) );
+  INVX1 U749 ( .A(n657), .Y(n960) );
+  MUX2X1 U750 ( .B(write_data[13]), .A(sram_wdata[13]), .S(n557), .Y(n657) );
+  INVX1 U751 ( .A(n658), .Y(n961) );
+  MUX2X1 U752 ( .B(write_data[12]), .A(sram_wdata[12]), .S(n557), .Y(n658) );
+  INVX1 U753 ( .A(n659), .Y(n962) );
+  MUX2X1 U754 ( .B(write_data[11]), .A(sram_wdata[11]), .S(n557), .Y(n659) );
+  INVX1 U755 ( .A(n660), .Y(n963) );
+  MUX2X1 U756 ( .B(write_data[10]), .A(sram_wdata[10]), .S(n557), .Y(n660) );
+  INVX1 U757 ( .A(n661), .Y(n964) );
+  MUX2X1 U758 ( .B(write_data[9]), .A(sram_wdata[9]), .S(n557), .Y(n661) );
+  INVX1 U759 ( .A(n662), .Y(n965) );
+  MUX2X1 U760 ( .B(write_data[8]), .A(sram_wdata[8]), .S(n557), .Y(n662) );
+  INVX1 U761 ( .A(n663), .Y(n966) );
+  MUX2X1 U762 ( .B(write_data[7]), .A(sram_wdata[7]), .S(n557), .Y(n663) );
+  INVX1 U763 ( .A(n664), .Y(n967) );
+  MUX2X1 U764 ( .B(write_data[6]), .A(sram_wdata[6]), .S(n557), .Y(n664) );
+  INVX1 U765 ( .A(n665), .Y(n968) );
+  MUX2X1 U766 ( .B(write_data[5]), .A(sram_wdata[5]), .S(n557), .Y(n665) );
+  INVX1 U767 ( .A(n666), .Y(n969) );
+  MUX2X1 U768 ( .B(write_data[4]), .A(sram_wdata[4]), .S(n557), .Y(n666) );
+  INVX1 U769 ( .A(n667), .Y(n970) );
+  MUX2X1 U770 ( .B(write_data[3]), .A(sram_wdata[3]), .S(n557), .Y(n667) );
+  INVX1 U771 ( .A(n668), .Y(n971) );
+  MUX2X1 U772 ( .B(write_data[2]), .A(sram_wdata[2]), .S(n557), .Y(n668) );
+  INVX1 U773 ( .A(n669), .Y(n972) );
+  MUX2X1 U774 ( .B(write_data[1]), .A(sram_wdata[1]), .S(n557), .Y(n669) );
+  INVX1 U775 ( .A(n670), .Y(n973) );
+  MUX2X1 U776 ( .B(write_data[0]), .A(sram_wdata[0]), .S(n557), .Y(n670) );
+  NOR2X1 U777 ( .A(n601), .B(n565), .Y(n974) );
+  NOR2X1 U778 ( .A(n671), .B(ren), .Y(n565) );
+  NOR2X1 U779 ( .A(n672), .B(read_state[1]), .Y(ren) );
+  MUX2X1 U780 ( .B(n673), .A(sram_rready), .S(read_state[0]), .Y(n671) );
+  MUX2X1 U781 ( .B(n674), .A(n675), .S(n673), .Y(n601) );
+  NOR2X1 U782 ( .A(n676), .B(n677), .Y(n675) );
+  NAND2X1 U783 ( .A(sram_arready), .B(n672), .Y(n677) );
+  INVX1 U784 ( .A(sram_arvalid), .Y(n676) );
+  MUX2X1 U785 ( .B(n678), .A(n679), .S(n672), .Y(n674) );
+  INVX1 U786 ( .A(read_valid), .Y(n679) );
+  AND2X1 U787 ( .A(n564), .B(sram_rready), .Y(n678) );
+  NOR2X1 U788 ( .A(next_write[1]), .B(n680), .Y(n553) );
+  INVX1 U789 ( .A(next_write[0]), .Y(n680) );
+  OAI21X1 U790 ( .A(n681), .B(n682), .C(n683), .Y(n552) );
+  MUX2X1 U791 ( .B(n684), .A(n685), .S(n686), .Y(n683) );
+  INVX1 U792 ( .A(sram_awlen[0]), .Y(n682) );
+  OAI21X1 U793 ( .A(n681), .B(n687), .C(n688), .Y(n551) );
+  MUX2X1 U794 ( .B(n689), .A(n690), .S(n691), .Y(n688) );
+  NOR2X1 U795 ( .A(wlen_reg[0]), .B(n559), .Y(n690) );
+  INVX1 U796 ( .A(sram_awlen[1]), .Y(n687) );
+  OAI21X1 U797 ( .A(n681), .B(n693), .C(n694), .Y(n550) );
+  AOI22X1 U798 ( .A(wlen_reg[2]), .B(n695), .C(n685), .D(n696), .Y(n694) );
+  OAI21X1 U799 ( .A(n559), .B(n691), .C(n697), .Y(n695) );
+  INVX1 U800 ( .A(n689), .Y(n697) );
+  OAI21X1 U801 ( .A(n559), .B(n686), .C(n698), .Y(n689) );
+  INVX1 U802 ( .A(sram_awlen[2]), .Y(n693) );
+  OAI21X1 U803 ( .A(n681), .B(n699), .C(n700), .Y(n549) );
+  MUX2X1 U804 ( .B(n701), .A(n702), .S(n703), .Y(n700) );
+  NOR2X1 U805 ( .A(n704), .B(n559), .Y(n702) );
+  INVX1 U806 ( .A(sram_awlen[3]), .Y(n699) );
+  OAI21X1 U807 ( .A(n681), .B(n705), .C(n706), .Y(n548) );
+  AOI22X1 U808 ( .A(wlen_reg[4]), .B(n707), .C(n685), .D(n708), .Y(n706) );
+  OAI21X1 U809 ( .A(n559), .B(n703), .C(n709), .Y(n707) );
+  INVX1 U810 ( .A(n701), .Y(n709) );
+  OAI21X1 U811 ( .A(n696), .B(n692), .C(n698), .Y(n701) );
+  INVX1 U812 ( .A(sram_awlen[4]), .Y(n705) );
+  OAI21X1 U813 ( .A(n681), .B(n710), .C(n711), .Y(n547) );
+  MUX2X1 U814 ( .B(n712), .A(n713), .S(wlen_reg[5]), .Y(n711) );
+  NOR2X1 U815 ( .A(n714), .B(n559), .Y(n712) );
+  INVX1 U816 ( .A(sram_awlen[5]), .Y(n710) );
+  OAI21X1 U817 ( .A(n681), .B(n715), .C(n716), .Y(n546) );
+  AOI22X1 U818 ( .A(wlen_reg[6]), .B(n717), .C(n718), .D(n685), .Y(n716) );
+  INVX1 U819 ( .A(n719), .Y(n717) );
+  AOI21X1 U820 ( .A(n685), .B(wlen_reg[5]), .C(n713), .Y(n719) );
+  OAI21X1 U821 ( .A(n708), .B(n692), .C(n698), .Y(n713) );
+  INVX1 U822 ( .A(n714), .Y(n708) );
+  INVX1 U823 ( .A(sram_awlen[6]), .Y(n715) );
+  OAI21X1 U824 ( .A(n681), .B(n720), .C(n721), .Y(n545) );
+  AOI21X1 U825 ( .A(wlen_reg[7]), .B(n722), .C(n723), .Y(n721) );
+  INVX1 U826 ( .A(sram_awlen[7]), .Y(n720) );
+  INVX1 U827 ( .A(n724), .Y(n544) );
+  AOI21X1 U828 ( .A(n555), .B(sram_awlen[8]), .C(n726), .Y(n724) );
+  MUX2X1 U829 ( .B(n727), .A(n728), .S(n729), .Y(n726) );
+  OAI21X1 U830 ( .A(n681), .B(n730), .C(n731), .Y(n543) );
+  AOI21X1 U831 ( .A(wlen_reg[9]), .B(n732), .C(n733), .Y(n731) );
+  INVX1 U832 ( .A(n734), .Y(n733) );
+  OAI21X1 U833 ( .A(n559), .B(n729), .C(n727), .Y(n732) );
+  AOI21X1 U834 ( .A(n685), .B(wlen_reg[7]), .C(n722), .Y(n727) );
+  OAI21X1 U835 ( .A(n718), .B(n692), .C(n698), .Y(n722) );
+  INVX1 U836 ( .A(sram_awlen[9]), .Y(n730) );
+  OAI21X1 U837 ( .A(n735), .B(n681), .C(n736), .Y(n542) );
+  MUX2X1 U838 ( .B(n685), .A(n684), .S(waddr_reg[0]), .Y(n736) );
+  INVX1 U839 ( .A(n725), .Y(n681) );
+  INVX1 U840 ( .A(sram_awaddr[0]), .Y(n735) );
+  OAI21X1 U841 ( .A(n559), .B(n737), .C(n738), .Y(n541) );
+  AOI22X1 U842 ( .A(n555), .B(sram_awaddr[1]), .C(waddr_reg[1]), .D(n684), .Y(
+        n738) );
+  INVX1 U843 ( .A(N84), .Y(n737) );
+  OAI21X1 U844 ( .A(n559), .B(n739), .C(n740), .Y(n540) );
+  AOI22X1 U845 ( .A(n555), .B(sram_awaddr[2]), .C(waddr_reg[2]), .D(n684), .Y(
+        n740) );
+  INVX1 U846 ( .A(N85), .Y(n739) );
+  OAI21X1 U847 ( .A(n559), .B(n741), .C(n742), .Y(n539) );
+  AOI22X1 U848 ( .A(n555), .B(sram_awaddr[3]), .C(waddr_reg[3]), .D(n684), .Y(
+        n742) );
+  INVX1 U849 ( .A(N86), .Y(n741) );
+  OAI21X1 U850 ( .A(n559), .B(n743), .C(n744), .Y(n538) );
+  AOI22X1 U851 ( .A(sram_awaddr[4]), .B(n555), .C(waddr_reg[4]), .D(n684), .Y(
+        n744) );
+  INVX1 U852 ( .A(N87), .Y(n743) );
+  OAI21X1 U853 ( .A(n559), .B(n745), .C(n746), .Y(n537) );
+  AOI22X1 U854 ( .A(sram_awaddr[5]), .B(n555), .C(waddr_reg[5]), .D(n684), .Y(
+        n746) );
+  INVX1 U855 ( .A(N88), .Y(n745) );
+  OAI21X1 U856 ( .A(n559), .B(n747), .C(n748), .Y(n536) );
+  AOI22X1 U857 ( .A(sram_awaddr[6]), .B(n555), .C(waddr_reg[6]), .D(n684), .Y(
+        n748) );
+  INVX1 U858 ( .A(N89), .Y(n747) );
+  OAI21X1 U859 ( .A(n559), .B(n749), .C(n750), .Y(n535) );
+  AOI22X1 U860 ( .A(sram_awaddr[7]), .B(n555), .C(waddr_reg[7]), .D(n684), .Y(
+        n750) );
+  INVX1 U861 ( .A(N90), .Y(n749) );
+  OAI21X1 U862 ( .A(n559), .B(n751), .C(n752), .Y(n534) );
+  AOI22X1 U863 ( .A(sram_awaddr[8]), .B(n555), .C(waddr_reg[8]), .D(n684), .Y(
+        n752) );
+  INVX1 U864 ( .A(N91), .Y(n751) );
+  OAI21X1 U865 ( .A(n559), .B(n753), .C(n754), .Y(n533) );
+  AOI22X1 U866 ( .A(sram_awaddr[9]), .B(n555), .C(waddr_reg[9]), .D(n684), .Y(
+        n754) );
+  INVX1 U867 ( .A(N92), .Y(n753) );
+  OAI21X1 U868 ( .A(n559), .B(n755), .C(n756), .Y(n532) );
+  AOI22X1 U869 ( .A(sram_awaddr[10]), .B(n555), .C(waddr_reg[10]), .D(n684), 
+        .Y(n756) );
+  INVX1 U870 ( .A(N93), .Y(n755) );
+  OAI21X1 U871 ( .A(n559), .B(n757), .C(n758), .Y(n531) );
+  AOI22X1 U872 ( .A(sram_awaddr[11]), .B(n555), .C(waddr_reg[11]), .D(n684), 
+        .Y(n758) );
+  INVX1 U873 ( .A(N94), .Y(n757) );
+  OAI21X1 U874 ( .A(n559), .B(n759), .C(n760), .Y(n530) );
+  AOI22X1 U875 ( .A(sram_awaddr[12]), .B(n555), .C(waddr_reg[12]), .D(n684), 
+        .Y(n760) );
+  INVX1 U876 ( .A(N95), .Y(n759) );
+  OAI21X1 U877 ( .A(n559), .B(n761), .C(n762), .Y(n529) );
+  AOI22X1 U878 ( .A(sram_awaddr[13]), .B(n555), .C(waddr_reg[13]), .D(n684), 
+        .Y(n762) );
+  INVX1 U879 ( .A(N96), .Y(n761) );
+  OAI21X1 U880 ( .A(n559), .B(n763), .C(n764), .Y(n528) );
+  AOI22X1 U881 ( .A(sram_awaddr[14]), .B(n555), .C(waddr_reg[14]), .D(n684), 
+        .Y(n764) );
+  INVX1 U882 ( .A(N97), .Y(n763) );
+  OAI21X1 U883 ( .A(n559), .B(n765), .C(n766), .Y(n527) );
+  AOI22X1 U884 ( .A(sram_awaddr[15]), .B(n555), .C(waddr_reg[15]), .D(n684), 
+        .Y(n766) );
+  INVX1 U885 ( .A(N98), .Y(n765) );
+  OAI21X1 U886 ( .A(n559), .B(n767), .C(n768), .Y(n526) );
+  AOI22X1 U887 ( .A(sram_awaddr[16]), .B(n555), .C(waddr_reg[16]), .D(n684), 
+        .Y(n768) );
+  INVX1 U888 ( .A(N99), .Y(n767) );
+  OAI21X1 U889 ( .A(n559), .B(n769), .C(n770), .Y(n525) );
+  AOI22X1 U890 ( .A(sram_awaddr[17]), .B(n555), .C(waddr_reg[17]), .D(n684), 
+        .Y(n770) );
+  INVX1 U891 ( .A(N100), .Y(n769) );
+  OAI21X1 U892 ( .A(n559), .B(n771), .C(n772), .Y(n524) );
+  AOI22X1 U893 ( .A(sram_awaddr[18]), .B(n555), .C(waddr_reg[18]), .D(n684), 
+        .Y(n772) );
+  INVX1 U894 ( .A(N101), .Y(n771) );
+  OAI21X1 U895 ( .A(n559), .B(n773), .C(n774), .Y(n523) );
+  AOI22X1 U896 ( .A(sram_awaddr[19]), .B(n555), .C(waddr_reg[19]), .D(n684), 
+        .Y(n774) );
+  INVX1 U897 ( .A(N102), .Y(n773) );
+  OAI21X1 U898 ( .A(n559), .B(n775), .C(n776), .Y(n522) );
+  AOI22X1 U899 ( .A(sram_awaddr[20]), .B(n555), .C(waddr_reg[20]), .D(n684), 
+        .Y(n776) );
+  INVX1 U900 ( .A(N103), .Y(n775) );
+  OAI21X1 U901 ( .A(n559), .B(n777), .C(n778), .Y(n521) );
+  AOI22X1 U902 ( .A(sram_awaddr[21]), .B(n725), .C(waddr_reg[21]), .D(n684), 
+        .Y(n778) );
+  INVX1 U903 ( .A(N104), .Y(n777) );
+  OAI21X1 U904 ( .A(n559), .B(n779), .C(n780), .Y(n520) );
+  AOI22X1 U905 ( .A(sram_awaddr[22]), .B(n725), .C(waddr_reg[22]), .D(n684), 
+        .Y(n780) );
+  INVX1 U906 ( .A(N105), .Y(n779) );
+  OAI21X1 U907 ( .A(n559), .B(n781), .C(n782), .Y(n519) );
+  AOI22X1 U908 ( .A(sram_awaddr[23]), .B(n725), .C(waddr_reg[23]), .D(n684), 
+        .Y(n782) );
+  INVX1 U909 ( .A(N106), .Y(n781) );
+  OAI21X1 U910 ( .A(n559), .B(n783), .C(n784), .Y(n518) );
+  AOI22X1 U911 ( .A(sram_awaddr[24]), .B(n725), .C(waddr_reg[24]), .D(n684), 
+        .Y(n784) );
+  INVX1 U912 ( .A(N107), .Y(n783) );
+  OAI21X1 U913 ( .A(n559), .B(n785), .C(n786), .Y(n517) );
+  AOI22X1 U914 ( .A(sram_awaddr[25]), .B(n725), .C(waddr_reg[25]), .D(n684), 
+        .Y(n786) );
+  INVX1 U915 ( .A(N108), .Y(n785) );
+  OAI21X1 U916 ( .A(n692), .B(n787), .C(n788), .Y(n516) );
+  AOI22X1 U917 ( .A(sram_awaddr[26]), .B(n725), .C(waddr_reg[26]), .D(n684), 
+        .Y(n788) );
+  INVX1 U918 ( .A(N109), .Y(n787) );
+  OAI21X1 U919 ( .A(n692), .B(n789), .C(n790), .Y(n515) );
+  AOI22X1 U920 ( .A(sram_awaddr[27]), .B(n725), .C(waddr_reg[27]), .D(n684), 
+        .Y(n790) );
+  INVX1 U921 ( .A(N110), .Y(n789) );
+  OAI21X1 U922 ( .A(n692), .B(n791), .C(n792), .Y(n514) );
+  AOI22X1 U923 ( .A(sram_awaddr[28]), .B(n725), .C(waddr_reg[28]), .D(n684), 
+        .Y(n792) );
+  INVX1 U924 ( .A(N111), .Y(n791) );
+  OAI21X1 U925 ( .A(n692), .B(n793), .C(n794), .Y(n513) );
+  AOI22X1 U926 ( .A(sram_awaddr[29]), .B(n725), .C(waddr_reg[29]), .D(n684), 
+        .Y(n794) );
+  INVX1 U927 ( .A(N112), .Y(n793) );
+  OAI21X1 U928 ( .A(n692), .B(n795), .C(n796), .Y(n512) );
+  AOI22X1 U929 ( .A(sram_awaddr[30]), .B(n725), .C(waddr_reg[30]), .D(n684), 
+        .Y(n796) );
+  INVX1 U930 ( .A(N113), .Y(n795) );
+  OAI21X1 U931 ( .A(n692), .B(n797), .C(n798), .Y(n511) );
+  AOI22X1 U932 ( .A(sram_awaddr[31]), .B(n725), .C(waddr_reg[31]), .D(n684), 
+        .Y(n798) );
+  NOR2X1 U933 ( .A(n685), .B(n684), .Y(n725) );
+  OAI21X1 U934 ( .A(n799), .B(n800), .C(n559), .Y(n698) );
+  INVX1 U935 ( .A(N114), .Y(n797) );
+  OAI21X1 U936 ( .A(n801), .B(n802), .C(n803), .Y(n510) );
+  MUX2X1 U937 ( .B(n556), .A(n805), .S(n806), .Y(n803) );
+  INVX1 U938 ( .A(sram_arlen[0]), .Y(n802) );
+  OAI21X1 U939 ( .A(n801), .B(n807), .C(n808), .Y(n509) );
+  MUX2X1 U940 ( .B(n809), .A(n810), .S(n811), .Y(n808) );
+  NOR2X1 U941 ( .A(rlen_reg[0]), .B(n558), .Y(n810) );
+  INVX1 U942 ( .A(sram_arlen[1]), .Y(n807) );
+  OAI21X1 U943 ( .A(n801), .B(n813), .C(n814), .Y(n508) );
+  AOI22X1 U944 ( .A(rlen_reg[2]), .B(n815), .C(n805), .D(n816), .Y(n814) );
+  OAI21X1 U945 ( .A(n558), .B(n811), .C(n817), .Y(n815) );
+  INVX1 U946 ( .A(n809), .Y(n817) );
+  OAI21X1 U947 ( .A(n806), .B(n812), .C(n818), .Y(n809) );
+  INVX1 U948 ( .A(sram_arlen[2]), .Y(n813) );
+  OAI21X1 U949 ( .A(n801), .B(n819), .C(n820), .Y(n507) );
+  MUX2X1 U950 ( .B(n821), .A(n822), .S(n823), .Y(n820) );
+  NOR2X1 U951 ( .A(n824), .B(n558), .Y(n822) );
+  INVX1 U952 ( .A(sram_arlen[3]), .Y(n819) );
+  OAI21X1 U953 ( .A(n801), .B(n825), .C(n826), .Y(n506) );
+  AOI22X1 U954 ( .A(rlen_reg[4]), .B(n827), .C(n805), .D(n828), .Y(n826) );
+  OAI21X1 U955 ( .A(n558), .B(n823), .C(n829), .Y(n827) );
+  INVX1 U956 ( .A(n821), .Y(n829) );
+  OAI21X1 U957 ( .A(n816), .B(n812), .C(n818), .Y(n821) );
+  INVX1 U958 ( .A(sram_arlen[4]), .Y(n825) );
+  OAI21X1 U959 ( .A(n801), .B(n830), .C(n831), .Y(n505) );
+  MUX2X1 U960 ( .B(n832), .A(n833), .S(rlen_reg[5]), .Y(n831) );
+  NOR2X1 U961 ( .A(n834), .B(n558), .Y(n832) );
+  INVX1 U962 ( .A(sram_arlen[5]), .Y(n830) );
+  OAI21X1 U963 ( .A(n801), .B(n835), .C(n836), .Y(n504) );
+  AOI21X1 U964 ( .A(rlen_reg[6]), .B(n837), .C(n838), .Y(n836) );
+  INVX1 U965 ( .A(n839), .Y(n837) );
+  AOI21X1 U966 ( .A(n805), .B(rlen_reg[5]), .C(n833), .Y(n839) );
+  OAI21X1 U967 ( .A(n828), .B(n812), .C(n818), .Y(n833) );
+  INVX1 U968 ( .A(n834), .Y(n828) );
+  INVX1 U969 ( .A(sram_arlen[6]), .Y(n835) );
+  OAI21X1 U970 ( .A(n801), .B(n840), .C(n841), .Y(n503) );
+  MUX2X1 U971 ( .B(n842), .A(n838), .S(n843), .Y(n841) );
+  INVX1 U972 ( .A(n844), .Y(n838) );
+  INVX1 U973 ( .A(sram_arlen[7]), .Y(n840) );
+  OAI21X1 U974 ( .A(n801), .B(n845), .C(n846), .Y(n502) );
+  MUX2X1 U975 ( .B(n847), .A(n848), .S(n849), .Y(n846) );
+  NOR2X1 U976 ( .A(rlen_reg[7]), .B(n844), .Y(n848) );
+  NAND2X1 U977 ( .A(n805), .B(n850), .Y(n844) );
+  INVX1 U978 ( .A(n851), .Y(n847) );
+  INVX1 U979 ( .A(sram_arlen[8]), .Y(n845) );
+  OAI21X1 U980 ( .A(n801), .B(n852), .C(n853), .Y(n501) );
+  AOI22X1 U981 ( .A(rlen_reg[9]), .B(n854), .C(n805), .D(n564), .Y(n853) );
+  INVX1 U982 ( .A(n855), .Y(n564) );
+  NAND3X1 U983 ( .A(n850), .B(n843), .C(n856), .Y(n855) );
+  NOR2X1 U984 ( .A(rlen_reg[9]), .B(rlen_reg[8]), .Y(n856) );
+  INVX1 U985 ( .A(rlen_reg[7]), .Y(n843) );
+  OAI21X1 U986 ( .A(n558), .B(n849), .C(n851), .Y(n854) );
+  AOI21X1 U987 ( .A(n805), .B(rlen_reg[7]), .C(n842), .Y(n851) );
+  OAI21X1 U988 ( .A(n850), .B(n812), .C(n818), .Y(n842) );
+  INVX1 U989 ( .A(n804), .Y(n818) );
+  NOR3X1 U990 ( .A(rlen_reg[5]), .B(rlen_reg[6]), .C(n834), .Y(n850) );
+  NAND3X1 U991 ( .A(n823), .B(n857), .C(n816), .Y(n834) );
+  INVX1 U992 ( .A(n824), .Y(n816) );
+  NAND3X1 U993 ( .A(n811), .B(n858), .C(n806), .Y(n824) );
+  INVX1 U994 ( .A(rlen_reg[0]), .Y(n806) );
+  INVX1 U995 ( .A(rlen_reg[2]), .Y(n858) );
+  INVX1 U996 ( .A(rlen_reg[1]), .Y(n811) );
+  INVX1 U997 ( .A(rlen_reg[4]), .Y(n857) );
+  INVX1 U998 ( .A(rlen_reg[3]), .Y(n823) );
+  INVX1 U999 ( .A(rlen_reg[8]), .Y(n849) );
+  INVX1 U1000 ( .A(sram_arlen[9]), .Y(n852) );
+  OAI21X1 U1001 ( .A(n859), .B(n801), .C(n860), .Y(n500) );
+  MUX2X1 U1002 ( .B(n805), .A(n556), .S(raddr_reg[0]), .Y(n860) );
+  INVX1 U1003 ( .A(n861), .Y(n801) );
+  INVX1 U1004 ( .A(sram_araddr[0]), .Y(n859) );
+  OAI21X1 U1005 ( .A(n558), .B(n862), .C(n863), .Y(n499) );
+  AOI22X1 U1006 ( .A(n554), .B(sram_araddr[1]), .C(raddr_reg[1]), .D(n556), 
+        .Y(n863) );
+  INVX1 U1007 ( .A(N128), .Y(n862) );
+  OAI21X1 U1008 ( .A(n558), .B(n864), .C(n865), .Y(n498) );
+  AOI22X1 U1009 ( .A(n554), .B(sram_araddr[2]), .C(raddr_reg[2]), .D(n556), 
+        .Y(n865) );
+  INVX1 U1010 ( .A(N129), .Y(n864) );
+  OAI21X1 U1011 ( .A(n558), .B(n866), .C(n867), .Y(n497) );
+  AOI22X1 U1012 ( .A(n554), .B(sram_araddr[3]), .C(raddr_reg[3]), .D(n556), 
+        .Y(n867) );
+  INVX1 U1013 ( .A(N130), .Y(n866) );
+  OAI21X1 U1014 ( .A(n558), .B(n868), .C(n869), .Y(n496) );
+  AOI22X1 U1015 ( .A(sram_araddr[4]), .B(n554), .C(raddr_reg[4]), .D(n556), 
+        .Y(n869) );
+  INVX1 U1016 ( .A(N131), .Y(n868) );
+  OAI21X1 U1017 ( .A(n558), .B(n870), .C(n871), .Y(n495) );
+  AOI22X1 U1018 ( .A(sram_araddr[5]), .B(n554), .C(raddr_reg[5]), .D(n556), 
+        .Y(n871) );
+  INVX1 U1019 ( .A(N132), .Y(n870) );
+  OAI21X1 U1020 ( .A(n558), .B(n872), .C(n873), .Y(n494) );
+  AOI22X1 U1021 ( .A(sram_araddr[6]), .B(n554), .C(raddr_reg[6]), .D(n556), 
+        .Y(n873) );
+  INVX1 U1022 ( .A(N133), .Y(n872) );
+  OAI21X1 U1023 ( .A(n558), .B(n874), .C(n875), .Y(n493) );
+  AOI22X1 U1024 ( .A(sram_araddr[7]), .B(n554), .C(raddr_reg[7]), .D(n556), 
+        .Y(n875) );
+  INVX1 U1025 ( .A(N134), .Y(n874) );
+  OAI21X1 U1026 ( .A(n558), .B(n876), .C(n877), .Y(n492) );
+  AOI22X1 U1027 ( .A(sram_araddr[8]), .B(n554), .C(raddr_reg[8]), .D(n556), 
+        .Y(n877) );
+  INVX1 U1028 ( .A(N135), .Y(n876) );
+  OAI21X1 U1029 ( .A(n558), .B(n878), .C(n879), .Y(n491) );
+  AOI22X1 U1030 ( .A(sram_araddr[9]), .B(n554), .C(raddr_reg[9]), .D(n556), 
+        .Y(n879) );
+  INVX1 U1031 ( .A(N136), .Y(n878) );
+  OAI21X1 U1032 ( .A(n558), .B(n880), .C(n881), .Y(n490) );
+  AOI22X1 U1033 ( .A(sram_araddr[10]), .B(n554), .C(raddr_reg[10]), .D(n556), 
+        .Y(n881) );
+  INVX1 U1034 ( .A(N137), .Y(n880) );
+  OAI21X1 U1035 ( .A(n558), .B(n882), .C(n883), .Y(n489) );
+  AOI22X1 U1036 ( .A(sram_araddr[11]), .B(n554), .C(raddr_reg[11]), .D(n556), 
+        .Y(n883) );
+  INVX1 U1037 ( .A(N138), .Y(n882) );
+  OAI21X1 U1038 ( .A(n558), .B(n884), .C(n885), .Y(n488) );
+  AOI22X1 U1039 ( .A(sram_araddr[12]), .B(n554), .C(raddr_reg[12]), .D(n556), 
+        .Y(n885) );
+  INVX1 U1040 ( .A(N139), .Y(n884) );
+  OAI21X1 U1041 ( .A(n558), .B(n886), .C(n887), .Y(n487) );
+  AOI22X1 U1042 ( .A(sram_araddr[13]), .B(n554), .C(raddr_reg[13]), .D(n556), 
+        .Y(n887) );
+  INVX1 U1043 ( .A(N140), .Y(n886) );
+  OAI21X1 U1044 ( .A(n558), .B(n888), .C(n889), .Y(n486) );
+  AOI22X1 U1045 ( .A(sram_araddr[14]), .B(n554), .C(raddr_reg[14]), .D(n556), 
+        .Y(n889) );
+  INVX1 U1046 ( .A(N141), .Y(n888) );
+  OAI21X1 U1047 ( .A(n558), .B(n890), .C(n891), .Y(n485) );
+  AOI22X1 U1048 ( .A(sram_araddr[15]), .B(n554), .C(raddr_reg[15]), .D(n556), 
+        .Y(n891) );
+  INVX1 U1049 ( .A(N142), .Y(n890) );
+  OAI21X1 U1050 ( .A(n558), .B(n892), .C(n893), .Y(n484) );
+  AOI22X1 U1051 ( .A(sram_araddr[16]), .B(n554), .C(raddr_reg[16]), .D(n556), 
+        .Y(n893) );
+  INVX1 U1052 ( .A(N143), .Y(n892) );
+  OAI21X1 U1053 ( .A(n558), .B(n894), .C(n895), .Y(n483) );
+  AOI22X1 U1054 ( .A(sram_araddr[17]), .B(n554), .C(raddr_reg[17]), .D(n556), 
+        .Y(n895) );
+  INVX1 U1055 ( .A(N144), .Y(n894) );
+  OAI21X1 U1056 ( .A(n558), .B(n896), .C(n897), .Y(n482) );
+  AOI22X1 U1057 ( .A(sram_araddr[18]), .B(n554), .C(raddr_reg[18]), .D(n556), 
+        .Y(n897) );
+  INVX1 U1058 ( .A(N145), .Y(n896) );
+  OAI21X1 U1059 ( .A(n558), .B(n898), .C(n899), .Y(n481) );
+  AOI22X1 U1060 ( .A(sram_araddr[19]), .B(n554), .C(raddr_reg[19]), .D(n556), 
+        .Y(n899) );
+  INVX1 U1061 ( .A(N146), .Y(n898) );
+  OAI21X1 U1062 ( .A(n558), .B(n900), .C(n901), .Y(n480) );
+  AOI22X1 U1063 ( .A(sram_araddr[20]), .B(n554), .C(raddr_reg[20]), .D(n556), 
+        .Y(n901) );
+  INVX1 U1064 ( .A(N147), .Y(n900) );
+  OAI21X1 U1065 ( .A(n558), .B(n902), .C(n903), .Y(n479) );
+  AOI22X1 U1066 ( .A(sram_araddr[21]), .B(n554), .C(raddr_reg[21]), .D(n556), 
+        .Y(n903) );
+  INVX1 U1067 ( .A(N148), .Y(n902) );
+  OAI21X1 U1068 ( .A(n558), .B(n904), .C(n905), .Y(n478) );
+  AOI22X1 U1069 ( .A(sram_araddr[22]), .B(n861), .C(raddr_reg[22]), .D(n556), 
+        .Y(n905) );
+  INVX1 U1070 ( .A(N149), .Y(n904) );
+  OAI21X1 U1071 ( .A(n558), .B(n906), .C(n907), .Y(n477) );
+  AOI22X1 U1072 ( .A(sram_araddr[23]), .B(n861), .C(raddr_reg[23]), .D(n804), 
+        .Y(n907) );
+  INVX1 U1073 ( .A(N150), .Y(n906) );
+  OAI21X1 U1074 ( .A(n812), .B(n908), .C(n909), .Y(n476) );
+  AOI22X1 U1075 ( .A(sram_araddr[24]), .B(n861), .C(raddr_reg[24]), .D(n804), 
+        .Y(n909) );
+  INVX1 U1076 ( .A(N151), .Y(n908) );
+  OAI21X1 U1077 ( .A(n812), .B(n910), .C(n911), .Y(n475) );
+  AOI22X1 U1078 ( .A(sram_araddr[25]), .B(n861), .C(raddr_reg[25]), .D(n804), 
+        .Y(n911) );
+  INVX1 U1079 ( .A(N152), .Y(n910) );
+  OAI21X1 U1080 ( .A(n812), .B(n912), .C(n913), .Y(n474) );
+  AOI22X1 U1081 ( .A(sram_araddr[26]), .B(n861), .C(raddr_reg[26]), .D(n804), 
+        .Y(n913) );
+  INVX1 U1082 ( .A(N153), .Y(n912) );
+  OAI21X1 U1083 ( .A(n812), .B(n914), .C(n915), .Y(n473) );
+  AOI22X1 U1084 ( .A(sram_araddr[27]), .B(n861), .C(raddr_reg[27]), .D(n804), 
+        .Y(n915) );
+  INVX1 U1085 ( .A(N154), .Y(n914) );
+  OAI21X1 U1086 ( .A(n812), .B(n916), .C(n917), .Y(n472) );
+  AOI22X1 U1087 ( .A(sram_araddr[28]), .B(n861), .C(raddr_reg[28]), .D(n804), 
+        .Y(n917) );
+  INVX1 U1088 ( .A(N155), .Y(n916) );
+  OAI21X1 U1089 ( .A(n812), .B(n918), .C(n919), .Y(n471) );
+  AOI22X1 U1090 ( .A(sram_araddr[29]), .B(n861), .C(raddr_reg[29]), .D(n804), 
+        .Y(n919) );
+  INVX1 U1091 ( .A(N156), .Y(n918) );
+  OAI21X1 U1092 ( .A(n812), .B(n920), .C(n921), .Y(n470) );
+  AOI22X1 U1093 ( .A(sram_araddr[30]), .B(n861), .C(raddr_reg[30]), .D(n804), 
+        .Y(n921) );
+  INVX1 U1094 ( .A(N157), .Y(n920) );
+  OAI21X1 U1095 ( .A(n812), .B(n922), .C(n923), .Y(n469) );
+  AOI22X1 U1096 ( .A(sram_araddr[31]), .B(n861), .C(raddr_reg[31]), .D(n804), 
+        .Y(n923) );
+  NOR2X1 U1097 ( .A(n805), .B(n556), .Y(n861) );
+  AOI21X1 U1098 ( .A(sram_arready), .B(sram_arvalid), .C(n805), .Y(n804) );
+  INVX1 U1099 ( .A(n812), .Y(n805) );
+  INVX1 U1100 ( .A(N158), .Y(n922) );
+  NAND3X1 U1101 ( .A(sram_rvalid), .B(sram_rready), .C(n924), .Y(n812) );
+  NOR2X1 U1102 ( .A(n672), .B(n673), .Y(n924) );
+  INVX1 U1103 ( .A(read_state[1]), .Y(n673) );
+  INVX1 U1104 ( .A(read_state[0]), .Y(n672) );
+  INVX1 U1105 ( .A(n925), .Y(n386) );
+  MUX2X1 U1106 ( .B(wstrb_reg[0]), .A(sram_wstrb[0]), .S(n557), .Y(n925) );
+  INVX1 U1107 ( .A(n926), .Y(n384) );
+  MUX2X1 U1108 ( .B(wstrb_reg[1]), .A(sram_wstrb[1]), .S(n557), .Y(n926) );
+  AND2X1 U1109 ( .A(next_write[1]), .B(next_write[0]), .Y(N178) );
+  OAI21X1 U1110 ( .A(write_state[1]), .B(n927), .C(n928), .Y(next_write[0]) );
+  AND2X1 U1111 ( .A(n929), .B(n559), .Y(n928) );
+  MUX2X1 U1112 ( .B(n930), .A(n931), .S(write_state[0]), .Y(n927) );
+  INVX1 U1113 ( .A(sram_wvalid), .Y(n931) );
+  NOR2X1 U1114 ( .A(n799), .B(n800), .Y(n930) );
+  INVX1 U1115 ( .A(sram_awvalid), .Y(n800) );
+  INVX1 U1116 ( .A(sram_awready), .Y(n799) );
+  NAND3X1 U1117 ( .A(n929), .B(n734), .C(n932), .Y(next_write[1]) );
+  AOI22X1 U1118 ( .A(n933), .B(sram_wvalid), .C(n562), .D(n934), .Y(n932) );
+  INVX1 U1119 ( .A(write_valid), .Y(n934) );
+  AND2X1 U1120 ( .A(n935), .B(write_state[0]), .Y(n933) );
+  NAND3X1 U1121 ( .A(n729), .B(n936), .C(n723), .Y(n734) );
+  INVX1 U1122 ( .A(n728), .Y(n723) );
+  NAND3X1 U1123 ( .A(n685), .B(n937), .C(n718), .Y(n728) );
+  NOR3X1 U1124 ( .A(wlen_reg[5]), .B(wlen_reg[6]), .C(n714), .Y(n718) );
+  NAND3X1 U1125 ( .A(n703), .B(n938), .C(n696), .Y(n714) );
+  INVX1 U1126 ( .A(n704), .Y(n696) );
+  NAND3X1 U1127 ( .A(n691), .B(n939), .C(n686), .Y(n704) );
+  INVX1 U1128 ( .A(wlen_reg[0]), .Y(n686) );
+  INVX1 U1129 ( .A(wlen_reg[2]), .Y(n939) );
+  INVX1 U1130 ( .A(wlen_reg[1]), .Y(n691) );
+  INVX1 U1131 ( .A(wlen_reg[4]), .Y(n938) );
+  INVX1 U1132 ( .A(wlen_reg[3]), .Y(n703) );
+  INVX1 U1133 ( .A(wlen_reg[7]), .Y(n937) );
+  INVX1 U1134 ( .A(n692), .Y(n685) );
+  NAND2X1 U1135 ( .A(write_valid), .B(n562), .Y(n692) );
+  NOR2X1 U1136 ( .A(n935), .B(write_state[0]), .Y(n562) );
+  INVX1 U1137 ( .A(wlen_reg[9]), .Y(n936) );
+  INVX1 U1138 ( .A(wlen_reg[8]), .Y(n729) );
+  NAND2X1 U1139 ( .A(n940), .B(write_state[0]), .Y(n929) );
+  NOR2X1 U1140 ( .A(sram_bready), .B(n935), .Y(n940) );
+  INVX1 U1141 ( .A(write_state[1]), .Y(n935) );
 endmodule
 

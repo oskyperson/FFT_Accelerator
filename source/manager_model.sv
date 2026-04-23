@@ -114,7 +114,7 @@ module manager_model (
             
             result_queue.push_back(cpu_rdata);
             
-            $display("read: %d", i);
+            //$display("read: %d", i);
             if (i == num_beats - 1 && !cpu_rlast) 
                 $display("[ERROR] cpu_rlast not asserted on final beat!");
             
