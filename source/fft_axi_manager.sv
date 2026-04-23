@@ -269,12 +269,29 @@ fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
 );
 /* verilator lint_on PINCONNECTEMPTY */
 
+logic [31:0] data_out_reg;
+logic out_valid_reg;
+
+// Register the data and valid signals coming FROM the FFT
+always_ff @ (posedge clk, negedge n_rst) begin : from_fft_reg
+    if (!n_rst) begin
+        data_out_reg <= '0;
+        out_valid_reg <= 0;
+    end else begin
+        data_out_reg <= data_out;
+        out_valid_reg <= out_valid;
+    end
+end
+
 always_comb begin : write_output_logic
     fft_man_awlen = configs[4][9:0];
     fft_man_awvalid = (wstate == WADDR);
-    fft_man_wvalid = (wstate == WDATA) && out_valid;
+    
+    // Use the registered versions to ensure alignment with the AXI clock
+    fft_man_wvalid = (wstate == WDATA) && out_valid_reg;
+    fft_man_wdata = data_out_reg;
+    
     fft_man_wstrb = configs[5][1:0];
-    fft_man_wdata = data_out;
     fft_man_bready = (wstate == B);
 end
 

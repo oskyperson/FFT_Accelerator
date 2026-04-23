@@ -93,7 +93,7 @@ module tb_axi_top ();
 
         w_queue.delete();
         for(int i = 0; i < 1024; i++) begin
-            w_queue.push_back(32'd0);
+            w_queue.push_back(i);
         end
         $display("PLUH");
         BFM.write_burst(32'd15, w_queue);
