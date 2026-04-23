@@ -31,37 +31,20 @@ Please use '-no_save' simv switch to avoid this.
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 Initializing...
-<<<<<<< HEAD
 Initializing gui preferences from file  /home/ecegridfs/a/337mg227/.synopsys_dc_gui/preferences.tcl
-Current time:       Wed Apr 22 02:02:36 2026
-Hostname:           ececomp2.ecn.purdue.edu
+Current time:       Wed Apr 22 19:30:33 2026
+Hostname:           ececomp1.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
+CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.42 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free 144 GB)
-Swap:                63 GB (Free  27 GB)
+RAM:                502 GB (Free  36 GB)
+Swap:                63 GB (Free  55 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 313 GB)
+Work Disk:          2968 GB (Free 306 GB)
 Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 23%, Ram Free: 144 GB, Swap Free: 27 GB, Work Disk Free: 313 GB, Tmp Disk Free: 18 GB
-=======
-Initializing gui preferences from file  /home/ecegridfs/a/337mg238/.synopsys_dc_gui/preferences.tcl
-Current time:       Wed Apr 22 03:23:49 2026
-Hostname:           ececomp5.ecn.purdue.edu
-CPU Model:          AMD EPYC 7513 32-Core Processor
-CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 3.67 GHz
-OS:                 Linux 5.15.0-318.199.3.2.el8uek.x86_64
-RAM:                502 GB (Free  89 GB)
-Swap:                63 GB (Free  63 GB)
-Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
-Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 314 GB)
-Tmp Disk:            17 GB (Free  16 GB)
-
-CPU Load: 4%, Ram Free: 89 GB, Swap Free: 63 GB, Work Disk Free: 314 GB, Tmp Disk Free: 16 GB
->>>>>>> fft_axi
+CPU Load: 81%, Ram Free: 36 GB, Swap Free: 55 GB, Work Disk Free: 306 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -70,23 +53,13 @@ CPU Load: 4%, Ram Free: 89 GB, Swap Free: 63 GB, Work Disk Free: 314 GB, Tmp Dis
 #
 ############################################
 sh date
-<<<<<<< HEAD
-Wed Apr 22 02:02:36 EDT 2026
+Wed Apr 22 19:30:33 EDT 2026
 set TOP_MODULE axi_top
 axi_top
 set DC_SCRIPT synth.tcl
 synth.tcl
 set READ_SOURCES team42_ece337_axi_top_1.0.0-read-sources
 team42_ece337_axi_top_1.0.0-read-sources
-=======
-Wed Apr 22 03:23:49 EDT 2026
-set TOP_MODULE fft_axi_manager
-fft_axi_manager
-set DC_SCRIPT synth.tcl
-synth.tcl
-set READ_SOURCES team42_ece337_fft_axi_manager_1.0.0-read-sources
-team42_ece337_fft_axi_manager_1.0.0-read-sources
->>>>>>> fft_axi
 set SCRIPT_DIR src/team42_ece337_synfiles_0
 src/team42_ece337_synfiles_0
 set REPORT_DIR reports
@@ -108,7 +81,6 @@ Presto compilation completed successfully.
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/dw_foundation.sldb'
 Running PRESTO HDLC
-<<<<<<< HEAD
 Compiling source file ./src/team42_ece337_arbiter_1.0.0/source/arbiter.sv
 Presto compilation completed successfully.
 Running PRESTO HDLC
@@ -134,12 +106,6 @@ Compiling source file ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_m
 Presto compilation completed successfully.
 Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv
-=======
-Compiling source file ./src/team42_ece337_fft_cla_1.0.0/source/fft_cla.sv
-Presto compilation completed successfully.
-Running PRESTO HDLC
-Compiling source file ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv
->>>>>>> fft_axi
 Presto compilation completed successfully.
 Running PRESTO HDLC
 Compiling source file ./src/team42_ece337_multiplier_1.0.0/source/multiplier.sv
@@ -161,7 +127,6 @@ Loading db file '/package/eda/synopsys/syn/W-2024.09-SP4/libraries/syn/standard.
   Loading link library 'osu05_stdcells'
   Loading link library 'gtech'
 Running PRESTO HDLC
-<<<<<<< HEAD
 Presto compilation completed successfully. (axi_top)
 Module: axi_top, Ports: 301, Input: 160, Output: 141, Inout: 0
 Module: axi_top, Registers: 0, Async set/reset: 0, Sync set/reset: 0
@@ -169,7 +134,7 @@ Information: Module axi_top report end. (ELAB-965)
 Elaborated 1 design.
 Current design is now 'axi_top'.
 Information: Building the design 'fft_axi_manager'. (HDL-193)
-Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:173: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:169: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:223: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
 Statistics for case statements in always block in file
@@ -177,7 +142,7 @@ Statistics for case statements in always block in file
 ============================================================
 |    Line    |  full/ parallel  |      block location      |
 ============================================================
-|    163     |    auto/auto     | always block at line 161 |
+|    159     |    auto/auto     | always block at line 157 |
 |    213     |    auto/auto     | always block at line 211 |
 ============================================================
 
@@ -192,7 +157,7 @@ Inferred memory devices in process in routine 'fft_axi_manager' in file
 |   frame_size_reg    | Flip-flop |   8   |  Y  | N  | Async | Async | N  |  79  |
 |    windowing_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  79  |
 |    load_size_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  79  |
-|     configs_reg     | Flip-flop |  129  |  Y  | N  | None  | Async | N  |  91  |
+|     configs_reg     | Flip-flop |  150  |  Y  | N  | None  | Async | N  |  91  |
 |   processing_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  91  |
 |  r_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 121  |
 |  w_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 121  |
@@ -200,55 +165,41 @@ Inferred memory devices in process in routine 'fft_axi_manager' in file
 |        k_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 121  |
 |    r_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 121  |
 |    w_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 121  |
-|     rstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 154  |
-| fft_man_araddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 177  |
+|     rstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 150  |
+| fft_man_araddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 173  |
 |     wstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 204  |
 | fft_man_awaddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 227  |
 ==================================================================================
 Presto compilation completed successfully. (fft_axi_manager)
 Module: fft_axi_manager, Ports: 531, Input: 331, Output: 200, Inout: 0
-Module: fft_axi_manager, Registers: 394, Async set/reset: 394, Sync set/reset: 0
+Module: fft_axi_manager, Registers: 415, Async set/reset: 415, Sync set/reset: 0
 Information: Module fft_axi_manager report end. (ELAB-965)
 Information: Building the design 'fft_axi_subordinate'. (HDL-193)
-=======
-Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:168: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-Warning:  ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv:222: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
->>>>>>> fft_axi
 
 Statistics for case statements in always block in file
-	'./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'
+	'./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'
 ============================================================
 |    Line    |  full/ parallel  |      block location      |
 ============================================================
-|    158     |    auto/auto     | always block at line 156 |
-|    212     |    auto/auto     | always block at line 210 |
+|    119     |    auto/auto     | always block at line 115 |
 ============================================================
 
-Inferred memory devices in process in routine 'fft_axi_manager' in file
-	 ./src/team42_ece337_fft_axi_manager_1.0.0/source/fft_axi_manager.sv'.
+Inferred memory devices in process in routine 'fft_axi_subordinate' in file
+	 ./src/team42_ece337_fft_axi_subordinate_1.0.0/source/fft_axi_subordinate.sv'.
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|     j_gt_0_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
-|     j_eq_k_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
-|     k_gt_0_reg      | Flip-flop |   1   |  N  | N  | None  | Async | N  |  66  |
-|   frame_size_reg    | Flip-flop |   8   |  Y  | N  | Async | Async | N  |  78  |
-|    windowing_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  78  |
-|    load_size_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  78  |
-|     configs_reg     | Flip-flop |  150  |  Y  | N  | None  | Async | N  |  90  |
-|   processing_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  |  90  |
-|  r_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 120  |
-|  w_frame_size_reg   | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 120  |
-|        j_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 120  |
-|        k_reg        | Flip-flop |  11   |  Y  | N  | None  | Async | N  | 120  |
-|    r_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 120  |
-|    w_offset_reg     | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 120  |
-|     rstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 149  |
-| fft_man_araddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 172  |
-|     wstate_reg      | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 203  |
-| fft_man_awaddr_reg  | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 226  |
+| fft_sub_wready_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  |  59  |
+|   awaddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  59  |
+| fft_sub_awready_reg | Flip-flop |   1   |  N  | N  | Async | None  | N  |  59  |
+|   config_reg_reg    | Flip-flop |  256  |  Y  | N  | None  | Async | N  |  97  |
+| fft_sub_bvalid_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 133  |
+|  fft_sub_bresp_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 133  |
+| fft_sub_arready_reg | Flip-flop |   1   |  N  | N  | Async | None  | N  | 157  |
+|   araddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 157  |
+| fft_sub_rvalid_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 190  |
+|  fft_sub_rresp_reg  | Flip-flop |   1   |  N  | N  | None  | Async | N  | 190  |
 ==================================================================================
-<<<<<<< HEAD
 Statistics for MUX_OPs
 =============================================================
 |    block name/line      | Inputs | Outputs | # sel inputs |
@@ -340,14 +291,6 @@ Presto compilation completed successfully. (fft_core)
 Module: fft_core, Ports: 79, Input: 46, Output: 33, Inout: 0
 Module: fft_core, Registers: 10, Async set/reset: 10, Sync set/reset: 0
 Information: Module fft_core report end. (ELAB-965)
-=======
-Presto compilation completed successfully. (fft_axi_manager)
-Module: fft_axi_manager, Ports: 531, Input: 331, Output: 200, Inout: 0
-Module: fft_axi_manager, Registers: 415, Async set/reset: 415, Sync set/reset: 0
-Information: Module fft_axi_manager report end. (ELAB-965)
-Elaborated 1 design.
-Current design is now 'fft_axi_manager'.
->>>>>>> fft_axi
 Information: Building the design 'fft_cla'. (HDL-193)
 Presto compilation completed successfully. (fft_cla)
 Module: fft_cla, Ports: 98, Input: 65, Output: 33, Inout: 0
@@ -381,7 +324,6 @@ Presto compilation completed successfully. (fft_axi_counter_WRITE_OR_READ1)
 Module: fft_axi_counter_WRITE_OR_READ1, Ports: 26, Input: 15, Output: 11, Inout: 0
 Module: fft_axi_counter_WRITE_OR_READ1, Registers: 10, Async set/reset: 10, Sync set/reset: 0
 Information: Module fft_axi_counter_WRITE_OR_READ1 report end. (ELAB-965)
-<<<<<<< HEAD
 Information: Building the design 'fft_stage' instantiated from design 'fft_core' with
 	the parameters "0". (HDL-193)
 Warning:  ./src/team42_ece337_fft_stage_1.0.0/source/fft_stage.sv:99: signed to unsigned conversion occurs. (VER-318)
@@ -1048,11 +990,7 @@ Information: Uniquified 9 instances of design 'twiddle_lookup'. (OPT-1056)
 Information: Uniquified 9 instances of design 'flex_counter'. (OPT-1056)
 Information: Uniquified 36 instances of design 'adder'. (OPT-1056)
 Information: Uniquified 36 instances of design 'multiplier'. (OPT-1056)
-CPU Load: 23%, Ram Free: 143 GB, Swap Free: 27 GB, Work Disk Free: 313 GB, Tmp Disk Free: 18 GB
-=======
-Information: Uniquified 2 instances of design 'fft_cla'. (OPT-1056)
-CPU Load: 4%, Ram Free: 89 GB, Swap Free: 63 GB, Work Disk Free: 314 GB, Tmp Disk Free: 16 GB
->>>>>>> fft_axi
+CPU Load: 82%, Ram Free: 36 GB, Swap Free: 55 GB, Work Disk Free: 306 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -1071,47 +1009,29 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-<<<<<<< HEAD
-| Leaf Cell Count                                         | 29368                                  |
+| Leaf Cell Count                                         | 29391                                  |
 | Number of User Hierarchies                              | 128                                    |
-| Sequential Cell Count                                   | 17945                                  |
-=======
-| Leaf Cell Count                                         | 1826                                   |
-| Number of User Hierarchies                              | 4                                      |
-| Sequential Cell Count                                   | 435                                    |
->>>>>>> fft_axi
+| Sequential Cell Count                                   | 17966                                  |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
 | Number of Path Groups                                   | 1                                      |
 | Number of VT Class                                      | 0                                      |
 | Number of Clocks                                        | 0                                      |
-<<<<<<< HEAD
-| Number of Dont Touch Cells                              | 5383                                   |
-=======
-| Number of Dont Touch Cells                              | 72                                     |
->>>>>>> fft_axi
+| Number of Dont Touch Cells                              | 5386                                   |
 | Number of Dont Touch Nets                               | 0                                      |
 | Number of Size Only Cells                               | 0                                      |
 | Design with Target Library Subset (with clock_path)     | false  (false )                        |
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-<<<<<<< HEAD
-Information: There are 598 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-=======
-Information: There are 206 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
->>>>>>> fft_axi
+Information: There are 578 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
   Beginning Pass 1 Mapping
   ------------------------
-<<<<<<< HEAD
   Processing 'multiplier_0'
-=======
-  Processing 'fft_axi_counter_WRITE_OR_READ1'
->>>>>>> fft_axi
 Module: DW01_MUX, Ports: 4, Input: 3, Output: 1, Inout: 0
 Module: DW01_MUX, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_mmux_width2, Ports: 7, Input: 5, Output: 2, Inout: 0
@@ -1153,7 +1073,6 @@ Module: DW01_inc_width10, Ports: 20, Input: 10, Output: 10, Inout: 0
 Module: DW01_inc_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_cmp6_width10, Ports: 27, Input: 21, Output: 6, Inout: 0
 Module: DW01_cmp6_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-<<<<<<< HEAD
 Module: DW01_add_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
 Module: DW01_add_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_incdec_width10, Ports: 21, Input: 11, Output: 10, Inout: 0
@@ -1229,40 +1148,13 @@ Module: DW01_inc_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
 Module: DW01_inc_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_dec_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
 Module: DW01_dec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width11, Ports: 23, Input: 12, Output: 11, Inout: 0
-Module: DW01_incdec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
-Module: DW01_add_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_sub_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
-Module: DW01_sub_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-=======
-  Processing 'fft_axi_counter_WRITE_OR_READ0'
-  Processing 'fft_cla_0'
-  Processing 'fft_axi_manager'
-Module: DW01_inc_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
-Module: DW01_inc_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_dec_width11, Ports: 22, Input: 11, Output: 11, Inout: 0
-Module: DW01_dec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width32, Ports: 98, Input: 65, Output: 33, Inout: 0
-Module: DW01_add_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width11, Ports: 29, Input: 23, Output: 6, Inout: 0
-Module: DW01_cmp6_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp6_width32, Ports: 71, Input: 65, Output: 6, Inout: 0
-Module: DW01_cmp6_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_sub_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
 Module: DW01_sub_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_incdec_width11, Ports: 23, Input: 12, Output: 11, Inout: 0
 Module: DW01_incdec_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_cmp2_width11, Ports: 26, Input: 24, Output: 2, Inout: 0
-Module: DW01_cmp2_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Module: DW01_add_width11, Ports: 35, Input: 23, Output: 12, Inout: 0
 Module: DW01_add_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_incdec_width10, Ports: 21, Input: 11, Output: 10, Inout: 0
-Module: DW01_incdec_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
-Module: DW01_add_width10, Ports: 32, Input: 21, Output: 11, Inout: 0
-Module: DW01_add_width10, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Information: Added key list 'DesignWare' to design 'fft_axi_manager'. (DDB-72)
->>>>>>> fft_axi
 Information: The register 'r_frame_size_reg[11]' is a constant and will be removed. (OPT-1206)
 Information: The register 'r_frame_size_reg[12]' is a constant and will be removed. (OPT-1206)
 Information: The register 'r_frame_size_reg[13]' is a constant and will be removed. (OPT-1206)
@@ -1305,7 +1197,6 @@ Information: The register 'w_frame_size_reg[28]' is a constant and will be remov
 Information: The register 'w_frame_size_reg[29]' is a constant and will be removed. (OPT-1206)
 Information: The register 'w_frame_size_reg[30]' is a constant and will be removed. (OPT-1206)
 Information: The register 'w_frame_size_reg[31]' is a constant and will be removed. (OPT-1206)
-<<<<<<< HEAD
   Processing 'axi_top'
 
   Updating timing information
@@ -1602,49 +1493,23 @@ Information: Design 'axi_top' has no optimization constraints set. (OPT-108)
   Mapping 'fft_axi_counter_WRITE_OR_READ1_0_DW_cmp_0'
   Processing 'fft_axi_counter_WRITE_OR_READ1_0_DW01_inc_0_DW01_inc_13'
   Processing 'fft_axi_manager_DW01_cmp2_0_DW01_cmp2_89'
-  Processing 'fft_axi_manager_DW01_cmp2_1_DW01_cmp2_90'
-  Processing 'fft_axi_manager_DW01_cmp2_2_DW01_cmp2_91'
   Processing 'fft_axi_manager_DW01_add_0_DW01_add_83'
+  Processing 'fft_axi_manager_DW01_add_1_DW01_add_84'
   Processing 'fft_axi_manager_DW01_dec_0_DW01_dec_11'
   Processing 'fft_axi_manager_DW01_inc_0_DW01_inc_14'
   Processing 'fft_axi_manager_DW01_inc_1_DW01_inc_15'
   Processing 'fft_axi_manager_DW01_dec_1_DW01_dec_12'
   Processing 'fft_axi_manager_DW01_inc_2_DW01_inc_16'
-  Processing 'fft_axi_manager_DW01_add_1_DW01_add_84'
-  Processing 'fft_axi_manager_DW01_cmp2_3_DW01_cmp2_92'
+  Processing 'fft_axi_manager_DW01_add_2_DW01_add_85'
+  Processing 'fft_axi_manager_DW01_cmp2_1_DW01_cmp2_90'
   Processing 'fft_axi_manager_DW01_cmp6_0_DW01_cmp6_3'
   Mapping 'fft_axi_counter_WRITE_OR_READ1_1_DW_cmp_0'
   Processing 'fft_axi_counter_WRITE_OR_READ1_1_DW01_inc_0_DW01_inc_17'
   Mapping 'fft_axi_counter_WRITE_OR_READ0_1_DW_cmp_0'
   Processing 'fft_axi_counter_WRITE_OR_READ0_1_DW01_inc_0_DW01_inc_18'
-=======
-
-  Updating timing information
-Information: Updating design information... (UID-85)
-Information: Design 'fft_axi_manager' has no optimization constraints set. (OPT-108)
-
-  Beginning Implementation Selection
-  ----------------------------------
-  Processing 'fft_axi_manager_DW01_cmp2_0'
-  Processing 'fft_axi_manager_DW01_add_0'
-  Processing 'fft_axi_manager_DW01_add_1'
-  Processing 'fft_axi_manager_DW01_dec_0'
-  Processing 'fft_axi_manager_DW01_inc_0'
-  Processing 'fft_axi_manager_DW01_inc_1'
-  Processing 'fft_axi_manager_DW01_dec_1'
-  Processing 'fft_axi_manager_DW01_inc_2'
-  Processing 'fft_axi_manager_DW01_add_2'
-  Processing 'fft_axi_manager_DW01_cmp2_1'
-  Processing 'fft_axi_manager_DW01_cmp6_0'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ1_DW01_inc_0_DW01_inc_3'
-  Mapping 'fft_axi_counter_WRITE_OR_READ0_DW_cmp_0'
-  Processing 'fft_axi_counter_WRITE_OR_READ0_DW01_inc_0_DW01_inc_4'
->>>>>>> fft_axi
 
   Beginning Mapping Optimizations  (Medium effort)
   -------------------------------
-<<<<<<< HEAD
 Information: Added key list 'DesignWare' to design 'flex_counter_0'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'flex_counter_1'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'flex_counter_2'. (DDB-72)
@@ -1894,18 +1759,6 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
   Mapping 'sram_axi'
   Structuring 'fft_axi_subordinate'
   Mapping 'fft_axi_subordinate'
-=======
-Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ1'. (DDB-72)
-Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_READ0'. (DDB-72)
-  Structuring 'fft_cla_0'
-  Mapping 'fft_cla_0'
-  Structuring 'fft_axi_counter_WRITE_OR_READ1'
-  Mapping 'fft_axi_counter_WRITE_OR_READ1'
-  Structuring 'fft_axi_counter_WRITE_OR_READ0'
-  Mapping 'fft_axi_counter_WRITE_OR_READ0'
-  Structuring 'fft_cla_1'
-  Mapping 'fft_cla_1'
->>>>>>> fft_axi
   Structuring 'fft_axi_manager'
   Mapping 'fft_axi_manager'
 
@@ -1913,45 +1766,27 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
-    0:01:40 60056109.0      0.00       0.0    8258.0                          
-    0:01:40 60056109.0      0.00       0.0    8258.0                          
-    0:01:40 60056109.0      0.00       0.0    8258.0                          
-    0:01:40 60056109.0      0.00       0.0    8258.0                          
-    0:01:42 60056109.0      0.00       0.0    8258.0                          
-    0:01:45 58166253.0      0.00       0.0    8156.8                          
-    0:01:46 58166181.0      0.00       0.0    8156.8                          
-    0:01:47 58166181.0      0.00       0.0    8156.8                          
-    0:01:48 58166181.0      0.00       0.0    8156.8                          
-    0:01:48 58166181.0      0.00       0.0    8156.8                          
-    0:01:48 58166181.0      0.00       0.0    8156.8                          
-    0:01:49 58194549.0      0.00       0.0    6040.2                          
-    0:01:50 58228029.0      0.00       0.0    4398.0                          
-    0:01:51 58235157.0      0.00       0.0    3887.3                          
-    0:01:52 58236093.0      0.00       0.0    3685.5                          
-    0:01:52 58236309.0      0.00       0.0    3637.7                          
-    0:01:52 58236453.0      0.00       0.0    3596.2                          
-    0:01:53 58236597.0      0.00       0.0    3556.2                          
-    0:01:53 58236741.0      0.00       0.0    3516.1                          
-    0:01:53 58236741.0      0.00       0.0    3516.1                          
-    0:01:53 58236741.0      0.00       0.0    3516.1                          
-=======
-    0:00:03 1227951.0      0.00       0.0     484.4                          
-    0:00:03 1227951.0      0.00       0.0     484.4                          
-    0:00:03 1227951.0      0.00       0.0     484.4                          
-    0:00:03 1227951.0      0.00       0.0     484.4                          
-    0:00:03 1227951.0      0.00       0.0     484.4                          
-    0:00:03 1224711.0      0.00       0.0     484.4                          
-    0:00:03 1224711.0      0.00       0.0     484.4                          
-    0:00:03 1224711.0      0.00       0.0     484.4                          
-    0:00:03 1224711.0      0.00       0.0     484.4                          
-    0:00:03 1224711.0      0.00       0.0     484.4                          
-    0:00:03 1225431.0      0.00       0.0     203.6                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
->>>>>>> fft_axi
+    0:01:50 60150033.0      0.00       0.0    8383.6                          
+    0:01:50 60150033.0      0.00       0.0    8383.6                          
+    0:01:50 60150033.0      0.00       0.0    8383.6                          
+    0:01:50 60150033.0      0.00       0.0    8383.6                          
+    0:01:52 60150033.0      0.00       0.0    8383.6                          
+    0:01:55 58259673.0      0.00       0.0    8282.4                          
+    0:01:56 58259601.0      0.00       0.0    8282.4                          
+    0:01:57 58259601.0      0.00       0.0    8282.4                          
+    0:01:58 58259601.0      0.00       0.0    8282.4                          
+    0:01:58 58259601.0      0.00       0.0    8282.4                          
+    0:01:58 58259601.0      0.00       0.0    8282.4                          
+    0:01:59 58288113.0      0.00       0.0    6071.6                          
+    0:02:00 58321305.0      0.00       0.0    4471.5                          
+    0:02:01 58328433.0      0.00       0.0    3960.7                          
+    0:02:02 58329369.0      0.00       0.0    3759.0                          
+    0:02:02 58329585.0      0.00       0.0    3711.1                          
+    0:02:03 58329729.0      0.00       0.0    3669.7                          
+    0:02:03 58329873.0      0.00       0.0    3629.6                          
+    0:02:03 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
 
 
 
@@ -1962,19 +1797,11 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-=======
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1225575.0      0.00       0.0     156.1                          
->>>>>>> fft_axi
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -1984,19 +1811,14 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
-    0:01:54 58236741.0      0.00       0.0    3516.1                          
-    0:01:54 58249773.0      0.00       0.0    1316.3 fft_man/net418956        
-    0:01:54 58263093.0      0.00       0.0     689.1 fft/butterfly_units[0].stage/delays/out[4]
-    0:01:54 58273029.0      0.00       0.0     570.7 fft/butterfly_units[2].stage/mather/img/b[7]
-    0:01:55 58280157.0      0.00       0.0     470.5 fft/butterfly_units[3].stage/mather/img/b[2]
-    0:01:55 58287501.0      0.00       0.0     367.3 fft/butterfly_units[4].stage/mather/rl/b[10]
-    0:01:55 58294845.0      0.00       0.0     264.1 fft/butterfly_units[5].stage/mather/rl/b[4]
-    0:01:55 58301541.0      0.00       0.0     170.0                          
-=======
-    0:00:03 1225575.0      0.00       0.0     156.1                          
-    0:00:03 1226439.0      0.00       0.0       0.0                          
->>>>>>> fft_axi
+    0:02:04 58330017.0      0.00       0.0    3589.6                          
+    0:02:04 58343193.0      0.00       0.0    1316.3 fft/butterfly_units[8].stage/net409749
+    0:02:04 58356513.0      0.00       0.0     689.1 fft/butterfly_units[0].stage/delays/out[4]
+    0:02:05 58366449.0      0.00       0.0     570.7 fft/butterfly_units[2].stage/mather/img/b[7]
+    0:02:05 58373577.0      0.00       0.0     470.5 fft/butterfly_units[3].stage/mather/img/b[2]
+    0:02:05 58380921.0      0.00       0.0     367.3 fft/butterfly_units[4].stage/mather/rl/b[10]
+    0:02:05 58388265.0      0.00       0.0     264.1 fft/butterfly_units[5].stage/mather/rl/b[4]
+    0:02:06 58394961.0      0.00       0.0     170.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -2006,37 +1828,20 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-<<<<<<< HEAD
-    0:01:55 58301541.0      0.00       0.0     170.0                          
-    0:01:56 58301541.0      0.00       0.0     170.0                          
-    0:02:34 58288509.0      0.00       0.0     170.0                          
-    0:02:46 58286061.0      0.00       0.0     170.0                          
-    0:02:49 58285629.0      0.00       0.0     170.0                          
-    0:02:49 58285485.0      0.00       0.0     170.0                          
-    0:02:49 58285341.0      0.00       0.0     170.0                          
-    0:02:49 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-    0:02:50 58285341.0      0.00       0.0     170.0                          
-=======
-    0:00:03 1226439.0      0.00       0.0       0.0                          
-    0:00:03 1226439.0      0.00       0.0       0.0                          
-    0:00:03 1225935.0      0.00       0.0       0.0                          
-    0:00:03 1225719.0      0.00       0.0       0.0                          
-    0:00:03 1225575.0      0.00       0.0       0.0                          
-    0:00:03 1225503.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
-    0:00:03 1225359.0      0.00       0.0       0.0                          
->>>>>>> fft_axi
+    0:02:06 58394961.0      0.00       0.0     170.0                          
+    0:02:06 58394961.0      0.00       0.0     170.0                          
+    0:02:47 58381857.0      0.00       0.0     170.0                          
+    0:03:01 58379337.0      0.00       0.0     170.0                          
+    0:03:03 58378905.0      0.00       0.0     170.0                          
+    0:03:04 58378833.0      0.00       0.0     170.0                          
+    0:03:04 58378689.0      0.00       0.0     170.0                          
+    0:03:04 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
+    0:03:05 58378689.0      0.00       0.0     170.0                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -2045,11 +1850,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-<<<<<<< HEAD
-CPU Load: 23%, Ram Free: 140 GB, Swap Free: 27 GB, Work Disk Free: 313 GB, Tmp Disk Free: 18 GB
-=======
-CPU Load: 4%, Ram Free: 89 GB, Swap Free: 63 GB, Work Disk Free: 314 GB, Tmp Disk Free: 16 GB
->>>>>>> fft_axi
+CPU Load: 85%, Ram Free: 35 GB, Swap Free: 55 GB, Work Disk Free: 307 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -2073,25 +1874,20 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-<<<<<<< HEAD
-Date:        Wed Apr 22 02:05:36 2026
-=======
-Date:        Wed Apr 22 03:23:52 2026
->>>>>>> fft_axi
+Date:        Wed Apr 22 19:33:48 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-<<<<<<< HEAD
-Inputs/Outputs                                                   1117
+Inputs/Outputs                                                   1098
     Unloaded inputs (LINT-8)                                       59
-    Unconnected ports (LINT-28)                                   957
+    Unconnected ports (LINT-28)                                   938
     Feedthrough (LINT-29)                                          96
     Shorted outputs (LINT-31)                                       3
     Constant outputs (LINT-52)                                      2
 
-Cells                                                             453
-    Connected to power or ground (LINT-32)                        297
+Cells                                                             454
+    Connected to power or ground (LINT-32)                        298
     Nets connected to multiple pins on same cell (LINT-33)        156
 
 Nets                                                               59
@@ -2216,16 +2012,6 @@ Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', input port 'A[1
 Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', input port 'A[11]' is unloaded. (LINT-8)
 Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', input port 'A[10]' is unloaded. (LINT-8)
 Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', input port 'A[9]' is unloaded. (LINT-8)
-=======
-Inputs/Outputs                                                    179
-    Unconnected ports (LINT-28)                                   115
-    Feedthrough (LINT-29)                                          64
-
-Cells                                                              50
-    Connected to power or ground (LINT-32)                         50
---------------------------------------------------------------------------------
-
->>>>>>> fft_axi
 Warning: In design 'fft_axi_manager', port 'fft_man_bresp' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager', port 'fft_man_rlast' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager', port 'config_reg[7][31]' is not connected to any nets. (LINT-28)
@@ -2333,28 +2119,6 @@ Warning: In design 'fft_axi_manager', port 'config_reg[2][13]' is not connected 
 Warning: In design 'fft_axi_manager', port 'config_reg[2][12]' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager', port 'config_reg[2][11]' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager', port 'config_reg[2][10]' is not connected to any nets. (LINT-28)
-<<<<<<< HEAD
-Warning: In design 'fft_axi_manager', port 'config_reg[0][31]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][30]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][29]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][28]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][27]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][26]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][25]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][24]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][23]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][22]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][21]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][20]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][19]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][18]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][17]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][16]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][15]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][14]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][13]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][12]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager', port 'config_reg[0][11]' is not connected to any nets. (LINT-28)
 Warning: In design 'sram_axi', port 'sram_wlast' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_8', port 'addr[8]' is not connected to any nets. (LINT-28)
 Warning: In design 'twiddle_lookup_0', port 'addr[8]' is not connected to any nets. (LINT-28)
@@ -2640,10 +2404,12 @@ Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', port 'SUM[10]' 
 Warning: In design 'fft_axi_subordinate_DW01_inc_0_DW01_inc_11', port 'SUM[9]' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager_DW01_add_0_DW01_add_83', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager_DW01_add_0_DW01_add_83', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_0_DW01_inc_14', port 'A[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_2_DW01_inc_16', port 'A[10]' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager_DW01_add_1_DW01_add_84', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'fft_axi_manager_DW01_add_1_DW01_add_84', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_inc_0_DW01_inc_14', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_inc_2_DW01_inc_16', port 'A[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_2_DW01_add_85', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'fft_axi_manager_DW01_add_2_DW01_add_85', port 'CO' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[14]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[13]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_35_DW_mult_tc_1', port 'product[12]' is not connected to any nets. (LINT-28)
@@ -3184,16 +2950,6 @@ Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[3]' is not connect
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[2]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[1]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[0]' is not connected to any nets. (LINT-28)
-=======
-Warning: In design 'fft_axi_manager_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_0', port 'A[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_inc_2', port 'A[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'fft_axi_manager_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
->>>>>>> fft_axi
 Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[31]' is connected directly to output port 'data_in[31]'. (LINT-29)
 Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[30]' is connected directly to output port 'data_in[30]'. (LINT-29)
 Warning: In design 'fft_axi_manager', input port 'fft_man_rdata[29]' is connected directly to output port 'data_in[29]'. (LINT-29)
@@ -3258,7 +3014,6 @@ Warning: In design 'fft_axi_manager', input port 'data_out[3]' is connected dire
 Warning: In design 'fft_axi_manager', input port 'data_out[2]' is connected directly to output port 'fft_man_wdata[2]'. (LINT-29)
 Warning: In design 'fft_axi_manager', input port 'data_out[1]' is connected directly to output port 'fft_man_wdata[1]'. (LINT-29)
 Warning: In design 'fft_axi_manager', input port 'data_out[0]' is connected directly to output port 'fft_man_wdata[0]'. (LINT-29)
-<<<<<<< HEAD
 Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'sram_rdata[31]'. (LINT-29)
 Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'sram_rdata[30]'. (LINT-29)
 Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'sram_rdata[29]'. (LINT-29)
@@ -3298,8 +3053,6 @@ Warning: In design 'axi_top', a pin on submodule 'arbit' is connected to logic 1
    Pin 'sram_rresp' is connected to logic 0. 
 Warning: In design 'axi_top', a pin on submodule 'arbit' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'sram_bresp' is connected to logic 0. 
-=======
->>>>>>> fft_axi
 Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'b[31]' is connected to logic 0. 
 Warning: In design 'fft_axi_manager', a pin on submodule 'r_adder' is connected to logic 1 or logic 0. (LINT-32)
@@ -3390,14 +3143,15 @@ Warning: In design 'fft_axi_manager', a pin on submodule 'w_adder' is connected 
    Pin 'cin' is connected to logic 0. 
 Warning: In design 'fft_axi_manager', a pin on submodule 'write_counter' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'resp' is connected to logic 0. 
-<<<<<<< HEAD
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_231' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_235' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_181' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
 Warning: In design 'fft_axi_manager', a pin on submodule 'add_132' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'A[10]' is connected to logic 0. 
 Warning: In design 'fft_axi_manager', a pin on submodule 'add_133' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'A[10]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_181' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'fft_axi_manager', a pin on submodule 'add_178' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
 Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[31]' is connected to logic 0. 
@@ -4262,27 +4016,9 @@ Warning: Verilog writer has added 15 nets to module multiplier_1 using SYNOPSYS_
 Warning: Verilog writer has added 15 nets to module multiplier_0 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 Warning: Verilog writer has added 2 nets to module math_STAGE8 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
 
-Memory usage for this session 523 Mbytes.
-Memory usage for this session including child processes 523 Mbytes.
-CPU usage for this session 191 seconds ( 0.05 hours ).
-Elapsed time for this session 195 seconds ( 0.05 hours ).
-=======
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_234' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_180' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_131' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[10]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_132' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'A[10]' is connected to logic 0. 
-Warning: In design 'fft_axi_manager', a pin on submodule 'add_177' is connected to logic 1 or logic 0. (LINT-32)
-   Pin 'CI' is connected to logic 0. 
-Writing verilog file '/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/tmp/build/team42_ece337_fft_axi_manager_1.0.0/syn-design_compiler/fft_axi_manager.v'.
-
-Memory usage for this session 150 Mbytes.
-Memory usage for this session including child processes 150 Mbytes.
-CPU usage for this session 6 seconds ( 0.00 hours ).
-Elapsed time for this session 7 seconds ( 0.00 hours ).
->>>>>>> fft_axi
+Memory usage for this session 524 Mbytes.
+Memory usage for this session including child processes 524 Mbytes.
+CPU usage for this session 205 seconds ( 0.06 hours ).
+Elapsed time for this session 211 seconds ( 0.06 hours ).
 
 Thank you...
