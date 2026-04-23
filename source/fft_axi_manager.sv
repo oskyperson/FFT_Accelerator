@@ -210,8 +210,18 @@ always_comb begin : read_output_logic
     fft_man_arlen = configs[2][9:0];
     fft_man_arvalid = (rstate == RADDR);
     fft_man_rready = (rstate == RDATA);
-    data_in = fft_man_rdata;
-    in_valid = fft_man_rready && fft_man_rvalid;
+    // data_in = fft_man_rdata;
+    // in_valid = fft_man_rready && fft_man_rvalid;
+end
+
+always_ff @ (posedge clk, negedge n_rst) begin : to_fft
+    if (!n_rst) begin
+        data_in <= '0;
+        in_valid <= 0;
+    end else begin
+        data_in <= fft_man_rdata;
+        in_valid <= fft_man_rready && fft_man_rvalid;
+    end
 end
 
 always_ff @ (posedge clk, negedge n_rst) begin : wstate_reg
