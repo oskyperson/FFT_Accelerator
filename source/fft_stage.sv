@@ -11,7 +11,9 @@ module fft_stage #(
     output logic out_valid,
 
     input logic sel,
-    input logic [9:0] frame_size
+    input logic [9:0] frame_size,
+    output logic rollover_flag
+
           
 );
 
@@ -23,7 +25,7 @@ module fft_stage #(
     logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d, twiddle_reg;
     logic shift_en, primed;
 
-    logic rollover_flag;
+    //logic rollover_flag;
 
     localparam [8:0] ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
     assign twiddle_addr = (count_out & ADDR_ADJUST) << (STAGE);
