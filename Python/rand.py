@@ -80,7 +80,7 @@ def generate(signal_type='singleTone', N=512):
             im_hex = float_to_hex(val.imag)
             f_hex.write(f"stream_frame({re_hex}, {im_hex});\n")
 
-    with open('./Python/input_mem2.txt', 'w') as f_hex:
+    with open('./Python/input_dc256.txt', 'w') as f_hex:
         for val in signal:
             re_hex = float_to_hex(val.real).replace("16'h", "")
             im_hex = float_to_hex(val.imag).replace("16'h", "")

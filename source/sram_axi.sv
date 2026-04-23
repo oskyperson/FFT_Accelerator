@@ -64,9 +64,11 @@ always_ff @(posedge clk, negedge n_rst) begin : next_states
     if(!n_rst) begin
         read_state <= R_IDLE;
         write_state <= W_IDLE;
+        sram_rdata <= '0;
     end else begin
         read_state <= next_read;
         write_state <= next_write;
+        sram_rdata <= read_data;
     end
 end
 
@@ -107,7 +109,7 @@ always_comb begin : READ_LOGIC
     sram_rresp = 2'b00;
     ren = 1'b0;
     read_addr = raddr_reg - 32'hF;
-    sram_rdata = read_data;
+    
     case (read_state)
         R_IDLE: begin
             if (sram_arvalid && sram_arready) next_read = R_REQ;

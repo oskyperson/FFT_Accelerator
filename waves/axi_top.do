@@ -1,34 +1,26 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate -divider {cpu write address}
 add wave -noupdate /tb_axi_top/DUT/cpu_awaddr
-add wave -noupdate /tb_axi_top/DUT/cpu_araddr
-add wave -noupdate /tb_axi_top/DUT/cpu_wdata
-add wave -noupdate /tb_axi_top/DUT/cpu_rdata
-add wave -noupdate /tb_axi_top/DUT/cpu_arlen
 add wave -noupdate /tb_axi_top/DUT/cpu_awlen
-add wave -noupdate /tb_axi_top/DUT/cpu_wstrb
-add wave -noupdate /tb_axi_top/DUT/wen
-add wave -noupdate /tb_axi_top/DUT/write_addr
-add wave -noupdate /tb_axi_top/DUT/write_data
-add wave -noupdate /tb_axi_top/DUT/read_addr
-add wave -noupdate /tb_axi_top/DUT/read_data
 add wave -noupdate /tb_axi_top/DUT/cpu_awvalid
-add wave -noupdate /tb_axi_top/DUT/cpu_arvalid
-add wave -noupdate /tb_axi_top/DUT/cpu_wvalid
-add wave -noupdate /tb_axi_top/DUT/cpu_wlast
-add wave -noupdate /tb_axi_top/DUT/cpu_rready
-add wave -noupdate /tb_axi_top/DUT/cpu_bready
-add wave -noupdate /tb_axi_top/DUT/write_valid
-add wave -noupdate /tb_axi_top/DUT/read_valid
 add wave -noupdate /tb_axi_top/DUT/cpu_awready
-add wave -noupdate /tb_axi_top/DUT/cpu_arready
+add wave -noupdate -divider {cpu write data}
+add wave -noupdate /tb_axi_top/DUT/cpu_wdata
+add wave -noupdate /tb_axi_top/DUT/cpu_wlast
+add wave -noupdate /tb_axi_top/DUT/cpu_wvalid
 add wave -noupdate /tb_axi_top/DUT/cpu_wready
-add wave -noupdate /tb_axi_top/DUT/cpu_rvalid
+add wave -noupdate /tb_axi_top/DUT/cpu_wstrb
+add wave -noupdate -divider {cpu read address}
+add wave -noupdate /tb_axi_top/DUT/cpu_araddr
+add wave -noupdate /tb_axi_top/DUT/cpu_arlen
+add wave -noupdate /tb_axi_top/DUT/cpu_arvalid
+add wave -noupdate /tb_axi_top/DUT/cpu_arready
+add wave -noupdate -divider {cpu read data}
+add wave -noupdate /tb_axi_top/DUT/cpu_rdata
 add wave -noupdate /tb_axi_top/DUT/cpu_rlast
-add wave -noupdate /tb_axi_top/DUT/cpu_bvalid
-add wave -noupdate /tb_axi_top/DUT/cpu_rresp
-add wave -noupdate /tb_axi_top/DUT/cpu_bresp
-add wave -noupdate /tb_axi_top/DUT/ren
+add wave -noupdate /tb_axi_top/DUT/cpu_rready
+add wave -noupdate /tb_axi_top/DUT/cpu_rvalid
 add wave -noupdate -divider {fft sub read address}
 add wave -noupdate /tb_axi_top/DUT/fft_sub_araddr
 add wave -noupdate /tb_axi_top/DUT/fft_sub_arlen
@@ -90,10 +82,11 @@ add wave -noupdate -expand -group {Write Counter} -radix unsigned /tb_axi_top/DU
 add wave -noupdate -expand -group {Write Counter} -radix unsigned /tb_axi_top/DUT/fft_man/write_counter/i
 add wave -noupdate -expand -group {Read Counter} -radix unsigned /tb_axi_top/DUT/fft_man/read_counter/last
 add wave -noupdate -expand -group {Read Counter} -radix unsigned /tb_axi_top/DUT/fft_man/read_counter/i
-add wave -noupdate -radix unsigned -childformat {{{/tb_axi_top/DUT/fft_man/configs[7]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[6]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[5]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[4]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[3]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[2]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[1]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[0]} -radix unsigned}} -expand -subitemconfig {{/tb_axi_top/DUT/fft_man/configs[7]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[6]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[5]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[4]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[3]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[2]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[1]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[0]} {-height 16 -radix unsigned}} /tb_axi_top/DUT/fft_man/configs
+add wave -noupdate -radix unsigned -childformat {{{/tb_axi_top/DUT/fft_man/configs[7]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[6]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[5]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[4]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[3]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[2]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[1]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[0]} -radix unsigned}} -subitemconfig {{/tb_axi_top/DUT/fft_man/configs[7]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[6]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[5]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[4]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[3]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[2]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[1]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[0]} {-height 16 -radix unsigned}} /tb_axi_top/DUT/fft_man/configs
 add wave -noupdate -divider clk
 add wave -noupdate -expand -group clk /tb_axi_top/DUT/clk
 add wave -noupdate -expand -group clk /tb_axi_top/DUT/n_rst
+add wave -noupdate -expand -group clk /tb_axi_top/test_name
 add wave -noupdate -divider {sram axi}
 add wave -noupdate -divider {write address}
 add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_awaddr
@@ -116,8 +109,17 @@ add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_rdata
 add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_rlast
 add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_rvalid
 add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_rready
+add wave -noupdate -divider sram
+add wave -noupdate /tb_axi_top/DUT/wen
+add wave -noupdate /tb_axi_top/DUT/write_addr
+add wave -noupdate /tb_axi_top/DUT/write_data
+add wave -noupdate /tb_axi_top/DUT/write_valid
+add wave -noupdate /tb_axi_top/DUT/ren
+add wave -noupdate /tb_axi_top/DUT/read_addr
+add wave -noupdate /tb_axi_top/DUT/read_data
+add wave -noupdate /tb_axi_top/DUT/read_valid
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {124170000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {77218849 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -133,4 +135,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {123817994 ps} {124837005 ps}
+WaveRestoreZoom {0 ps} {647167500 ps}
