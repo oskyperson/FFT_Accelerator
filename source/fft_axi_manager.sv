@@ -43,7 +43,7 @@ module fft_axi_manager (
     output logic [31:0] windowing
 );
 
-typedef enum logic [1:0] {RIDLE, RADDR, RDATA, RERR} rstate_t;
+typedef enum logic [2:0] {RIDLE, RADDR, RDATA, RWAIT, RERR} rstate_t;
 typedef enum logic [1:0] {WIDLE, WADDR, WDATA, B} wstate_t;
 
 rstate_t rstate, next_rstate;
@@ -55,6 +55,7 @@ logic [10:0] j, k;
 logic rcounter_last;
 logic [9:0] rcount;
 logic [9:0] wcount;
+logic [3:0] wait_cnt;
 
 logic [31:0] r_offset, w_offset;
 logic [31:0] r_frame_size, w_frame_size;
@@ -154,6 +155,16 @@ always_ff @ (posedge clk, negedge n_rst) begin : rstate_reg
         rstate <= next_rstate;
 end
 
+always_ff @ (posedge clk, negedge n_rst) begin : wait_counter_logic
+    if (!n_rst) begin
+        wait_cnt <= 4'd0;
+    end else if (rstate == RWAIT) begin
+        wait_cnt <= wait_cnt + 4'd1;
+    end else begin
+        wait_cnt <= 4'd0;
+    end
+end
+
 always_comb begin : next_rstate_logic
     next_rstate = rstate;
     case (rstate)
@@ -162,7 +173,9 @@ always_comb begin : next_rstate_logic
         RADDR:
             next_rstate = fft_man_arready ? RDATA : RADDR;
         RDATA:
-            next_rstate = fft_man_rresp ? RERR : (fft_man_rvalid && fft_man_rready && rcounter_last) ? RIDLE : RDATA;
+            next_rstate = fft_man_rresp ? RERR : (fft_man_rvalid && fft_man_rready && rcounter_last) ? RWAIT : RDATA;
+        RWAIT:
+            next_rstate = (wait_cnt == 4'd9) ? RIDLE : RWAIT;
         RERR:
             next_rstate = RIDLE;
         default:
@@ -228,9 +241,6 @@ always_ff @(posedge clk, negedge n_rst) begin : reg_awaddr
     if (!n_rst) begin
         fft_man_awaddr <= '0;
     end
-    // else if (processing && wstate == WIDLE && next_wstate == WADDR) begin
-    //     fft_man_awaddr <= configs[3] + next_w_offset_val;
-    // end 
     else if (wstate == WIDLE && next_wstate == WADDR) begin
         fft_man_awaddr <= configs[3] + w_offset;
     end

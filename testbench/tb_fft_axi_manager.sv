@@ -41,7 +41,7 @@ module tb_fft_axi_manager ();
     logic wready;
     logic [31:0] wdata;
     logic [1:0] wstrb;
-    logic wlast; wvalid;
+    logic wlast, wvalid;
     // write response
     logic bresp, bvalid;
     logic bready;

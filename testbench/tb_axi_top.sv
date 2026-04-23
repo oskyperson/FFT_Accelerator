@@ -131,7 +131,7 @@ module tb_axi_top ();
 
         //frame 1
 
-        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem1.txt");
+        SRAM.load_mem("/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/Python/input_mem1.txt");
         
         w_queue.delete();
         w_queue.push_back(32'h3);
@@ -159,12 +159,12 @@ module tb_axi_top ();
             $display("I HATE OSCAR, %d", i);
         end
         $display("mem dumped1");
-        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram1.txt", 2048, 1);
+        SRAM.dump_mem("/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/sram1.txt", 2048, 1);
 
 
         // next frame
         
-        SRAM.load_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/Python/input_mem2.txt");
+        SRAM.load_mem("/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/Python/input_mem2.txt");
         w_queue.delete();
         w_queue.push_back(32'h3);
         w_queue.push_back(32'd15);
@@ -191,7 +191,7 @@ module tb_axi_top ();
             $display("I HATE OSCAR, %d", i);
         end
         $display("mem dumped");
-        SRAM.dump_mem("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram2.txt", 2048, 1);
+        SRAM.dump_mem("/home/ecegridfs/a/337mg238/ece337/FFT_Accelerator/sram2.txt", 2048, 1);
            
 
 
