@@ -43,7 +43,7 @@ module sram_axi #(
 );
 
 typedef enum logic [1:0] {W_IDLE, W_DATA, W_COMMIT, W_RESP} w_state_t;
-typedef enum logic [1:0] {R_IDLE, R_REQ, R_WAIT, R_DATA} r_state_t;
+typedef enum logic [1:0] {R_IDLE, R_REQ, R_DATA} r_state_t;
 w_state_t write_state, next_write;
 r_state_t read_state, next_read;
 
@@ -64,11 +64,11 @@ always_ff @(posedge clk, negedge n_rst) begin : next_states
     if(!n_rst) begin
         read_state <= R_IDLE;
         write_state <= W_IDLE;
-        sram_rdata <= '0;
+        
     end else begin
         read_state <= next_read;
         write_state <= next_write;
-        sram_rdata <= read_data;
+        
     end
 end
 
@@ -109,16 +109,13 @@ always_comb begin : READ_LOGIC
     sram_rresp = 2'b00;
     ren = 1'b0;
     read_addr = raddr_reg - 32'hF;
-    
+    sram_rdata = (read_valid) ? read_data : '0;
     case (read_state)
         R_IDLE: begin
             if (sram_arvalid && sram_arready) next_read = R_REQ;
         end
         R_REQ: begin
             ren = 1'b1;
-            next_read = R_WAIT;
-        end
-        R_WAIT: begin
             if (read_valid) next_read = R_DATA;
         end
         R_DATA: begin
