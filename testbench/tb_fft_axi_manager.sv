@@ -117,6 +117,7 @@ module tb_fft_axi_manager ();
     );
         wait(DUT.rstate == 0 && DUT.wstate == 0 && DUT.j == 0 && DUT.k == 0);
         @(posedge clk);
+        #1ns;
         config_reg[0] = frames;
         config_reg[1] = r_addr;
         config_reg[2] = r_len;
@@ -168,10 +169,11 @@ module tb_fft_axi_manager ();
         end
     end
 
-    // always_ff @ (posedge clk)
-    //     out_valid <= in_valid;
+    always_ff @ (posedge clk) begin 
+        out_valid <= #1ns in_valid;
+    end
 
-    assign out_valid = in_valid;
+    // assign out_valid = in_valid;
 
     initial begin
         n_rst = 1;

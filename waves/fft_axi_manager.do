@@ -55,12 +55,10 @@ add wave -noupdate -radix unsigned -childformat {{{/tb_fft_axi_manager/DUT/k[10]
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/processing
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/r_offset
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/w_offset
-add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/r_frame_size
-add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/w_frame_size
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/next_r_offset_val
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/DUT/next_w_offset_val
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {131930000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {164449518 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -76,4 +74,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {458466303 ps}
+WaveRestoreZoom {0 ps} {263518500 ps}
