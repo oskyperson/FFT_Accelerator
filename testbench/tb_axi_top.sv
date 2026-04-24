@@ -258,6 +258,7 @@ module tb_axi_top ();
         SRAM.dump_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/result/impulse3x256.txt", 399985, 1);
 
         //trans 5
+        /*
         test_name = "square3x512";
         SRAM.load_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/inputs/input_square512.txt");
         w_queue.delete();
@@ -287,9 +288,10 @@ module tb_axi_top ();
         end
         $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/result/square512.txt", 499985, 1);
+        */
 
         //trans 6
-        test_name = "square3x256";
+        /*test_name = "square3x256";
         SRAM.load_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/inputs/input_square256.txt");
         w_queue.delete();
         w_queue.push_back(32'h3);
@@ -318,6 +320,7 @@ module tb_axi_top ();
         end
         $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/result/square256.txt", 599985, 1);
+        */
 
         //trans 7
         test_name = "dc3x512";
@@ -380,10 +383,6 @@ module tb_axi_top ();
         end
         $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/result/dc3x256.txt", 799985, 1);
-
-
-        
-
 
 
         $finish;

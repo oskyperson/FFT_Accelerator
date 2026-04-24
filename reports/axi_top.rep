@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Fri Apr 24 17:17:22 2026
+Date   : Fri Apr 24 17:48:41 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -71,7 +71,7 @@ Wire Load Model Mode: top
 Report : area
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Fri Apr 24 17:17:22 2026
+Date   : Fri Apr 24 17:48:41 2026
 ****************************************
 
 Library(s) Used:
@@ -107,7 +107,7 @@ Report : power
         -analysis_effort low
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Fri Apr 24 17:17:27 2026
+Date   : Fri Apr 24 17:48:46 2026
 ****************************************
 
 
