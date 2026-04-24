@@ -47,45 +47,6 @@ module tb_fft_axi_manager ();
     logic bready;
     // read address
     logic arready;
-    logic [10:0] araddr;
-    logic [9:0] arlen;
-    logic arvalid;
-    // read data
-    logic rlast, rvalid;
-    logic [31:0] rdata;
-    logic rready;
-    // read response
-    logic rresp;
-
-    // config_reg from subordinate
-    logic [7:0][31:0] config_reg;
-    
-    // signals to/from fft
-    logic fft_done;
-    logic fft_start;
-    logic fft_valid;
-    // to/from buffers
-    logic [31:0] in;
-    logic [9:0] rcount;
-    logic wen_to_inbuf;
-    logic [31:0] out;
-    logic [9:0] wcount;
-
-    // write address
-    logic awready;
-    logic [10:0] awaddr;
-    logic [9:0] awlen;
-    logic awvalid; 
-    // write data
-    logic wready;
-    logic [31:0] wdata;
-    logic [1:0] wstrb;
-    logic wlast, wvalid;
-    // write response
-    logic bresp, bvalid;
-    logic bready;
-    // read address
-    logic arready;
     logic [31:0] araddr;
     logic [9:0] arlen;
     logic arvalid;
@@ -156,6 +117,7 @@ module tb_fft_axi_manager ();
     );
         wait(DUT.rstate == 0 && DUT.wstate == 0 && DUT.j == 0 && DUT.k == 0);
         @(posedge clk);
+        #1ns;
         config_reg[0] = frames;
         config_reg[1] = r_addr;
         config_reg[2] = r_len;
@@ -207,10 +169,11 @@ module tb_fft_axi_manager ();
         end
     end
 
-    // always_ff @ (posedge clk)
-    //     out_valid <= in_valid;
+    always_ff @ (posedge clk) begin 
+        out_valid <= #1ns in_valid;
+    end
 
-    assign out_valid = in_valid;
+    // assign out_valid = in_valid;
 
     initial begin
         n_rst = 1;
