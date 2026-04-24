@@ -1,0 +1,12 @@
+SNR: 81.357 dB
+Percent Error: 0.009%
+Verification Scope: First 3 frames
+Output Order: Bit-Reversed (DIF No Bit-Reversal)
+
+Expected:
+0.400000 -0.400000
+0.400000 0.400000
+0.400000 -0.400000
+0.400000 0.400000
+0.400000 -0.400000
+0.400000 0.400000
