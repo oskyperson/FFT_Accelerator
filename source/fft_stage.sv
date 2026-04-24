@@ -107,6 +107,4 @@ module fft_stage #(
         .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .rotation(rotation)
     );
 
-
-    
 endmodule

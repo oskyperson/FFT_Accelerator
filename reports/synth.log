@@ -32,19 +32,19 @@ Please use '-no_save' simv switch to avoid this.
                         https://solvnetplus.synopsys.com)
 Initializing...
 Initializing gui preferences from file  /home/ecegridfs/a/337mg041/.synopsys_dc_gui/preferences.tcl
-Current time:       Thu Apr 23 15:07:03 2026
-Hostname:           ececomp4.ecn.purdue.edu
+Current time:       Fri Apr 24 17:14:12 2026
+Hostname:           ececomp3.ecn.purdue.edu
 CPU Model:          AMD EPYC 7513 32-Core Processor
 CPU Details:        Cores = 128 : Sockets = 2 : Cache Size = 512 KB : Freq = 2.60 GHz
 OS:                 Linux 4.18.0-553.111.1.el8_10.x86_64
-RAM:                502 GB (Free  47 GB)
-Swap:                63 GB (Free  48 GB)
+RAM:                502 GB (Free 121 GB)
+Swap:                63 GB (Free  49 GB)
 Work Filesystem:    /home/ecegridfs/a mounted to ecegridfs.ecn.purdue.edu:/export/home/a
 Tmp Filesystem:     /tmp mounted to tmpfs
-Work Disk:          2968 GB (Free 265 GB)
-Tmp Disk:            19 GB (Free  17 GB)
+Work Disk:          2968 GB (Free 244 GB)
+Tmp Disk:            19 GB (Free  18 GB)
 
-CPU Load: 10%, Ram Free: 47 GB, Swap Free: 48 GB, Work Disk Free: 265 GB, Tmp Disk Free: 17 GB
+CPU Load: 63%, Ram Free: 121 GB, Swap Free: 49 GB, Work Disk Free: 244 GB, Tmp Disk Free: 18 GB
 ############################################
 #
 # Auto-generated project tcl file:
@@ -53,7 +53,7 @@ CPU Load: 10%, Ram Free: 47 GB, Swap Free: 48 GB, Work Disk Free: 265 GB, Tmp Di
 #
 ############################################
 sh date
-Thu Apr 23 15:07:03 EDT 2026
+Fri Apr 24 17:14:12 EDT 2026
 set TOP_MODULE axi_top
 axi_top
 set DC_SCRIPT synth.tcl
@@ -222,9 +222,9 @@ Statistics for case statements in always block in file
 ============================================================
 |    Line    |  full/ parallel  |      block location      |
 ============================================================
-|     81     |    auto/auto     | always block at line 73  |
-|     89     |    auto/auto     | always block at line 73  |
-|    111     |    auto/auto     | always block at line 105 |
+|     83     |    auto/auto     | always block at line 75  |
+|     91     |    auto/auto     | always block at line 75  |
+|    113     |    auto/auto     | always block at line 107 |
 ============================================================
 
 Inferred memory devices in process in routine 'sram_axi' in file
@@ -232,24 +232,25 @@ Inferred memory devices in process in routine 'sram_axi' in file
 ==================================================================================
 |    Register Name    |   Type    | Width | Bus | MB |  Set  | Reset | ST | Line |
 ==================================================================================
-|   read_state_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  63  |
 |   write_state_reg   | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  63  |
-|   sram_rvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
-|   sram_rlast_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
-|    waddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 132  |
-|    wlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 132  |
-|    wdata_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 132  |
-|    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 132  |
-|    raddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 132  |
-|    rlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 132  |
-|  sram_awready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
-|   sram_wready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
-|   sram_bvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
-|  sram_arready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 132  |
+|   sram_rdata_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  |  63  |
+|   read_state_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  |  63  |
+|   sram_rvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
+|   sram_rlast_reg    | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
+|    waddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 134  |
+|    wlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 134  |
+|    wdata_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 134  |
+|    wstrb_reg_reg    | Flip-flop |   2   |  Y  | N  | None  | Async | N  | 134  |
+|    raddr_reg_reg    | Flip-flop |  32   |  Y  | N  | None  | Async | N  | 134  |
+|    rlen_reg_reg     | Flip-flop |  10   |  Y  | N  | None  | Async | N  | 134  |
+|  sram_awready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
+|   sram_wready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
+|   sram_bvalid_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
+|  sram_arready_reg   | Flip-flop |   1   |  N  | N  | None  | Async | N  | 134  |
 ==================================================================================
 Presto compilation completed successfully. (sram_axi)
 Module: sram_axi, Ports: 301, Input: 160, Output: 141, Inout: 0
-Module: sram_axi, Registers: 128, Async set/reset: 128, Sync set/reset: 0
+Module: sram_axi, Registers: 160, Async set/reset: 160, Sync set/reset: 0
 Information: Module sram_axi report end. (ELAB-965)
 Information: Building the design 'arbiter'. (HDL-193)
 Warning:  ./src/team42_ece337_arbiter_1.0.0/source/arbiter.sv:132: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
@@ -989,7 +990,7 @@ Information: Uniquified 9 instances of design 'twiddle_lookup'. (OPT-1056)
 Information: Uniquified 9 instances of design 'flex_counter'. (OPT-1056)
 Information: Uniquified 36 instances of design 'adder'. (OPT-1056)
 Information: Uniquified 36 instances of design 'multiplier'. (OPT-1056)
-CPU Load: 10%, Ram Free: 47 GB, Swap Free: 48 GB, Work Disk Free: 265 GB, Tmp Disk Free: 17 GB
+CPU Load: 61%, Ram Free: 122 GB, Swap Free: 49 GB, Work Disk Free: 244 GB, Tmp Disk Free: 18 GB
 Information: Checking out the license 'DesignWare'. (SEC-104)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
@@ -1008,9 +1009,9 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design Information                                      | Value                                  |
 ====================================================================================================
 | Number of Scenarios                                     | 0                                      |
-| Leaf Cell Count                                         | 29355                                  |
+| Leaf Cell Count                                         | 29387                                  |
 | Number of User Hierarchies                              | 128                                    |
-| Sequential Cell Count                                   | 17896                                  |
+| Sequential Cell Count                                   | 17928                                  |
 | Macro Count                                             | 0                                      |
 | Pad Count                                               | 0                                      |
 | Number of Power Domains                                 | 0                                      |
@@ -1024,7 +1025,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 | Design with UPF Data                                    | false                                  |
 ====================================================================================================
 
-Information: There are 462 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 430 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -1814,27 +1815,27 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:34 59853249.0      0.00       0.0    8268.0                          
-    0:01:34 59853249.0      0.00       0.0    8268.0                          
-    0:01:34 59853249.0      0.00       0.0    8268.0                          
-    0:01:34 59853249.0      0.00       0.0    8268.0                          
-    0:01:36 59853249.0      0.00       0.0    8268.0                          
-    0:01:39 57959217.0      0.00       0.0    8268.0                          
-    0:01:40 57959001.0      0.00       0.0    8268.0                          
-    0:01:41 57959001.0      0.00       0.0    8268.0                          
-    0:01:41 57959001.0      0.00       0.0    8268.0                          
-    0:01:42 57959001.0      0.00       0.0    8268.0                          
-    0:01:42 57959001.0      0.00       0.0    8268.0                          
-    0:01:43 57987369.0      0.00       0.0    6155.7                          
-    0:01:44 58020777.0      0.00       0.0    4533.2                          
-    0:01:45 58027905.0      0.00       0.0    4022.4                          
-    0:01:45 58028841.0      0.00       0.0    3820.7                          
-    0:01:46 58029057.0      0.00       0.0    3772.8                          
-    0:01:46 58029201.0      0.00       0.0    3731.4                          
-    0:01:46 58029345.0      0.00       0.0    3691.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
+    0:01:44 59907105.0      0.00       0.0    8268.0                          
+    0:01:44 59907105.0      0.00       0.0    8268.0                          
+    0:01:44 59907105.0      0.00       0.0    8268.0                          
+    0:01:44 59907105.0      0.00       0.0    8268.0                          
+    0:01:46 59907105.0      0.00       0.0    8268.0                          
+    0:01:49 58012281.0      0.00       0.0    8268.0                          
+    0:01:50 58012065.0      0.00       0.0    8268.0                          
+    0:01:51 58012065.0      0.00       0.0    8268.0                          
+    0:01:52 58012065.0      0.00       0.0    8268.0                          
+    0:01:52 58012065.0      0.00       0.0    8268.0                          
+    0:01:52 58012065.0      0.00       0.0    8268.0                          
+    0:01:54 58040433.0      0.00       0.0    6155.7                          
+    0:01:54 58073841.0      0.00       0.0    4533.2                          
+    0:01:55 58080969.0      0.00       0.0    4022.4                          
+    0:01:56 58081905.0      0.00       0.0    3820.7                          
+    0:01:56 58082121.0      0.00       0.0    3772.8                          
+    0:01:57 58082265.0      0.00       0.0    3731.4                          
+    0:01:57 58082409.0      0.00       0.0    3691.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
 
 
 
@@ -1845,11 +1846,11 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
 
 
   Beginning Design Rule Fixing  (max_capacitance)
@@ -1859,14 +1860,14 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:47 58029489.0      0.00       0.0    3651.3                          
-    0:01:47 58042665.0      0.00       0.0    1377.9 fft/butterfly_units[8].stage/net406648
-    0:01:48 58055985.0      0.00       0.0     745.6 fft/butterfly_units[0].stage/delays/out[4]
-    0:01:48 58065921.0      0.00       0.0     627.3 fft/butterfly_units[2].stage/mather/img/b[7]
-    0:01:48 58073049.0      0.00       0.0     527.1 fft/butterfly_units[3].stage/mather/img/b[2]
-    0:01:48 58080393.0      0.00       0.0     423.9 fft/butterfly_units[4].stage/mather/rl/b[10]
-    0:01:48 58087737.0      0.00       0.0     320.7 fft/butterfly_units[5].stage/mather/rl/b[4]
-    0:01:49 58094433.0      0.00       0.0     226.6                          
+    0:01:58 58082553.0      0.00       0.0    3651.3                          
+    0:01:58 58095729.0      0.00       0.0    1377.9 fft/butterfly_units[8].stage/net406744
+    0:01:58 58109049.0      0.00       0.0     745.6 fft/butterfly_units[0].stage/delays/out[4]
+    0:01:59 58118985.0      0.00       0.0     627.3 fft/butterfly_units[2].stage/mather/img/b[7]
+    0:01:59 58126113.0      0.00       0.0     527.1 fft/butterfly_units[3].stage/mather/img/b[2]
+    0:01:59 58133457.0      0.00       0.0     423.9 fft/butterfly_units[4].stage/mather/rl/b[10]
+    0:01:59 58140801.0      0.00       0.0     320.7 fft/butterfly_units[5].stage/mather/rl/b[4]
+    0:01:59 58147497.0      0.00       0.0     226.6                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -1876,21 +1877,21 @@ Information: Added key list 'DesignWare' to design 'fft_axi_counter_WRITE_OR_REA
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:01:49 58094433.0      0.00       0.0     226.6                          
-    0:01:49 58094433.0      0.00       0.0     226.6                          
-    0:02:21 58081545.0      0.00       0.0     226.6                          
-    0:02:32 58079457.0      0.00       0.0     226.6                          
-    0:02:33 58078089.0      0.00       0.0     226.6                          
-    0:02:33 58077153.0      0.00       0.0     226.6                          
-    0:02:39 58076721.0      0.00       0.0     226.6                          
-    0:02:41 58076577.0      0.00       0.0     226.6                          
-    0:02:41 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
-    0:02:42 58076577.0      0.00       0.0     226.6                          
+    0:01:59 58147497.0      0.00       0.0     226.6                          
+    0:02:00 58147497.0      0.00       0.0     226.6                          
+    0:02:34 58134609.0      0.00       0.0     226.6                          
+    0:02:46 58132521.0      0.00       0.0     226.6                          
+    0:02:47 58131153.0      0.00       0.0     226.6                          
+    0:02:48 58130217.0      0.00       0.0     226.6                          
+    0:02:54 58129785.0      0.00       0.0     226.6                          
+    0:02:56 58129641.0      0.00       0.0     226.6                          
+    0:02:56 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
+    0:02:57 58129641.0      0.00       0.0     226.6                          
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
 
 
@@ -1899,7 +1900,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-CPU Load: 10%, Ram Free: 47 GB, Swap Free: 48 GB, Work Disk Free: 265 GB, Tmp Disk Free: 17 GB
+CPU Load: 48%, Ram Free: 120 GB, Swap Free: 49 GB, Work Disk Free: 244 GB, Tmp Disk Free: 18 GB
 Information: Total number of MV cells in the design.
 ----------------------------------------------------------------------------------------------------
  MV Cells                                           Total Number                                   
@@ -1923,15 +1924,14 @@ Unmapped MV Cells
 ****************************************
 check_design summary:
 Version:     W-2024.09-SP4
-Date:        Thu Apr 23 15:09:55 2026
+Date:        Fri Apr 24 17:17:19 2026
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                   1034
+Inputs/Outputs                                                   1002
     Unloaded inputs (LINT-8)                                       59
     Unconnected ports (LINT-28)                                   938
-    Feedthrough (LINT-29)                                          32
     Shorted outputs (LINT-31)                                       3
     Constant outputs (LINT-52)                                      2
 
@@ -2999,38 +2999,6 @@ Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[3]' is not connect
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[2]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[1]' is not connected to any nets. (LINT-28)
 Warning: In design 'multiplier_0_DW_mult_tc_1', port 'product[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'sram_axi', input port 'read_data[31]' is connected directly to output port 'sram_rdata[31]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[30]' is connected directly to output port 'sram_rdata[30]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[29]' is connected directly to output port 'sram_rdata[29]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[28]' is connected directly to output port 'sram_rdata[28]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[27]' is connected directly to output port 'sram_rdata[27]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[26]' is connected directly to output port 'sram_rdata[26]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[25]' is connected directly to output port 'sram_rdata[25]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[24]' is connected directly to output port 'sram_rdata[24]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[23]' is connected directly to output port 'sram_rdata[23]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[22]' is connected directly to output port 'sram_rdata[22]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[21]' is connected directly to output port 'sram_rdata[21]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[20]' is connected directly to output port 'sram_rdata[20]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[19]' is connected directly to output port 'sram_rdata[19]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[18]' is connected directly to output port 'sram_rdata[18]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[17]' is connected directly to output port 'sram_rdata[17]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[16]' is connected directly to output port 'sram_rdata[16]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[15]' is connected directly to output port 'sram_rdata[15]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[14]' is connected directly to output port 'sram_rdata[14]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[13]' is connected directly to output port 'sram_rdata[13]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[12]' is connected directly to output port 'sram_rdata[12]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[11]' is connected directly to output port 'sram_rdata[11]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[10]' is connected directly to output port 'sram_rdata[10]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[9]' is connected directly to output port 'sram_rdata[9]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[8]' is connected directly to output port 'sram_rdata[8]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[7]' is connected directly to output port 'sram_rdata[7]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[6]' is connected directly to output port 'sram_rdata[6]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[5]' is connected directly to output port 'sram_rdata[5]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[4]' is connected directly to output port 'sram_rdata[4]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[3]' is connected directly to output port 'sram_rdata[3]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[2]' is connected directly to output port 'sram_rdata[2]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[1]' is connected directly to output port 'sram_rdata[1]'. (LINT-29)
-Warning: In design 'sram_axi', input port 'read_data[0]' is connected directly to output port 'sram_rdata[0]'. (LINT-29)
 Warning: In design 'sram_axi', output port 'sram_bresp' is connected directly to output port 'sram_rresp'. (LINT-31)
 Warning: In design 'sram_axi', output port 'wen[3]' is connected directly to output port 'wen[2]'. (LINT-31)
 Warning: In design 'sram_axi', output port 'wen[1]' is connected directly to output port 'wen[0]'. (LINT-31)
@@ -3138,137 +3106,137 @@ Warning: In design 'fft_axi_manager', a pin on submodule 'add_134' is connected 
    Pin 'A[10]' is connected to logic 0. 
 Warning: In design 'fft_axi_manager', a pin on submodule 'add_255' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[31]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[30]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[29]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[28]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[27]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[26]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[25]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[24]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[23]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[22]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[21]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[20]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[19]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[18]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[17]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[16]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[15]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[14]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[13]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[12]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[11]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[10]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[9]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[8]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[7]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[6]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[5]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[4]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[3]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[2]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[1]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[0]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_78' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_80' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[31]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[30]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[29]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[28]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[27]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[26]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[25]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[24]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[23]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[22]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[21]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[20]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[19]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[18]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[17]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[16]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[15]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[14]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[13]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[12]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[11]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[10]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[9]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[8]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[7]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[6]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[5]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[4]' is connected to logic 0. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[3]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[2]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[1]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'B[0]' is connected to logic 1. 
-Warning: In design 'sram_axi', a pin on submodule 'sub_109' is connected to logic 1 or logic 0. (LINT-32)
+Warning: In design 'sram_axi', a pin on submodule 'sub_111' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
 Warning: In design 'fft_stage_STAGE0', a pin on submodule 'lut' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'addr[8]' is connected to logic 0. 
@@ -3630,13 +3598,13 @@ Warning: In design 'adder_34', a pin on submodule 'sub_13' is connected to logic
    Pin 'CI' is connected to logic 0. 
 Warning: In design 'adder_34', a pin on submodule 'add_13' is connected to logic 1 or logic 0. (LINT-32)
    Pin 'CI' is connected to logic 0. 
-Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_78'. (LINT-33)
+Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_80'. (LINT-33)
    Net 'n3' is connected to pins 'B[31]', 'B[30]'', 'B[29]', 'B[28]', 'B[27]', 'B[26]', 'B[25]', 'B[24]', 'B[23]', 'B[22]', 'B[21]', 'B[20]', 'B[19]', 'B[18]', 'B[17]', 'B[16]', 'B[15]', 'B[14]', 'B[13]', 'B[12]', 'B[11]', 'B[10]', 'B[9]', 'B[8]', 'B[7]', 'B[6]', 'B[5]', 'B[4]', 'CI'.
-Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_78'. (LINT-33)
+Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_80'. (LINT-33)
    Net '*Logic1*' is connected to pins 'B[3]', 'B[2]'', 'B[1]', 'B[0]'.
-Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_109'. (LINT-33)
+Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_111'. (LINT-33)
    Net 'n4' is connected to pins 'B[31]', 'B[30]'', 'B[29]', 'B[28]', 'B[27]', 'B[26]', 'B[25]', 'B[24]', 'B[23]', 'B[22]', 'B[21]', 'B[20]', 'B[19]', 'B[18]', 'B[17]', 'B[16]', 'B[15]', 'B[14]', 'B[13]', 'B[12]', 'B[11]', 'B[10]', 'B[9]', 'B[8]', 'B[7]', 'B[6]', 'B[5]', 'B[4]', 'CI'.
-Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_109'. (LINT-33)
+Warning: In design 'sram_axi', the same net is connected to more than one pin on submodule 'sub_111'. (LINT-33)
    Net '*Logic1*' is connected to pins 'B[3]', 'B[2]'', 'B[1]', 'B[0]'.
 Warning: In design 'adder_35', the same net is connected to more than one pin on submodule 'sub_13'. (LINT-33)
    Net 'a[15]' is connected to pins 'A[16]', 'A[15]''.
@@ -3987,7 +3955,7 @@ Warning: Verilog writer has added 2 nets to module math_STAGE8 using SYNOPSYS_UN
 
 Memory usage for this session 524 Mbytes.
 Memory usage for this session including child processes 524 Mbytes.
-CPU usage for this session 182 seconds ( 0.05 hours ).
-Elapsed time for this session 187 seconds ( 0.05 hours ).
+CPU usage for this session 196 seconds ( 0.05 hours ).
+Elapsed time for this session 201 seconds ( 0.06 hours ).
 
 Thank you...

@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Thu Apr 23 15:09:58 2026
+Date   : Fri Apr 24 17:17:22 2026
 ****************************************
 
 Operating Conditions: typical   Library: osu05_stdcells
@@ -24,39 +24,39 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   sram/waddr_reg_reg[0]/CLK (DFFSR)                       0.00       0.00 r
   sram/waddr_reg_reg[0]/Q (DFFSR)                         0.77       0.77 r
-  sram/sub_78/A[0] (sram_axi_DW01_sub_0_DW01_sub_45)      0.00       0.77 r
-  sram/sub_78/U2/Y (AND2X2)                               0.22       0.99 r
-  sram/sub_78/U3/Y (AND2X2)                               0.20       1.19 r
-  sram/sub_78/U1/Y (AND2X2)                               0.20       1.39 r
-  sram/sub_78/U47/Y (OR2X1)                               0.34       1.73 r
-  sram/sub_78/U49/Y (OR2X1)                               0.36       2.10 r
-  sram/sub_78/U51/Y (OR2X1)                               0.36       2.46 r
-  sram/sub_78/U53/Y (OR2X1)                               0.36       2.82 r
-  sram/sub_78/U55/Y (OR2X1)                               0.36       3.19 r
-  sram/sub_78/U57/Y (OR2X1)                               0.36       3.55 r
-  sram/sub_78/U4/Y (OR2X1)                                0.36       3.91 r
-  sram/sub_78/U6/Y (OR2X1)                                0.36       4.28 r
-  sram/sub_78/U8/Y (OR2X1)                                0.36       4.64 r
-  sram/sub_78/U10/Y (OR2X1)                               0.36       5.00 r
-  sram/sub_78/U12/Y (OR2X1)                               0.36       5.37 r
-  sram/sub_78/U14/Y (OR2X1)                               0.36       5.73 r
-  sram/sub_78/U16/Y (OR2X1)                               0.36       6.09 r
-  sram/sub_78/U18/Y (OR2X1)                               0.36       6.46 r
-  sram/sub_78/U20/Y (OR2X1)                               0.36       6.82 r
-  sram/sub_78/U22/Y (OR2X1)                               0.36       7.18 r
-  sram/sub_78/U24/Y (OR2X1)                               0.36       7.54 r
-  sram/sub_78/U26/Y (OR2X1)                               0.36       7.91 r
-  sram/sub_78/U28/Y (OR2X1)                               0.36       8.27 r
-  sram/sub_78/U30/Y (OR2X1)                               0.36       8.63 r
-  sram/sub_78/U32/Y (OR2X1)                               0.36       9.00 r
-  sram/sub_78/U34/Y (OR2X1)                               0.36       9.36 r
-  sram/sub_78/U36/Y (OR2X1)                               0.36       9.72 r
-  sram/sub_78/U38/Y (OR2X1)                               0.36      10.09 r
-  sram/sub_78/U40/Y (OR2X1)                               0.36      10.45 r
-  sram/sub_78/U42/Y (OR2X1)                               0.36      10.81 r
-  sram/sub_78/U44/Y (OR2X1)                               0.33      11.15 r
-  sram/sub_78/U46/Y (XNOR2X1)                             0.16      11.31 f
-  sram/sub_78/DIFF[31] (sram_axi_DW01_sub_0_DW01_sub_45)
+  sram/sub_80/A[0] (sram_axi_DW01_sub_0_DW01_sub_45)      0.00       0.77 r
+  sram/sub_80/U2/Y (AND2X2)                               0.22       0.99 r
+  sram/sub_80/U3/Y (AND2X2)                               0.20       1.19 r
+  sram/sub_80/U1/Y (AND2X2)                               0.20       1.39 r
+  sram/sub_80/U47/Y (OR2X1)                               0.34       1.73 r
+  sram/sub_80/U49/Y (OR2X1)                               0.36       2.10 r
+  sram/sub_80/U51/Y (OR2X1)                               0.36       2.46 r
+  sram/sub_80/U53/Y (OR2X1)                               0.36       2.82 r
+  sram/sub_80/U55/Y (OR2X1)                               0.36       3.19 r
+  sram/sub_80/U57/Y (OR2X1)                               0.36       3.55 r
+  sram/sub_80/U4/Y (OR2X1)                                0.36       3.91 r
+  sram/sub_80/U6/Y (OR2X1)                                0.36       4.28 r
+  sram/sub_80/U8/Y (OR2X1)                                0.36       4.64 r
+  sram/sub_80/U10/Y (OR2X1)                               0.36       5.00 r
+  sram/sub_80/U12/Y (OR2X1)                               0.36       5.37 r
+  sram/sub_80/U14/Y (OR2X1)                               0.36       5.73 r
+  sram/sub_80/U16/Y (OR2X1)                               0.36       6.09 r
+  sram/sub_80/U18/Y (OR2X1)                               0.36       6.46 r
+  sram/sub_80/U20/Y (OR2X1)                               0.36       6.82 r
+  sram/sub_80/U22/Y (OR2X1)                               0.36       7.18 r
+  sram/sub_80/U24/Y (OR2X1)                               0.36       7.54 r
+  sram/sub_80/U26/Y (OR2X1)                               0.36       7.91 r
+  sram/sub_80/U28/Y (OR2X1)                               0.36       8.27 r
+  sram/sub_80/U30/Y (OR2X1)                               0.36       8.63 r
+  sram/sub_80/U32/Y (OR2X1)                               0.36       9.00 r
+  sram/sub_80/U34/Y (OR2X1)                               0.36       9.36 r
+  sram/sub_80/U36/Y (OR2X1)                               0.36       9.72 r
+  sram/sub_80/U38/Y (OR2X1)                               0.36      10.09 r
+  sram/sub_80/U40/Y (OR2X1)                               0.36      10.45 r
+  sram/sub_80/U42/Y (OR2X1)                               0.36      10.81 r
+  sram/sub_80/U44/Y (OR2X1)                               0.33      11.15 r
+  sram/sub_80/U46/Y (XNOR2X1)                             0.16      11.31 f
+  sram/sub_80/DIFF[31] (sram_axi_DW01_sub_0_DW01_sub_45)
                                                           0.00      11.31 f
   sram/write_addr[31] (sram_axi)                          0.00      11.31 f
   write_addr[31] (out)                                    0.00      11.31 f
@@ -71,7 +71,7 @@ Wire Load Model Mode: top
 Report : area
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Thu Apr 23 15:09:58 2026
+Date   : Fri Apr 24 17:17:22 2026
 ****************************************
 
 Library(s) Used:
@@ -79,21 +79,21 @@ Library(s) Used:
     osu05_stdcells (File: /home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db)
 
 Number of ports:                        17701
-Number of nets:                        144937
-Number of cells:                       122828
-Number of combinational cells:          86716
-Number of sequential cells:             17809
+Number of nets:                        145012
+Number of cells:                       122903
+Number of combinational cells:          86727
+Number of sequential cells:             17841
 Number of macros/black boxes:               0
-Number of buf/inv:                      31349
+Number of buf/inv:                      31360
 Number of references:                       5
 
-Combinational area:           29867121.000000
-Buf/Inv area:                  5103432.000000
-Noncombinational area:        28209456.000000
+Combinational area:           29869497.000000
+Buf/Inv area:                  5105808.000000
+Noncombinational area:        28260144.000000
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:              58076577.000000
+Total cell area:              58129641.000000
 Total area:                 undefined
 1
 Loading db file '/home/ecegrid/a/ece337/summer24-refactor/tech/ami05/osu05_stdcells.db'
@@ -107,7 +107,7 @@ Report : power
         -analysis_effort low
 Design : axi_top
 Version: W-2024.09-SP4
-Date   : Thu Apr 23 15:10:03 2026
+Date   : Fri Apr 24 17:17:27 2026
 ****************************************
 
 
@@ -134,12 +134,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   2.5736  W   (65%)
-  Net Switching Power  =   1.4104  W   (35%)
+  Cell Internal Power  =   2.5832  W   (65%)
+  Net Switching Power  =   1.4109  W   (35%)
                          ---------
-Total Dynamic Power    =   3.9840  W  (100%)
+Total Dynamic Power    =   3.9942  W  (100%)
 
-Cell Leakage Power     =  18.5532 uW
+Cell Leakage Power     =  18.5711 uW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -151,8 +151,8 @@ memory             0.0000            0.0000            0.0000            0.0000 
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential     2.2754e+03            0.5092        9.4918e+03        2.2759e+03  (  57.13%)
-combinational    297.9614        1.4099e+03        9.0613e+03        1.7078e+03  (  42.87%)
+sequential     2.2852e+03            0.6493        9.5089e+03        2.2859e+03  (  57.23%)
+combinational    297.7173        1.4103e+03        9.0622e+03        1.7080e+03  (  42.77%)
 --------------------------------------------------------------------------------------------------
-Total          2.5734e+03 mW     1.4104e+03 mW     1.8553e+04 nW     3.9837e+03 mW
+Total          2.5829e+03 mW     1.4110e+03 mW     1.8571e+04 nW     3.9939e+03 mW
 1
