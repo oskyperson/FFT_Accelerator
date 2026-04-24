@@ -143,6 +143,7 @@ module axi_subordinate_model (
                     repeat (2) @(posedge clk);
 
                     for (int i = 0; i <= curr_len; i++) begin
+                        #1ns;
                         rvalid <= 1'b1;
                         // Trigger rresp if the specific beat address is out of range
                         rresp  <= (curr_addr > ADDR_MAX);
@@ -159,6 +160,7 @@ module axi_subordinate_model (
                         end
                         
                         @(posedge clk);
+                        #1ns;
                         rvalid <= 1'b0;
                         rresp  <= 1'b0;
                         rlast  <= 1'b0;
