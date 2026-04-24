@@ -65,7 +65,7 @@ module fft_core(
     assign out = out_internal;
     assign out_valid = out_valid_internal;
 
-    fft_windowing windows (.clk(clk), .n_rst(n_rst), .window(window_reg), .sample(sample), .frame_size(), .valid(valid), .out(sample_stream[0]), .out_valid(valid_stream[0]));
+    fft_windowing windows (.clk(clk), .n_rst(n_rst), .window(window_reg), .sample(sample), .frame_size(size_reg), .valid(valid), .out(sample_stream[0]), .out_valid(valid_stream[0]));
 
     genvar i;
     generate

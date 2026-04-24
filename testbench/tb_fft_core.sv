@@ -128,7 +128,7 @@ module tb_fft_core ();
         @(negedge clk);
         frame_size = FRAME_SIZE;
         load_size = 1'b1;
-        window = 1;
+        window = 4;
         load_window = 1'b1;
         @(posedge clk);
         @(posedge clk);

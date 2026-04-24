@@ -7,8 +7,8 @@ filesets:
         files:
             - "source/fft_windowing.sv"
         file_type: systemVerilogSource
-        # depend:
-        #     - "fusesoc:core:name"
+        depend:
+            - "team42:ece337:flex_counter:1.0.0"
 
     synth:
         depend:

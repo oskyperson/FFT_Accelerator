@@ -59,21 +59,23 @@ module fft_stage #(
     logic next_primed;
     assign next_primed = primed || (sample_valid && (count_out == MIDPOINT));
 
+    logic out_valid2;
+
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
             out <= '0;
             out_valid <= '0;
             primed <= '0;
+            out_valid2 <= 0;
         end else if(sample_valid) begin
             out <= next_out;
-            out_valid <= sel ? primed : 1'b1;
-            //out_valid <= sel ? next_primed : 1'b1;
-            //primed <= next_primed;
+            out_valid2 <= sel ? primed : 1'b1;
+            out_valid <= out_valid2;
             if(count_out == MIDPOINT) begin
                 primed <= 1'b1;
             end
         end else begin
-            out_valid <= 1'b0;
+            out_valid2 <= '0;
         end
     end
 
@@ -104,7 +106,8 @@ module fft_stage #(
 
 
     math #(.STAGE(STAGE)) mather (.sample(sample),
-        .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .rotation(rotation)
+        .feedback(feedback_sample), .twiddle(twiddle), .sum(math_sum), .rotation(rotation),
+        .clk(clk), .n_rst(n_rst)
     );
 
 

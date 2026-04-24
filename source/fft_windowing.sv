@@ -14,17 +14,18 @@ module fft_windowing(
     logic [10:0] counter, next_counter;
     logic rollover_flag;
 
-    logic [31:0] next_sample;
+    logic [31:0] next_sample, sample_reg;
 
-    logic [15:0] coeff;
+    logic signed [15:0] coeff;
     logic [31:0] total;
+    logic [10:0] index, count_out;
 
-    flex_counter count (.clk(clk), .n_rst(n_rst), .clear(clear), .count_enable(valid),
-        .rollover_val(frame_size - 1'd1), .count_out(count_out), .next_count_out(index),
+    flex_counter count (.clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(valid),
+        .rollover_val(frame_size - 1'd1), .count_out(index), .next_count_out(count_out),
         .rollover_flag(rollover_flag)
     );
 
-    logic [15:0] coeff_reg;
+    logic signed [15:0] coeff_reg;
 
     always_ff @(posedge clk or negedge n_rst) begin
         if(!n_rst) begin
@@ -32,13 +33,14 @@ module fft_windowing(
             out <= '0;
         end else begin
             out_valid <= valid;
-            out <= (window == 0) ? sample : total;
+            out <= (window == 0) ? sample_reg : total;
             coeff_reg <= coeff;
+            sample_reg <= sample;
         end
     end
 always_comb begin
 case(window)
-  3'd0: next_sample = sample; // Rectangular Bypass
+  3'd0: ; // Rectangular Bypass
   3'd1: begin // Hamming
     case(frame_size)
       10'd2: begin
@@ -4372,7 +4374,7 @@ end
     end
 
     always_comb begin
-        {sample_re, sample_im} = sample;
+        {sample_re, sample_im} = sample_reg;
         total = {total_re, total_im};
     end
 
