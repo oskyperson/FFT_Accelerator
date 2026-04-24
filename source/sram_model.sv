@@ -37,8 +37,8 @@ module sram_model #(
 
             if (ren) begin
                 if (|wen && (read_addr == write_addr)) begin
-                    read_data[7:0]   <= wen[0] ? write_data[7:0]   : (mem.exists(read_addr) ? mem[read_addr][7:0]   : 8'h0);
-                    read_data[15:8]  <= wen[1] ? write_data[15:8]  : (mem.exists(read_addr) ? mem[read_addr][15:8]  : 8'h0);
+                    read_data[7:0] <= wen[0] ? write_data[7:0] : (mem.exists(read_addr) ? mem[read_addr][7:0] : 8'h0);
+                    read_data[15:8] <= wen[1] ? write_data[15:8] : (mem.exists(read_addr) ? mem[read_addr][15:8] : 8'h0);
                     read_data[23:16] <= wen[2] ? write_data[23:16] : (mem.exists(read_addr) ? mem[read_addr][23:16] : 8'h0);
                     read_data[31:24] <= wen[3] ? write_data[31:24] : (mem.exists(read_addr) ? mem[read_addr][31:24] : 8'h0);
                 end else begin
@@ -51,13 +51,14 @@ module sram_model #(
             end
         end
     end
-
-    task load_mem(input string filename);
+    
+    // Modified load_mem: Uses an offset to match the start_addr from the TB
+    task automatic load_mem(input string filename, input int offset);
         int file;
         int addr;
         logic [DATA_WIDTH-1:0] data;
         file = $fopen(filename, "r");
-        addr = 0;
+        addr = offset; // Start loading at the specified address
         if (file) begin
             while (!$feof(file)) begin
                 if ($fscanf(file, "%h\n", data) == 1) begin
@@ -66,16 +67,32 @@ module sram_model #(
                 end
             end
             $fclose(file);
+        end else begin
+            $display("SRAM Error: Could not open %s", filename);
         end
     endtask
 
-    task dump_mem(input string filename, input int frame_size, input int num_frames);
+    // Modified dump_mem: Correctly iterates through the result range and formats for Python
+    task automatic dump_mem(input string filename, input int start_addr, input int total_samples, input int n_per_frame);
         int file;
+        int temp = total_samples - n_per_frame;
+        logic [DATA_WIDTH-1:0] data;
+        shortreal real_val, imag_val;
         file = $fopen(filename, "w");
+        
+        
+
         if (file) begin
-            foreach (mem[i]) begin
-                if(i> (frame_size * num_frames) -1) begin
-                    $fdisplay(file, "%h", mem[i]);
+            for (int i = 0; i < temp; i++) begin
+                if (mem.exists(start_addr + i)) begin
+                    data = mem[start_addr + i];
+                    // Convert fixed-point back to float for the Python SNR script
+                    // Assumes 16-bit Real [31:16] and 16-bit Imag [15:0] in Q1.14
+                    real_val = shortreal'($signed(data[31:16])) / 16384.0;
+                    imag_val = shortreal'($signed(data[15:0])) / 16384.0;
+                    $fdisplay(file, "%f %f", real_val, imag_val);
+                end else begin
+                    $fdisplay(file, "999999999999999 999999999999999");
                 end
             end
             $fclose(file);
