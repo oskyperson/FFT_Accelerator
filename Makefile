@@ -52,7 +52,7 @@ fft_snr_%:
 	$(MAKE) qsim_fft_core_src &> /dev/null
 	@python3 ./Python/snr.py
 
-fft_snr_%:
+fft_snr_oscar%:
 	$(eval SIG_TYPE := $(word 1,$(subst _, ,$*)))
 	$(eval N_SIZE := $(word 2,$(subst _, ,$*)))
 	@echo "Setting up $* files"

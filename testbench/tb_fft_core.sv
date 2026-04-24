@@ -34,7 +34,7 @@ module tb_fft_core ();
 
     integer num;
     initial begin
-        num = 1;
+        num = 2;
     end
 
     localparam CLK_PERIOD = 100ns;
@@ -106,7 +106,7 @@ module tb_fft_core ();
 
     always @(posedge clk) begin
         if (out_valid) begin
-            if(p <= FRAME_SIZE + 5) begin
+            if(p <= (FRAME_SIZE - 1) * num) begin
                 p = p + 1;
                 $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
             end
@@ -117,6 +117,7 @@ module tb_fft_core ();
     integer j;
     initial begin
         $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem.txt", memory);
+        $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem2.txt", memory2);
         n_rst = 1;
         reset_dut;
         @(negedge clk);
@@ -134,11 +135,32 @@ module tb_fft_core ();
         
         $fwrite(out_file, "Real ----- Imaginary\n");
 
-        for(j = 0; j < FRAME_SIZE; j++) begin
+        for(j = 0; j < 100; j++) begin
             @(negedge clk);
             valid = 1'b1;
             sample = memory[j];
         end
+
+        repeat(50) begin
+            @(negedge clk)
+            valid = 1'b0;
+            sample = '0;
+        end
+
+        for(; j < FRAME_SIZE; j++) begin
+            @(negedge clk);
+            valid = 1'b1;
+            sample = memory[j];
+        end
+
+        if(num == 2) begin
+            for(j = 0; j < FRAME_SIZE; j++) begin
+                @(negedge clk);
+                valid = 1'b1;
+                sample = memory2[j];
+            end
+        end
+
 
         repeat(550) begin
             @(negedge clk);
