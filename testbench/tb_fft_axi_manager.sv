@@ -155,13 +155,16 @@ module tb_fft_axi_manager ();
             data_out <= 0;
         end else begin
             if (in_valid) begin
-                data_out <= pipe_memory[wr_ptr];
+                data_out <= #100ps (DUT.wstate == 2) ? pipe_memory[wr_ptr] : 0;
                 pipe_memory[wr_ptr] <= data_in;
+                
                 if (wr_ptr >= current_frame_len - 1)
                     wr_ptr <= 0;
                 else
                     wr_ptr <= wr_ptr + 1;
-            end if (DUT.rstate == 0 && DUT.wstate == 0) begin
+            end 
+            
+            if (DUT.rstate == 0 && DUT.wstate == 0) begin
                 fft_done <= 1;
             end else begin
                 fft_done <= 0;
