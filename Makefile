@@ -52,6 +52,16 @@ fft_snr_%:
 	$(MAKE) qsim_fft_core_src &> /dev/null
 	@python3 ./Python/snr.py
 
+fft_snr_%:
+	$(eval SIG_TYPE := $(word 1,$(subst _, ,$*)))
+	$(eval N_SIZE := $(word 2,$(subst _, ,$*)))
+	@echo "Setting up $* files"
+	@python3 ./Python/rand.py $(call GET_SIG,$*) $(call GET_N,$*)
+	@python3 ./Python/verify.py $(call GET_N,$*)
+	@echo "Running sim"
+	$(MAKE) qsim_fft_core_src &> /dev/null
+	@python3 ./Python/snr_oscar.py
+
 #MY ADDITIONS END
 
 help:
