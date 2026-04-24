@@ -3,7 +3,7 @@
 
 module tb_axi_top ();
 
-    localparam CLK_PERIOD = 20ns;
+    localparam CLK_PERIOD = 30ns;
 
     initial begin
         $dumpfile("waveform.vcd");
@@ -70,32 +70,81 @@ module tb_axi_top ();
     logic [31:0] w_queue [$];
     logic [31:0] r_queue [$];
 
+    // Helper task to execute a standard transaction flow
+    task automatic run_fft_transaction(string signal_type, int n_samples, int n_per_frame, int start_offset);
+    begin
+        // The actual AXI address is the offset + 15
+        int axi_start_addr = start_offset + 15;
+        // Place destination far away, ensuring it also respects the +15 offset
+        int axi_dest_addr  = axi_start_addr + 500000; 
+        
+        test_name = signal_type;
+
+        // 1. Load input data into SRAM model starting at the AXI-mapped address
+        $display("Loading %s into SRAM at AXI Addr %0d", signal_type, axi_start_addr);
+        SRAM.load_mem($psprintf("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram_inputs/%s_%0d_%0d.txt", signal_type, n_samples, n_per_frame), start_offset);
+        
+        // 2. Configure the AXI Manager registers
+        w_queue.delete();
+        w_queue.push_back(n_samples / n_per_frame - 1); // Reg 0: Frame count
+        w_queue.push_back(axi_start_addr);              // Reg 1: Source AXI Addr
+        w_queue.push_back(n_per_frame - 1);               // Reg 2: Sample count
+        w_queue.push_back(axi_dest_addr);               // Reg 3: Destination AXI Addr
+        w_queue.push_back(n_per_frame - 1);               // Reg 4: Samples to write
+        w_queue.push_back(32'h3);                       // Reg 5: Config
+        w_queue.push_back(32'h0);                       // Reg 6: Status/Unused
+        w_queue.push_back(32'h1);                       // Reg 7: Start/Go bit
+        
+        // Write configuration to Manager (assuming Manager registers start at 0)
+        BFM.write_burst(32'd0, w_queue);
+        w_queue.delete();
+        w_queue.push_back(32'h0);  
+        BFM.write_burst(32'd7, w_queue);
+        // 3. Wait for hardware processing
+        // Increased wait time to ensure FFT completion across all frames
+        repeat(n_samples * 20) @(posedge clk);
+        
+        // 4. Dump from the destination AXI address
+        $display("Dumping results for %s from AXI Addr %0d", signal_type, axi_dest_addr);
+        SRAM.dump_mem($psprintf("/home/ecegridfs/a/337mg227/FFT_Accelerator/sram_results/%s_%0d_sram", signal_type, n_samples), axi_dest_addr-15, n_samples, n_per_frame);
+    end
+    endtask
+
     initial begin
         n_rst = 1;
-
         reset_dut;
-        
 
+        // Functional SRAM test
         test_name = "SRAM read write";
         w_queue.delete();
         w_queue.push_back(32'h11111111);
         w_queue.push_back(32'h22222222);
         w_queue.push_back(32'h33333333);
         w_queue.push_back(32'h44444444);
-        
         BFM.write_burst(32'd20, w_queue);
         BFM.read_burst(32'd20, 4, r_queue);
-        
         for(int i = 0; i < 4; i++) begin
             if (r_queue[i] == w_queue[i])
                 $display(" -> [PASS] Beat %0d matched: %h", i, r_queue[i]);
             else
                 $display(" -> [FAIL] Beat %0d mismatch! Expected %h, got %h", i, w_queue[i], r_queue[i]);
         end
-        $display("");
+
+        // Run standardized transactions matching Python script names
+        run_fft_transaction("sine", 1024, 256, 100000);
+        run_fft_transaction("sine", 2048, 512, 200000);
+        run_fft_transaction("impulse", 1024, 256, 300000);
+        run_fft_transaction("impulse", 2048, 512, 400000);
+        run_fft_transaction("squareWave", 1024, 256, 500000);
+        run_fft_transaction("squareWave", 2048, 512, 600000);
+        run_fft_transaction("dc", 1024, 256, 700000);
+        run_fft_transaction("dc", 2048, 512, 800000);
 
 
+
+        test_name = "Simul transactions";
         w_queue.delete();
+<<<<<<< HEAD
         for(int i = 0; i < 1024; i++) begin
             w_queue.push_back(i);
         end
@@ -145,11 +194,14 @@ module tb_axi_top ();
         w_queue.push_back(32'd255);
         w_queue.push_back(32'h3);
         w_queue.push_back(32'h0);
+=======
+>>>>>>> 0d616e1ee00388f52bdcb9cce4593c7a1300f4c8
         w_queue.push_back(32'h1);
-        BFM.write_burst(32'd0, w_queue);
+        BFM.write_burst(32'd7, w_queue);
         w_queue.delete();
         w_queue.push_back(32'h0);
         BFM.write_burst(32'd7, w_queue);
+<<<<<<< HEAD
         w_queue.delete();
         r_queue.delete();
         for(int i = 0; i<2048; i++)begin
@@ -165,22 +217,31 @@ module tb_axi_top ();
         //trans 2
         test_name = "sine3x512";
         SRAM.load_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/inputs/input_sine512.txt");
+=======
+>>>>>>> 0d616e1ee00388f52bdcb9cce4593c7a1300f4c8
         
-        w_queue.delete();
-        w_queue.push_back(32'h3);
-        w_queue.push_back(32'd15);
-        w_queue.push_back(32'd511);
-        w_queue.push_back(32'd200000);
-        w_queue.push_back(32'd511);
-        w_queue.push_back(32'h3);
-        w_queue.push_back(32'h0);
-        w_queue.push_back(32'h1);
-        BFM.write_burst(32'd0, w_queue);
-        w_queue.delete();
-        w_queue.push_back(32'h0);
-        BFM.write_burst(32'd7, w_queue);
-        w_queue.delete();
         r_queue.delete();
+        BFM.read_burst(32'd20, 4, r_queue);
+        
+        foreach(r_queue[i])
+            $display("Read: %h", r_queue[i]);
+
+        test_name = "invalid_config";
+        w_queue.delete();
+        w_queue.push_back(32'd3); // Reg 0: Frame count
+        w_queue.push_back(32'd15);              // Reg 1: Source AXI Addr
+        w_queue.push_back(32'd255);               // Reg 2: Sample count
+        w_queue.push_back(32'd100);               // Reg 3: Destination AXI Addr
+        w_queue.push_back(32'd255);               // Reg 4: Samples to write
+        w_queue.push_back(32'h3); 
+        w_queue.push_back(32'h2313);
+                            // Reg 7: Start/Go bit
+        
+        // Write configuration to Manager (assuming Manager registers start at 0)
+        BFM.write_burst(32'd0, w_queue);
+        
+        r_queue.delete();
+<<<<<<< HEAD
         $display("ugh");
         
         $display("ugh2");
@@ -381,14 +442,14 @@ module tb_axi_top ();
         $display("mem dumped");
         SRAM.dump_mem("/home/ecegridfs/a/337mg041/FFT_Accelerator/result/dc3x256.txt", 799985, 1);
 
+=======
+        BFM.read_burst(32'h0, 6, r_queue);
+        foreach(r_queue[i])
+            $display("Read: %h", r_queue[i]);
+>>>>>>> 0d616e1ee00388f52bdcb9cce4593c7a1300f4c8
 
         
-
-
-
         $finish;
     end
 endmodule
-
 /* verilator coverage_on */
-

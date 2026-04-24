@@ -17,8 +17,8 @@ def to_hex(val):
 
 def calculate_fft(input_file, N = 512):
     output_file = input_file[:-4] + "_output_norm.txt"
-    output_file2 = input_file[:-4] + "_output.txt"
-    hex_output_file = input_file[:-4] + "_output_hex.txt"
+    #output_file2 = input_file[:-4] + "_output.txt"
+    #hex_output_file = input_file[:-4] + "_output_hex.txt"
     
     raw_data = np.loadtxt(input_file, dtype=float)
     data = raw_data[:N, 0] + 1j * raw_data[:N, 1]
@@ -41,14 +41,15 @@ def calculate_fft(input_file, N = 512):
 
             f.write(f"{re_final + 0.0:.6f}, {im_final + 0.0:.6f}\n")
 
-
-    with open(hex_output_file, 'w') as f:
-        for val in br_fft:
-            f.write(f"{to_hex(val)}\n")
+    
+    # with open(hex_output_file, 'w') as f:
+    #     for val in br_fft:
+    #         f.write(f"{to_hex(val)}\n")
+    
 
 
     print("did stuff")
 
 if __name__ == "__main__":
     n = int(sys.argv[1])
-    calculate_fft("./Python/input.txt", n)
+    calculate_fft("./Python/expected/input_square256.txt", n)
