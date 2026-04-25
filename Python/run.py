@@ -42,15 +42,6 @@ def generate(signal_type, total_samples, n_per_frame, base_path):
         k = max(1, n_per_frame // 16)
         one_frame = 0.5 * np.exp(1j * 2 * np.pi * k * t / n_per_frame)
 
-    elif signal_type == 'noise1':
-        one_frame = np.random.uniform(-0.99, 0.99, n_per_frame) + 1j * np.random.uniform(-0.99, 0.99, n_per_frame)
-
-    elif signal_type == 'noise2':
-        frequency = 60
-        clean_signal = 0.6 * np.exp(1j * 2 * np.pi * frequency * t / fs)
-        noise = np.random.uniform(-0.3, 0.3, n_per_frame) + 1j * np.random.uniform(-0.3, 0.3, n_per_frame)
-        one_frame = clean_signal + noise
-
     elif signal_type == 'lowTone':
         frequency = 45
         one_frame = 0.025 * np.exp(1j * 2 * np.pi * frequency * t / fs)

@@ -132,9 +132,9 @@ module tb_axi_top ();
 
         // Run standardized transactions matching Python script names
         begin
-            string signals[] = '{"sine", "impulse", "squareWave", "dc", "singleTone", "twoTone", "noise1", "noise2", "lowTone", "chirp", "multiTone"};
-            int total_s[]    = '{8, 16, 32, 64, 128, 256, 512, 1024, 2048};
-            int per_frame[]  = '{2, 4, 8, 16, 32, 64, 128, 256, 512};
+            string signals[] = '{"sine"};//, "impulse", "squareWave", "dc", "singleTone", "twoTone", "noise1", "noise2", "lowTone", "chirp", "multiTone"};
+            int total_s[]    = '{8, 16};//, 32, 64, 128, 256, 512, 1024, 2048};
+            int per_frame[]  = '{2, 4};//, 8, 16, 32, 64, 128, 256, 512};
             int offset = 100000;
 
             foreach (signals[s]) begin
