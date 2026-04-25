@@ -34,7 +34,7 @@ module tb_fft_core ();
 
     integer num;
     initial begin
-        num = 2;
+        num = 1;
     end
 
     localparam CLK_PERIOD = 100ns;

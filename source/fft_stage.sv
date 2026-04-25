@@ -18,9 +18,8 @@ module fft_stage #(
 );
 
     logic [8:0] twiddle_addr, twiddle_addr_next;
-    logic [31:0] math_sum_reg, delay_sample, sample_reg, feedback_reg, rotation_reg, next_delay_sample, next_out;
+    logic [31:0] delay_sample, next_delay_sample, next_out;
     logic [9:0] count_out, next_count_out;
-    logic next_valid, valid_reg, control_delay, out_valid_delay, control_reg;
     
     logic [31:0] twiddle, feedback_sample, rotation, delay_sample_d, twiddle_reg;
     logic shift_en, primed;
