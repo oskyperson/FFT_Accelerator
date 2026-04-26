@@ -76,7 +76,7 @@ module tb_axi_top ();
         // The actual AXI address is the offset + 15
         int axi_start_addr = start_offset + 15;
         // Place destination far away, ensuring it also respects the +15 offset
-        int axi_dest_addr  = axi_start_addr + 500000; 
+        int axi_dest_addr = axi_start_addr + 500000; 
         
         test_name = signal_type;
 
@@ -87,13 +87,13 @@ module tb_axi_top ();
         // 2. Configure the AXI Manager registers
         w_queue.delete();
         w_queue.push_back(n_samples / n_per_frame - 1); // Reg 0: Frame count
-        w_queue.push_back(axi_start_addr);              // Reg 1: Source AXI Addr
-        w_queue.push_back(n_per_frame - 1);               // Reg 2: Sample count
-        w_queue.push_back(axi_dest_addr);               // Reg 3: Destination AXI Addr
-        w_queue.push_back(n_per_frame - 1);               // Reg 4: Samples to write
-        w_queue.push_back(32'h3);                       // Reg 5: Config
-        w_queue.push_back(32'h0);                       // Reg 6: Status/Unused
-        w_queue.push_back(32'h1);                       // Reg 7: Start/Go bit
+        w_queue.push_back(axi_start_addr); // Reg 1: Source AXI Addr
+        w_queue.push_back(n_per_frame - 1);   // Reg 2: Sample count
+        w_queue.push_back(axi_dest_addr);  // Reg 3: Destination AXI Addr
+        w_queue.push_back(n_per_frame - 1);  // Reg 4: Samples to write
+        w_queue.push_back(32'h3);  // Reg 5: Config
+        w_queue.push_back(32'h0);   // Reg 6: Status/Unused
+        w_queue.push_back(32'h1);  // Reg 7: Start/Go bit
         
         // Write configuration to Manager (assuming Manager registers start at 0)
         BFM.write_burst(32'd0, w_queue);
@@ -133,8 +133,8 @@ module tb_axi_top ();
         // Run standardized transactions matching Python script names
         begin
             string signals[] = '{"sine"};//, "impulse", "squareWave", "dc", "singleTone", "twoTone", "noise1", "noise2", "lowTone", "chirp", "multiTone"};
-            int total_s[]    = '{8, 16};//, 32, 64, 128, 256, 512, 1024, 2048};
-            int per_frame[]  = '{2, 4};//, 8, 16, 32, 64, 128, 256, 512};
+            int total_s[] = '{8, 16};//, 32, 64, 128, 256, 512, 1024, 2048};
+            int per_frame[] = '{2, 4};//, 8, 16, 32, 64, 128, 256, 512};
             int offset = 100000;
 
             foreach (signals[s]) begin
@@ -163,10 +163,10 @@ module tb_axi_top ();
         test_name = "invalid_config";
         w_queue.delete();
         w_queue.push_back(32'd3); // Reg 0: Frame count
-        w_queue.push_back(32'd15);              // Reg 1: Source AXI Addr
-        w_queue.push_back(32'd255);               // Reg 2: Sample count
-        w_queue.push_back(32'd100);               // Reg 3: Destination AXI Addr
-        w_queue.push_back(32'd255);               // Reg 4: Samples to write
+        w_queue.push_back(32'd15);  // Reg 1: Source AXI Addr
+        w_queue.push_back(32'd255);  // Reg 2: Sample count
+        w_queue.push_back(32'd100);  // Reg 3: Destination AXI Addr
+        w_queue.push_back(32'd255); // Reg 4: Samples to write
         w_queue.push_back(32'h3); 
         w_queue.push_back(32'h2313);
                             // Reg 7: Start/Go bit

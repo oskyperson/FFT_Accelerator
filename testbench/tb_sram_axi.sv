@@ -101,10 +101,10 @@ module tb_sram_axi ();
     initial begin
         
         force BFM.cpu_awvalid = 0;
-        force BFM.cpu_wvalid  = 0;
-        force BFM.cpu_bready  = 0;
+        force BFM.cpu_wvalid = 0;
+        force BFM.cpu_bready = 0;
         force BFM.cpu_arvalid = 0;
-        force BFM.cpu_rready  = 0;
+        force BFM.cpu_rready = 0;
         force BFM.cpu_araddr = '0;
         force BFM.cpu_awaddr = '0;
 

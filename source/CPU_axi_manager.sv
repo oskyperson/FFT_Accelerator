@@ -43,8 +43,8 @@ module CPU_axi_manager (
 
         @(posedge clk);
         
-        awaddr  <= start_addr;
-        awlen   <= num_beats - 1; 
+        awaddr <= start_addr;
+        awlen  <= num_beats - 1; 
         awvalid <= 1'b1;
         wait(awready);
         @(posedge clk);
@@ -55,7 +55,7 @@ module CPU_axi_manager (
             wdata <= data_queue[i];
             wstrb <= 2'b11;
             wvalid <= 1'b1;
-            wlast  <= (i == num_beats - 1); 
+            wlast <= (i == num_beats - 1); 
             do begin
                 @(posedge clk);
             end while (!wready);
@@ -77,8 +77,8 @@ module CPU_axi_manager (
 
         @(posedge clk);
        
-        araddr  <= start_addr;
-        arlen   <= num_beats - 1;
+        araddr <= start_addr;
+        arlen <= num_beats - 1;
         arvalid <= 1'b1;
         wait(arready);
         @(posedge clk);

@@ -23,9 +23,9 @@ module sram_model #(
     always_ff @(negedge clk, negedge n_rst) begin
         if(!n_rst) begin
             mem.delete();
-            write_valid <=  '0;
-            read_valid <=  '0;
-            read_data <=  '0;
+            write_valid <= '0;
+            read_valid <= '0;
+            read_data <= '0;
         end else begin
             if (wen[0]) mem[write_addr][7:0] = write_data[7:0];
             if (wen[1]) mem[write_addr][15:8] = write_data[15:8];

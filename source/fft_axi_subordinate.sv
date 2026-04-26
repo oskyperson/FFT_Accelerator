@@ -2,30 +2,30 @@
 
 /* verilator lint_off UNUSEDSIGNAL */
 module fft_axi_subordinate (
-    input  logic clk, n_rst,
+    input logic clk, n_rst,
     // write address
     output logic fft_sub_awready,
-    input  logic [31:0] fft_sub_awaddr,
-    input  logic [9:0]  fft_sub_awlen,
-    input  logic fft_sub_awvalid,
+    input logic [31:0] fft_sub_awaddr,
+    input logic [9:0] fft_sub_awlen,
+    input logic fft_sub_awvalid,
     // write data
     output logic fft_sub_wready,
-    input  logic [31:0] fft_sub_wdata,
-    input  logic [1:0]  fft_sub_wstrb,
-    input  logic fft_sub_wlast, fft_sub_wvalid,
+    input logic [31:0] fft_sub_wdata,
+    input logic [1:0] fft_sub_wstrb,
+    input logic fft_sub_wlast, fft_sub_wvalid,
     // write response
     output logic fft_sub_bresp,
     output logic fft_sub_bvalid,
-    input  logic fft_sub_bready,
+    input logic fft_sub_bready,
     // read address
     output logic fft_sub_arready,
-    input  logic [31:0] fft_sub_araddr,
-    input  logic [9:0]  fft_sub_arlen,
-    input  logic fft_sub_arvalid,
+    input logic [31:0] fft_sub_araddr,
+    input logic [9:0] fft_sub_arlen,
+    input logic fft_sub_arvalid,
     // read data
     output logic fft_sub_rlast, fft_sub_rvalid,
     output logic [31:0] fft_sub_rdata,
-    input  logic fft_sub_rready,
+    input logic fft_sub_rready,
     // read response
     output logic fft_sub_rresp,
 
@@ -52,7 +52,7 @@ module fft_axi_subordinate (
     assign waddr_idx = awaddr_reg[2:0] + wcount[2:0];
     assign raddr_idx = araddr_reg[2:0] + rcount[2:0];
     assign write_addr_ok = (awaddr_reg[31:3] == 29'b0);
-    assign read_addr_ok  = (araddr_reg[31:3] == 29'b0);
+    assign read_addr_ok = (araddr_reg[31:3] == 29'b0);
 
     // --- Write Channel ---
 
@@ -170,7 +170,7 @@ module fft_axi_subordinate (
 
         if (fft_sub_arvalid && fft_sub_arready) begin
             next_arready = 1'b0;
-            next_araddr  = fft_sub_araddr;
+            next_araddr = fft_sub_araddr;
         end else if (fft_sub_rlast && fft_sub_rvalid && fft_sub_rready) begin
             next_arready = 1'b1;
         end

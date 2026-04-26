@@ -98,9 +98,9 @@ module tb_arbiter ();
         @(posedge clk);
         @(negedge clk);
         if (sram_awvalid && !fft_sub_awvalid) 
-            $display("  -> [PASS] Correct routing to SRAM");
+            $display("-> [PASS] Correct routing to SRAM");
         else 
-            $display("  -> [FAIL] Wrong routing! SRAM: %b FFT_SUB: %b", sram_awvalid, fft_sub_awvalid);
+            $display("-> [FAIL] Wrong routing! SRAM: %b FFT_SUB: %b", sram_awvalid, fft_sub_awvalid);
         
         cpu_awvalid = 1'b0;
 
@@ -116,9 +116,9 @@ module tb_arbiter ();
         @(posedge clk);
         #1;
         if (sram_araddr == 11'd30)
-            $display("  -> [PASS] CPU granted priority");
+            $display("-> [PASS] CPU granted priority");
         else
-            $display("  -> [FAIL] FFT granted priority or wrong address: %d", fft_sub_awvalid);
+            $display("-> [FAIL] FFT granted priority or wrong address: %d", fft_sub_awvalid);
         
         cpu_arvalid = 1'b0;
         fft_man_arvalid = 1'b0;
@@ -131,7 +131,7 @@ module tb_arbiter ();
         
         
         
-        $display("  -> [INFO] Received Response: %h", cpu_rresp);
+        $display("-> [INFO] Received Response: %h", cpu_rresp);
         
         @(posedge clk);
         cpu_arvalid = 1'b0;

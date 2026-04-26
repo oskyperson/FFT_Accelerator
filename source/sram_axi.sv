@@ -8,7 +8,7 @@ module sram_axi #(
     input logic [31:0] sram_awaddr,
     input logic sram_awvalid,
     input logic [9:0] sram_awlen,
-    output logic sram_awready,    
+    output logic sram_awready,
  
     input logic [31:0] sram_wdata,
     input logic [1:0] sram_wstrb,
@@ -17,7 +17,7 @@ module sram_axi #(
     output logic sram_wready,
     
     input logic sram_bready,
-    output logic sram_bresp,    
+    output logic sram_bresp, 
     output logic sram_bvalid,
    
     input logic [31:0] sram_araddr,
@@ -31,7 +31,7 @@ module sram_axi #(
     output logic sram_rvalid,
     input logic sram_rready,
 
-    output logic [3:0] wen,      
+    output logic [3:0] wen,
     output logic ren, 
     input logic [31:0] read_data, 
     output logic [31:0] write_data,
@@ -132,7 +132,7 @@ end
 always_ff @(posedge clk, negedge n_rst) begin: registers
     if (!n_rst) begin
         waddr_reg <= '0;
-        wlen_reg  <= '0;
+        wlen_reg <= '0;
         wdata_reg <= '0; 
         wstrb_reg <= '0;
         raddr_reg <= '0; 
@@ -169,7 +169,7 @@ always_comb begin : next_reg
         next_rlen_reg = rlen_reg;
         next_wdata_reg = wdata_reg;
         next_wstrb_reg = wstrb_reg;
-        next_sram_rdata = read_valid ? read_data :  '0;
+        next_sram_rdata = read_valid ? read_data : '0;
         next_awready = (next_write == W_IDLE) && (sram_awaddr >= 11'd15);
         next_wready = (next_write == W_DATA);
         next_bvalid = (next_write == W_RESP);

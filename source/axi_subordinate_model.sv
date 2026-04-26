@@ -43,23 +43,23 @@ module axi_subordinate_model (
 
     // Queues for tracking pending transactions
     logic [31:0] wr_addr_q [$];
-    logic        wr_err_q [$]; 
+    logic wr_err_q [$]; 
     logic [31:0] rd_addr_q [$];
-    logic [9:0]  rd_len_q [$];
-    logic        rd_err_q [$];
+    logic [9:0] rd_len_q [$];
+    logic rd_err_q [$];
     integer wcount;
 
     initial begin
         // Reset output signals
         awready = 0;
-        wready  = 0;
-        bvalid  = 0;
-        bresp   = 0;
+        wready = 0;
+        bvalid = 0;
+        bresp = 0;
         arready = 0;
-        rvalid  = 0;
-        rlast   = 0;
-        rdata   = 0;
-        rresp   = 0;
+        rvalid = 0;
+        rlast = 0;
+        rdata = 0;
+        rresp = 0;
         wcount = 0;
 
         wait(n_rst);
@@ -101,7 +101,7 @@ module axi_subordinate_model (
                 if (wvalid && wready && wlast) begin
                     repeat (2) @(posedge clk);
                     bvalid <= 1'b1;
-                    bresp  <= wr_err_q.pop_front(); 
+                    bresp <= wr_err_q.pop_front(); 
                     
                     while (!bready) begin
                         @(posedge clk);
@@ -109,7 +109,7 @@ module axi_subordinate_model (
                     
                     @(posedge clk);
                     bvalid <= 1'b0;
-                    bresp  <= 1'b0;
+                    bresp <= 1'b0;
                     repeat (2) @(posedge clk);
                 end
             end
@@ -131,22 +131,22 @@ module axi_subordinate_model (
             // Read Data Channel
             forever begin
                 logic [31:0] curr_addr;
-                logic [9:0]  curr_len;
-                logic        curr_err;
+                logic [9:0] curr_len;
+                logic curr_err;
                 
                 @(posedge clk);
                 if (rd_addr_q.size() > 0) begin
                     curr_addr = rd_addr_q.pop_front();
-                    curr_len  = rd_len_q.pop_front();
-                    curr_err  = rd_err_q.pop_front();
+                    curr_len = rd_len_q.pop_front();
+                    curr_err = rd_err_q.pop_front();
 
                     repeat (2) @(posedge clk);
 
                     for (int i = 0; i <= curr_len; i++) begin
                         rvalid <= 1'b1;
                         // Trigger rresp if the specific beat address is out of range
-                        rresp  <= (curr_addr > ADDR_MAX);
-                        rlast  <= (i == curr_len);
+                        rresp <= (curr_addr > ADDR_MAX);
+                        rlast <= (i == curr_len);
                         
                         if (mem.exists(curr_addr)) begin
                             rdata <= mem[curr_addr];
@@ -160,8 +160,8 @@ module axi_subordinate_model (
                         
                         @(posedge clk);
                         rvalid <= 1'b0;
-                        rresp  <= 1'b0;
-                        rlast  <= 1'b0;
+                        rresp <= 1'b0;
+                        rlast <= 1'b0;
                         curr_addr += 1'b1;
                         
                         repeat (2) @(posedge clk);

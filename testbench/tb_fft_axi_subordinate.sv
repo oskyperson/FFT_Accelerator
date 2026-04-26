@@ -98,10 +98,10 @@ module tb_fft_axi_subordinate ();
         n_rst = 1;
 
         force BFM.awvalid = 0;
-        force BFM.wvalid  = 0;
-        force BFM.bready  = 0;
+        force BFM.wvalid = 0;
+        force BFM.bready = 0;
         force BFM.arvalid = 0;
-        force BFM.rready  = 0;
+        force BFM.rready = 0;
         #1;
         release BFM.awvalid;
         release BFM.wvalid;

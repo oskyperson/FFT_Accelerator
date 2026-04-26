@@ -32,7 +32,7 @@ module axi_top #(
     input logic read_valid
 );
 
-    logic [31:0] fft_man_awaddr,  fft_man_araddr;
+    logic [31:0] fft_man_awaddr, fft_man_araddr;
     logic fft_man_awvalid, fft_man_arvalid;
     logic fft_man_awready, fft_man_arready;
     logic [31:0] fft_man_wdata;

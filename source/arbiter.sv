@@ -188,10 +188,10 @@ module arbiter #(
     always_comb begin : signal_routing
         
         {fft_sub_awvalid, sram_awvalid, fft_sub_arvalid, sram_arvalid} = '0;
-        {fft_sub_wvalid, sram_wvalid,  fft_sub_bready, sram_bready}  = '0;
+        {fft_sub_wvalid, sram_wvalid, fft_sub_bready, sram_bready} = '0;
         {fft_sub_rready, sram_rready} = '0;
         {cpu_awready, fft_man_awready, cpu_arready, fft_man_arready} = '0;
-        {cpu_wready, fft_man_wready, cpu_bvalid, fft_man_bvalid}    = '0;
+        {cpu_wready, fft_man_wready, cpu_bvalid, fft_man_bvalid} = '0;
         {cpu_rvalid, fft_man_rvalid} = '0;
 
         {fft_sub_awaddr, sram_awaddr, fft_sub_araddr, sram_araddr} = '0;
@@ -205,7 +205,7 @@ module arbiter #(
         if (w_perms == 2'b01 && w_state == BUSY) begin
             if (w_dest == 2'b01) begin
                 fft_sub_awaddr = cpu_awaddr; fft_sub_awvalid = cpu_awvalid; cpu_awready = fft_sub_awready;
-                fft_sub_wdata = cpu_wdata; fft_sub_wvalid  = cpu_wvalid; fft_sub_wlast = cpu_wlast; cpu_wready = fft_sub_wready;
+                fft_sub_wdata = cpu_wdata; fft_sub_wvalid = cpu_wvalid; fft_sub_wlast = cpu_wlast; cpu_wready = fft_sub_wready;
                 cpu_bresp = fft_sub_bresp; cpu_bvalid = fft_sub_bvalid; fft_sub_bready = cpu_bready;
                 fft_sub_awlen = cpu_awlen;
                 fft_sub_wstrb = cpu_wstrb;
@@ -228,7 +228,7 @@ module arbiter #(
                 fft_sub_wstrb = fft_man_wstrb;
             end else if (w_dest == 2'b10) begin
                 sram_awaddr = fft_man_awaddr; sram_awvalid = fft_man_awvalid; fft_man_awready = sram_awready;
-                sram_wdata = fft_man_wdata; sram_wvalid  = fft_man_wvalid; sram_wlast = fft_man_wlast; fft_man_wready = sram_wready;
+                sram_wdata = fft_man_wdata; sram_wvalid = fft_man_wvalid; sram_wlast = fft_man_wlast; fft_man_wready = sram_wready;
                 fft_man_bresp = sram_bresp; fft_man_bvalid = sram_bvalid; sram_bready = fft_man_bready;
                 sram_awlen = fft_man_awlen;
                 sram_wstrb = fft_man_wstrb;
