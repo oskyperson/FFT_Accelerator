@@ -36,30 +36,30 @@ module axi_subordinate_model (
 );
 
     // Define the valid addressable range for this model
-    localparam [31:0] ADDR_MAX = 32'h00010000; // Example: 2KB range
+    localparam [31:0] ADDR_MAX = 32'h00010000;
 
     // Associative array for sparse memory simulation
     logic [31:0] mem [logic [31:0]];
 
     // Queues for tracking pending transactions
     logic [31:0] wr_addr_q [$];
-    logic        wr_err_q [$]; 
+    logic wr_err_q [$]; 
     logic [31:0] rd_addr_q [$];
-    logic [9:0]  rd_len_q [$];
-    logic        rd_err_q [$];
+    logic [9:0] rd_len_q [$];
+    logic rd_err_q [$];
     integer wcount;
 
     initial begin
         // Reset output signals
         awready = 0;
-        wready  = 0;
-        bvalid  = 0;
-        bresp   = 0;
+        wready = 0;
+        bvalid = 0;
+        bresp = 0;
         arready = 0;
-        rvalid  = 0;
-        rlast   = 0;
-        rdata   = 0;
-        rresp   = 0;
+        rvalid = 0;
+        rlast = 0;
+        rdata = 0;
+        rresp = 0;
         wcount = 0;
 
         wait(n_rst);

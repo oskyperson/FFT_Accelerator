@@ -40,17 +40,17 @@ module manager_model (
 
     initial begin
         
-        cpu_awaddr  = '0;  
+        cpu_awaddr = '0;  
         cpu_awvalid = '0;
-        cpu_awlen   = '0;
-        cpu_wdata  = '0;
-        cpu_wstrb  = '0;
-        cpu_wlast  = '0;
+        cpu_awlen = '0;
+        cpu_wdata = '0;
+        cpu_wstrb = '0;
+        cpu_wlast = '0;
         cpu_wvalid = '0;
         cpu_bready = '0;
-        cpu_araddr  = '0;
+        cpu_araddr = '0;
         cpu_arvalid = '0;
-        cpu_arlen   = '0;
+        cpu_arlen = '0;
         cpu_rready = '0;
     end
 
