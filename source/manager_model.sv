@@ -40,7 +40,7 @@ module manager_model (
 
     initial begin
         
-        cpu_awaddr = '0;
+        cpu_awaddr = '0;  
         cpu_awvalid = '0;
         cpu_awlen = '0;
         cpu_wdata = '0;
