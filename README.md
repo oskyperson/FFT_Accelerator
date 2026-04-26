@@ -5,3 +5,7 @@ This project implements a hardware-accelerated Fast Fourier Transform (FFT) engi
 The system is designed to handle multiple frames of data in a continuous sequence. Once a software trigger is received via the subordinate configuration registers, the manager iterates through a programmed number of frames. It maintains internal read and write address offsets, using a dedicated Carry-Lookahead Adder to calculate the memory location for each subsequent frame. This logic allows the engine to jump from the completion of one frame directly into the address phase of the next, maintaining a high-throughput pipeline.
 
 During operation, the manager synchronizes the read and write channels to ensure data integrity through the FFT pipeline. As it pulls raw time-domain samples from a source buffer, it simultaneously writes back frequency-domain results to a destination buffer. This parallel state machine architecture allows the hardware to overlap memory access with computation, ensuring that the FFT core remains fed with data and the system processor is only notified once the entire batch of frames has been processed.
+
+# How to Run
+
+To run the snr you can call the run.py from the FFT_Accelerator directory. You do need to check the file paths and change them in Run.py and the tb_axi_top.sv files. You can also change the test cases it runs by commenting out certain tests. You need to change total_s, and per_frame in pairs. The results are sent to snr_results
