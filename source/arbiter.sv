@@ -3,7 +3,7 @@
 module arbiter #(
     // parameters
 ) (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
     
     input logic [31:0] cpu_awaddr, cpu_araddr,
     input logic cpu_awvalid, cpu_arvalid,
@@ -93,8 +93,8 @@ module arbiter #(
     assign w_done = (w_perms == 2'b01) ? (cpu_bvalid && cpu_bready) : (fft_man_bvalid && fft_man_bready);
     assign r_done = (r_perms == 2'b01) ? (cpu_rvalid && cpu_rready && cpu_rlast) : (fft_man_rvalid && fft_man_rready && fft_man_rlast);
 
-    always_ff @( posedge clk, negedge n_rst ) begin : states
-        if(!n_rst) begin
+    always_ff @( posedge CLK, negedge nRST ) begin : states
+        if(!nRST) begin
             w_state <= IDLE;
             r_state <= IDLE;
         end else begin
@@ -103,8 +103,8 @@ module arbiter #(
         end
     end
 
-    always_ff @(posedge clk, negedge n_rst ) begin : perms_dest
-        if(!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST ) begin : perms_dest
+        if(!nRST) begin
             w_perms <= '0;
             w_dest <= '0;
             r_dest <= '0;

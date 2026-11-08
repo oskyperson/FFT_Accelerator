@@ -3,7 +3,7 @@
 module axi_top #(
     // parameters
 ) (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
 
     input logic [31:0] cpu_awaddr, cpu_araddr,
     input logic cpu_awvalid, cpu_arvalid,

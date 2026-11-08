@@ -3,8 +3,8 @@
 module math #(
     parameter STAGE = 1
 )(
-    //input logic clk,
-    //input logic n_rst,
+    //input logic CLK,
+    //input logic nRST,
     input logic [31:0] sample,
     //input logic sample_valid,
     input logic [31:0] feedback,

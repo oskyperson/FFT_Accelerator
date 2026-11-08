@@ -2,7 +2,7 @@
 
 /* verilator lint_off UNUSEDSIGNAL */
 module fft_axi_subordinate (
-    input  logic clk, n_rst,
+    input  logic CLK, nRST,
     // write address
     output logic fft_sub_awready,
     input  logic [31:0] fft_sub_awaddr,
@@ -56,8 +56,8 @@ module fft_axi_subordinate (
 
     // --- Write Channel ---
 
-    always_ff @(posedge clk, negedge n_rst) begin : write_ctrl_regs
-        if (!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST) begin : write_ctrl_regs
+        if (!nRST) begin
             fft_sub_awready <= 1'b1;
             fft_sub_wready <= 1'b0;
             awaddr_reg <= '0;
@@ -84,8 +84,8 @@ module fft_axi_subordinate (
     end
 
     fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
-        .clk(clk),
-        .n_rst(n_rst),
+        .CLK(CLK),
+        .nRST(nRST),
         .len(fft_sub_awlen),
         .ready(fft_sub_wready),
         .valid(fft_sub_wvalid),
@@ -94,8 +94,8 @@ module fft_axi_subordinate (
         .i(wcount)
     );
 
-    always_ff @(posedge clk, negedge n_rst) begin : config_data_regs
-        if (!n_rst)
+    always_ff @(posedge CLK, negedge nRST) begin : config_data_regs
+        if (!nRST)
             config_reg <= '0;
         else if (waddr_idx == 3'd2 || waddr_idx == 3'd4) begin
             if ((next_config_reg[waddr_idx] == 0) || 
@@ -130,8 +130,8 @@ module fft_axi_subordinate (
         end
     end
 
-    always_ff @(posedge clk, negedge n_rst) begin : write_resp_regs
-        if (!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST) begin : write_resp_regs
+        if (!nRST) begin
             fft_sub_bvalid <= 1'b0;
             fft_sub_bresp <= 1'b0;
         end else begin
@@ -154,8 +154,8 @@ module fft_axi_subordinate (
 
     // --- Read Channel ---
 
-    always_ff @(posedge clk, negedge n_rst) begin : read_ctrl_regs
-        if (!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST) begin : read_ctrl_regs
+        if (!nRST) begin
             fft_sub_arready <= 1'b1;
             araddr_reg <= '0;
         end else begin
@@ -177,8 +177,8 @@ module fft_axi_subordinate (
     end
 
     fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
-        .clk(clk),
-        .n_rst(n_rst),
+        .CLK(CLK),
+        .nRST(nRST),
         .len(fft_sub_arlen),
         .ready(fft_sub_rready),
         .valid(fft_sub_rvalid),
@@ -187,8 +187,8 @@ module fft_axi_subordinate (
         .i(rcount)
     );
 
-    always_ff @(posedge clk, negedge n_rst) begin : read_resp_regs
-        if (!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST) begin : read_resp_regs
+        if (!nRST) begin
             fft_sub_rvalid <= 1'b0;
             fft_sub_rresp <= 1'b0;
         end else begin

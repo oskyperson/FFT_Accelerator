@@ -3,7 +3,7 @@
 /* verilator lint_off UNUSEDSIGNAL */
 /* verilator lint_off PINCONNECTEMPTY */
 module fft_axi_manager (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
     // write address
     input logic fft_man_awready,
     output logic [31:0] fft_man_awaddr,
@@ -65,8 +65,8 @@ logic j_eq_k;
 logic k_gt_0;
 logic j_gt_0;
 
-always_ff @(posedge clk, negedge n_rst) begin
-    if (!n_rst) begin
+always_ff @(posedge CLK, negedge nRST) begin
+    if (!nRST) begin
         j_eq_k <= 1'b0;
         k_gt_0 <= 1'b0;
         j_gt_0 <= 1'b0;
@@ -77,8 +77,8 @@ always_ff @(posedge clk, negedge n_rst) begin
     end
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : load_size_logic
+    if (!nRST) begin
         load_size <= 0;
         frame_size <= 10'd512;
         windowing <= '0;
@@ -89,8 +89,8 @@ always_ff @ (posedge clk, negedge n_rst) begin : load_size_logic
     end
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : control_logic
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : control_logic
+    if (!nRST) begin
         configs <= '0;
         processing <= 0;
     end else if (!processing) begin
@@ -119,8 +119,8 @@ fft_cla w_adder (
     .cout()
 );
 
-always_ff @ (posedge clk, negedge n_rst) begin : counter_management
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : counter_management
+    if (!nRST) begin
         j <= '0;
         k <= '0;
         r_offset <= '0;
@@ -148,15 +148,15 @@ always_ff @ (posedge clk, negedge n_rst) begin : counter_management
     end
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : rstate_reg
-    if (!n_rst)
+always_ff @ (posedge CLK, negedge nRST) begin : rstate_reg
+    if (!nRST)
         rstate <= RIDLE;
     else
         rstate <= next_rstate;
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : wait_counter_logic
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : wait_counter_logic
+    if (!nRST) begin
         wait_cnt <= 4'd0;
     end else if (rstate == RWAIT) begin
         wait_cnt <= wait_cnt + 4'd1;
@@ -183,8 +183,8 @@ always_comb begin : next_rstate_logic
     endcase
 end
 
-always_ff @(posedge clk, negedge n_rst) begin : reg_araddr
-    if (!n_rst) begin
+always_ff @(posedge CLK, negedge nRST) begin : reg_araddr
+    if (!nRST) begin
         fft_man_araddr <= '0;
     end 
     else if (processing && wstate == WIDLE && next_wstate == WADDR) begin
@@ -196,8 +196,8 @@ always_ff @(posedge clk, negedge n_rst) begin : reg_araddr
 end
 
 fft_axi_counter #(.WRITE_OR_READ(0)) read_counter (
-    .clk(clk),
-    .n_rst(n_rst),
+    .CLK(CLK),
+    .nRST(nRST),
     .len(fft_man_arlen),
     .ready(fft_man_rready),
     .valid(fft_man_rvalid),
@@ -214,8 +214,8 @@ always_comb begin : read_output_logic
     // in_valid = fft_man_rready && fft_man_rvalid;
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : to_fft
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : to_fft
+    if (!nRST) begin
         data_in <= '0;
         in_valid <= 0;
     end else begin
@@ -224,8 +224,8 @@ always_ff @ (posedge clk, negedge n_rst) begin : to_fft
     end
 end
 
-always_ff @ (posedge clk, negedge n_rst) begin : wstate_reg
-    if (!n_rst)
+always_ff @ (posedge CLK, negedge nRST) begin : wstate_reg
+    if (!nRST)
         wstate <= WIDLE;
     else
         wstate <= next_wstate;
@@ -247,8 +247,8 @@ always_comb begin : next_wstate_logic
     endcase
 end
 
-always_ff @(posedge clk, negedge n_rst) begin : reg_awaddr
-    if (!n_rst) begin
+always_ff @(posedge CLK, negedge nRST) begin : reg_awaddr
+    if (!nRST) begin
         fft_man_awaddr <= '0;
     end
     else if (wstate == WIDLE && next_wstate == WADDR) begin
@@ -258,8 +258,8 @@ end
 
 /* verilator lint_off PINCONNECTEMPTY */
 fft_axi_counter #(.WRITE_OR_READ(1)) write_counter (
-    .clk(clk),
-    .n_rst(n_rst),
+    .CLK(CLK),
+    .nRST(nRST),
     .len(fft_man_awlen),
     .ready(fft_man_wready),
     .valid(fft_man_wvalid),
@@ -273,8 +273,8 @@ logic [31:0] data_out_reg;
 logic out_valid_reg;
 
 // Register the data and valid signals coming FROM the FFT
-always_ff @ (posedge clk, negedge n_rst) begin : from_fft_reg
-    if (!n_rst) begin
+always_ff @ (posedge CLK, negedge nRST) begin : from_fft_reg
+    if (!nRST) begin
         data_out_reg <= '0;
         out_valid_reg <= 0;
     end else begin

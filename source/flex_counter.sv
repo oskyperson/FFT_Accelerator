@@ -3,8 +3,8 @@
 module flex_counter #(
     parameter SIZE = 10
 )(
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
     input logic clear,
     input logic count_enable,
     input logic [SIZE-1:0] rollover_val,
@@ -24,8 +24,8 @@ module flex_counter #(
 
     logic stagger;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if(!nRST) begin
             count <= '0;
             //flag <= 1;
         end else begin

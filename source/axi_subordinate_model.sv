@@ -1,7 +1,7 @@
 `timescale 1ns / 10ps
 
 module axi_subordinate_model (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
 
     // write address
     output logic awready,
@@ -62,25 +62,25 @@ module axi_subordinate_model (
         rresp = 0;
         wcount = 0;
 
-        wait(n_rst);
+        wait(nRST);
 
         fork
             // Write Address Channel
             forever begin
-                @(posedge clk);
+                @(posedge CLK);
                 awready <= 1'b1;
                 if (awvalid && awready) begin
                     wr_addr_q.push_back(awaddr);
                     // Check if the start or end of burst is out of range
                     wr_err_q.push_back((awaddr > ADDR_MAX) || ((awaddr + awlen) > ADDR_MAX)); 
                     awready <= 1'b0;
-                    repeat (2) @(posedge clk);
+                    repeat (2) @(posedge CLK);
                 end
             end
 
             // Write Data Channel
             forever begin
-                @(posedge clk);
+                @(posedge CLK);
                 wready <= 1'b1;
                 if (wvalid && wready) begin
                     if (wr_addr_q.size() > 0) begin
@@ -91,32 +91,32 @@ module axi_subordinate_model (
                     if (wlast) begin
                         void'(wr_addr_q.pop_front());
                     end
-                    repeat (1) @(posedge clk);
+                    repeat (1) @(posedge CLK);
                 end
             end
 
             // Write Response Channel
             forever begin
-                @(posedge clk);
+                @(posedge CLK);
                 if (wvalid && wready && wlast) begin
-                    repeat (2) @(posedge clk);
+                    repeat (2) @(posedge CLK);
                     bvalid <= 1'b1;
                     bresp  <= wr_err_q.pop_front(); 
                     
                     while (!bready) begin
-                        @(posedge clk);
+                        @(posedge CLK);
                     end
                     
-                    @(posedge clk);
+                    @(posedge CLK);
                     bvalid <= 1'b0;
                     bresp  <= 1'b0;
-                    repeat (2) @(posedge clk);
+                    repeat (2) @(posedge CLK);
                 end
             end
 
             // Read Address Channel
             forever begin
-                @(posedge clk);
+                @(posedge CLK);
                 arready <= 1'b1;
                 if (arvalid && arready) begin
                     rd_addr_q.push_back(araddr);
@@ -124,7 +124,7 @@ module axi_subordinate_model (
                     // Check if the read request is out of range
                     rd_err_q.push_back((araddr > ADDR_MAX) || ((araddr + arlen) > ADDR_MAX));
                     arready <= 1'b0;
-                    repeat (2) @(posedge clk);
+                    repeat (2) @(posedge CLK);
                 end
             end
 
@@ -134,13 +134,13 @@ module axi_subordinate_model (
                 logic [9:0]  curr_len;
                 logic        curr_err;
                 
-                @(posedge clk);
+                @(posedge CLK);
                 if (rd_addr_q.size() > 0) begin
                     curr_addr = rd_addr_q.pop_front();
                     curr_len  = rd_len_q.pop_front();
                     curr_err  = rd_err_q.pop_front();
 
-                    repeat (2) @(posedge clk);
+                    repeat (2) @(posedge CLK);
 
                     for (int i = 0; i <= curr_len; i++) begin
                         rvalid <= 1'b1;
@@ -155,16 +155,16 @@ module axi_subordinate_model (
                         end
                         
                         while (!rready) begin
-                            @(posedge clk);
+                            @(posedge CLK);
                         end
                         
-                        @(posedge clk);
+                        @(posedge CLK);
                         rvalid <= 1'b0;
                         rresp  <= 1'b0;
                         rlast  <= 1'b0;
                         curr_addr += 1'b1;
                         
-                        repeat (2) @(posedge clk);
+                        repeat (2) @(posedge CLK);
                     end
                 end
             end

@@ -3,7 +3,7 @@
 module fft_axi_counter #(
     parameter WRITE_OR_READ = 1
 ) (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
     input logic [9:0] len, 
     input logic ready, valid, resp,
     output logic last,
@@ -11,8 +11,8 @@ module fft_axi_counter #(
 );
     logic [9:0] next_i;
 
-    always_ff @(posedge clk, negedge n_rst) begin : counter_registers
-        if (!n_rst) begin
+    always_ff @(posedge CLK, negedge nRST) begin : counter_registers
+        if (!nRST) begin
             i <= '0;
         end else begin
             i <= next_i;

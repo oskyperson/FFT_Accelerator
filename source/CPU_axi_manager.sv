@@ -1,8 +1,8 @@
 `timescale 1ns / 10ps
 
 module CPU_axi_manager (
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
 
     // Write Address Channel
     output logic [10:0] awaddr,
@@ -41,13 +41,13 @@ module CPU_axi_manager (
         int num_beats = data_queue.size();
         if (num_beats == 0) return;
 
-        @(posedge clk);
+        @(posedge CLK);
         
         awaddr  <= start_addr;
         awlen   <= num_beats - 1; 
         awvalid <= 1'b1;
         wait(awready);
-        @(posedge clk);
+        @(posedge CLK);
         awvalid <= 1'b0;
 
         
@@ -57,7 +57,7 @@ module CPU_axi_manager (
             wvalid <= 1'b1;
             wlast  <= (i == num_beats - 1); 
             do begin
-                @(posedge clk);
+                @(posedge CLK);
             end while (!wready);
         end
         wvalid <= 1'b0;
@@ -66,7 +66,7 @@ module CPU_axi_manager (
         
         bready <= 1'b1;
         wait(bvalid);
-        @(posedge clk);
+        @(posedge CLK);
         bready <= 1'b0;
         $display("[AXI Manager] Burst Write of %0d beats to Addr %0d finished.", num_beats, start_addr);
     endtask
@@ -75,13 +75,13 @@ module CPU_axi_manager (
     task automatic read_burst(input [10:0] start_addr, input int num_beats, output [31:0] result_queue [$]);
         result_queue.delete();
 
-        @(posedge clk);
+        @(posedge CLK);
        
         araddr  <= start_addr;
         arlen   <= num_beats - 1;
         arvalid <= 1'b1;
         wait(arready);
-        @(posedge clk);
+        @(posedge CLK);
         arvalid <= 1'b0;
 
         
@@ -95,8 +95,8 @@ module CPU_axi_manager (
             if (i == num_beats - 1 && !rlast) 
                 $display("[ERROR] RLAST not asserted on final beat!");
             
-            @(posedge clk);
-            @(negedge clk);
+            @(posedge CLK);
+            @(negedge CLK);
         end
         rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);

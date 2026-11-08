@@ -3,7 +3,7 @@
 module sram_axi #(
     // parameters
 ) (
-    input logic clk, n_rst,
+    input logic CLK, nRST,
     
     input logic [31:0] sram_awaddr,
     input logic sram_awvalid,
@@ -61,8 +61,8 @@ logic [9:0] next_rlen_reg;
 logic next_awready, next_wready, next_bvalid, next_arready, next_rvalid, next_rlast;
 logic [31:0] next_sram_rdata;
 
-always_ff @(posedge clk, negedge n_rst) begin : next_states
-    if(!n_rst) begin
+always_ff @(posedge CLK, negedge nRST) begin : next_states
+    if(!nRST) begin
         read_state <= R_IDLE;
         write_state <= W_IDLE;
         sram_rdata <= '0;
@@ -129,8 +129,8 @@ always_comb begin : READ_LOGIC
     endcase
 end
 
-always_ff @(posedge clk, negedge n_rst) begin: registers
-    if (!n_rst) begin
+always_ff @(posedge CLK, negedge nRST) begin: registers
+    if (!nRST) begin
         waddr_reg <= '0;
         wlen_reg  <= '0;
         wdata_reg <= '0; 

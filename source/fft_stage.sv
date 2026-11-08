@@ -20,8 +20,8 @@
 module fft_stage #(
     parameter STAGE = 1
 )(
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
     input logic [31:0] sample,
     input logic sample_valid,
     output logic [31:0] out,
@@ -44,7 +44,7 @@ module fft_stage #(
     logic       primed;
 
     flex_counter count(
-        .clk(clk), .n_rst(n_rst), .clear(1'b0), .count_enable(sample_valid),
+        .CLK(CLK), .nRST(nRST), .clear(1'b0), .count_enable(sample_valid),
         .count_out(count_out), .rollover_flag(rollover_flag),
         .rollover_val(frame_size - 1'd1), .next_count_out(next_count_out)
     );
@@ -56,8 +56,8 @@ module fft_stage #(
     logic [8:0]  twiddle_addr;
     logic [31:0] twiddle;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst)
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST)
             twiddle_addr <= '0;
         else if (sample_valid)
             twiddle_addr <= (next_count_out[8:0] & ADDR_ADJUST) << STAGE;
@@ -91,7 +91,7 @@ module fft_stage #(
     end
 
     delay_line #(.STAGE(STAGE), .WIDTH(34)) delays(
-        .clk(clk), .n_rst(n_rst), .sample(next_delay_sample),
+        .CLK(CLK), .nRST(nRST), .sample(next_delay_sample),
         .shift_en(sample_valid), .out(feedback)
     );
 
@@ -103,8 +103,8 @@ module fft_stage #(
     logic [33:0] p1_diff;
     logic [31:0] p1_tw;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST) begin
             p1_valid <= 1'b0;
             p1_rot   <= 1'b0;
             p1_byp   <= '0;
@@ -138,8 +138,8 @@ module fft_stage #(
     logic        [31:0] p2_byp;
     logic signed [32:0] p2_rr, p2_ii, p2_ri, p2_ir;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST) begin
             p2_valid <= 1'b0;
             p2_rot   <= 1'b0;
             p2_byp   <= '0;
@@ -178,8 +178,8 @@ module fft_stage #(
     assign rot_re = round_sat(p2_rr) - round_sat(p2_ii);
     assign rot_im = round_sat(p2_ri) + round_sat(p2_ir);
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST) begin
             out       <= '0;
             out_valid <= 1'b0;
         end else begin

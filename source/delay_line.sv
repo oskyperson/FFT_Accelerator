@@ -2,8 +2,8 @@ module delay_line #(
     parameter STAGE = 1,
     parameter WIDTH = 32
 )(
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
     input logic [WIDTH-1:0] sample,
     input logic shift_en,
     output logic [WIDTH-1:0] out
@@ -12,8 +12,8 @@ module delay_line #(
 
     logic [WIDTH-1:0] shift [DEPTH];
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST) begin
             for (int i = 0; i < DEPTH; i++)
                 shift[i] <= '0;
         end else if (shift_en) begin
@@ -27,8 +27,8 @@ module delay_line #(
    
     /*logic [8:0] ptr;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if(!nRST) begin
             ptr <= '0;
         end else if (shift_en) begin
             if(ptr == DEPTH - 1)
@@ -46,8 +46,8 @@ module delay_line #(
             logic wen_d;
 
             
-            always_ff @(posedge clk or negedge n_rst) begin
-                if(!n_rst) begin
+            always_ff @(posedge CLK or negedge nRST) begin
+                if(!nRST) begin
                     wen_d <= 1'b0;
                     wptr_d <= '0;
                     sample_d <= '0;
@@ -58,7 +58,7 @@ module delay_line #(
                 end
             end
 
-            always_ff @(posedge clk) begin
+            always_ff @(posedge CLK) begin
                 if(wen_d)
                     mem[wptr_d] <= sample_d;
             end
@@ -67,8 +67,8 @@ module delay_line #(
         end else begin : FF_INFER
             logic [31:0] shift [DEPTH];
 
-            always_ff @(posedge clk or negedge n_rst) begin
-                if (!n_rst) begin
+            always_ff @(posedge CLK or negedge nRST) begin
+                if (!nRST) begin
                     for (int i = 0; i < DEPTH; i++) begin
                         shift[i] <= '0;
                     end

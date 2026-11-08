@@ -1,8 +1,8 @@
 `timescale 1ns / 10ps
 
 module manager_model (
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
 
     // Write Address Channel
     output logic [31:0] cpu_awaddr,
@@ -58,15 +58,15 @@ module manager_model (
         int num_beats = data_queue.size();
         if (num_beats == 0) return;
 
-        @(posedge clk);
+        @(posedge CLK);
         
         cpu_awaddr <= start_addr;
         cpu_awlen <= num_beats - 1; 
         cpu_awvalid <= 1'b1;
         do begin
-            @(negedge clk);
+            @(negedge CLK);
         end while(!cpu_awready);
-        @(negedge clk);
+        @(negedge CLK);
         cpu_awvalid <= 1'b0;
 
         
@@ -76,7 +76,7 @@ module manager_model (
             cpu_wvalid <= 1'b1;
             cpu_wlast <= (i == num_beats - 1); 
             do begin
-                @(posedge clk);
+                @(posedge CLK);
             end while (!cpu_wready);
         end
         cpu_wvalid <= 1'b0;
@@ -85,7 +85,7 @@ module manager_model (
         
         cpu_bready <= 1'b1;
         wait(cpu_bvalid);
-        @(posedge clk);
+        @(posedge CLK);
         cpu_bready <= 1'b0;
         $display("[AXI Manager] Burst Write of %0d beats to Addr %0d finished.", num_beats, start_addr);
     endtask
@@ -94,16 +94,16 @@ module manager_model (
     task automatic read_burst(input [31:0] start_addr, input int num_beats, output [31:0] result_queue [$]);
         result_queue.delete();
 
-        @(posedge clk);
+        @(posedge CLK);
        
         cpu_araddr <= start_addr;
         cpu_arlen <= num_beats - 1;
         cpu_arvalid <= 1'b1;
         do begin
-            @(negedge clk);
+            @(negedge CLK);
         end while(!cpu_arready);
         
-        @(negedge clk);
+        @(negedge CLK);
         cpu_arvalid <= 1'b0;
 
         
@@ -118,8 +118,8 @@ module manager_model (
             if (i == num_beats - 1 && !cpu_rlast) 
                 $display("[ERROR] cpu_rlast not asserted on final beat!");
             
-            @(posedge clk);
-            @(negedge clk);
+            @(posedge CLK);
+            @(negedge CLK);
         end
         cpu_rready <= 1'b0;
         $display("[AXI Manager] Burst Read of %0d beats from Addr %0d finished.", num_beats, start_addr);

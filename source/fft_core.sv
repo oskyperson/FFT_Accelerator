@@ -1,8 +1,8 @@
 `timescale 1ns / 10ps
 
 module fft_core(
-    input logic clk,
-    input logic n_rst,
+    input logic CLK,
+    input logic nRST,
     input logic [31:0] sample,
     //input logic start,
     input logic valid,
@@ -27,8 +27,8 @@ module fft_core(
 
     
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if(!nRST) begin
             size_reg <= '0;
         end else if (load_size)
             size_reg <= frame_size;
@@ -40,8 +40,8 @@ module fft_core(
     logic [31:0] out_internal;
     logic out_valid_internal;
 
-    always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
+    always_ff @(posedge CLK or negedge nRST) begin
+        if(!nRST) begin
             temp1 <= '0;
             temp1_v <= '0;
             out_internal <= '0;
@@ -66,8 +66,8 @@ module fft_core(
     //logic [31:0] temp1;
 
 
-    /*always_ff @(posedge clk or negedge n_rst) begin
-        if(!n_rst) begin
+    /*always_ff @(posedge CLK or negedge nRST) begin
+        if(!nRST) begin
             temp1 <= '0;
             temp1_v <= '0;
         end else begin
@@ -87,8 +87,8 @@ module fft_core(
     logic [9:0] out_count;
     logic frame_active;
 
-    /*always_ff @(posedge clk or negedge n_rst) begin
-        if (!n_rst) begin
+    /*always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST) begin
             out_count <= '0;
             frame_active <= '0;
         end else begin
@@ -111,7 +111,7 @@ module fft_core(
     genvar i;
     generate
         for(i = 0; i < 9; i = i + 1) begin : butterfly_units
-            fft_stage #(i) stage (.clk(clk), .n_rst(n_rst), .sample(sample_stream[i]), .sample_valid(valid_stream[i]),
+            fft_stage #(i) stage (.CLK(CLK), .nRST(nRST), .sample(sample_stream[i]), .sample_valid(valid_stream[i]),
                 .out(sample_stream[i+1]), .out_valid(valid_stream[i+1]), .sel(size_reg > (9'd1 << (8-i))),
                 .frame_size(size_reg), .rollover_flag(rollover_flag[i])
             );

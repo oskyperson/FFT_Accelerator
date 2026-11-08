@@ -4,8 +4,8 @@ module sram_model #(
     parameter int ADDR_WIDTH = 32,
     parameter int DATA_WIDTH = 32
 )(
-    input logic clk,
-    input logic n_rst, 
+    input logic CLK,
+    input logic nRST, 
     
     input logic [3:0] wen,
     input logic [ADDR_WIDTH-1:0] write_addr,
@@ -20,8 +20,8 @@ module sram_model #(
 
     logic [DATA_WIDTH-1:0] mem [logic [ADDR_WIDTH-1:0]];
 
-    always_ff @(negedge clk, negedge n_rst) begin
-        if(!n_rst) begin
+    always_ff @(negedge CLK, negedge nRST) begin
+        if(!nRST) begin
             mem.delete();
             write_valid <=  '0;
             read_valid <=  '0;
