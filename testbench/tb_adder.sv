@@ -11,25 +11,25 @@ module tb_fft_axi_top ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -43,7 +43,7 @@ module tb_fft_axi_top ();
     string test;
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
         len = 10'd511;
         ready = 0;
         valid = 1;
@@ -52,47 +52,47 @@ module tb_fft_axi_top ();
         reset_dut;
         
         test = "power on reset";
-        n_rst = 0;
-        @(negedge clk);
-        n_rst = 1;
-        @(negedge clk);
+        nRST = 0;
+        @(negedge CLK);
+        nRST = 1;
+        @(negedge CLK);
 
         test = "max count";
         ready = 1;
         for(int i = 0; i < len + 1; i++)
-            @(negedge clk);
+            @(negedge CLK);
         valid = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "min count";
         valid = 1;
         len = 10'd1;
         for(int i = 0; i < len + 1; i++)
-            @(negedge clk);
+            @(negedge CLK);
         ready = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "random numbers";
         ready = 1;
         len = 10'd2;
         for(int i = 0; i < len + 1; i++)
-            @(negedge clk);
+            @(negedge CLK);
         ready = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         ready = 1;
         len = 10'd53;
         for(int i = 0; i < len + 1; i++)
-            @(negedge clk);
+            @(negedge CLK);
         ready = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         ready = 1;
         len = 10'd256;
         for(int i = 0; i < len + 1; i++)
-            @(negedge clk);
+            @(negedge CLK);
         ready = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         $finish;
     end

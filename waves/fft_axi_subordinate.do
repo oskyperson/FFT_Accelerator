@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_fft_axi_subordinate/clk
-add wave -noupdate /tb_fft_axi_subordinate/n_rst
+add wave -noupdate /tb_fft_axi_subordinate/CLK
+add wave -noupdate /tb_fft_axi_subordinate/nRST
 add wave -noupdate -divider {address write}
 add wave -noupdate /tb_fft_axi_subordinate/awready
 add wave -noupdate /tb_fft_axi_subordinate/awaddr

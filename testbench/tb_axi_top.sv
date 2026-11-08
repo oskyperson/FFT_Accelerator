@@ -10,7 +10,7 @@ module tb_axi_top ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     logic [31:0] cpu_awaddr, cpu_araddr;
     logic cpu_awvalid, cpu_arvalid;
@@ -41,23 +41,23 @@ module tb_axi_top ();
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -102,7 +102,7 @@ module tb_axi_top ();
         BFM.write_burst(32'd7, w_queue);
         // 3. Wait for hardware processing
         // Increased wait time to ensure FFT completion across all frames
-        repeat(n_samples * 20) @(posedge clk);
+        repeat(n_samples * 20) @(posedge CLK);
         
         // 4. Dump from the destination AXI address
         $display("Dumping results for %s from AXI Addr %0d", signal_type, axi_dest_addr);
@@ -111,7 +111,7 @@ module tb_axi_top ();
     endtask
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
         reset_dut;
 
         // Functional SRAM test

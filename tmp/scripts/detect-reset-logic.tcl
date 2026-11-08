@@ -1,6 +1,6 @@
 proc get_n_rst_paths {endpoint n} {
     return [get_timing_paths -include_hierarchical_pins \
-        -from "n_rst" -to $endpoint -enable_preset_clear_arcs -nworst $n]
+        -from "nRST" -to $endpoint -enable_preset_clear_arcs -nworst $n]
 }
 
 proc get_async_pin_attr {path attr} {
@@ -27,7 +27,7 @@ proc has_async_logic {{max_paths_to_fetch 100}} {
     foreach_in_collection path $all_paths {
         if {[get_async_pin_attr $path arrival] != 0} {
             set n [get_attribute [get_async_pin_attr $path object] full_name]
-            puts "Warning: Combinational logic between n_rst and $n (ECE337-1)"
+            puts "Warning: Combinational logic between nRST and $n (ECE337-1)"
             set issues_detected true
         }
     }
@@ -39,13 +39,13 @@ proc has_port {name} {
 }
 
 proc check_clock_reset {} {
-    if { [has_port "clk"] && [has_port "n_rst"] } {
+    if { [has_port "CLK"] && [has_port "nRST"] } {
         return [expr ! [has_async_logic]]
     }
-    if { [has_port "clk"] && ! [has_port "n_rst"] } {
+    if { [has_port "CLK"] && ! [has_port "nRST"] } {
         puts "Warning: Design has a clock port without a reset port (ECE337-2)"
     }
-    if { ! [has_port "clk"] && [has_port "n_rst"] } {
+    if { ! [has_port "CLK"] && [has_port "nRST"] } {
         puts "Warning: Design has a reset port without a clock port (ECE337-3)"
     }
     return true

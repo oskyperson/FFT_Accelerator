@@ -10,7 +10,7 @@ module tb_sram_axi ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     //AXI
     logic [31:0] cpu_awaddr, cpu_araddr;
@@ -64,21 +64,21 @@ module tb_sram_axi ();
 
     
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
         begin
-            n_rst = 0;
-            @(posedge clk);
-            @(posedge clk);
-            @(negedge clk);
-            n_rst = 1;
-            @(posedge clk);
-            @(posedge clk);
+            nRST = 0;
+            @(posedge CLK);
+            @(posedge CLK);
+            @(negedge CLK);
+            nRST = 1;
+            @(posedge CLK);
+            @(posedge CLK);
         end
     endtask
 
@@ -117,7 +117,7 @@ module tb_sram_axi ();
         release BFM.cpu_araddr;
         release BFM.cpu_awaddr;
 
-        n_rst = 1;
+        nRST = 1;
         reset_dut;
 
          

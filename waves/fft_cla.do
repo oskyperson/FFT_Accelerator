@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_fft_cla/clk
-add wave -noupdate /tb_fft_cla/n_rst
+add wave -noupdate /tb_fft_cla/CLK
+add wave -noupdate /tb_fft_cla/nRST
 add wave -noupdate -divider inputs
 add wave -noupdate -radix unsigned /tb_fft_cla/a
 add wave -noupdate -radix unsigned /tb_fft_cla/b

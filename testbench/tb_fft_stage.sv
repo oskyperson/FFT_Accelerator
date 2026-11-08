@@ -10,15 +10,15 @@ module tb_fft_stage ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
     logic sample_valid, out_valid;
     logic [31:0] sample, out;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
@@ -27,7 +27,7 @@ module tb_fft_stage ();
         input logic [15:0] im
     );
     begin
-        @(negedge clk);
+        @(negedge CLK);
         sample_valid = 1'b1;
         sample = {re, im};
     end
@@ -35,15 +35,15 @@ module tb_fft_stage ();
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
         sample_valid = '0;
         sample = '0;
-        @(posedge clk);
-        @(posedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -53,7 +53,7 @@ module tb_fft_stage ();
     logic signed [15:0] out_re, out_im;
     assign {out_re, out_im} = out;
 
-    always @(posedge clk) begin
+    always @(posedge CLK) begin
         if (out_valid) begin
             $fwrite(out_file, "%f, %f\n", real'(out_re) / 32768.0, real'(out_im) / 32768.0);
         end
@@ -62,16 +62,16 @@ module tb_fft_stage ();
     logic [31:0] temp;
     logic temp_valid;
 
-    fft_stage #(.STAGE(0)) DUT (.clk(clk), .n_rst(n_rst), .sample(sample), .sample_valid(sample_valid),
+    fft_stage #(.STAGE(0)) DUT (.CLK(CLK), .nRST(nRST), .sample(sample), .sample_valid(sample_valid),
         .out(temp), .out_valid(temp_valid)
     );
     
-    fft_stage #(.STAGE(1)) DUT1 (.clk(clk), .n_rst(n_rst), .sample(temp), .sample_valid(temp_valid),
+    fft_stage #(.STAGE(1)) DUT1 (.CLK(CLK), .nRST(nRST), .sample(temp), .sample_valid(temp_valid),
         .out(out), .out_valid(out_valid)
     );
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
 
         reset_dut;
         $fwrite(out_file, "Real ----- Imaginary\n");
@@ -589,17 +589,17 @@ module tb_fft_stage ();
         stream_frame(16'h3BB6, 16'hE8F7);
 
         repeat(600) begin
-            @(negedge clk);
+            @(negedge CLK);
             sample = '0;
             sample_valid = 1'b1;
         end
 
-        @(negedge clk);
+        @(negedge CLK);
         sample = '0;
         sample_valid = 1'b0;
 
         repeat(10) begin
-            @(negedge clk);
+            @(negedge CLK);
         end
         $finish;
     end

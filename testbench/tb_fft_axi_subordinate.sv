@@ -10,25 +10,25 @@ module tb_fft_axi_subordinate ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -61,8 +61,8 @@ module tb_fft_axi_subordinate ();
     logic [7:0][31:0] config_reg;
 
     fft_axi_subordinate #() sub0 (
-        .clk(clk),
-        .n_rst(n_rst),
+        .CLK(CLK),
+        .nRST(nRST),
         .fft_sub_awready(awready),
         .fft_sub_awaddr(awaddr),
         .fft_sub_awlen(awlen),
@@ -95,7 +95,7 @@ module tb_fft_axi_subordinate ();
     string test;
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
 
         force BFM.awvalid = 0;
         force BFM.wvalid  = 0;
@@ -112,9 +112,9 @@ module tb_fft_axi_subordinate ();
         reset_dut;
 
         test = "power on reset";
-        n_rst = 0;
-        @(negedge clk);
-        n_rst = 1;
+        nRST = 0;
+        @(negedge CLK);
+        nRST = 1;
 
         w_queue.delete();
 

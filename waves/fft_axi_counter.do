@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_fft_axi_counter/clk
-add wave -noupdate /tb_fft_axi_counter/n_rst
+add wave -noupdate /tb_fft_axi_counter/CLK
+add wave -noupdate /tb_fft_axi_counter/nRST
 add wave -noupdate -divider inputs
 add wave -noupdate -radix decimal /tb_fft_axi_counter/len
 add wave -noupdate /tb_fft_axi_counter/ready

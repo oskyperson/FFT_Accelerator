@@ -10,32 +10,32 @@ module tb_math ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
   
     logic [31:0] sample, feedback, twiddle, sum, rotation;
 
-    math DUT (.clk(clk), .n_rst(n_rst), .sample(sample), .feedback(feedback), .twiddle(twiddle),
+    math DUT (.CLK(CLK), .nRST(nRST), .sample(sample), .feedback(feedback), .twiddle(twiddle),
         .sum(sum), .rotation(rotation)
     
     );
@@ -46,7 +46,7 @@ module tb_math ();
     adder rl (.a(sample[31:16]), .b(feedback[31:16]), .sel(1'b1), .total(sum_re)); 
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
 
         sample = 32'h3bb61709;
         feedback = 32'h3bb61709;

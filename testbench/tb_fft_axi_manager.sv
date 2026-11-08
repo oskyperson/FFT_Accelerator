@@ -10,25 +10,25 @@ module tb_fft_axi_manager ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -110,8 +110,8 @@ module tb_fft_axi_manager ();
     logic [31:0] windowing;
 
     fft_axi_manager DUT (
-        .clk(clk),
-        .n_rst(n_rst),
+        .CLK(CLK),
+        .nRST(nRST),
         .fft_man_awready(awready),
         .fft_man_awaddr(awaddr),
         .fft_man_awlen(awlen),
@@ -155,7 +155,7 @@ module tb_fft_axi_manager ();
         input [31:0] windowing
     );
         wait(DUT.rstate == 0 && DUT.wstate == 0 && DUT.j == 0 && DUT.k == 0);
-        @(posedge clk);
+        @(posedge CLK);
         config_reg[0] = frames;
         config_reg[1] = r_addr;
         config_reg[2] = r_len;
@@ -166,14 +166,14 @@ module tb_fft_axi_manager ();
         config_reg[7][0] = 1; 
         config_reg[6] = windowing;
 
-        @(posedge clk);
+        @(posedge CLK);
         config_reg[7][0] = 0;
         #1; 
     endtask
 
     task wait_completion();
         wait(DUT.j == 0 && DUT.k == 0 && DUT.rstate == 0 && DUT.wstate == 0);
-        repeat(5) @(posedge clk);
+        repeat(5) @(posedge CLK);
     endtask
 
     // fft model logic
@@ -186,8 +186,8 @@ module tb_fft_axi_manager ();
         current_frame_len = config_reg[2] + 1; 
     end
 
-    always @(posedge clk) begin
-        if (!n_rst) begin
+    always @(posedge CLK) begin
+        if (!nRST) begin
             wr_ptr <= 0;
             fft_done <= 0;
             data_out <= 0;
@@ -207,13 +207,13 @@ module tb_fft_axi_manager ();
         end
     end
 
-    // always_ff @ (posedge clk)
+    // always_ff @ (posedge CLK)
     //     out_valid <= in_valid;
 
     assign out_valid = in_valid;
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
         config_reg = '0; 
         fft_done = 0;
         test = "IDLE";
@@ -223,10 +223,10 @@ module tb_fft_axi_manager ();
         end
         
         reset_dut;
-        n_rst = 0;
-        @(negedge clk);
-        n_rst = 1;
-        @(negedge clk);
+        nRST = 0;
+        @(negedge CLK);
+        nRST = 1;
+        @(negedge CLK);
 
         test = "1 frame max samples";
         configure_run(32'd1, 32'h0, 32'd511, 32'd8000, 32'd511, 32'd1);

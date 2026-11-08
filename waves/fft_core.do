@@ -5,8 +5,8 @@ add wave -noupdate /tb_fft_core/valid
 add wave -noupdate /tb_fft_core/out
 add wave -noupdate /tb_fft_core/out_valid
 add wave -noupdate -divider 0
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/out}
@@ -32,8 +32,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[0]/stage/math_sum}
 add wave -noupdate -divider 1
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/out}
@@ -59,8 +59,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[1]/stage/math_sum}
 add wave -noupdate -divider 2
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/out}
@@ -86,8 +86,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[2]/stage/math_sum}
 add wave -noupdate -divider 3
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/out}
@@ -113,8 +113,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[3]/stage/math_sum}
 add wave -noupdate -divider 4
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/out}
@@ -139,8 +139,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[4]/stage/math_sum}
 add wave -noupdate -divider 5
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/out}
@@ -166,8 +166,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/math_sum}
 add wave -noupdate -divider 6
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[5]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/out}
@@ -193,8 +193,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[6]/stage/math_sum}
 add wave -noupdate -divider 7
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/out}
@@ -219,8 +219,8 @@ add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/shift_en}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/rollover_flag}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/control}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[7]/stage/math_sum}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/clk}
-add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/n_rst}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/CLK}
+add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/nRST}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/sample}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/sample_valid}
 add wave -noupdate {/tb_fft_core/dut/butterfly_units[8]/stage/out}

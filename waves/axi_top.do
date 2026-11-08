@@ -83,10 +83,10 @@ add wave -noupdate -expand -group {Write Counter} -radix unsigned /tb_axi_top/DU
 add wave -noupdate -expand -group {Read Counter} -radix unsigned /tb_axi_top/DUT/fft_man/read_counter/last
 add wave -noupdate -expand -group {Read Counter} -radix unsigned /tb_axi_top/DUT/fft_man/read_counter/i
 add wave -noupdate -radix unsigned -childformat {{{/tb_axi_top/DUT/fft_man/configs[7]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[6]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[5]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[4]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[3]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[2]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[1]} -radix unsigned} {{/tb_axi_top/DUT/fft_man/configs[0]} -radix unsigned}} -subitemconfig {{/tb_axi_top/DUT/fft_man/configs[7]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[6]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[5]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[4]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[3]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[2]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[1]} {-height 16 -radix unsigned} {/tb_axi_top/DUT/fft_man/configs[0]} {-height 16 -radix unsigned}} /tb_axi_top/DUT/fft_man/configs
-add wave -noupdate -divider clk
-add wave -noupdate -expand -group clk /tb_axi_top/DUT/clk
-add wave -noupdate -expand -group clk /tb_axi_top/DUT/n_rst
-add wave -noupdate -expand -group clk /tb_axi_top/test_name
+add wave -noupdate -divider CLK
+add wave -noupdate -expand -group CLK /tb_axi_top/DUT/CLK
+add wave -noupdate -expand -group CLK /tb_axi_top/DUT/nRST
+add wave -noupdate -expand -group CLK /tb_axi_top/test_name
 add wave -noupdate -divider {sram axi}
 add wave -noupdate -divider {write address}
 add wave -noupdate -radix unsigned /tb_axi_top/DUT/sram_awaddr

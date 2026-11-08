@@ -10,25 +10,25 @@ module tb_fft_cla ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -43,7 +43,7 @@ module tb_fft_cla ();
     string test;
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
         a = 0;
         b = 0;
         cin = 0;
@@ -51,35 +51,35 @@ module tb_fft_cla ();
         reset_dut;
 
         test = "min add unsigned";
-        @(negedge clk);
+        @(negedge CLK);
         a = 32'h00000001;
         b = 32'h00000001;
         cin = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "max add unsigned";
         a = 32'hFFFFFFFF;
         b = 32'h00000000;
         cin = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "addition with carry in";
         a = 32'h0000000F;
         b = 32'h00000000;
         cin = 1;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "random numbers";
         a = 32'hA5A5A5A5;
         b = 32'h5A5A5A5A;
         cin = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "overflow carry out";
         a = 32'hFFFFFFFF;
         b = 32'h00000001;
         cin = 0;
-        @(negedge clk);
+        @(negedge CLK);
 
         test = "done";
 

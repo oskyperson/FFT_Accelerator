@@ -44,7 +44,7 @@ module tb_fft_core ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     logic [31:0] sample, out;
     logic start, valid, out_valid;
@@ -52,35 +52,35 @@ module tb_fft_core ();
     logic [9:0] frame_size;
     logic load_size;
 
-    fft_core dut (.clk(clk), .n_rst(n_rst), .sample(sample), .valid(valid), 
+    fft_core dut (.CLK(CLK), .nRST(nRST), .sample(sample), .valid(valid), 
         .out(out), .out_valid(out_valid), .frame_size(frame_size), .load_size(load_size)
     );
     integer p;
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
         p = 0;
-        n_rst = 1;
+        nRST = 1;
         valid = '0;
         sample = '0;
         start = 0;
         load_size = 0;
         frame_size = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(posedge clk);
-        @(posedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -89,7 +89,7 @@ module tb_fft_core ();
         input logic [15:0] im
     );
     begin
-        @(negedge clk);
+        @(negedge CLK);
         valid = 1'b1;
         sample = {re, im};
     end
@@ -104,7 +104,7 @@ module tb_fft_core ();
 
     
 
-    always @(posedge clk) begin
+    always @(posedge CLK) begin
         if (out_valid) begin
             if(p <= (FRAME_SIZE - 1) * num) begin
                 p = p + 1;
@@ -118,44 +118,44 @@ module tb_fft_core ();
     initial begin
         $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem.txt", memory);
         $readmemh("/home/ecegridfs/a/337mg041/FFT_Accelerator/Python/input_mem2.txt", memory2);
-        n_rst = 1;
+        nRST = 1;
         reset_dut;
-        @(negedge clk);
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
+        @(negedge CLK);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
         frame_size = FRAME_SIZE;
         load_size = 1'b1;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
         load_size = 1'b0;
-        @(posedge clk);
-        @(posedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
         
         $fwrite(out_file, "Real ----- Imaginary\n");
 
         for(j = 0; j < 100; j++) begin
-            @(negedge clk);
+            @(negedge CLK);
             valid = 1'b1;
             sample = memory[j];
         end
 
         repeat(50) begin
-            @(negedge clk)
+            @(negedge CLK)
             valid = 1'b0;
             sample = '0;
         end
 
         for(; j < FRAME_SIZE; j++) begin
-            @(negedge clk);
+            @(negedge CLK);
             valid = 1'b1;
             sample = memory[j];
         end
 
         if(num == 2) begin
             for(j = 0; j < FRAME_SIZE; j++) begin
-                @(negedge clk);
+                @(negedge CLK);
                 valid = 1'b1;
                 sample = memory2[j];
             end
@@ -163,16 +163,16 @@ module tb_fft_core ();
 
 
         repeat(550) begin
-            @(negedge clk);
+            @(negedge CLK);
             sample = '0;
             valid = 1'b1;
         end
 
-        @(negedge clk);
+        @(negedge CLK);
         valid = 1'b0;
 
         repeat(700) begin
-            @(posedge clk);
+            @(posedge CLK);
         end
         $fclose(out_file);
         $finish;

@@ -21,7 +21,7 @@ module tb_multiplier ();
 
     multiplier mult(.diff(diff), .twiddle(twiddle), .total(product));
     adder add(.a(a), .b(b), .sel(sel), .total(sum));
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     task sums_test(
         input logic [15:0] a_in, 
@@ -78,26 +78,26 @@ module tb_multiplier ();
 
     // clockgen
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        nRST = 0;
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
     initial begin
-        n_rst = 1;
+        nRST = 1;
         i = 0;
 
         reset_dut;

@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_fft_axi_manager/clk
-add wave -noupdate /tb_fft_axi_manager/n_rst
+add wave -noupdate /tb_fft_axi_manager/CLK
+add wave -noupdate /tb_fft_axi_manager/nRST
 add wave -noupdate -divider {write address}
 add wave -noupdate /tb_fft_axi_manager/awready
 add wave -noupdate -radix unsigned /tb_fft_axi_manager/awaddr

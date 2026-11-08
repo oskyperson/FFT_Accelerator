@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_fft_stage/DUT/clk
-add wave -noupdate /tb_fft_stage/DUT/n_rst
+add wave -noupdate /tb_fft_stage/DUT/CLK
+add wave -noupdate /tb_fft_stage/DUT/nRST
 add wave -noupdate /tb_fft_stage/DUT/sample
 add wave -noupdate /tb_fft_stage/DUT/sample_valid
 add wave -noupdate /tb_fft_stage/DUT/out
@@ -20,7 +20,7 @@ add wave -noupdate /tb_fft_stage/DUT/stage/sum
 add wave -noupdate /tb_fft_stage/DUT/stage/rotation
 add wave -noupdate -color Gold -radix unsigned /tb_fft_stage/DUT/count_out
 add wave -noupdate -divider {stage 2}
-add wave -noupdate /tb_fft_stage/DUT1/clk
+add wave -noupdate /tb_fft_stage/DUT1/CLK
 add wave -noupdate /tb_fft_stage/DUT1/sample
 add wave -noupdate /tb_fft_stage/DUT1/sample_valid
 add wave -noupdate /tb_fft_stage/DUT1/out
@@ -46,8 +46,8 @@ add wave -noupdate /tb_fft_stage/DUT1/primed
 add wave -noupdate /tb_fft_stage/DUT1/rollover_flag
 add wave -noupdate /tb_fft_stage/DUT1/control
 add wave -noupdate /tb_fft_stage/DUT1/math_sum
-add wave -noupdate /tb_fft_stage/DUT1/stage/clk
-add wave -noupdate /tb_fft_stage/DUT1/stage/n_rst
+add wave -noupdate /tb_fft_stage/DUT1/stage/CLK
+add wave -noupdate /tb_fft_stage/DUT1/stage/nRST
 add wave -noupdate /tb_fft_stage/DUT1/stage/sample
 add wave -noupdate /tb_fft_stage/DUT1/stage/feedback
 add wave -noupdate /tb_fft_stage/DUT1/stage/twiddle

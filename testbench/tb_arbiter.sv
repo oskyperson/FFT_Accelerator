@@ -10,7 +10,7 @@ module tb_arbiter ();
         $dumpvars;
     end
 
-    logic clk, n_rst;
+    logic CLK, nRST;
 
     //CPU Manager Interface
     logic [31:0] cpu_awaddr, cpu_araddr;
@@ -56,15 +56,15 @@ module tb_arbiter ();
 
     
     always begin
-        clk = 0;
+        CLK = 0;
         #(CLK_PERIOD / 2.0);
-        clk = 1;
+        CLK = 1;
         #(CLK_PERIOD / 2.0);
     end
 
     task reset_dut;
     begin
-        n_rst = 0;
+        nRST = 0;
         
         {cpu_awvalid, cpu_arvalid, cpu_wvalid, cpu_rready, cpu_bready} = '0;
         {fft_man_awvalid, fft_man_arvalid, fft_man_wvalid, fft_man_rready, fft_man_bready} = '0;
@@ -75,12 +75,12 @@ module tb_arbiter ();
         {cpu_awaddr, cpu_araddr, cpu_wdata} = '0;
         {fft_man_awaddr, fft_man_araddr, fft_man_wdata} = '0;
         
-        @(posedge clk);
-        @(posedge clk);
-        @(negedge clk);
-        n_rst = 1;
-        @(posedge clk);
-        @(posedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
+        @(negedge CLK);
+        nRST = 1;
+        @(posedge CLK);
+        @(posedge CLK);
     end
     endtask
 
@@ -95,8 +95,8 @@ module tb_arbiter ();
         cpu_awaddr = 11'd20;
         cpu_awvalid = 1'b1;
         
-        @(posedge clk);
-        @(negedge clk);
+        @(posedge CLK);
+        @(negedge CLK);
         if (sram_awvalid && !fft_sub_awvalid) 
             $display("  -> [PASS] Correct routing to SRAM");
         else 
@@ -112,8 +112,8 @@ module tb_arbiter ();
         fft_man_araddr = 11'd40;
         fft_man_arvalid = 1'b1;
 
-        @(posedge clk);
-        @(posedge clk);
+        @(posedge CLK);
+        @(posedge CLK);
         #1;
         if (sram_araddr == 11'd30)
             $display("  -> [PASS] CPU granted priority");
@@ -133,7 +133,7 @@ module tb_arbiter ();
         
         $display("  -> [INFO] Received Response: %h", cpu_rresp);
         
-        @(posedge clk);
+        @(posedge CLK);
         cpu_arvalid = 1'b0;
 
         #50;

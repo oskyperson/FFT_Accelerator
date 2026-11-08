@@ -14,8 +14,8 @@ add wave -noupdate /tb_sram_axi/DUT/read_data
 add wave -noupdate /tb_sram_axi/DUT/write_data
 add wave -noupdate /tb_sram_axi/DUT/read_addr
 add wave -noupdate /tb_sram_axi/DUT/write_addr
-add wave -noupdate /tb_sram_axi/DUT/clk
-add wave -noupdate /tb_sram_axi/DUT/n_rst
+add wave -noupdate /tb_sram_axi/DUT/CLK
+add wave -noupdate /tb_sram_axi/DUT/nRST
 add wave -noupdate /tb_sram_axi/DUT/awvalid
 add wave -noupdate /tb_sram_axi/DUT/wlast
 add wave -noupdate /tb_sram_axi/DUT/wvalid
