@@ -9,13 +9,19 @@
 // applied on the way *out* of the stage, where it can be pipelined freely:
 //
 //     P1: select output (sum / delayed diff / bypass), register twiddle
-//     P2: four 17x16 products (raw, 33b)
-//     P3: round + saturate + complex combine -> out
+//         (these are the DSP A/B input registers)
+//     P2: four 17x16 products (raw, 33b)  (DSP M register)
+//     P3: round + saturate each product to 16b
+//     P4: complex combine -> out
 //
-// The P1-P3 registers advance every clock and carry their own valid bit, so
+// The P1-P4 registers advance every clock and carry their own valid bit, so
 // gaps in sample_valid are tolerated and the valid-qualified output stream
 // is bit-identical to the previous single-cycle implementation. The cost is
 // LATENCY clock cycles per stage (previously 1).
+//
+// Only the valid bits and control state are reset. Datapath registers have no
+// reset so they can be packed into DSP slices (whose internal registers only
+// support synchronous reset) and so the reset net stays small.
 
 module fft_stage #(
     parameter STAGE = 1
@@ -27,11 +33,11 @@ module fft_stage #(
     output logic [31:0] out,
     output logic out_valid,
 
-    input logic sel,
-    input logic [9:0] frame_size,
+    input logic sel,             // stage active (registered by fft_core)
+    input logic [9:0] frame_last, // frame_size - 1 (registered by fft_core)
     output logic rollover_flag
 );
-    localparam int LATENCY = 3;
+    localparam int LATENCY = 4;
 
     localparam [8:0]  ADDR_ADJUST = (9'd1 << (8 - STAGE)) - 9'd1;
     localparam [9:0]  MIDPOINT    = (10'd1 << (8 - STAGE)) - 10'd1;
@@ -46,7 +52,7 @@ module fft_stage #(
     flex_counter count(
         .CLK(CLK), .nRST(nRST), .clear(1'b0), .count_enable(sample_valid),
         .count_out(count_out), .rollover_flag(rollover_flag),
-        .rollover_val(frame_size - 1'd1), .next_count_out(next_count_out)
+        .rollover_val(frame_last), .next_count_out(next_count_out)
     );
 
     assign control = count_out[8 - STAGE];
@@ -106,21 +112,20 @@ module fft_stage #(
     always_ff @(posedge CLK or negedge nRST) begin
         if (!nRST) begin
             p1_valid <= 1'b0;
-            p1_rot   <= 1'b0;
-            p1_byp   <= '0;
-            p1_diff  <= '0;
-            p1_tw    <= '0;
             primed   <= 1'b0;
         end else begin
             p1_valid <= sample_valid && (sel ? primed : 1'b1);
-            if (sample_valid) begin
-                p1_rot  <= sel && !control;  // delayed difference needs rotation
-                p1_byp  <= sel ? sum : sample;
-                p1_diff <= feedback;
-                p1_tw   <= twiddle;
-                if (count_out == MIDPOINT)
-                    primed <= 1'b1;
-            end
+            if (sample_valid && count_out == MIDPOINT)
+                primed <= 1'b1;
+        end
+    end
+
+    always_ff @(posedge CLK) begin
+        if (sample_valid) begin
+            p1_rot  <= sel && !control;  // delayed difference needs rotation
+            p1_byp  <= sel ? sum : sample;
+            p1_diff <= feedback;
+            p1_tw   <= twiddle;
         end
     end
 
@@ -139,29 +144,25 @@ module fft_stage #(
     logic signed [32:0] p2_rr, p2_ii, p2_ri, p2_ir;
 
     always_ff @(posedge CLK or negedge nRST) begin
-        if (!nRST) begin
+        if (!nRST)
             p2_valid <= 1'b0;
-            p2_rot   <= 1'b0;
-            p2_byp   <= '0;
-            p2_rr    <= '0;
-            p2_ii    <= '0;
-            p2_ri    <= '0;
-            p2_ir    <= '0;
-        end else begin
+        else
             p2_valid <= p1_valid;
-            if (p1_valid) begin
-                p2_rot <= p1_rot;
-                p2_byp <= p1_byp;
-                p2_rr  <= d_re * w_re;
-                p2_ii  <= d_im * w_im;
-                p2_ri  <= d_im * w_re;
-                p2_ir  <= d_re * w_im;
-            end
+    end
+
+    always_ff @(posedge CLK) begin
+        if (p1_valid) begin
+            p2_rot <= p1_rot;
+            p2_byp <= p1_byp;
+            p2_rr  <= d_re * w_re;
+            p2_ii  <= d_im * w_im;
+            p2_ri  <= d_im * w_re;
+            p2_ir  <= d_re * w_im;
         end
     end
 
     // ------------------------------------------------------------------
-    // P3: round/saturate (same as multiplier.sv), combine, output
+    // P3: round/saturate each product (same as multiplier.sv)
     // ------------------------------------------------------------------
     function automatic logic signed [15:0] round_sat(input logic signed [32:0] p);
         logic signed [32:0] r;
@@ -174,18 +175,45 @@ module fft_stage #(
             return r[15:0];
     endfunction
 
-    logic [15:0] rot_re, rot_im;
-    assign rot_re = round_sat(p2_rr) - round_sat(p2_ii);
-    assign rot_im = round_sat(p2_ri) + round_sat(p2_ir);
+    logic        p3_valid, p3_rot;
+    logic [31:0] p3_byp;
+    logic [15:0] p3_rr, p3_ii, p3_ri, p3_ir;
 
+    always_ff @(posedge CLK or negedge nRST) begin
+        if (!nRST)
+            p3_valid <= 1'b0;
+        else
+            p3_valid <= p2_valid;
+    end
+
+    always_ff @(posedge CLK) begin
+        if (p2_valid) begin
+            p3_rot <= p2_rot;
+            p3_byp <= p2_byp;
+            p3_rr  <= round_sat(p2_rr);
+            p3_ii  <= round_sat(p2_ii);
+            p3_ri  <= round_sat(p2_ri);
+            p3_ir  <= round_sat(p2_ir);
+        end
+    end
+
+    // ------------------------------------------------------------------
+    // P4: complex combine, output
+    // ------------------------------------------------------------------
+    logic [15:0] rot_re, rot_im;
+    assign rot_re = p3_rr - p3_ii;
+    assign rot_im = p3_ri + p3_ir;
+
+    // `out` keeps a reset: it is a module output and the downstream stage
+    // registers it on valid only, so this costs nothing in DSP packing.
     always_ff @(posedge CLK or negedge nRST) begin
         if (!nRST) begin
             out       <= '0;
             out_valid <= 1'b0;
         end else begin
-            out_valid <= p2_valid;
-            if (p2_valid)
-                out <= p2_rot ? {rot_re, rot_im} : p2_byp;
+            out_valid <= p3_valid;
+            if (p3_valid)
+                out <= p3_rot ? {rot_re, rot_im} : p3_byp;
         end
     end
 
