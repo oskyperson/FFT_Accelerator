@@ -1,15 +1,16 @@
 module delay_line #(
-    parameter STAGE = 1
+    parameter STAGE = 1,
+    parameter WIDTH = 32
 )(
     input logic clk,
     input logic n_rst,
-    input logic [31:0] sample,
+    input logic [WIDTH-1:0] sample,
     input logic shift_en,
-    output logic [31:0] out
+    output logic [WIDTH-1:0] out
 );
     localparam int DEPTH = 1 << (8 - STAGE);
 
-    logic [31:0] shift [DEPTH];
+    logic [WIDTH-1:0] shift [DEPTH];
 
     always_ff @(posedge clk or negedge n_rst) begin
         if (!n_rst) begin
